@@ -1,0 +1,48 @@
+<ion-view view-title="首页">
+    <ion-content>
+        <!--首页轮播图-->
+        <ul rn-carousel rn-carousel-auto-slide class="image" style="height:200px; width: 100%;">
+            <li><img src="images/1.jpg" alt=""/><span></span></li>
+            <li><img src="images/2.jpg" alt=""/><span></span></li>
+        </ul>
+        <!--二级大图-->
+        <!--核心功能-->
+        <div class="row">
+            <div class="col">
+                <div class="button-bar">
+                    <a class="button">
+                        <i class="icon ion-star"></i>
+                        <p>绑定医生</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="button-bar">
+                    <a class="button">
+                        <i class="icon ion-star"></i>
+                        <p>我是医生</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="button-bar">
+                    <a class="button">
+                        <i class="icon ion-star"></i>
+                        <p>发表心愿</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--最新回复(此处的ion-item后续需要ng-repeat动态绑定)-->
+        <ion-list class="list">
+            <ion-item class="item item-divider">
+                最新回复
+            </ion-item>
+            <ion-item class="item item-avatar" href="#">
+                <img src="" alt="用户头像"/>
+                <h2>用户姓名</h2>
+                <p>回复内容：祝您平安喜乐</p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

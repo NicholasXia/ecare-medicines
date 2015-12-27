@@ -1,0 +1,31 @@
+{
+  "name": "medicine",
+  "description": "medicine website with angular and ionic",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "medicine"
+  ],
+  "authors": [
+    "liruirui"
+  ],
+  "license": "MIt",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "Medicine/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "ionic": "~1.2.1",
+    "angular-carousel": "~1.0.1",
+    "angular-local-storage": "~0.2.3",
+    "js-md5": "md5#~0.3.0",
+    "angular-resource": "~1.4.8"
+  }
+}

@@ -1,0 +1,36 @@
+.mine-top{
+    height: 30vh;
+    background-color: #2196f3;
+    color:#fff;
+    display: flex;
+    justify-content: center;
+    align-items:flex-start;
+    flex-direction: column;
+    padding-left: 15%;
+
+}
+.mine-button{
+    padding: 10px;
+    font-size: 18px;
+    background-color: rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+
+.mine-options{
+    display: flex;
+    width: 100%;
+    /*padding: 1em;*/
+    flex-wrap: wrap;
+}
+
+.mine-options  .option{
+    border: 1px solid #ccc;
+    border-left: none;
+    border-top: none;
+    position: relative;
+    width: 33.33%;
+    overflow: hidden;
+    text-align: center;
+}
