@@ -20,6 +20,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'home-tab': {
                         templateUrl: "templates/home.html",
+                        controller: "doctorEndIndexCtrl"
                     }
                 }
             })
@@ -27,7 +28,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/knowledge",
                 views: {
                     'knowledge-tab': {
-                        templateUrl: "templates/knowledge.html"
+                        templateUrl: "templates/knowledge.html",
+                        controller: "doctorEndKnowledgeCtrl"
                     }
                 }
             })
@@ -35,7 +37,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/discover",
                 views: {
                     'discover-tab': {
-                        templateUrl: "templates/discover.html"
+                        templateUrl: "templates/discover.html",
+                        controller: "doctorEndDiscoverCtrl"
                     }
                 }
             })
@@ -43,33 +46,40 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/mine",
                 views: {
                     'mine-tab': {
-                        templateUrl: "templates/mine.html"
+                        templateUrl: "templates/mine.html",
+                        controller: "doctorEndMineCtrl"
                     }
                 }
             })
             .state('confirm',{
                 url: "/confirm",
-                templateUrl: "templates/confirm_id.html"
+                templateUrl: "templates/confirm_id.html",
+                controller: "doctorEndConfirmIdCtrl"
             })
             .state('signin',{
                 url: "/signin",
-                templateUrl: "templates/sign_in.html"
+                templateUrl: "templates/sign_in.html",
+                controller: "doctorEndSignInCtrl"
             })
             .state('signup',{
                 url: "/signup",
-                templateUrl: "templates/sign_up.html"
+                templateUrl: "templates/sign_up.html",
+                controller: "doctorEndSignUpCtrl"
             })
             .state('feedback',{
                 url: "/feedback",
-                templateUrl: "templates/feedback.html"
+                templateUrl: "templates/feedback.html",
+                controller: "doctorEndFeedbackCtrl"
             })
             .state('setting',{
                 url: "/setting",
-                templateUrl: "templates/setting.html"
+                templateUrl: "templates/setting.html",
+                controller: "doctorEndSettingCtrl"
             })
             .state('personal',{
                 url: "/personal",
-                templateUrl: "templates/personal_data.html"
+                templateUrl: "templates/personal_data.html",
+                controller: "doctorEndPersonalDataCtrl"
             })
         $urlRouterProvider.otherwise("/tab/home");
     })
