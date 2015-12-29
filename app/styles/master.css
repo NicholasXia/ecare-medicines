@@ -8,39 +8,46 @@
 .init{overflow: visible !important; text-overflow: clip !important; white-space: normal !important;}
 .wishes{background-color:aliceblue;}
 /***********************helper end*****************************/
-.mine-top{
-    height: 30vh;
-    background-color: #2196f3;
-    color:#fff;
-    display: flex;
-    justify-content: center;
-    align-items:flex-start;
-    flex-direction: column;
-    padding-left: 15%;
 
-}
-.mine-button{
-    padding: 10px;
-    font-size: 18px;
-    background-color: rgba(0,0,0,0.1);
-    margin-bottom: 10px;
-    border-radius: 6px;
-}
-
-
-.mine-options{
-    display: flex;
-    width: 100%;
-    /*padding: 1em;*/
+/**************fix ionic start******************/
+.flex-wrap{
     flex-wrap: wrap;
 }
-
-.mine-options  .option{
-    border: 1px solid #ccc;
-    border-left: none;
-    border-top: none;
-    position: relative;
-    width: 33.33%;
-    overflow: hidden;
-    text-align: center;
+.no-padding{
+    padding: 0 !important;
 }
+.full-card{
+    margin: 20px 0;
+}
+.relative{
+    position: relative;
+}
+.beyond-head{
+    margin-top:50px;
+}
+#jgg > div{
+    border: 1px solid #f6f6f6;
+}
+/**************fix ionic end******************/
+
+/**************ui ionic start******************/
+.imax{
+    height:150px;
+    background-color: #28a54c;
+    position: relative;
+}
+.imax .imax-inwrap{
+    position: absolute;
+    left: 50px;
+    bottom: 25px;
+}
+.imax .goorin{
+    color: #f6f6f6;
+    text-align: center;
+    border: 1px solid #f6f6f6;
+    border-radius: 3px;
+}
+.imax .hide-world{
+    color: #f6f6f6;
+}
+/**************ui ionic end******************/
