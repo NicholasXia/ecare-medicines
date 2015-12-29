@@ -1,5 +1,86 @@
-<ion-view view-title="知识">
-    <ion-content class="padding">
-        <h5>【知识】模块</h5>
+<ion-view view-title="知识" cache-view='false' hide-back-button="true" hide-nav-bar="isCategoryNavBarHide">
+    <ion-header-bar class="bar-balanced">
+        <h1 class="title">知识</h1>
+    </ion-header-bar>
+    <ion-content has-bouncing="true">
+        <!--栏目静态html测试区域 start-->
+        <div class="row flex-wrap no-padding">
+            <div class="col col-50 no-padding">
+                <div class="list">
+                    <a href="#" class="item item-icon-left">
+                        <i class="icon ion-home"></i>
+                        Enter home address
+                    </a>
+                </div>
+            </div>
+            <div class="col col-50 no-padding">
+                <div class="list">
+                    <a href="#" class="item item-icon-left">
+                        <i class="icon ion-home"></i>
+                        Enter home address
+                    </a>
+                </div>
+            </div>
+            <div class="col col-50 no-padding">
+                <div class="list">
+                    <a href="#" class="item item-icon-left">
+                        <i class="icon ion-home"></i>
+                        Enter home address
+                    </a>
+                </div>
+            </div>
+            <div class="col col-50 no-padding">
+                <div class="list">
+                    <a href="#" class="item item-icon-left">
+                        <i class="icon ion-home"></i>
+                        Enter home address
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--栏目静态html测试区域 end-->
+
+        <!--展示card区域 start-->
+        <div class="list card full-card">
+            <div class="item item-avatar">
+                <h2>Marty McFly</h2>
+            </div>
+
+            <div class="item item-body">
+                <img class="full-image" src="delorean.jpg">
+            </div>
+
+            <div class="item tabs tabs-secondary tabs-icon-left">
+                <a class="tab-item" href="#">
+                    <i class="icon ion-thumbsup"></i>
+                    Like
+                </a>
+                <a class="tab-item" href="#">
+                    <i class="icon ion-share"></i>
+                    Share
+                </a>
+            </div>
+        </div>
+        <!--展示card区域 end-->
+
+        <!--图文混排区域 start-->
+        <div class="list">
+            <a class="item item-thumbnail-right" href="#">
+                <img src="cover.jpg">
+                <h2>Pretty Hate Machine</h2>
+                <p>Nine Inch Nails</p>
+                <p>time:2015-12-27</p>
+            </a>
+        </div>
+        <!--图文混排区域 end-->
+
+
+        <!--保存到桌面区域 start-->
+        <div class="padding">
+            <button class="button button-outline button-block button-balanced">
+                保存到桌面
+            </button>
+        </div>
+        <!--保存到桌面区域 end-->
     </ion-content>
 </ion-view>

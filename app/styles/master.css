@@ -1,0 +1,42 @@
+/**************fix ionic start******************/
+.flex-wrap{
+    flex-wrap: wrap;
+}
+.no-padding{
+    padding: 0 !important;
+}
+.full-card{
+    margin: 20px 0;
+}
+.relative{
+    position: relative;
+}
+.beyond-head{
+    margin-top:50px;
+}
+#jgg > div{
+    border: 1px solid #f6f6f6;
+}
+/**************fix ionic end******************/
+
+/**************ui ionic start******************/
+.imax{
+    height:150px;
+    background-color: #28a54c;
+    position: relative;
+}
+.imax .imax-inwrap{
+    position: absolute;
+    left: 50px;
+    bottom: 25px;
+}
+.imax .goorin{
+    color: #f6f6f6;
+    text-align: center;
+    border: 1px solid #f6f6f6;
+    border-radius: 3px;
+}
+.imax .hide-world{
+    color: #f6f6f6;
+}
+/**************ui ionic end******************/
