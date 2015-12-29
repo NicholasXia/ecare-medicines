@@ -1,3 +1,13 @@
+/***********************helper start***************************/
+.fl{float:left;}
+.fr{float:right;}
+.small{font-size:10px;background-color: crimson;color:#eee;}
+.gray{color:#999;}
+.matches{border-left: 3px solid #28a54c; padding-left:9px;}
+.highlight{color:crimson;}
+.init{overflow: visible !important; text-overflow: clip !important; white-space: normal !important;}
+.wishes{background-color:aliceblue;}
+/***********************helper end*****************************/
 .mine-top{
     height: 30vh;
     background-color: #2196f3;
