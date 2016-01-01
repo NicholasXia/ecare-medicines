@@ -1,7 +1,7 @@
 /***********************helper start***************************/
 .fl{float:left;}
 .fr{float:right;}
-.small{font-size:10px;background-color: crimson;color:#eee;}
+.small{background-color: crimson;color:#eee;}
 .gray{color:#999;}
 .matches{border-left: 3px solid #28a54c; padding-left:9px;}
 .highlight{color:crimson;}
@@ -27,6 +27,9 @@
 }
 #jgg > div{
     border: 1px solid #f6f6f6;
+}
+#jgg h4{
+    margin: 0;
 }
 /**************fix ionic end******************/
 

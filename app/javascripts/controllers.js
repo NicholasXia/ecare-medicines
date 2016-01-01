@@ -1,8 +1,8 @@
 angular.module('medicine.controllers', [])
     .controller('doctorEndIndexCtrl', ['$scope', 'getCarouselList', function ($scope, getCarouselList) {
-        getCarouselList.query(function (data) {
+/*        getCarouselList.query(function (data) {
             console.log(data)
-        })
+        })*/
     }])
     .controller('doctorEndKnowledgeCtrl', ['$scope', function ($scope) {
 
@@ -29,5 +29,17 @@ angular.module('medicine.controllers', [])
 
     }])
     .controller('doctorEndPersonalDataCtrl', ['$scope', function ($scope) {
+
+    }])
+    .controller('doctorEndWishWallCtrl',['$scope',function($scope){
+
+    }])
+    .controller('doctorEndBindDoctorCtrl',['$scope',function($scope){
+
+    }])
+    .controller('doctorEndNumberWayCtrl',['$scope',function($scope){
+
+    }])
+    .controller('doctorEndInstructionCtrl',['$scope',function($scope){
 
     }])

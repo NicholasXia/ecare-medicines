@@ -81,5 +81,25 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/personal_data.html",
                 controller: "doctorEndPersonalDataCtrl"
             })
+            .state('wishwall',{
+                url: "/wishwall",
+                templateUrl: "templates/wish_wall.html",
+                controller: "doctorEndWishWallCtrl"
+            })
+            .state('binddoctor',{
+                url: "/binddoctor",
+                templateUrl: "templates/bind_doctor.html",
+                controller: "doctorEndBindDoctorCtrl"
+            })
+            .state('numberway',{
+                url: "/numberway",
+                templateUrl: "templates/number_way.html",
+                controller: "doctorEndNumberWayCtrl"
+            })
+            .state('instruction',{
+                url: "/instruction",
+                templateUrl: "templates/instruction.html",
+                controller: "doctorEndInstructionCtrl"
+            })
         $urlRouterProvider.otherwise("/tab/home");
     })
