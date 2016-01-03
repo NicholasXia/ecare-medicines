@@ -43,3 +43,6 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndInstructionCtrl',['$scope',function($scope){
 
     }])
+    .controller('doctorEndAppointmentCtrl',['$scope',function($scope){
+
+    }])
