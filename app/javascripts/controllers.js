@@ -1,8 +1,12 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorEndIndexCtrl', ['$scope', 'getCarouselList', function ($scope, getCarouselList) {
-/*        getCarouselList.query(function (data) {
-            console.log(data)
-        })*/
+    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', function ($scope, $window, getCarouselList) {
+        getCarouselList.query(function (data) {
+            $scope.carouselLists = data
+            console.log($scope.carouselLists)
+        })
+        $scope.goToActivity = function (activity) {
+            $window.location.href = activity
+        }
     }])
     .controller('doctorEndKnowledgeCtrl', ['$scope', function ($scope) {
 
@@ -16,8 +20,21 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndConfirmIdCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndSignInCtrl', ['$scope', function ($scope) {
-
+    .controller('doctorEndSignInCtrl', ['$scope', 'signIn',function ($scope, signIn) {
+        //用户注册模块
+        $scope.account = {phoneNum: '', verCode: '', password: ''}
+        $scope.signIn = function () {
+         /*  signIn.query(null,function (data) {
+               console.log(data)
+               if (data.error) {
+                   console.log('error is happen')
+               }else{
+                   console.log($scope.phonenum)
+               }
+           }, function () {
+               console.log('error')
+           })*/
+        }
     }])
     .controller('doctorEndSignUpCtrl', ['$scope', function ($scope) {
 
@@ -44,5 +61,8 @@ angular.module('medicine.controllers', [])
 
     }])
     .controller('doctorEndAppointmentCtrl',['$scope',function($scope){
+
+    }])
+    .controller('doctorEndBedsCtrl',['$scope',function($scope){
 
     }])

@@ -7,17 +7,17 @@
         <div class="list">
             <label class="item item-input">
                 <span class="input-label">手机</span>
-                <input type="text">
+                <input type="tel" ng-model="account.phoneNum">
             </label>
             <label class="item item-input">
                 <span class="input-label">请输入短信验证码</span>
-                <input type="password">
+                <input type="password" ng-model="account.verCode"/>
             </label>
             <label class="item item-input">
-                <span class="input-label">请输入6~20位数字密码</span>
-                <input type="password"/>
+                <span class="input-label">请输入6~0位数字密码</span>
+                <input type="password" ng-model="account.password"/>
             </label>
         </div>
-        <button class="button button-block button-balanced">注册</button>
+        <button class="button button-block button-balanced" ng-click="signIn()">注册</button>
     </ion-content>
 </ion-view>

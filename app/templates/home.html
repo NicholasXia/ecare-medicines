@@ -4,9 +4,8 @@
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <!--首页轮播图-->
-        <ul rn-carousel rn-carousel-auto-slide class="image" style="height:200px; width: 100%;">
-            <li><img src="images/1.jpg" alt=""/><span></span></li>
-            <li><img src="images/2.jpg" alt=""/><span></span></li>
+        <ul rn-carousel rn-carousel-auto-slide class="image" ng-if="carouselLists.length > 0" style="height:200px; width: 100%;">
+            <li ng-repeat="item in carouselLists"><img ng-src={{item.coverImageUrl}} ng-click="goToActivity(item.h5Url)"/><span></span></li>
         </ul>
         <!--二级大图-->
         <!--核心功能-->

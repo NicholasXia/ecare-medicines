@@ -107,9 +107,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 controller: "doctorEndAppointmentCtrl"
             })
             .state('beds',{
-                url: "/beds",
-                templateUrl: "templates/beds.html",
-                controller: "doctorEndBedsCtrl"
+                url: "/beds"
             })
         $urlRouterProvider.otherwise("/tab/home");
     })
