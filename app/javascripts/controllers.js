@@ -20,7 +20,7 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndConfirmIdCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndSignInCtrl', ['$scope', '$ionicPopup', 'getVerificationCode','createUser',function ($scope, $ionicPopup, getVerificationCode,createUser) {
+    .controller('doctorEndSignInCtrl', ['$scope', '$ionicPopup', 'getVerificationCode','createUser','$timeout','$window',function ($scope, $ionicPopup, getVerificationCode,createUser,$timeout,$window) {
         //用户注册模块
         var reg =  /^0?1[3|4|5|7|8][0-9]\d{8}$/
         $scope.account = {phoneNum: '', verCode: '', password: ''}
@@ -45,24 +45,21 @@ angular.module('medicine.controllers', [])
            })
         }
         $scope.signIn = function () {
-            /*
-            $scope.registerMsg = {}
-            $scope.registerMsg.data = {
+            var user = {
                 registerType: 2,
-                mobile:$scope.account.phoneNum,
-                password:$scope.account.password,
+                mobile: $scope.account.phoneNum,
+                password: $scope.account.password,
                 verifycode: $scope.account.verCode
             }
-            var registerMsg = new createUser($scope.registerMsg)
-            registerMsg.$create().then(function(data){console.log(data)})
-            */
-            var user = new createUser()
-            user.registerType = 2
-            user.mobile = $scope.account.phoneNum
-            user.password = $scope.account.password
-            user.verifycode = $scope.account.verCode
-            user.$create().then(function (data) {
-               console.log(data)
+            createUser.save({},user,function(data){
+                var popup = $ionicPopup.alert({
+                    title: '注册成功',
+                    template: '3秒后回到首页'
+                })
+                $timeout(function(){
+                    popup.close()
+                    $window.location.href = '#/'
+                },3000)
             })
         }
     }])
