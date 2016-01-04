@@ -20,20 +20,50 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndConfirmIdCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndSignInCtrl', ['$scope', 'signIn',function ($scope, signIn) {
+    .controller('doctorEndSignInCtrl', ['$scope', '$ionicPopup', 'getVerificationCode','createUser',function ($scope, $ionicPopup, getVerificationCode,createUser) {
         //用户注册模块
+        var reg =  /^0?1[3|4|5|7|8][0-9]\d{8}$/
         $scope.account = {phoneNum: '', verCode: '', password: ''}
-        $scope.signIn = function () {
-         /*  signIn.query(null,function (data) {
-               console.log(data)
-               if (data.error) {
-                   console.log('error is happen')
+        $scope.getVerificationCode = function () {
+            getVerificationCode.query({mobile:$scope.account.phoneNum},function (data) {
+               if (data.error || $scope.account.phoneNum.length == 0 || $scope.account.phoneNum.length < 11 || !reg.test($scope.account.phoneNum)) {
+                   $ionicPopup.alert({
+                       title: '错误提示',
+                       template: '手机号输入有误，请重新输入'
+                   });
                }else{
-                   console.log($scope.phonenum)
+                   $ionicPopup.alert({
+                       title: '成功提示',
+                       template: '验证码已经发送，请稍后'
+                   });
                }
            }, function () {
-               console.log('error')
-           })*/
+                $ionicPopup.alert({
+                    title: '错误提示',
+                    template: '未知错误，请稍后重试'
+                });
+           })
+        }
+        $scope.signIn = function () {
+            /*
+            $scope.registerMsg = {}
+            $scope.registerMsg.data = {
+                registerType: 2,
+                mobile:$scope.account.phoneNum,
+                password:$scope.account.password,
+                verifycode: $scope.account.verCode
+            }
+            var registerMsg = new createUser($scope.registerMsg)
+            registerMsg.$create().then(function(data){console.log(data)})
+            */
+            var user = new createUser()
+            user.registerType = 2
+            user.mobile = $scope.account.phoneNum
+            user.password = $scope.account.password
+            user.verifycode = $scope.account.verCode
+            user.$create().then(function (data) {
+               console.log(data)
+            })
         }
     }])
     .controller('doctorEndSignUpCtrl', ['$scope', function ($scope) {
