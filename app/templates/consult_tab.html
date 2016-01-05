@@ -1,0 +1,20 @@
+<ion-view view-title="咨询记录" cache-view="false">
+    <ion-header-bar class="bar-balanced">
+        <h1 class="title">咨询记录</h1>
+    </ion-header-bar>
+    <ion-content has-bouncing="true">
+        <ion-list can-swipe="true">
+            <ion-item class="item-avatar-left">
+                <img src="images/1.jpg"/>
+                <div>
+                    <span>用户姓名</span>
+                    <span class="small">已绑定</span>
+                    <span class="gray">2015年12月28年</span>
+                </div>
+                <ion-option-button class="button-assertive" ng-click="delete(item)">
+                    删除
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

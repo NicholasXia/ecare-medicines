@@ -52,6 +52,7 @@ angular.module('medicine.controllers', [])
                 verifycode: $scope.account.verCode
             }
             createUser.save({}, user, function (data) {
+                console.log(data)
                 var popup = $ionicPopup.alert({
                     title: '注册成功',
                     template: '进入登陆页'
@@ -95,5 +96,8 @@ angular.module('medicine.controllers', [])
 
     }])
     .controller('doctorEndHealthEvaluationCtrl',['$scope',function($scope){
+
+    }])
+    .controller('doctorEndMyDoctorCtrl',['$scope', function($scope){
 
     }])

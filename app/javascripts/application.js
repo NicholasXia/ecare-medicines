@@ -51,6 +51,34 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                     }
                 }
             })
+            .state('doctortabs',{
+                url: '/mydoctor',
+                templateUrl: "templates/my_doctor.html"
+            })
+            .state('doctortabs.notice',{
+                url: "/notice",
+                views:{
+                    'notice-tab':{
+                        templateUrl: "templates/notice_tab.html",
+                    }
+                }
+            })
+            .state('doctortabs.consult',{
+                url: "/consult",
+                views:{
+                    'consult-tab':{
+                        templateUrl: "templates/consult_tab.html",
+                    }
+                }
+            })
+            .state('doctortabs.doctorlist',{
+                url: "/doctorlist",
+                views:{
+                    'doctorlist-tab':{
+                        templateUrl: "templates/doctorlist_tab.html",
+                    }
+                }
+            })
             .state('confirm',{
                 url: "/confirm",
                 templateUrl: "templates/confirm_id.html",
@@ -115,6 +143,11 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/healthEvaluation",
                 templateUrl: "templates/health_evaluation.html",
                 controller: "doctorEndHealthEvaluationCtrl"
+            })
+            .state('myDoctor',{
+                url: "/myDoctor",
+                templateUrl: "templates/my_doctor.html",
+                controller: "doctorEndMyDoctorCtrl"
             })
         $urlRouterProvider.otherwise("/tab/home");
     })
