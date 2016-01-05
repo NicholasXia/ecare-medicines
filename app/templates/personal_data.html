@@ -7,7 +7,6 @@
             <a class="item item-icon-right" href="#">
                 头像
                 <i class="icon ion-chevron-right basefont"></i>
-                <span>{{personalData.icon}}</span>
             </a>
             <a class="item item-icon-right" href="#">
                 姓名
@@ -17,21 +16,25 @@
                 手机号
                 <span>18037367631</span>
             </a>
+
             <label class="item item-icon-right item-input item-select" href="#">
                 <div class="input-label">
                     性别
                 </div>
                 <!--此处需要绑定ng-change方法，当用户更新数据的时候，向服务器发送更新数据的请求-->
-                <select>
-                    <option selected>男</option>
-                    <option>女</option>
+                <select ng-model="patient.gender" ng-options="gender.item for gender in patient.gender">
+                   <!-- <option selected>男</option>
+                    <option>女</option>-->
                 </select>
             </label>
+
+            <ionic-datepicker input-obj="datepickerObject">
             <a class="item item-icon-right" href="#">
-                出生日期
-                <i class="icon ion-chevron-right basefont"></i>
-                <span>1992-10-04</span>
+                     生日
+                    <span>{{patient.birthday}}</span>
             </a>
+            </ionic-datepicker>
+
             <a class="item item-icon-right" href="#">
                 体重
                 <i class="icon ion-chevron-right basefont"></i>

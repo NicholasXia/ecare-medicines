@@ -1,4 +1,4 @@
-angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.filters', 'angular-carousel'])
+angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.filters', 'angular-carousel','ionic-datepicker'])
 
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')

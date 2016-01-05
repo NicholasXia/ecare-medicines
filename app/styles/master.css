@@ -13,7 +13,7 @@
 .basefont{font-size:16px !important;}
 #tabs-top > div{top:0;}
 #personalData{position:relative;}
-#personalData  span{position:absolute; left: 100px;}
+#personalData  span, #personalData select{position:absolute; left: 100px; padding:0;}
 /***********************helper end*****************************/
 
 /**************fix ionic start******************/
