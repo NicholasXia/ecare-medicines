@@ -7,12 +7,12 @@
         <div class="list">
             <label class="item item-input">
                 <span class="input-label">手机</span>
-                <input type="tel" ng-model="account.phoneNum">
+                <input type="tel" required ng-model="account.phoneNum">
             </label>
             <label class="item item-input">
                 <span class="input-label">输入短信验证码</span>
                 <label class="item-input-wrapper">
-                    <input type="password" ng-model="account.verCode"/>
+                    <input type="password" required ng-model="account.verCode"/>
                 </label>
                 <button class="button button-small button-balanced" ng-click="getVerificationCode()">
                     获取验证码
@@ -20,7 +20,7 @@
             </label>
             <label class="item item-input">
                 <span class="input-label">请输入6~0位数字密码</span>
-                <input type="password" ng-model="account.password"/>
+                <input type="password" required ng-model="account.password"/>
             </label>
         </div>
         <button class="button button-block button-balanced" ng-click="signIn()">注册</button>
