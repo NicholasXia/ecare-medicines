@@ -149,5 +149,10 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/my_doctor.html",
                 controller: "doctorEndMyDoctorCtrl"
             })
+            .state('changepwd',{
+                url: "/changepwd",
+                templateUrl: "templates/change_pwd.html",
+                controller: "doctorEndChangePwdCtrl"
+            })
         $urlRouterProvider.otherwise("/tab/home");
     })

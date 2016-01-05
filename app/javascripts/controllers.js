@@ -101,3 +101,6 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndMyDoctorCtrl',['$scope', function($scope){
 
     }])
+    .controller('doctorEndChangePwdCtrl',['$scope',function($scope){
+
+    }])
