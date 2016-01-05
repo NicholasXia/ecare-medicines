@@ -1,4 +1,4 @@
-angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.filters', 'angular-carousel'])
+angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.filters', 'angular-carousel','ionic-datepicker'])
 
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
@@ -48,6 +48,34 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                     'mine-tab': {
                         templateUrl: "templates/mine.html",
                         controller: "doctorEndMineCtrl"
+                    }
+                }
+            })
+            .state('doctortabs',{
+                url: '/mydoctor',
+                templateUrl: "templates/my_doctor.html"
+            })
+            .state('doctortabs.notice',{
+                url: "/notice",
+                views:{
+                    'notice-tab':{
+                        templateUrl: "templates/notice_tab.html",
+                    }
+                }
+            })
+            .state('doctortabs.consult',{
+                url: "/consult",
+                views:{
+                    'consult-tab':{
+                        templateUrl: "templates/consult_tab.html",
+                    }
+                }
+            })
+            .state('doctortabs.doctorlist',{
+                url: "/doctorlist",
+                views:{
+                    'doctorlist-tab':{
+                        templateUrl: "templates/doctorlist_tab.html",
                     }
                 }
             })
@@ -115,6 +143,16 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/healthEvaluation",
                 templateUrl: "templates/health_evaluation.html",
                 controller: "doctorEndHealthEvaluationCtrl"
+            })
+            .state('myDoctor',{
+                url: "/myDoctor",
+                templateUrl: "templates/my_doctor.html",
+                controller: "doctorEndMyDoctorCtrl"
+            })
+            .state('changepwd',{
+                url: "/changepwd",
+                templateUrl: "templates/change_pwd.html",
+                controller: "doctorEndChangePwdCtrl"
             })
         $urlRouterProvider.otherwise("/tab/home");
     })

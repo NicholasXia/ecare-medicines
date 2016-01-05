@@ -59,6 +59,7 @@ angular.module('medicine.controllers', [])
                 return
             }
             createUser.save({}, user, function (data) {
+                console.log(data)
                 var popup = $ionicPopup.alert({
                     title: '注册成功',
                     template: '进入登陆页'
@@ -81,7 +82,41 @@ angular.module('medicine.controllers', [])
 
     }])
     .controller('doctorEndPersonalDataCtrl', ['$scope', function ($scope) {
-
+        $scope.patient = {
+            birthday: '',
+            gender: [
+                {"item":"男"},
+                {"item":"女"}
+            ]
+        }
+        var datePickerCallback = function (val) {
+            if (typeof(val) === 'undefined') {
+                console.log('No date selected');
+            } else {
+                $scope.patient.birthday = val.getFullYear() + '-' + (val.getMonth() + 1) + '-' + val.getDate()
+            }
+        };
+        $scope.datepickerObject = {
+            titleLabel: '请选择生日',
+            todayLabel: '今日',
+            closeLabel: '取消',
+            setLabel: '选取',
+            setButtonType: 'button-assertive',
+            todayButtonType: 'button-assertive',
+            closeButtonType: 'button-assertive',
+            inputDate: new Date(),
+            mondayFirst: true,
+            templateType: 'popup',
+            showTodayButton: 'true',
+            modalHeaderColor: 'bar-positive',
+            modalFooterColor: 'bar-positive',
+            callback: function (val) {
+                datePickerCallback(val);
+                return
+            },
+            dateFormat: 'dd-MM-yyyy',
+            closeOnSelect: false,
+        };
     }])
     .controller('doctorEndWishWallCtrl', ['$scope', function ($scope) {
 
@@ -101,6 +136,12 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndBedsCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndHealthEvaluationCtrl',['$scope',function($scope){
+    .controller('doctorEndHealthEvaluationCtrl', ['$scope', function ($scope) {
+
+    }])
+    .controller('doctorEndMyDoctorCtrl', ['$scope', function ($scope) {
+
+    }])
+    .controller('doctorEndChangePwdCtrl', ['$scope', function ($scope) {
 
     }])
