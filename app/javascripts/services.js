@@ -30,3 +30,4 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('')

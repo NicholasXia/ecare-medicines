@@ -1,6 +1,8 @@
 /***********************helper start***************************/
 .fl{float:left;}
 .fr{float:right;}
+.border{border:1px solid #ddd;padding:15px;}
+.mb{margin-bottom:35px;}
 .small{background-color: crimson;color:#eee;}
 .gray{color:#999;}
 .matches{border-left: 3px solid #28a54c; padding-left:9px;}

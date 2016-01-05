@@ -111,5 +111,10 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/beds.html",
                 controller: "doctorEndBedsCtrl"
             })
+            .state('healthEvaluation',{
+                url: "/healthEvaluation",
+                templateUrl: "templates/health_evaluation.html",
+                controller: "doctorEndHealthEvaluationCtrl"
+            })
         $urlRouterProvider.otherwise("/tab/home");
     })

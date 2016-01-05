@@ -20,29 +20,29 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndConfirmIdCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndSignInCtrl', ['$scope', '$ionicPopup', 'getVerificationCode','createUser','$timeout','$window',function ($scope, $ionicPopup, getVerificationCode,createUser,$timeout,$window) {
+    .controller('doctorEndSignInCtrl', ['$scope', '$ionicPopup', 'getVerificationCode', 'createUser', '$timeout', '$window', function ($scope, $ionicPopup, getVerificationCode, createUser, $timeout, $window) {
         //用户注册模块
-        var reg =  /^0?1[3|4|5|7|8][0-9]\d{8}$/
+        var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/
         $scope.account = {phoneNum: '', verCode: '', password: ''}
         $scope.getVerificationCode = function () {
-            getVerificationCode.query({mobile:$scope.account.phoneNum},function (data) {
-               if (data.error || $scope.account.phoneNum.length == 0 || $scope.account.phoneNum.length < 11 || !reg.test($scope.account.phoneNum)) {
-                   $ionicPopup.alert({
-                       title: '错误提示',
-                       template: '手机号输入有误，请重新输入'
-                   });
-               }else{
-                   $ionicPopup.alert({
-                       title: '成功提示',
-                       template: '验证码已经发送，请稍后'
-                   });
-               }
-           }, function () {
+            getVerificationCode.query({mobile: $scope.account.phoneNum}, function (data) {
+                if (data.error || $scope.account.phoneNum.length == 0 || $scope.account.phoneNum.length < 11 || !reg.test($scope.account.phoneNum)) {
+                    $ionicPopup.alert({
+                        title: '错误提示',
+                        template: '手机号输入有误，请重新输入'
+                    });
+                } else {
+                    $ionicPopup.alert({
+                        title: '成功提示',
+                        template: '验证码已经发送，请稍后'
+                    });
+                }
+            }, function () {
                 $ionicPopup.alert({
                     title: '错误提示',
                     template: '未知错误，请稍后重试'
                 });
-           })
+            })
         }
         $scope.signIn = function () {
             var user = {
@@ -51,19 +51,20 @@ angular.module('medicine.controllers', [])
                 password: $scope.account.password,
                 verifycode: $scope.account.verCode
             }
-            createUser.save({},user,function(data){
+            createUser.save({}, user, function (data) {
                 var popup = $ionicPopup.alert({
                     title: '注册成功',
-                    template: '3秒后回到首页'
+                    template: '进入登陆页'
                 })
-                $timeout(function(){
+                $timeout(function () {
                     popup.close()
-                    $window.location.href = '#/'
-                },3000)
+                    $window.location.href = '#/signup'
+                }, 3000)
             })
         }
     }])
     .controller('doctorEndSignUpCtrl', ['$scope', function ($scope) {
+
 
     }])
     .controller('doctorEndFeedbackCtrl', ['$scope', function ($scope) {
@@ -75,21 +76,24 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndPersonalDataCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndWishWallCtrl',['$scope',function($scope){
+    .controller('doctorEndWishWallCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndBindDoctorCtrl',['$scope',function($scope){
+    .controller('doctorEndBindDoctorCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndNumberWayCtrl',['$scope',function($scope){
+    .controller('doctorEndNumberWayCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndInstructionCtrl',['$scope',function($scope){
+    .controller('doctorEndInstructionCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndAppointmentCtrl',['$scope',function($scope){
+    .controller('doctorEndAppointmentCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndBedsCtrl',['$scope',function($scope){
+    .controller('doctorEndBedsCtrl', ['$scope', function ($scope) {
+
+    }])
+    .controller('doctorEndHealthEvaluationCtrl',['$scope',function($scope){
 
     }])
