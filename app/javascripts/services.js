@@ -22,10 +22,20 @@ angular.module('medicine.services', ['ngResource'])
         })
     }])
     .factory('createUser',['$resource',function($resource){
-        return $resource('http://112.126.83.112:8080/hospital/u/register',{registerType:2, mobile:'@mobile', password:'@password',verifycode:'@verifycode'},{
+        return $resource('http://112.126.83.112:8080/hospital/u/register',{registerType:'@registerType', mobile:'@mobile', password:'@password',verifycode:'@verifycode'},{
             save: {
                 method: 'POST',
                 params:{
+                }
+            }
+        })
+    }])
+    .factory('signUp',['$resource',function($resource){
+        return $resource('http://112.126.83.112:8080/hospital/u/login',{username:'@username',password:'@password'},{
+            save:{
+                method: 'POST',
+                params:{
+
                 }
             }
         })

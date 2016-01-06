@@ -59,7 +59,6 @@ angular.module('medicine.controllers', [])
                 return
             }
             createUser.save({}, user, function (data) {
-                console.log(data)
                 var popup = $ionicPopup.alert({
                     title: '注册成功',
                     template: '进入登陆页'
@@ -71,8 +70,28 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
-    .controller('doctorEndSignUpCtrl', ['$scope', function ($scope) {
-
+    .controller('doctorEndSignUpCtrl', ['$scope', 'signUp','$window','$ionicPopup','$timeout',function ($scope, signUp, $window, $ionicPopup,$timeout) {
+        $scope.signInMsg = {'username':'','password':''}
+        $scope.signIn = function(){
+            signUp.save({},$scope.signInMsg,function(data){
+                if (data.error) {
+                    $ionicPopup.alert({
+                        title: '错误提示',
+                        template: data.error
+                    })
+                    ;return
+                }else{
+                    var popup = $ionicPopup.alert({
+                        title: '登陆成功',
+                        template: '3秒后自动进入主页'
+                    })
+                    $timeout(function(){
+                        popup.close()
+                        $window.location.href = '#/'
+                    },3000)
+                }
+            })
+        }
 
     }])
     .controller('doctorEndFeedbackCtrl', ['$scope', function ($scope) {
