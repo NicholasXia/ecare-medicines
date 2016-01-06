@@ -167,3 +167,6 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndScanWayCtrl',['$scope',function($scope){
 
     }])
+    .controller('doctorEndCollectionCtrl',['$scope',function($scope){
+
+    }])
