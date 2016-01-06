@@ -1,4 +1,5 @@
 angular.module('medicine.services', ['ngResource'])
+    .constant('CURRENT_USER', 'currentUser')
     .factory('getCarouselList', ['$resource', function ($resource) {
         return $resource('http://112.126.83.112:8080/hospital/back/article/list/:type/:category', {}, {
             query: {
@@ -39,4 +40,30 @@ angular.module('medicine.services', ['ngResource'])
                 }
             }
         })
+    }])
+    .factory('resetPwd',['$resource',function($resource){
+        return $resource('http://112.126.83.112:8080/hospital/u/pwd/reset',{oldPwd:"@oldPwd",newPwd:"@newPwd",accessToken:"@accessToken"},{
+            save:{
+                method: 'POST',
+                params:{
+
+                }
+            }
+        })
+    }])
+    .factory('currentUser',['localStorageService', 'CURRENT_USER',function(localStorageService,CURRENT_USER){
+        var currentUser = {}
+        currentUser.getAuthToken = function(){
+            return localStorageService.get(CURRENT_USER)
+        }
+        currentUser.setAuthToken = function (authToken) {
+           localStorageService.set(CURRENT_USER, authToken)
+        }
+        currentUser.hasAuthToken = function () {
+            return localStorageService.get(CURRENT_USER)
+        }
+        currentUser.destroy = function () {
+           localStorageService.remove(CURRENT_USER)
+        }
+        return currentUser
     }])

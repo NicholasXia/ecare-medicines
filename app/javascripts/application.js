@@ -1,4 +1,4 @@
-angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.filters', 'angular-carousel','ionic-datepicker'])
+angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.filters', 'angular-carousel','ionic-datepicker','LocalStorageModule'])
 
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
@@ -6,6 +6,11 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         $ionicConfigProvider.views.maxCache(0);
         $ionicConfigProvider.backButton.text('Go Back').icon('ion-chevron-left');
     })
+/*    .config(function(localStorageServiceProvider){
+        localStorageServiceProvider
+            .setStorageType('sessionStorage')
+            .setNotify(true, true)
+    })*/
 
     .config(function ($stateProvider, $urlRouterProvider) {
 

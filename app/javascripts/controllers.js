@@ -20,7 +20,7 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndConfirmIdCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndSignInCtrl', ['$scope', '$ionicPopup', 'getVerificationCode', 'createUser', '$timeout', '$window', function ($scope, $ionicPopup, getVerificationCode, createUser, $timeout, $window) {
+    .controller('doctorEndSignInCtrl', ['$scope', '$ionicPopup', 'getVerificationCode', 'createUser', '$timeout', '$window', 'currentUser',function ($scope, $ionicPopup, getVerificationCode, createUser, $timeout, $window, currentUser) {
         //用户注册模块
         var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/
         $scope.account = {phoneNum: '', verCode: '', password: ''}
@@ -58,7 +58,10 @@ angular.module('medicine.controllers', [])
                 })
                 return
             }
-            createUser.save({}, user, function (data) {
+            createUser.save({}, user, function (userdata) {
+                console.log(userdata)
+                currentUser.setUserInfo(userdata)
+                console.log(currentUser.getUserInfo())
                 var popup = $ionicPopup.alert({
                     title: '注册成功',
                     template: '进入登陆页'
@@ -70,11 +73,12 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
-    .controller('doctorEndSignUpCtrl', ['$scope', 'signUp','$window','$ionicPopup','$timeout',function ($scope, signUp, $window, $ionicPopup,$timeout) {
+    .controller('doctorEndSignUpCtrl', ['$scope', 'signUp','$window','$ionicPopup','$timeout','currentUser',function ($scope, signUp, $window, $ionicPopup,$timeout, currentUser) {
         $scope.signInMsg = {'username':'','password':''}
         $scope.signIn = function(){
             signUp.save({},$scope.signInMsg,function(data){
-                console.log(data)
+                console.log(data.accessToken)
+                currentUser.setAuthToken(data.accessToken)
                 if (data.error) {
                     $ionicPopup.alert({
                         title: '错误提示',
@@ -97,8 +101,8 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndFeedbackCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndSettingCtrl', ['$scope', function ($scope) {
-
+    .controller('doctorEndSettingCtrl', ['$scope', 'currentUser', function ($scope,currentUser) {
+        $scope.isLogin = currentUser.hasAuthToken()
     }])
     .controller('doctorEndPersonalDataCtrl', ['$scope', function ($scope) {
         $scope.patient = {
@@ -161,8 +165,19 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndMyDoctorCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndChangePwdCtrl', ['$scope', function ($scope) {
-
+    .controller('doctorEndChangePwdCtrl', ['$scope','currentUser','resetPwd',function ($scope, currentUser, resetPwd) {
+        $scope.newMsg = {oldPwd : '', newPwd : '', accessToken: ''}
+        $scope.resetPwd = function() {
+            var newMsg = {
+                oldPwd: $scope.newMsg.oldPwd,
+                newPwd: $scope.newMsg.newPwd,
+                accessToken: currentUser.getAuthToken()
+            }
+            console.log(newMsg)
+            resetPwd.save({}, newMsg, function (data) {
+                console.log(data)
+            })
+        }
     }])
     .controller('doctorEndDoctorDataCtrl',['$scope', function($scope){
 
