@@ -154,6 +154,26 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/change_pwd.html",
                 controller: "doctorEndChangePwdCtrl"
             })
+            .state('doctordata',{
+                url: "/doctordata",
+                templateUrl: "templates/doctor_data.html",
+                controller: "doctorEndDoctorDataCtrl"
+            })
+            .state('discoverdetail',{
+                url:"/discoverdetail",
+                templateUrl:"templates/discover_detail.html",
+                controller:"doctorEndDiscoverDetailCtrl"
+            })
+            .state('discoverpost',{
+                url:"/discoverpost",
+                templateUrl:"templates/discover_post.html",
+                contorller:"doctorEndDiscoverPostCtrl"
+            })
+            .state('evaluationlist', {
+                url: "/evaluation",
+                templateUrl: "templates/evaluation_list.html",
+                controller: "doctorEndEvaluationListCtrl"
+            })
             .state('scanway',{
                 url: "/scanway",
                 templateUrl: "templates/scan_way.html",

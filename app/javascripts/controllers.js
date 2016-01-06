@@ -164,6 +164,18 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndChangePwdCtrl', ['$scope', function ($scope) {
 
     }])
+    .controller('doctorEndDoctorDataCtrl',['$scope', function($scope){
+
+    }])
+    .controller('doctorEndDiscoverDetailCtrl',['$scope',function($scope){
+
+    }])
+    .controller('doctorEndDiscoverPostCtrl',['$scope',function($scope){
+
+    }])
+    .controller('doctorEndEvaluationListCtrl',['$scope',function($scope){
+
+    }])
     .controller('doctorEndScanWayCtrl',['$scope',function($scope){
 
     }])
