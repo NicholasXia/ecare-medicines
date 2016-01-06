@@ -88,6 +88,10 @@
 .textR{text-align: right;}
 .pd{padding-left: 16px;}
 .mg{margin-top: 0;}
+.doc_LR{position: relative; min-height: 25px;}
+.pos_R{position: absolute; top: 0; right: 0; }
+.pos_R>i{display: inline-block!important;}
+.pos_R>span{font-size: 1.2em!important;}
 /**************** index ****************/
 
 
