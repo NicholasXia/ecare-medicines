@@ -68,10 +68,12 @@
     border: 1px solid #f6f6f6;
     border-radius: 3px;
 }
-.goorin span{
+.goorin a{
     display: inline-block;
     line-height: 32px;
     height: 32px;
+    text-decoration: none;
+    color: #fff;
 }
 .imax .hide-world{
     color: #f6f6f6;

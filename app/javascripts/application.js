@@ -179,5 +179,10 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/scan_way.html",
                 controller: "doctorEndScanWayCtrl"
             })
+            .state('collection',{
+                url: "/collection",
+                templateUrl: "templates/collection.html",
+                controller: "doctorEndCollectionCtrl"
+            })
         $urlRouterProvider.otherwise("/tab/home");
     })
