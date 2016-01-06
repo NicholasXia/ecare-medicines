@@ -1,6 +1,7 @@
 /***********************helper start***************************/
 .fl{float:left;}
 .fr{float:right;}
+.mt{margin-top:15px;}
 .border{border:1px solid #ddd;padding:15px;}
 .mb{margin-bottom:35px;}
 .small{background-color: crimson;color:#eee;}
@@ -11,6 +12,8 @@
 .wishes{background-color:aliceblue;}
 .textarea{width:100%; height: 200px; border: 1px solid #ddd;}
 .basefont{font-size:16px !important;}
+#core-three p{line-height:16px;padding-bottom:10px;}
+#core-three img{padding-top: 10px; height:64px; width:54px;}
 #tabs-top > div{top:0;}
 #personalData{position:relative;}
 #personalData  span, #personalData select{position:absolute; left: 100px; padding:0;}
@@ -32,8 +35,13 @@
 .beyond-head{
     margin-top:50px;
 }
+#jgg{
+    margin-top: 15px;
+    color: #999;
+}
 #jgg > div{
     border: 1px solid #f6f6f6;
+    padding: 15px;
 }
 #jgg h4{
     margin: 0;
@@ -43,7 +51,10 @@
 /**************ui ionic start******************/
 .imax{
     height:150px;
-    background-color: #28a54c;
+    background-image:url("../images/dabeijing.png");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: cover;
     position: relative;
 }
 .imax .imax-inwrap{
@@ -56,6 +67,11 @@
     text-align: center;
     border: 1px solid #f6f6f6;
     border-radius: 3px;
+}
+.goorin span{
+    display: inline-block;
+    line-height: 32px;
+    height: 32px;
 }
 .imax .hide-world{
     color: #f6f6f6;

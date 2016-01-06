@@ -74,6 +74,7 @@ angular.module('medicine.controllers', [])
         $scope.signInMsg = {'username':'','password':''}
         $scope.signIn = function(){
             signUp.save({},$scope.signInMsg,function(data){
+                console.log(data)
                 if (data.error) {
                     $ionicPopup.alert({
                         title: '错误提示',
@@ -92,7 +93,6 @@ angular.module('medicine.controllers', [])
                 }
             })
         }
-
     }])
     .controller('doctorEndFeedbackCtrl', ['$scope', function ($scope) {
 
@@ -174,5 +174,8 @@ angular.module('medicine.controllers', [])
 
     }])
     .controller('doctorEndEvaluationListCtrl',['$scope',function($scope){
+
+    }])
+    .controller('doctorEndScanWayCtrl',['$scope',function($scope){
 
     }])

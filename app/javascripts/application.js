@@ -169,10 +169,15 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl:"templates/discover_post.html",
                 contorller:"doctorEndDiscoverPostCtrl"
             })
-            .state('evaluationlist',{
-                url:"/evaluation",
-                templateUrl:"templates/evaluation_list.html",
-                controller:"doctorEndEvaluationListCtrl"
+            .state('evaluationlist', {
+                url: "/evaluation",
+                templateUrl: "templates/evaluation_list.html",
+                controller: "doctorEndEvaluationListCtrl"
+            })
+            .state('scanway',{
+                url: "/scanway",
+                templateUrl: "templates/scan_way.html",
+                controller: "doctorEndScanWayCtrl"
             })
         $urlRouterProvider.otherwise("/tab/home");
     })
