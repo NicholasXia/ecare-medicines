@@ -59,9 +59,6 @@ angular.module('medicine.controllers', [])
                 return
             }
             createUser.save({}, user, function (userdata) {
-                console.log(userdata)
-                currentUser.setUserInfo(userdata)
-                console.log(currentUser.getUserInfo())
                 var popup = $ionicPopup.alert({
                     title: '注册成功',
                     template: '进入登陆页'
