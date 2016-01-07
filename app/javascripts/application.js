@@ -84,6 +84,37 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                     }
                 }
             })
+
+
+            .state('threekiller',{
+                url: '/threekiller',
+                templateUrl: "templates/three_killer.html"
+            })
+            .state('threekiller.zhishi',{
+                url: "/zhishi",
+                views:{
+                    'zhishi-tab':{
+                        templateUrl: "templates/zhishi_tab.html",
+                    }
+                }
+            })
+            .state('threekiller.manhua',{
+                url: "/manhua",
+                views:{
+                    'manhua-tab':{
+                        templateUrl: "templates/manhua_tab.html",
+                    }
+                }
+            })
+            .state('threekiller.shipin',{
+                url: "/shipin",
+                views:{
+                    'shipin-tab':{
+                        templateUrl: "templates/shipin_tab.html",
+                    }
+                }
+            })
+
             .state('confirm',{
                 url: "/confirm",
                 templateUrl: "templates/confirm_id.html",

@@ -46,6 +46,10 @@
 #jgg h4{
     margin: 0;
 }
+#jgg a{
+    text-decoration: none;
+    color: #999;
+}
 /**************fix ionic end******************/
 
 /**************ui ionic start******************/
