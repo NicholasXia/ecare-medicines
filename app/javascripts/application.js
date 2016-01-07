@@ -1,4 +1,4 @@
-angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.filters', 'angular-carousel','ionic-datepicker','LocalStorageModule'])
+angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.filters', 'angular-carousel', 'ionic-datepicker', 'LocalStorageModule'])
 
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
@@ -6,11 +6,11 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         $ionicConfigProvider.views.maxCache(0);
         $ionicConfigProvider.backButton.text('Go Back').icon('ion-chevron-left');
     })
-/*    .config(function(localStorageServiceProvider){
-        localStorageServiceProvider
-            .setStorageType('sessionStorage')
-            .setNotify(true, true)
-    })*/
+    /*    .config(function(localStorageServiceProvider){
+     localStorageServiceProvider
+     .setStorageType('sessionStorage')
+     .setNotify(true, true)
+     })*/
 
     .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -56,165 +56,165 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                     }
                 }
             })
-            .state('doctortabs',{
+            .state('doctortabs', {
                 url: '/mydoctor',
                 templateUrl: "templates/my_doctor.html"
             })
-            .state('doctortabs.notice',{
+            .state('doctortabs.notice', {
                 url: "/notice",
-                views:{
-                    'notice-tab':{
+                views: {
+                    'notice-tab': {
                         templateUrl: "templates/notice_tab.html",
                     }
                 }
             })
-            .state('doctortabs.consult',{
+            .state('doctortabs.consult', {
                 url: "/consult",
-                views:{
-                    'consult-tab':{
+                views: {
+                    'consult-tab': {
                         templateUrl: "templates/consult_tab.html",
                     }
                 }
             })
-            .state('doctortabs.doctorlist',{
+            .state('doctortabs.doctorlist', {
                 url: "/doctorlist",
-                views:{
-                    'doctorlist-tab':{
+                views: {
+                    'doctorlist-tab': {
                         templateUrl: "templates/doctorlist_tab.html",
                     }
                 }
             })
 
 
-            .state('threekiller',{
+            .state('threekiller', {
                 url: '/threekiller',
                 templateUrl: "templates/three_killer.html"
             })
-            .state('threekiller.zhishi',{
+            .state('threekiller.zhishi', {
                 url: "/zhishi",
-                views:{
-                    'zhishi-tab':{
+                views: {
+                    'zhishi-tab': {
                         templateUrl: "templates/zhishi_tab.html",
                     }
                 }
             })
-            .state('threekiller.manhua',{
+            .state('threekiller.manhua', {
                 url: "/manhua",
-                views:{
-                    'manhua-tab':{
+                views: {
+                    'manhua-tab': {
                         templateUrl: "templates/manhua_tab.html",
                     }
                 }
             })
-            .state('threekiller.shipin',{
+            .state('threekiller.shipin', {
                 url: "/shipin",
-                views:{
-                    'shipin-tab':{
+                views: {
+                    'shipin-tab': {
                         templateUrl: "templates/shipin_tab.html",
                     }
                 }
             })
 
-            .state('confirm',{
+            .state('confirm', {
                 url: "/confirm",
                 templateUrl: "templates/confirm_id.html",
                 controller: "doctorEndConfirmIdCtrl"
             })
-            .state('signin',{
+            .state('signin', {
                 url: "/signin",
                 templateUrl: "templates/sign_in.html",
                 controller: "doctorEndSignInCtrl"
             })
-            .state('signup',{
+            .state('signup', {
                 url: "/signup",
                 templateUrl: "templates/sign_up.html",
                 controller: "doctorEndSignUpCtrl"
             })
-            .state('feedback',{
+            .state('feedback', {
                 url: "/feedback",
                 templateUrl: "templates/feedback.html",
                 controller: "doctorEndFeedbackCtrl"
             })
-            .state('setting',{
+            .state('setting', {
                 url: "/setting",
                 templateUrl: "templates/setting.html",
                 controller: "doctorEndSettingCtrl"
             })
-            .state('personal',{
+            .state('personal', {
                 url: "/personal",
                 templateUrl: "templates/personal_data.html",
                 controller: "doctorEndPersonalDataCtrl"
             })
-            .state('wishwall',{
+            .state('wishwall', {
                 url: "/wishwall",
                 templateUrl: "templates/wish_wall.html",
                 controller: "doctorEndWishWallCtrl"
             })
-            .state('binddoctor',{
+            .state('binddoctor', {
                 url: "/binddoctor",
                 templateUrl: "templates/bind_doctor.html",
             })
-            .state('numberway',{
+            .state('numberway', {
                 url: "/numberway",
                 templateUrl: "templates/number_way.html",
                 controller: "doctorEndNumberWayCtrl"
             })
-            .state('instruction',{
+            .state('instruction', {
                 url: "/instruction",
                 templateUrl: "templates/instruction.html",
                 controller: "doctorEndInstructionCtrl"
             })
-            .state('appointment',{
+            .state('appointment', {
                 url: "/appointment",
                 templateUrl: "templates/appointment.html",
                 controller: "doctorEndAppointmentCtrl"
             })
-            .state('beds',{
+            .state('beds', {
                 url: "/beds",
                 templateUrl: "templates/beds.html",
                 controller: "doctorEndBedsCtrl"
             })
-            .state('healthEvaluation',{
+            .state('healthEvaluation', {
                 url: "/healthEvaluation",
                 templateUrl: "templates/health_evaluation.html",
                 controller: "doctorEndHealthEvaluationCtrl"
             })
-            .state('myDoctor',{
+            .state('myDoctor', {
                 url: "/myDoctor",
                 templateUrl: "templates/my_doctor.html",
                 controller: "doctorEndMyDoctorCtrl"
             })
-            .state('changepwd',{
+            .state('changepwd', {
                 url: "/changepwd",
                 templateUrl: "templates/change_pwd.html",
                 controller: "doctorEndChangePwdCtrl"
             })
-            .state('doctordata',{
+            .state('doctordata', {
                 url: "/doctordata",
                 templateUrl: "templates/doctor_data.html",
                 controller: "doctorEndDoctorDataCtrl"
             })
-            .state('discoverdetail',{
-                url:"/discoverdetail",
-                templateUrl:"templates/discover_detail.html",
-                controller:"doctorEndDiscoverDetailCtrl"
+            .state('discoverdetail', {
+                url: "/discoverdetail",
+                templateUrl: "templates/discover_detail.html",
+                controller: "doctorEndDiscoverDetailCtrl"
             })
-            .state('discoverpost',{
-                url:"/discoverpost",
-                templateUrl:"templates/discover_post.html",
-                contorller:"doctorEndDiscoverPostCtrl"
+            .state('discoverpost', {
+                url: "/discoverpost",
+                templateUrl: "templates/discover_post.html",
+                contorller: "doctorEndDiscoverPostCtrl"
             })
             .state('evaluationlist', {
                 url: "/evaluation",
                 templateUrl: "templates/evaluation_list.html",
                 controller: "doctorEndEvaluationListCtrl"
             })
-            .state('scanway',{
+            .state('scanway', {
                 url: "/scanway",
                 templateUrl: "templates/scan_way.html",
                 controller: "doctorEndScanWayCtrl"
             })
-            .state('collection',{
+            .state('collection', {
                 url: "/collection",
                 templateUrl: "templates/collection.html",
                 controller: "doctorEndCollectionCtrl"

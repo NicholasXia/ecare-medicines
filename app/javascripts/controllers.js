@@ -167,7 +167,7 @@ angular.module('medicine.controllers', [])
                         $window.location.href = '#/'
                     }, 3000)
                 }
-                else{
+                else {
                     $window.location.href = '#/'
                 }
             })
