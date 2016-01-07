@@ -266,3 +266,21 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndCollectionCtrl', ['$scope', function ($scope) {
 
     }])
+    .controller('threeKillKnowledgeCtrl',['$scope','threeKiller',function($scope,threeKiller){
+        threeKiller.get({illType:1},function(data){
+            $scope.model = data.heart_knowledge
+            console.log($scope.model)
+        })
+    }])
+    .controller('threeKillVideoCtrl',['$scope','threeKiller',function($scope,threeKiller){
+        threeKiller.get({illType:1},function(data){
+            $scope.model = data.heart_vedio
+            console.log($scope.model)
+        })
+    }])
+    .controller('threeKillCartoonCtrl',['$scope','threeKiller',function($scope,threeKiller){
+        threeKiller.get({illType:1},function(data){
+            $scope.model = data.heart_cartoon
+            console.log($scope.model)
+        })
+    }])

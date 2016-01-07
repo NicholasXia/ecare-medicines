@@ -95,6 +95,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'zhishi-tab': {
                         templateUrl: "templates/zhishi_tab.html",
+                        controller: "threeKillKnowledgeCtrl"
                     }
                 }
             })
@@ -103,6 +104,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'manhua-tab': {
                         templateUrl: "templates/manhua_tab.html",
+                        controller: "threeKillCartoonCtrl"
                     }
                 }
             })
@@ -111,6 +113,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'shipin-tab': {
                         templateUrl: "templates/shipin_tab.html",
+                        controller: "threeKillVideoCtrl"
                     }
                 }
             })

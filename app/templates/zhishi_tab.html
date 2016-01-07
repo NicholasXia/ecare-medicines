@@ -3,15 +3,15 @@
         <h1 class="title">医生列表</h1>
     </ion-header-bar>
     <ion-content has-bouncing="true">
-        <ion-list class="list">
+        <ion-list class="list" ng-repeat="item in model">
             <div class="list card full-card mg">
                 <div class="item item-avatar pd">
-                    <h2>标题</h2>
-                    <img class="full-image" src="images/1.jpg">
+                    <h2>{{item.title}}</h2>
+                    <img class="full-image" ng-src={{item.coverImageUrl}}>
                 </div>
                 <div class="item tabs tabs-secondary tabs-icon-left">
                     <a class="tab-item textL" href="#">
-                        2015-12-20
+                        {{item.postTime}}
                     </a>
                     <a class="tab-item textR" href="#">
                         <i class="icon">

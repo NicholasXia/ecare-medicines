@@ -98,3 +98,10 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('threeKiller',['$resource',function($resource){
+        return $resource('http://112.126.83.112:8080/hospital/patient/ill/articles',{},{
+            get:{
+                method: 'GET'
+            }
+        })
+    }])
