@@ -5,7 +5,7 @@ angular.module('medicine.services', ['ngResource'])
             query: {
                 method: 'GET',
                 params: {
-                    "type": "1",
+                    "type": "2",
                     "category": "1",
                 },
                 isArray: true
