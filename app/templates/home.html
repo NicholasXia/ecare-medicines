@@ -47,7 +47,7 @@
             </div>
         </div>
         <!--最新回复(此处的ion-item后续需要ng-repeat动态绑定)-->
-        <ion-list class="list">
+        <ion-list class="list" ng-if="isLogin">
             <ion-item class="item item-divider">
                 <span class="matches">最新回复</span>
             </ion-item>

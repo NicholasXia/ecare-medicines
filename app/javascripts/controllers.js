@@ -1,5 +1,5 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', function ($scope, $window, getCarouselList) {
+    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList','currentUser', function ($scope, $window, getCarouselList,currentUser) {
         getCarouselList.query(function (data) {
             $scope.carouselLists = data
             console.log($scope.carouselLists)
@@ -7,6 +7,7 @@ angular.module('medicine.controllers', [])
         $scope.goToActivity = function (activity) {
             $window.location.href = activity
         }
+        $scope.isLogin = currentUser.hasAuthToken()
     }])
     .controller('doctorEndKnowledgeCtrl', ['$scope', function ($scope) {
 
