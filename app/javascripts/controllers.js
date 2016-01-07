@@ -98,10 +98,18 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndFeedbackCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndSettingCtrl', ['$scope', 'currentUser', function ($scope,currentUser) {
+    .controller('doctorEndSettingCtrl', ['$scope', 'currentUser', '$window', '$ionicPopup', '$timeout',function ($scope,currentUser,$window,$ionicPopup,$timeout) {
         $scope.isLogin = currentUser.hasAuthToken()
         $scope.destroyU = function() {
             currentUser.destroy()
+            var popup = $ionicPopup.alert({
+                title: '您已经注销',
+                template: '3秒后自动进入主页'
+            })
+            $timeout(function(){
+                popup.close()
+                $window.location.href = '#/'
+            },3000)
         }
     }])
     .controller('doctorEndPersonalDataCtrl', ['$scope', function ($scope) {
@@ -183,7 +191,8 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndMyDoctorCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndChangePwdCtrl', ['$scope','currentUser','resetPwd',function ($scope, currentUser, resetPwd) {
+    .controller('doctorEndChangePwdCtrl', ['$scope','currentUser','resetPwd','$ionicPopup','$timeout','$window',function ($scope, currentUser, resetPwd, $ionicPopup, $timeout, $window) {
+
         $scope.newMsg = {oldPwd : '', newPwd : '', accessToken: ''}
         $scope.resetPwd = function() {
             var newMsg = {
@@ -194,6 +203,16 @@ angular.module('medicine.controllers', [])
             console.log(newMsg)
             resetPwd.save({}, newMsg, function (data) {
                 console.log(data)
+                if (data.status == 'suc'){
+                    var popup = $ionicPopup.alert({
+                        title: '密码修改成功',
+                        template: '3秒后进入登陆界面'
+                    })
+                    $timeout(function(){
+                        popup.close()
+                        $window.location.href = '#/signup'
+                    },3000)
+                }
             })
         }
     }])
