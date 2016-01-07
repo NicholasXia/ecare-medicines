@@ -74,3 +74,10 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('updateMsg',['$resource',function($resource){
+        return $resource('http://112.126.83.112:8080/hospital/patient/profile/update',{accessToken:"@accessToken",name:"@name",agender:"@agender",birthday:"@birthday",mobile:"@mobile",weight:"@weight"},{
+            save:{
+                method: 'POST'
+            }
+        })
+    }])
