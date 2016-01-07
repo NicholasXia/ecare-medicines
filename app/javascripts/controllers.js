@@ -1,5 +1,5 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList','currentUser', function ($scope, $window, getCarouselList,currentUser) {
+    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', function ($scope, $window, getCarouselList, currentUser) {
         getCarouselList.query(function (data) {
             $scope.carouselLists = data
             console.log($scope.carouselLists)
@@ -96,8 +96,33 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
-    .controller('doctorEndFeedbackCtrl', ['$scope', function ($scope) {
-
+    .controller('doctorEndFeedbackCtrl', ['$scope', 'currentUser', '$ionicPopup', '$window', '$timeout', 'addFeedback', function ($scope, currentUser, $ionicPopup, $window, $timeout, addFeedback) {
+        $scope.feedMsg = {feedback: '', contact: ''}
+        $scope.addFeedback = function () {
+            var msg = {
+                content: $scope.feedMsg.feedback,
+                accessToken: currentUser.getAuthToken(),
+                contact: $scope.feedMsg.contact
+            }
+            addFeedback.save({}, msg, function (data) {
+                if (data.status == 'suc') {
+                    var popup = $ionicPopup.alert({
+                        title: '反馈提交成功',
+                        template: '3秒后自动进入首页'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                        $window.location.href = '#/'
+                    }, 3000)
+                }
+                else {
+                    $ionicPopup.alert({
+                        title: '友情提示',
+                        template: data.error
+                    })
+                }
+            })
+        }
     }])
     .controller('doctorEndSettingCtrl', ['$scope', 'currentUser', '$window', '$ionicPopup', '$timeout', function ($scope, currentUser, $window, $ionicPopup, $timeout) {
         $scope.isLogin = currentUser.hasAuthToken()
@@ -267,20 +292,20 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndCollectionCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('threeKillKnowledgeCtrl',['$scope','threeKiller',function($scope,threeKiller){
-        threeKiller.get({illType:1},function(data){
+    .controller('threeKillKnowledgeCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
+        threeKiller.get({illType: 1}, function (data) {
             $scope.model = data.heart_knowledge
             console.log($scope.model)
         })
     }])
-    .controller('threeKillVideoCtrl',['$scope','threeKiller',function($scope,threeKiller){
-        threeKiller.get({illType:1},function(data){
+    .controller('threeKillVideoCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
+        threeKiller.get({illType: 1}, function (data) {
             $scope.model = data.heart_vedio
             console.log($scope.model)
         })
     }])
-    .controller('threeKillCartoonCtrl',['$scope','threeKiller',function($scope,threeKiller){
-        threeKiller.get({illType:1},function(data){
+    .controller('threeKillCartoonCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
+        threeKiller.get({illType: 1}, function (data) {
             $scope.model = data.heart_cartoon
             console.log($scope.model)
         })

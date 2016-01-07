@@ -1,16 +1,16 @@
 <ion-view view-title="注册" cache-view='false' hide-nav-bar="isNavBarHide">
     <ion-header-bar class="bar-balanced">
         <h1 class="title">意见反馈</h1>
-        <button class="button">提交</button>
+        <button class="button" ng-click="addFeedback()">提交</button>
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <div class="list">
             <label class="item item-input">
-                <textarea name="" id="" cols="30" rows="10" placeholder="请输入您宝贵的意见"></textarea>
+                <textarea name="" id="" cols="30" rows="10" placeholder="请输入您宝贵的意见" ng-model="feedMsg.feedback"></textarea>
             </label>
             <label class="item item-input">
                 <span class="input-label">电话号码</span>
-                <input type="text">
+                <input type="text" ng-model="feedMsg.contact">
             </label>
         </div>
     </ion-content>

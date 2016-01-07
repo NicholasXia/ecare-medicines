@@ -105,3 +105,10 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('addFeedback',['$resource',function($resource){
+       return $resource('http://112.126.83.112:8080/hospital/back/feedback/add',{content:'@content',accessToken:'@accessToken',contact:'@contact'},{
+           save:{
+               method: 'POST'
+           }
+       })
+    }])
