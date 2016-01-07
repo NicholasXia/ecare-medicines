@@ -103,15 +103,11 @@ angular.module('medicine.controllers', [])
     }])
     .controller('doctorEndSettingCtrl', ['$scope', 'currentUser', function ($scope,currentUser) {
         $scope.isLogin = currentUser.hasAuthToken()
+        $scope.destroyU = function() {
+            currentUser.destroy()
+        }
     }])
     .controller('doctorEndPersonalDataCtrl', ['$scope', function ($scope) {
-        $scope.patient = {
-            birthday: '',
-            gender: [
-                {"item":"男"},
-                {"item":"女"}
-            ]
-        }
         var datePickerCallback = function (val) {
             if (typeof(val) === 'undefined') {
                 console.log('No date selected');
@@ -147,8 +143,33 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndBindDoctorCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndNumberWayCtrl', ['$scope', function ($scope) {
-
+    .controller('doctorEndNumberWayCtrl', ['$scope', 'bindDoctor', 'currentUser', '$ionicPopup',function ($scope, bindDoctor, currentUser, $ionicPopup) {
+        $scope.doctorMsg = {doctorIdentity:''}
+        $scope.bindDoc = function () {
+            var bindMsg = {
+                doctorIdentity: $scope.doctorMsg.doctorIdentity,
+                accessToken: currentUser.getAuthToken()
+            }
+            bindDoctor.save({},bindMsg,function(data){
+                console.log(data)
+                if (data.error) {
+                    $ionicPopup.alert({
+                        title: '提示',
+                        template: data.error
+                    })
+                    ;return
+                }else{
+                    var popup = $ionicPopup.alert({
+                        title: '医生绑定成功',
+                        template: '3秒后自动进入主页'
+                    })
+                    $timeout(function(){
+                        popup.close()
+                        $window.location.href = '#/'
+                    },3000)
+                }
+            })
+        }
     }])
     .controller('doctorEndInstructionCtrl', ['$scope', function ($scope) {
 

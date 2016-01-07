@@ -122,7 +122,6 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             .state('binddoctor',{
                 url: "/binddoctor",
                 templateUrl: "templates/bind_doctor.html",
-                controller: "doctorEndBindDoctorCtrl"
             })
             .state('numberway',{
                 url: "/numberway",

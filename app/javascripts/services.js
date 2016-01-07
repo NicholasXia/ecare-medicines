@@ -67,3 +67,10 @@ angular.module('medicine.services', ['ngResource'])
         }
         return currentUser
     }])
+    .factory('bindDoctor',['$resource',function($resource){
+        return $resource('http://112.126.83.112:8080/hospital/patient/patientBindDoctor',{doctorIdentity:"@doctorIdentity",accessToken:"@accessToken"},{
+            save:{
+                method: 'POST'
+            }
+        })
+    }])
