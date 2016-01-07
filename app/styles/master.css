@@ -17,6 +17,7 @@
 #tabs-top > div{top:0;}
 #personalData{position:relative;}
 #personalData  span, #personalData select{position:absolute; left: 100px; padding:0;}
+.rightarrow{font-size: 30px;top: 42%;right: 5%; position: absolute; color: #f6f6f6; height: 60px; width: 60px; text-align: center;}
 /***********************helper end*****************************/
 
 /**************fix ionic start******************/
