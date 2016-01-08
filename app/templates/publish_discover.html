@@ -1,11 +1,11 @@
 <ion-view view-title="发布发现" cache-view="false">
    <ion-header-bar class="bar-balanced">
-        <!--<h1 class="title">发布发现</h1>-->
+        <h1 class="title">发布发现</h1>
         <button class="submit" ng-click="single()">发表</button>
     </ion-header-bar>
     <ion-content has-bouncing="true" class="padding">
        <textarea class="textarea" name="newdiscover" placeholder="这一刻的心情..."></textarea>
-        <form>
+        <form enctype="multipart/form-data" method="post" name="pubilshdiscover">
             <input id="publishphoto"
                    type="file"
                    accept="image/*"
@@ -16,7 +16,5 @@
             <label for="publishphoto"></label>
             <img ng-repeat="img in publishphoto" ng-src="{{img.url}}" type="{{img.file.type}}"/>
         </form>
-        <p>上传图片 / 大小: {{sizeInBytes}} 比特</p>
-        <img ng-src="{{uploadedImgSrc}}" />
     </ion-content>
 </ion-view>

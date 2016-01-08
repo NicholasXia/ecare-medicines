@@ -112,3 +112,10 @@ angular.module('medicine.services', ['ngResource'])
            }
        })
     }])
+    .factory('publishdiscover',['$resource',function($resource){
+        return $resource('http://112.126.83.112:8080/hospital/patient/discovery/add',{imageBase64s:'@imageBase64s',content:'@content',accessToken:'@accessToken'},{
+            save:{
+                method: 'POST'
+            }
+        })
+    }])

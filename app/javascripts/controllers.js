@@ -205,6 +205,8 @@ angular.module('medicine.controllers', [])
         $scope.single = function(image) {
             var formData = new FormData();
             formData.append('image', publishphoto, publishphoto.name);
+            formData.append('name','liruirui')
+            console.log(formData)
             $http.post('http://112.126.83.112:8080/hospital/patient/discovery/add', formData, {
                 headers: { 'Content-Type': false },
                 transformRequest: angular.identity
