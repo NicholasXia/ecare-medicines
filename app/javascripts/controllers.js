@@ -146,6 +146,7 @@ angular.module('medicine.controllers', [])
             phone: '',
             gender: ['男', '女']
         }
+        var monthList = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
         var datePickerCallback = function (val) {
             if (typeof(val) === 'undefined') {
                 console.log('No date selected');
@@ -163,15 +164,16 @@ angular.module('medicine.controllers', [])
             closeButtonType: 'button-assertive',
             inputDate: new Date(),
             mondayFirst: true,
+            monthList: monthList,
             templateType: 'popup',
-            showTodayButton: 'true',
+            showTodayButton: 'false',
             modalHeaderColor: 'bar-positive',
             modalFooterColor: 'bar-positive',
             callback: function (val) {
                 datePickerCallback(val);
                 return
             },
-            dateFormat: 'dd-MM-yyyy',
+            dateFormat: 'yyyy-MM-dd',
             closeOnSelect: false,
         };
         $scope.saveMsg = function () {
