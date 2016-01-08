@@ -1,4 +1,4 @@
-angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.filters', 'angular-carousel', 'ionic-datepicker', 'LocalStorageModule'])
+angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.directive','medicine.filters', 'angular-carousel', 'ionic-datepicker', 'LocalStorageModule'])
 
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
@@ -221,6 +221,11 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/collection",
                 templateUrl: "templates/collection.html",
                 controller: "doctorEndCollectionCtrl"
+            })
+            .state('publishdiscover',{
+                url: "/publishdiscover",
+                templateUrl: "templates/publish_discover.html",
+                controller: "doctorEndPublishDiscoverCtrl"
             })
         $urlRouterProvider.otherwise("/tab/home");
     })

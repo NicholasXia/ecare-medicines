@@ -201,6 +201,19 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
+    .controller('doctorEndPublishDiscoverCtrl',['$scope','$http',function($scope,$http){
+        $scope.single = function(image) {
+            var formData = new FormData();
+            formData.append('image', publishphoto, publishphoto.name);
+            $http.post('http://112.126.83.112:8080/hospital/patient/discovery/add', formData, {
+                headers: { 'Content-Type': false },
+                transformRequest: angular.identity
+            }).success(function(result) {
+                $scope.uploadedImgSrc = result.src;
+                $scope.sizeInBytes = result.size;
+            });
+        };
+    }])
     .controller('doctorEndWishWallCtrl', ['$scope', function ($scope) {
 
     }])
