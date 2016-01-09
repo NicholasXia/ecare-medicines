@@ -1,5 +1,9 @@
 angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.directive','medicine.filters', 'angular-carousel', 'ionic-datepicker', 'LocalStorageModule'])
-
+    .constant('ionicLoadingConfig',{
+        template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>",
+        hideOnStateChange: true
+    })
+    .constant('SERVER', 'http://112.126.83.112:8080/hospital')
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
         $ionicConfigProvider.navBar.alignTitle('center')

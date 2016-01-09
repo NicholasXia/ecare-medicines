@@ -1,7 +1,7 @@
 angular.module('medicine.services', ['ngResource'])
     .constant('CURRENT_USER', 'currentUser')
-    .factory('getCarouselList', ['$resource', function ($resource) {
-        return $resource('http://112.126.83.112:8080/hospital/back/article/list/:type/:category', {}, {
+    .factory('getCarouselList', ['$resource', 'SERVER',function ($resource,SERVER) {
+        return $resource(SERVER +'/back/article/list/:type/:category', {}, {
             query: {
                 method: 'GET',
                 params: {
@@ -12,8 +12,8 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
-    .factory('getVerificationCode', ['$resource', function ($resource) {
-        return $resource('http://112.126.83.112:8080/hospital/u/verificationCode', {mobile: '@mobile'}, {
+    .factory('getVerificationCode', ['$resource', 'SERVER', function ($resource,SERVER) {
+        return $resource(SERVER + '/u/verificationCode', {mobile: '@mobile'}, {
             query: {
                 method: 'GET',
                 params: {
@@ -22,8 +22,8 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
-    .factory('createUser', ['$resource', function ($resource) {
-        return $resource('http://112.126.83.112:8080/hospital/u/register', {
+    .factory('createUser', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/u/register', {
             registerType: '@registerType',
             mobile: '@mobile',
             password: '@password',
@@ -35,8 +35,8 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
-    .factory('signUp', ['$resource', function ($resource) {
-        return $resource('http://112.126.83.112:8080/hospital/u/login', {
+    .factory('signUp', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/u/login', {
             username: '@username',
             password: '@password'
         }, {
@@ -46,8 +46,8 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
-    .factory('resetPwd', ['$resource', function ($resource) {
-        return $resource('http://112.126.83.112:8080/hospital/u/pwd/reset', {
+    .factory('resetPwd', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/u/pwd/reset', {
             oldPwd: "@oldPwd",
             newPwd: "@newPwd",
             accessToken: "@accessToken"
@@ -74,8 +74,8 @@ angular.module('medicine.services', ['ngResource'])
         }
         return currentUser
     }])
-    .factory('bindDoctor', ['$resource', function ($resource) {
-        return $resource('http://112.126.83.112:8080/hospital/patient/patientBindDoctor', {
+    .factory('bindDoctor', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/patient/patientBindDoctor', {
             doctorIdentity: "@doctorIdentity",
             accessToken: "@accessToken"
         }, {
@@ -84,8 +84,8 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
-    .factory('updateMsg', ['$resource', function ($resource) {
-        return $resource('http://112.126.83.112:8080/hospital/patient/profile/update', {
+    .factory('updateMsg', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/patient/profile/update', {
             accessToken: "@accessToken",
             name: "@name",
             agender: "@agender",
@@ -98,22 +98,22 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
-    .factory('threeKiller',['$resource',function($resource){
-        return $resource('http://112.126.83.112:8080/hospital/patient/ill/articles',{},{
+    .factory('threeKiller',['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/patient/ill/articles',{},{
             get:{
                 method: 'GET'
             }
         })
     }])
-    .factory('addFeedback',['$resource',function($resource){
-       return $resource('http://112.126.83.112:8080/hospital/back/feedback/add',{content:'@content',accessToken:'@accessToken',contact:'@contact'},{
+    .factory('addFeedback',['$resource', 'SERVER', function($resource, SERVER){
+       return $resource(SERVER + '/back/feedback/add',{content:'@content',accessToken:'@accessToken',contact:'@contact'},{
            save:{
                method: 'POST'
            }
        })
     }])
-    .factory('publishdiscover',['$resource',function($resource){
-        return $resource('http://112.126.83.112:8080/hospital/patient/discovery/add',{imageBase64s:'@imageBase64s',content:'@content',accessToken:'@accessToken'},{
+    .factory('publishdiscover',['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/patient/discovery/add',{imageBase64s:'@imageBase64s',content:'@content',accessToken:'@accessToken'},{
             save:{
                 method: 'POST'
             }
