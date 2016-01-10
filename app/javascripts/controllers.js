@@ -15,8 +15,18 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndDiscoverCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndMineCtrl', ['$scope', function ($scope) {
-
+    .controller('doctorEndMineCtrl', ['$scope', 'checkLogin','$window','$ionicPopup',function ($scope,checkLogin,$window,$ionicPopup) {
+        $scope.ischeck = !!checkLogin.check()
+        $scope.letugo = function(){
+            if ($scope.ischeck){
+                $window.location.href = '#/collection'
+            }else{
+                $ionicPopup.alert({
+                    title: '提示',
+                    template: '您尚未登陆，请登陆后重试'
+                })
+            }
+        }
     }])
     .controller('doctorEndConfirmIdCtrl', ['$scope', function ($scope) {
 

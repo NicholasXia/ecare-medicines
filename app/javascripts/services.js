@@ -70,6 +70,13 @@ angular.module('medicine.services', ['ngResource'])
         }
         return currentUser
     }])
+    .factory('checkLogin',['currentUser',function(currentUser){
+        var checkLogin = {}
+        checkLogin.check = function(){
+           return currentUser.hasAuthToken()
+        }
+        return checkLogin
+    }])
     .factory('bindDoctor', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/patient/patientBindDoctor', {
             doctorIdentity: "@doctorIdentity",
