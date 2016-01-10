@@ -4,7 +4,7 @@
 .mt{margin-top:15px;}
 .border{border:1px solid #ddd;padding:15px;}
 .mb{margin-bottom:35px;}
-.small{background-color: crimson;color:#eee;}
+.small{background-color: crimson;color:#eee; float: right; padding: 1px 3px;}
 .gray{color:#999;}
 .matches{border-left: 3px solid #28a54c; padding-left:9px;}
 .highlight{color:crimson;}
