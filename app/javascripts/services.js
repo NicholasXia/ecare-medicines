@@ -4,10 +4,6 @@ angular.module('medicine.services', ['ngResource'])
         return $resource(SERVER +'/back/article/list/:type/:category', {}, {
             query: {
                 method: 'GET',
-                params: {
-                    "type": "2",
-                    "category": "1",
-                },
                 isArray: true
             }
         })

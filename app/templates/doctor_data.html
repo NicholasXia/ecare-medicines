@@ -1,8 +1,37 @@
-<ion-view view-title="医生信息" cache-view="false">
+<ion-view view-title="医生资料" cache-view="false">
     <ion-header-bar class="bar-balanced">
-        <h1 class="title">医生信息</h1>
+        <h1 class="title">医生资料</h1>
     </ion-header-bar>
-    <ion-content has-bouncing="true" class="padding">
+    <ion-content has-bouncing="true">
+        <!--巨幕 start-->
+        <div class="imax doctorimax">
+                <div class="centerfm padding">
+                    <img src="images/1.jpg" alt="" width="80" height="80" class="round"/>
+                    <p>北京大学医院 心内科</p>
+                    <p>张春生</p>
+                    <p>主治医师</p>
+                    <p>20位患者</p>
+                </div>
+        </div>
+        <!--巨幕 end-->
+        <ul class="list">
+            <li class="item">
+                <p>
+                    <span>地址:</span>
+                    <span>{{doctor.data.address}}</span>
+                </p>
+            </li>
+        </ul>
 
     </ion-content>
+    <ion-footer-bar class="bar-balanced">
+        <div class="button-bar">
+            <a href="" class="button">
+                发消息
+            </a>
+            <a href="" class="button">
+                解绑
+            </a>
+        </div>
+    </ion-footer-bar>
 </ion-view>
