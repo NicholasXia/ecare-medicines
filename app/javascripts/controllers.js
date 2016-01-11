@@ -1,8 +1,8 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', function ($scope, $window, getCarouselList, currentUser) {
+    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', '$resource',function ($scope, $window, getCarouselList, currentUser, $resource) {
         getCarouselList.query({type:2,category:1},function (data) {
+            console.log(data)
             $scope.carouselLists = data
-            console.log($scope.carouselLists)
         })
         $scope.goToActivity = function (activity) {
             $window.location.href = activity
