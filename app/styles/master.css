@@ -15,7 +15,7 @@
 .round{border-radius:50%;}
 #core-three p{line-height:16px;padding-bottom:10px;}
 #core-three img{padding-top: 10px; height:64px; width:54px;}
-#tabs-top > div{top:0;}
+#tabs-top > div{top:44px;}
 #personalData{position:relative;}
 #personalData  span, #personalData select, #personalData input{position:absolute; left: 100px; padding:0;}
 .rightarrow{font-size: 30px;top: 42%;right: 5%; position: absolute; color: #f6f6f6; height: 60px; width: 60px; text-align: center;}
@@ -120,7 +120,7 @@
 .textL{text-align: left;}
 .textR{text-align: right;}
 .pd{padding-left: 16px;}
-.mg{margin-top: 0;}
+.mg{margin-top: 44px;}
 .doc_LR{position: relative; min-height: 25px;}
 .pos_R{position: absolute; top: 0; right: 0; }
 .pos_R>i{display: inline-block!important;}
