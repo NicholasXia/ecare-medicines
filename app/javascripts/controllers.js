@@ -308,9 +308,10 @@ angular.module('medicine.controllers', [])
     }])
     .controller('doctorEndDoctorDataCtrl', ['$scope', '$ionicActionSheet', '$timeout', function ($scope, $ionicActionSheet, $timeout) {
         $scope.show = function() {
-            // Show the action sheet
             var hideSheet = $ionicActionSheet.show({
-                destructiveText: '是',
+                buttons: [
+                    { text: '是' }
+                ],
                 titleText: '是否解绑',
                 cancelText: '否',
                 cancel: function() {
@@ -320,8 +321,6 @@ angular.module('medicine.controllers', [])
                     return true;
                 }
             });
-
-            // For example's sake, hide the sheet after two seconds
             $timeout(function() {
                 hideSheet();
             }, 10000);
