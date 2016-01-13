@@ -15,6 +15,8 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndKnowledgeCtrl', ['$scope', 'healthLecture', function ($scope, healthLecture) {
         healthLecture.query(function(data){
             $scope.healthLecture = data.heart_knowledge
+            $scope.healthVedio = data.heart_vedio
+            $scope.healthCartoon = data.cartoon
         })
     }])
     .controller('doctorEndDiscoverCtrl', ['$scope', function ($scope) {
@@ -358,5 +360,12 @@ angular.module('medicine.controllers', [])
         threeKiller.get({illType: 1}, function (data) {
             $scope.model = data.heart_cartoon
             console.log($scope.model)
+        })
+    }])
+    .controller('doctorEndTextContentCtrl',['$scope','healthLecture','$stateParams',function($scope, healthLecture, $stateParams){
+        healthLecture.query({id:$stateParams.id},function(data){
+            console.log(data)
+            $scope.healthLecture = data.heart_knowledge
+            console.log($scope.healthVedio)
         })
     }])

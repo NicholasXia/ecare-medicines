@@ -231,5 +231,10 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/publish_discover.html",
                 controller: "doctorEndPublishDiscoverCtrl"
             })
+            .state('textcontent',{
+                url: "/textcontent/:id",
+                templateUrl: 'templates/textcontent.html',
+                controller: 'doctorEndTextContentCtrl'
+            })
         $urlRouterProvider.otherwise("/tab/home");
     })

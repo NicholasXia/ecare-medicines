@@ -112,9 +112,9 @@
             <ion-item class="item item-divider">
                 <span class="matches">养心讲堂</span>
             </ion-item>
-            <div class="list card full-card mg" ng-repeat="item in healthLecture">
+            <div class="list card full-card mg" ng-repeat="item in healthLecture" ui-sref="textcontent({id:item.id})">
                 <div class="item item-avatar pd">
-                    <h2>{{item.title}}</h2>g
+                    <h2>{{item.title}}</h2>
                     <p>{{item.content}}</p>
                     <img class="full-image"  ng-src="item.coverImageUrl">
                 </div>

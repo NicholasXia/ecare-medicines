@@ -54,7 +54,7 @@
                 <h2>养心讲堂</h2>
             </div>
 
-            <div class="item item-body" ng-repeat="item in healthLecture">
+            <div class="item item-body" ng-repeat="item in healthLecture" ui-sref="textcontent({id:item.id})">
                 <h3>{{item.title}}</h3>
                 <img class="full-image" ng-src="item.coverImageUrl">
 
@@ -74,7 +74,7 @@
         <!--展示card区域 end-->
 
         <!--图文混排区域 start-->
-        <div class="list" ng-repeat="item in healthLecture">
+        <div class="list" ng-repeat="item in healthVedio" ui-sref="textcontent({id:item.id})">
             <a class="item item-thumbnail-right" href="#">
                 <img ng-src="item.coverImageUrl">
 

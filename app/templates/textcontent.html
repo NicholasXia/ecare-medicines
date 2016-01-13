@@ -1,0 +1,16 @@
+<ion-view view-title="内容详情" cache-view="false">
+    <ion-header-bar class="bar-balanced">
+        <h1 class="title">内容详情</h1>
+    </ion-header-bar>
+    <ion-content has-bouncing="true" class="padding">
+        <div class="card">
+            <div class="item item-divider">
+                <h3>{{healthLecture[0].title}}</h3>
+            </div>
+            <img ng-src="healthLecture.coverImageUrl">
+            <div class="item item-text-wrap">
+                {{healthLecture[0].content}}
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
