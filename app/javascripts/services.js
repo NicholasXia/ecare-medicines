@@ -126,3 +126,10 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('healthLecture', ['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/patient/saveHeart/lecture',{},{
+            query:{
+                method: 'GET'
+            }
+        })
+    }])

@@ -54,34 +54,35 @@
                 <h2>养心讲堂</h2>
             </div>
 
-            <div class="item item-body">
-                <img class="full-image" src="images/beijingtu.png">
-            </div>
+            <div class="item item-body" ng-repeat="item in healthLecture">
+                <h3>{{item.title}}</h3>
+                <img class="full-image" ng-src="item.coverImageUrl">
 
-            <div class="item tabs tabs-secondary tabs-icon-left">
-                <a class="tab-item textL" href="#">
-                    2015-12-20
-                </a>
-                <a class="tab-item textR" href="#">
-                    <i class="icon">
-                        <img src="images/pinglun.png" alt="" width="25"/>
-                    </i>
-                    <span>30</span>
-                </a>
+                <div class="item tabs tabs-secondary tabs-icon-left">
+                    <span class="tab-item textL" href="#">
+                        {{item.postTime}}
+                    </span>
+                    <span class="tab-item textR" href="#">
+                        <i class="icon">
+                            <img src="images/pinglun.png" alt="" width="25"/>
+                        </i>
+                        <span>30</span>
+                    </span>
+                </div>
             </div>
         </div>
         <!--展示card区域 end-->
 
         <!--图文混排区域 start-->
-        <div class="list">
+        <div class="list" ng-repeat="item in healthLecture">
             <a class="item item-thumbnail-right" href="#">
-                <img src="images/yishengbeijing.png">
+                <img ng-src="item.coverImageUrl">
 
-                <h2>文章题目</h2>
+                <h2>{{item.title}}</h2>
 
-                <p>文章内容</p>
+                <p>{{item.content}}</p>
 
-                <p>发布时间:2015-12-27</p>
+                <p>{{item.postTime}}</p>
             </a>
         </div>
         <!--图文混排区域 end-->

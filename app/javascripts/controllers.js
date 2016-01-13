@@ -1,16 +1,21 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', '$resource',function ($scope, $window, getCarouselList, currentUser, $resource) {
+    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', function ($scope, $window, getCarouselList, currentUser,healthLecture) {
         getCarouselList.query({type:2,category:1},function (data) {
-            console.log(data)
             $scope.carouselLists = data
+        })
+        healthLecture.query(function(data){
+            $scope.healthLecture = data.heart_knowledge
+            console.log($scope.healthLecture)
         })
         $scope.goToActivity = function (activity) {
             $window.location.href = activity
         }
         $scope.isLogin = currentUser.hasAuthToken()
     }])
-    .controller('doctorEndKnowledgeCtrl', ['$scope', function ($scope) {
-
+    .controller('doctorEndKnowledgeCtrl', ['$scope', 'healthLecture', function ($scope, healthLecture) {
+        healthLecture.query(function(data){
+            $scope.healthLecture = data.heart_knowledge
+        })
     }])
     .controller('doctorEndDiscoverCtrl', ['$scope', function ($scope) {
 
@@ -301,8 +306,27 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
-    .controller('doctorEndDoctorDataCtrl', ['$scope', function ($scope) {
+    .controller('doctorEndDoctorDataCtrl', ['$scope', '$ionicActionSheet', '$timeout', function ($scope, $ionicActionSheet, $timeout) {
+        $scope.show = function() {
+            // Show the action sheet
+            var hideSheet = $ionicActionSheet.show({
+                destructiveText: '是',
+                titleText: '是否解绑',
+                cancelText: '否',
+                cancel: function() {
+                    // add cancel code..
+                },
+                buttonClicked: function(index) {
+                    return true;
+                }
+            });
 
+            // For example's sake, hide the sheet after two seconds
+            $timeout(function() {
+                hideSheet();
+            }, 10000);
+
+        };
     }])
     .controller('doctorEndDiscoverDetailCtrl', ['$scope', function ($scope) {
 
