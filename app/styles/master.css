@@ -44,6 +44,7 @@
     text-align: center;
 }
 .centerfm p{margin:0; text-align: center; color:#f6f6f6;}
+.fk-side{position: absolute;right: 5px;}
 /***********************helper end*****************************/
 
 /**************fix ionic start******************/
