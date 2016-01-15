@@ -158,39 +158,10 @@ angular.module('medicine.controllers', [])
             }, 3000)
         }
     }])
-    .controller('doctorEndPersonalDataCtrl', ['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout) {
-        $scope.patientData = {
-            birthday: '',
-            weight: '',
-            name: '',
-            phone: '',
-            gender: ['男', '女']
-        }
-
-        $scope.saveMsg = function () {
-            var saveMsg = {
-                accessToken: currentUser.getAuthToken(),
-                name: $scope.patientData.name,
-                birthday: $scope.patientData.birthday,
-                mobile: $scope.patientData.phone,
-                weight: $scope.patientData.weight
-            }
-            updateMsg.save({}, saveMsg, function (data) {
-                if (data.status == 'suc') {
-                    var popup = $ionicPopup.alert({
-                        title: '您的信息修改成功',
-                        template: '3秒后自动进入主页'
-                    })
-                    $timeout(function () {
-                        popup.close()
-                        $window.location.href = '#/'
-                    }, 3000)
-                }
-                else {
-                    $window.location.href = '#/'
-                }
-            })
-        }
+    .controller('doctorEndPersonalDataCtrl', ['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
+        $scope.data = patientProfile.query({accessToken:currentUser.getAuthToken()},function(data){
+            console.log(data)
+        })
     }])
     .controller('doctorEndPublishDiscoverCtrl',['$scope','$http',function($scope,$http){
         $scope.single = function(image) {
@@ -343,13 +314,13 @@ angular.module('medicine.controllers', [])
             console.log($scope.healthVedio)
         })
     }])
-    .controller('changeCtrl',['$scope',function($scope){
+    .controller('changeCtrl',['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
         $scope.patientData = {
             birthday: '',
             weight: '',
             name: '',
             phone: '',
-            gender: ['男', '女']
+            agender:''
         }
 
         var monthList = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
@@ -382,4 +353,30 @@ angular.module('medicine.controllers', [])
             dateFormat: 'yyyy-MM-dd',
             closeOnSelect: false,
         };
+
+        $scope.saveMsg = function () {
+            var saveMsg = {
+                accessToken: currentUser.getAuthToken(),
+                name: $scope.patientData.name,
+                birthday: $scope.patientData.birthday,
+                mobile: $scope.patientData.phone,
+                weight: $scope.patientData.weight,
+                agender: $scope.patientData.agender
+            }
+            updateMsg.save({}, saveMsg, function (data) {
+                if (data.status == 'suc') {
+                    var popup = $ionicPopup.alert({
+                        title: '您的信息修改成功',
+                        template: '3秒后自动进入主页'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                        $window.location.href = '#/personal'
+                    }, 3000)
+                }
+                else {
+                    $window.location.href = '#/'
+                }
+            })
+        }
     }])

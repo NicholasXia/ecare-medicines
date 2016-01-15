@@ -1,10 +1,10 @@
 <ion-view view-title="修改生日" cache-view="false">
     <ion-header-bar class="bar-balanced">
         <h1 class="title">修改生日</h1>
-        <button class="button">确认修改</button>
+        <button class="button" ng-click="saveMsg()">确认修改</button>
     </ion-header-bar>
     <ion-content has-bouncing="true" class="padding">
-        {{patientData.birthday}}
+        <input ng-model="patientData.birthday" hidden>
         <ionic-datepicker input-obj="datepickerObject">
             <button class="button button-balanced button-block">点击选取生日</button>
            </ionic-datepicker>
