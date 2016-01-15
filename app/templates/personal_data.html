@@ -4,43 +4,50 @@
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <div class="list" id="personalData">
-            <a class="item item-icon-right" href="#">
+
+
+            <a class="item item-icon-right" href="#/changeicon">
                 头像
                 <i class="icon ion-chevron-right basefont"></i>
             </a>
-            <a class="item">
+
+
+            <a class="item item-icon-right" href="#/changename">
                 姓名
-                <input ng-model="patientData.name" class="noborder">
+                <span>姓名</span>
+                <i class="icon ion-chevron-right basefont"></i>
             </a>
-            <a class="item item-icon-right" href="#">
+
+
+            <a class="item item-icon-right" href="#/changephone">
                 手机号
-                <input ng-model="patientData.phone" class="noborder">
+                <span>13716136951</span>
+                <i class="icon ion-chevron-right basefont"></i>
             </a>
 
-            <label class="item item-icon-right item-input item-select" href="#">
-                <div class="input-label">
-                    性别
-                </div>
-                <!--此处需要绑定ng-change方法，当用户更新数据的时候，向服务器发送更新数据的请求-->
-                <select ng-model="patientData.gender" ng-options="item for item in patientData.gender">
-                </select>
-            </label>
 
-            <ionic-datepicker input-obj="datepickerObject">
-                <a class="item item-icon-right" href="#">
-                    生日
-                    <span>{{patientData.birthday}}</span>
-                </a>
-            </ionic-datepicker>
+            <a class="item item-icon-right" href="#/changesex">
+                性别
+                <span>女</span>
+                <i class="icon ion-chevron-right basefont"></i>
+            </a>
 
-            <a class="item item-icon-right" href="#">
+
+            <a class="item item-icon-right" href="#/changebirth">
+                生日
+                <span>1992-10-04</span>
+                <i class="icon ion-chevron-right basefont"></i>
+            </a>
+
+
+            <a class="item item-icon-right" href="#/changeweight">
                 体重
-                <i class="basefont"></i>
-                <input ng-model="patientData.weight" class="noborder">
+                <span>80kg</span>
+                <i class="icon ion-chevron-right basefont"></i>
             </a>
         </div>
-        <div class="padding">
-            <button class="button button-balanced button-block" ng-click="saveMsg()">修改保存</button>
-        </div>
+        <!--   <div class="padding">
+               <button class="button button-balanced button-block" ng-click="saveMsg()">修改保存</button>
+           </div>-->
     </ion-content>
 </ion-view>

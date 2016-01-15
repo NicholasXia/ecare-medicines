@@ -133,3 +133,8 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('patientProfile',['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/patient/profile',{},{
+            query:{method: 'GET'}
+        })
+    }])

@@ -22,8 +22,11 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndDiscoverCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndMineCtrl', ['$scope', 'checkLogin','$window','$ionicPopup',function ($scope,checkLogin,$window,$ionicPopup) {
+    .controller('doctorEndMineCtrl', ['$scope', 'checkLogin','$window','$ionicPopup', 'patientProfile', 'currentUser', function ($scope,checkLogin,$window,$ionicPopup,patientProfile,currentUser) {
         $scope.ischeck = !!checkLogin.check()
+        patientProfile.query({accessToken:currentUser.getAuthToken()},function(data){
+            $scope.data = data
+        })
         $scope.letugo = function(){
             if ($scope.ischeck){
                 $window.location.href = '#/collection'
@@ -163,36 +166,7 @@ angular.module('medicine.controllers', [])
             phone: '',
             gender: ['男', '女']
         }
-        var monthList = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
-        var datePickerCallback = function (val) {
-            if (typeof(val) === 'undefined') {
-                console.log('No date selected');
-            } else {
-                $scope.patientData.birthday = val.getFullYear() + '-' + (val.getMonth() + 1) + '-' + val.getDate()
-            }
-        };
-        $scope.datepickerObject = {
-            titleLabel: '请选择生日',
-            todayLabel: '今日',
-            closeLabel: '取消',
-            setLabel: '选取',
-            setButtonType: 'button-assertive',
-            todayButtonType: 'button-assertive',
-            closeButtonType: 'button-assertive',
-            inputDate: new Date(),
-            mondayFirst: true,
-            monthList: monthList,
-            templateType: 'popup',
-            showTodayButton: 'false',
-            modalHeaderColor: 'bar-positive',
-            modalFooterColor: 'bar-positive',
-            callback: function (val) {
-                datePickerCallback(val);
-                return
-            },
-            dateFormat: 'yyyy-MM-dd',
-            closeOnSelect: false,
-        };
+
         $scope.saveMsg = function () {
             var saveMsg = {
                 accessToken: currentUser.getAuthToken(),
@@ -368,4 +342,44 @@ angular.module('medicine.controllers', [])
             $scope.healthLecture = data.heart_knowledge
             console.log($scope.healthVedio)
         })
+    }])
+    .controller('changeCtrl',['$scope',function($scope){
+        $scope.patientData = {
+            birthday: '',
+            weight: '',
+            name: '',
+            phone: '',
+            gender: ['男', '女']
+        }
+
+        var monthList = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+        var datePickerCallback = function (val) {
+            if (typeof(val) === 'undefined') {
+                console.log('No date selected');
+            } else {
+                $scope.patientData.birthday = val.getFullYear() + '-' + (val.getMonth() + 1) + '-' + val.getDate()
+            }
+        };
+        $scope.datepickerObject = {
+            titleLabel: '请选择生日',
+            todayLabel: '今日',
+            closeLabel: '取消',
+            setLabel: '选取',
+            setButtonType: 'button-assertive',
+            todayButtonType: 'button-assertive',
+            closeButtonType: 'button-assertive',
+            inputDate: new Date(),
+            mondayFirst: true,
+            monthList: monthList,
+            templateType: 'popup',
+            showTodayButton: 'false',
+            modalHeaderColor: 'bar-positive',
+            modalFooterColor: 'bar-positive',
+            callback: function (val) {
+                datePickerCallback(val);
+                return
+            },
+            dateFormat: 'yyyy-MM-dd',
+            closeOnSelect: false,
+        };
     }])

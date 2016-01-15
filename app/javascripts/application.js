@@ -236,5 +236,35 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: 'templates/textcontent.html',
                 controller: 'doctorEndTextContentCtrl'
             })
+            .state('changeicon',{
+                url: "/changeicon",
+                templateUrl: "templates/changeicon.html",
+                controller: 'changeCtrl'
+            })
+            .state('changename',{
+                url: "/changename",
+                templateUrl: "templates/changename.html",
+                controller: 'changeCtrl'
+            })
+            .state('changephone',{
+                url: "/changephone",
+                templateUrl: "templates/changephone.html",
+                controller: 'changeCtrl'
+            })
+            .state('changesex',{
+                url: "/changesex",
+                templateUrl: "templates/changesex.html",
+                controller: 'changeCtrl'
+            })
+            .state('changebirth',{
+                url: "/changebirth",
+                templateUrl: "templates/changebirth.html",
+                controller: 'changeCtrl'
+            })
+            .state('changeweight',{
+                url: "/changeweight",
+                templateUrl: "templates/changeweight.html",
+                controller: 'changeCtrl'
+            })
         $urlRouterProvider.otherwise("/tab/home");
     })
