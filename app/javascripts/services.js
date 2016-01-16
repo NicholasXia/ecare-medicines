@@ -91,6 +91,14 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('doctorList',['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/patient/mydoctors',{},{
+            query:{
+                method: 'GET',
+                isArray: true
+            }
+        })
+    }])
     .factory('updateMsg', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/patient/profile/update', {
             accessToken: "@accessToken",
@@ -137,4 +145,20 @@ angular.module('medicine.services', ['ngResource'])
         return $resource(SERVER + '/patient/profile',{},{
             query:{method: 'GET'}
         })
+    }])
+    .factory('discoveryList',['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/patient/discovery/list',{},{
+            query:{
+                method: 'GET',
+                isArray: true
+            }
+        })
+    }])
+    .factory('doctorAnnouncements',['$resource', 'SERVER', function($resource,SERVER){
+       return $resource(SERVER + '/patient/mydoctor/announcements',{},{
+           query:{
+               method: 'GET',
+               isArray: true
+           }
+       })
     }])

@@ -19,8 +19,11 @@ angular.module('medicine.controllers', [])
             $scope.healthCartoon = data.cartoon
         })
     }])
-    .controller('doctorEndDiscoverCtrl', ['$scope', function ($scope) {
 
+    .controller('doctorEndDiscoverCtrl', ['$scope', 'discoveryList', 'currentUser', function ($scope, discoveryList, currentUser) { discoveryList.query({accessToken:currentUser.getAuthToken()},function(data){
+            console.log(data)
+            $scope.data = data
+        })
     }])
     .controller('doctorEndMineCtrl', ['$scope', 'checkLogin','$window','$ionicPopup', 'patientProfile', 'currentUser', function ($scope,checkLogin,$window,$ionicPopup,patientProfile,currentUser) {
         $scope.ischeck = !!checkLogin.check()
@@ -163,20 +166,25 @@ angular.module('medicine.controllers', [])
             console.log(data)
         })
     }])
-    .controller('doctorEndPublishDiscoverCtrl',['$scope','$http',function($scope,$http){
-        $scope.single = function(image) {
-            var formData = new FormData();
-            formData.append('image', publishphoto, publishphoto.name);
-            formData.append('name','liruirui')
-            console.log(formData)
-            $http.post('http://112.126.83.112:8080/hospital/patient/discovery/add', formData, {
-                headers: { 'Content-Type': false },
-                transformRequest: angular.identity
-            }).success(function(result) {
-                $scope.uploadedImgSrc = result.src;
-                $scope.sizeInBytes = result.size;
-            });
-        };
+    .controller('doctorEndPublishDiscoverCtrl',['$scope','publishdiscover','currentUser', function($scope,publishdiscover,currentUser){
+        $scope.publish = {
+            imageBase64s: '',
+            content : '',
+            accessToken: ''
+        }
+        $scope.publish = function(publishphoto){
+            console.log(publishphoto)
+            $scope.publish.imageBase64s = publishphoto[0].dataURL
+
+            var msg = {
+                content: $scope.publish.content,
+                imageBase64s: $scope.publish.imageBase64s,
+                accessToken: currentUser.getAuthToken()
+            }
+            console.log(msg)
+            publishdiscover.save({},msg,function(data){
+            })
+        }
     }])
     .controller('doctorEndWishWallCtrl', ['$scope', function ($scope) {
 
@@ -184,7 +192,7 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndBindDoctorCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndNumberWayCtrl', ['$scope', 'bindDoctor', 'currentUser', '$ionicPopup', function ($scope, bindDoctor, currentUser, $ionicPopup) {
+    .controller('doctorEndNumberWayCtrl', ['$scope', 'bindDoctor', 'currentUser', '$ionicPopup', '$timeout', function ($scope, bindDoctor, currentUser, $ionicPopup,$timeout) {
         $scope.doctorMsg = {doctorIdentity: ''}
         $scope.bindDoc = function () {
             var bindMsg = {
@@ -212,6 +220,12 @@ angular.module('medicine.controllers', [])
                 }
             })
         }
+    }])
+    .controller('doctorAnnouncementsCtrl',['$scope','doctorAnnouncements','currentUser', function($scope,doctorAnnouncements,currentUser){
+        doctorAnnouncements.query({accessToken:currentUser.getAuthToken()},function(data){
+            console.log(data)
+            $scope.data = data
+        })
     }])
     .controller('doctorEndInstructionCtrl', ['$scope', function ($scope) {
 
@@ -283,11 +297,14 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndEvaluationListCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndScanWayCtrl', ['$scope', function ($scope) {
-
-    }])
     .controller('doctorEndCollectionCtrl', ['$scope', function ($scope) {
 
+    }])
+    .controller('doctorListCtrl',['$scope','doctorList','currentUser', function($scope, doctorList, currentUser){
+        doctorList.query({accessToken:currentUser.getAuthToken()},function(data){
+            console.log(data)
+            $scope.data = data
+        })
     }])
     .controller('threeKillKnowledgeCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
         threeKiller.get({illType: 1}, function (data) {

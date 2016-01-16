@@ -4,14 +4,15 @@
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <ion-list can-swipe="true" class="fix-tab">
-            <ion-item class="item-avatar-left">
-                <img src="images/1.jpg"/>
-
+            <ion-item class="item-avatar-left" ng-repeat="item in data">
+                <img ng-src={{item.imageUrl}}/>
                 <div>
-                    <span>用户姓名</span>
+                    <span>{{item.name}}</span>
                     <span class="small fk-side">已绑定</span>
-                    <span class="gray">2015年12月28年</span>
+                    <span class="gray">{{item.postTime}}</span>
                 </div>
+
+                <p>{{item.content}}</p>
                 <ion-option-button class="button-assertive" ng-click="delete(item)">
                     删除
                 </ion-option-button>

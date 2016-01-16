@@ -3,7 +3,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>",
         hideOnStateChange: true
     })
-    .constant('SERVER', 'http://112.126.83.112:8080/hospital')
+    .constant('SERVER', 'http://123.56.184.184:8080/hospital')
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
         $ionicConfigProvider.navBar.alignTitle('center')
@@ -69,6 +69,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'notice-tab': {
                         templateUrl: "templates/notice_tab.html",
+                        controller: "doctorAnnouncementsCtrl"
                     }
                 }
             })
@@ -85,6 +86,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'doctorlist-tab': {
                         templateUrl: "templates/doctorlist_tab.html",
+                        controller: "doctorListCtrl"
                     }
                 }
             })
