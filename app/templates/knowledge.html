@@ -17,7 +17,7 @@
             </div>
             <div class="col col-50 no-padding">
                 <div class="list">
-                    <a href="#/threekiller" class="item item-icon-left pl">
+                    <a href="#/guanxinbing" class="item item-icon-left pl">
                         <i class="icon">
                             <img src="images/guanxinbing.png" alt="" width="60"/>
                         </i>
@@ -27,7 +27,7 @@
             </div>
             <div class="col col-50 no-padding">
                 <div class="list">
-                    <a href="#threekiller" class="item item-icon-left pl">
+                    <a href="#xinjigengse" class="item item-icon-left pl">
                         <i class="icon">
                             <img src="images/xinjigengsi.png" alt="" width="60"/>
                         </i>
@@ -37,7 +37,7 @@
             </div>
             <div class="col col-50 no-padding">
                 <div class="list">
-                    <a href="#threekiller" class="item item-icon-left pl">
+                    <a href="#xinlishuaijie" class="item item-icon-left pl">
                         <i class="icon">
                             <img src="images/xinlishuaijie.png" alt="" width="60"/>
                         </i>
@@ -53,7 +53,6 @@
             <div class="item item-avatar card_h">
                 <h2>养心讲堂</h2>
             </div>
-
             <div class="item item-body" ng-repeat="item in healthLecture" ui-sref="textcontent({id:item.id})">
                 <h3>{{item.title}}</h3>
                 <img class="full-image" ng-src="item.coverImageUrl">
@@ -74,26 +73,14 @@
         <!--展示card区域 end-->
 
         <!--图文混排区域 start-->
-        <div class="list" ng-repeat="item in healthVedio" ui-sref="textcontent({id:item.id})">
+        <div class="list" ng-repeat="item in data" ui-sref="textcontent({id:item.id})">
             <a class="item item-thumbnail-right" href="#">
                 <img ng-src="item.coverImageUrl">
-
                 <h2>{{item.title}}</h2>
-
-                <p>{{item.content}}</p>
-
+                <p ng-bind-html="item.content">{{item.content}}</p>
                 <p>{{item.postTime}}</p>
             </a>
         </div>
         <!--图文混排区域 end-->
-
-
-        <!--保存到桌面区域 start-->
-        <div class="padding">
-            <button class="button button-outline button-block button-balanced">
-                保存到桌面
-            </button>
-        </div>
-        <!--保存到桌面区域 end-->
     </ion-content>
 </ion-view>

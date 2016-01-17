@@ -4,7 +4,7 @@
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <div class="list card mg" ng-repeat="item in data">
-            <a class="item item-avatar" href="#/doctordata">
+            <a class="item item-avatar" ng-href="#/doctordata/{{item.userId}}">
                 <img ng-src={{item.profileImageUrl}}>
                 <div>
                     <h2>{{item.hospital}}</h2>

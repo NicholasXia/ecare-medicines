@@ -1,7 +1,7 @@
 angular.module('medicine.services', ['ngResource'])
     .constant('CURRENT_USER', 'currentUser')
     .factory('getCarouselList', ['$resource', 'SERVER',function ($resource,SERVER) {
-        return $resource(SERVER +'/back/article/list/:type/:category', {}, {
+        return $resource(SERVER +'/patient/article/list/:type/:category', {}, {
             query: {
                 method: 'GET',
                 params:{
@@ -99,6 +99,13 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('doctorMsg',['$resource','SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/patient/mydoctor/detail/:id', {}, {
+            query:{
+                method: 'GET'
+            }
+        })
+    }])
     .factory('updateMsg', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/patient/profile/update', {
             accessToken: "@accessToken",
@@ -114,7 +121,7 @@ angular.module('medicine.services', ['ngResource'])
         })
     }])
     .factory('threeKiller',['$resource', 'SERVER', function($resource, SERVER){
-        return $resource(SERVER + '/patient/ill/articles',{},{
+        return $resource(SERVER + '/patient/ill/articles/:illType',{},{
             get:{
                 method: 'GET'
             }
@@ -136,6 +143,13 @@ angular.module('medicine.services', ['ngResource'])
     }])
     .factory('healthLecture', ['$resource', 'SERVER', function($resource, SERVER){
         return $resource(SERVER + '/patient/saveHeart/lecture',{},{
+            query:{
+                method: 'GET'
+            }
+        })
+    }])
+    .factory('getArticleById',['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/patient/article/detail/:id',{},{
             query:{
                 method: 'GET'
             }

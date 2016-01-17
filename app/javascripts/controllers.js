@@ -4,7 +4,8 @@ angular.module('medicine.controllers', [])
             $scope.data = data
         })
         healthLecture.query(function(data){
-            $scope.healthLecture = data.heart_knowledge
+            console.log(data)
+            $scope.healthLecture = data
             console.log($scope.healthLecture)
         })
         $scope.goToActivity = function (activity) {
@@ -14,9 +15,12 @@ angular.module('medicine.controllers', [])
     }])
     .controller('doctorEndKnowledgeCtrl', ['$scope', 'healthLecture', function ($scope, healthLecture) {
         healthLecture.query(function(data){
+            $scope.data = data
+            /*
             $scope.healthLecture = data.heart_knowledge
             $scope.healthVedio = data.heart_vedio
             $scope.healthCartoon = data.cartoon
+            */
         })
     }])
 
@@ -192,7 +196,7 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndBindDoctorCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndNumberWayCtrl', ['$scope', 'bindDoctor', 'currentUser', '$ionicPopup', '$timeout', function ($scope, bindDoctor, currentUser, $ionicPopup,$timeout) {
+    .controller('doctorEndNumberWayCtrl', ['$scope', 'bindDoctor', 'currentUser', '$ionicPopup', '$timeout', '$window', function ($scope, bindDoctor, currentUser, $ionicPopup,$timeout, $window) {
         $scope.doctorMsg = {doctorIdentity: ''}
         $scope.bindDoc = function () {
             var bindMsg = {
@@ -210,8 +214,8 @@ angular.module('medicine.controllers', [])
                     return
                 } else {
                     var popup = $ionicPopup.alert({
-                        title: '医生绑定成功',
-                        template: '3秒后自动进入主页'
+                        title: '提示',
+                        template: data.status
                     })
                     $timeout(function () {
                         popup.close()
@@ -267,7 +271,11 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
-    .controller('doctorEndDoctorDataCtrl', ['$scope', '$ionicActionSheet', '$timeout', function ($scope, $ionicActionSheet, $timeout) {
+    .controller('doctorEndDoctorDataCtrl', ['$scope', '$ionicActionSheet', '$timeout', 'doctorMsg', 'currentUser', '$stateParams', function ($scope, $ionicActionSheet, $timeout, doctorMsg, currentUser, $stateParams) {
+        doctorMsg.query({accessToken: currentUser.getAuthToken(), id: $stateParams.id}, function(data){
+            $scope.data = data
+            console.log(data)
+        })
         $scope.show = function() {
             var hideSheet = $ionicActionSheet.show({
                 buttons: [
@@ -306,29 +314,50 @@ angular.module('medicine.controllers', [])
             $scope.data = data
         })
     }])
-    .controller('threeKillKnowledgeCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
-        threeKiller.get({illType: 1}, function (data) {
-            $scope.model = data.heart_knowledge
+    .controller('threeKillCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
+        threeKiller.get({illType: 3}, function (data) {
+            $scope.model = {
+                knowledge : data.heart_knowledge,
+                vedio : data.heart_vedio,
+                cartoon: data.heart_cartoon
+            }
             console.log($scope.model)
         })
     }])
-    .controller('threeKillVideoCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
-        threeKiller.get({illType: 1}, function (data) {
-            $scope.model = data.heart_vedio
+    .controller('guanxinbingCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
+        threeKiller.get({illType: 4}, function (data) {
+            $scope.model = {
+                knowledge : data.heart_knowledge,
+                vedio : data.heart_vedio,
+                cartoon: data.heart_cartoon
+            }
             console.log($scope.model)
         })
     }])
-    .controller('threeKillCartoonCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
-        threeKiller.get({illType: 1}, function (data) {
-            $scope.model = data.heart_cartoon
+    .controller('xinjigengseCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
+        threeKiller.get({illType: 5}, function (data) {
+            $scope.model = {
+                knowledge : data.heart_knowledge,
+                vedio : data.heart_vedio,
+                cartoon: data.heart_cartoon
+            }
             console.log($scope.model)
         })
     }])
-    .controller('doctorEndTextContentCtrl',['$scope','healthLecture','$stateParams',function($scope, healthLecture, $stateParams){
-        healthLecture.query({id:$stateParams.id},function(data){
+    .controller('xinlishuaijieCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
+        threeKiller.get({illType: 6}, function (data) {
+            $scope.model = {
+                knowledge : data.heart_knowledge,
+                vedio : data.heart_vedio,
+                cartoon: data.heart_cartoon
+            }
+            console.log($scope.model)
+        })
+    }])
+    .controller('doctorEndTextContentCtrl',['$scope','getArticleById','$stateParams',function($scope, getArticleById, $stateParams){
+        getArticleById.query({id:$stateParams.id},function(data){
             console.log(data)
-            $scope.healthLecture = data.heart_knowledge
-            console.log($scope.healthVedio)
+            $scope.data = data
         })
     }])
     .controller('changeCtrl',['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {

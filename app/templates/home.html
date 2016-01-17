@@ -1,8 +1,8 @@
 <ion-view view-title="首页" cache-view='false' hide-nav-bar="isNavBarHide">
     <ion-content has-bouncing="true">
         <!--首页轮播图-->
-        <ion-slide-box  ng-if="data.length > 0">
-            <ion-slide ng-repeat="item in data"  ng-click="goToActivity(item.linkUrl)">
+        <ion-slide-box ng-if="data.length > 0">
+            <ion-slide ng-repeat="item in data" ng-click="goToActivity(item.linkUrl)">
                 <div class="box blue"><img ng-src={{item.coverImageUrl}} width="100%" height="200px"/></div>
             </ion-slide>
         </ion-slide-box>
@@ -85,24 +85,24 @@
             -->
         </ion-list>
         <!--心愿墙 start 二期内容暂时隐藏-->
-        <ion-list class="list" ng-if="false">
-            <ion-item class="item item-divider">
-                <span class="matches">心愿墙</span>
-            </ion-item>
-            <ion-item class="item item-avatar" href="#/wishwall">
-                <img src="images/tongxiang.png" alt="用户头像"/>
+        <!--  <ion-list class="list" ng-if="false">
+              <ion-item class="item item-divider">
+                  <span class="matches">心愿墙</span>
+              </ion-item>
+              <ion-item class="item item-avatar" href="#/wishwall">
+                  <img src="images/tongxiang.png" alt="用户头像"/>
 
-                <div>
-                    <span>用户姓名</span>
-                    <span class="small">心愿成真</span>
-                </div>
-                <p class="init">
-                    祝您平安喜乐祝您平安喜乐
-                </p>
+                  <div>
+                      <span>用户姓名</span>
+                      <span class="small">心愿成真</span>
+                  </div>
+                  <p class="init">
+                      祝您平安喜乐祝您平安喜乐
+                  </p>
 
-                <p class="text-right">2015年12月20日</p>
-            </ion-item>
-        </ion-list>
+                  <p class="text-right">2015年12月20日</p>
+              </ion-item>
+          </ion-list>-->
         <!--心愿墙 end-->
 
         <!--养心讲堂 start-->
@@ -111,23 +111,23 @@
                 <span class="matches">养心讲堂</span>
             </ion-item>
             <div class="list card full-card mg" ng-repeat="item in healthLecture" ui-sref="textcontent({id:item.id})">
-                <div class="item item-avatar pd">
-                    <h2>{{item.title}}</h2>
-                    <p>{{item.content}}</p>
-                    <img class="full-image"  ng-src="item.coverImageUrl">
+                    <div class="item item-avatar pd">
+                        <h2>{{item.title}}</h2>
+                        <p ng-bind-html="item.content">{{item.content}}</p>
+                        <img class="full-image" ng-src={{item.coverImageUrl}}>
+                    </div>
+                    <div class="item tabs tabs-secondary tabs-icon-left">
+                        <a class="tab-item textL" href="#">
+                            {{item.postTime}}
+                        </a>
+                        <a class="tab-item textR" href="#">
+                            <i class="icon">
+                                <img src="images/pinglun.png" alt="" width="25"/>
+                            </i>
+                            <span>30</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="item tabs tabs-secondary tabs-icon-left">
-                    <a class="tab-item textL" href="#">
-                        {{item.postTime}}
-                    </a>
-                    <a class="tab-item textR" href="#">
-                        <i class="icon">
-                            <img src="images/pinglun.png" alt="" width="25"/>
-                        </i>
-                        <span>30</span>
-                    </a>
-                </div>
-            </div>
         </ion-list>
         <!--养心讲堂 end-->
 

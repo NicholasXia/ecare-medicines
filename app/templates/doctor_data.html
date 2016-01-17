@@ -7,10 +7,10 @@
         <div class="imax doctorimax">
                 <div class="centerfm padding">
                     <img src="images/1.jpg" alt="" width="80" height="80" class="round"/>
-                    <p>北京大学医院 心内科</p>
-                    <p>张春生</p>
-                    <p>主治医师</p>
-                    <p>20位患者</p>
+                    <p>{{data.hospital}} {{data.department}}</p>
+                    <p>{{data.name}}</p>
+                    <p>{{data.technicalTitle}}</p>
+                    <p>{{data.patientCount}}</p>
                 </div>
         </div>
         <!--巨幕 end-->
@@ -18,7 +18,7 @@
             <li class="item">
                 <p>
                     <span>地址:</span>
-                    <span>{{doctor.data.address}}</span>
+                    <span>{{data.address}}</span>
                 </p>
             </li>
         </ul>
