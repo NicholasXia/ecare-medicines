@@ -24,10 +24,21 @@ angular.module('medicine.controllers', [])
         })
     }])
 
-    .controller('doctorEndDiscoverCtrl', ['$scope', 'discoveryList', 'currentUser', function ($scope, discoveryList, currentUser) { discoveryList.query({accessToken:currentUser.getAuthToken()},function(data){
-            console.log(data)
-            $scope.data = data
-        })
+    .controller('doctorEndDiscoverCtrl', ['$scope', 'discoveryList', '$window','$ionicPopup','currentUser', function ($scope, discoveryList,$window,$ionicPopup, currentUser) {
+
+        var accesstoken = currentUser.getAuthToken()
+        if(accesstoken){
+            discoveryList.query({accessToken:currentUser.getAuthToken()},function(data){
+                console.log(data)
+                $scope.data = data
+            })
+        }else{
+            $ionicPopup.alert({
+                title: '错误提示',
+                template: '您还未登陆不能查看发现'
+            });
+            $window.location.href = '#/signup'
+        }
     }])
     .controller('doctorEndMineCtrl', ['$scope', 'checkLogin','$window','$ionicPopup', 'patientProfile', 'currentUser', function ($scope,checkLogin,$window,$ionicPopup,patientProfile,currentUser) {
         $scope.ischeck = !!checkLogin.check()
@@ -358,7 +369,7 @@ angular.module('medicine.controllers', [])
         })
     }])
 
-
+//文章detail
     .controller('zhishiDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup) {
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.zhishidetail = data
@@ -374,17 +385,23 @@ angular.module('medicine.controllers', [])
                 articleId: $stateParams.id,
                 remark: $scope.markinfo.remak
             }
-            Remark.save({}, msg, function (data) {
-                if (data.status == 'suc') {
-                    $window.location.reload()
-                } else {
-                    $window.location.href = '#/'
-                }
-            })
+            if(accesstoken) {
+                Remark.save({}, msg, function (data) {
+                    if (data.status == 'suc') {
+                        $window.location.reload()
+                    } else {
+                        $window.location.href = '#/'
+                    }
+                })
+            }else{
+                $ionicPopup.alert({
+                    title: '错误提示',
+                    template: '您还未登陆不能进行评论'
+                });
+                $window.location.href = '#/signup'
+            }
 
         }
-
-
     }])
     //
 
