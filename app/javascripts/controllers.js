@@ -426,3 +426,29 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
+
+    .controller('doctorEndDiscoverDetailCtrl',['$scope','$window','currentUser','discoveryDetail','discoverRemark','$stateParams',function($scope,$window,currentUser, discoveryDetail,discoverRemark, $stateParams){
+        var accesstoken = currentUser.getAuthToken()
+        var params = {id:$stateParams.id,accessToken:accesstoken}
+        discoveryDetail.query(params,function(data){
+            $scope.data = data
+            console.log(data)
+        })
+        $scope.detailMsg={'acomment':''}
+        $scope.aComment = function(){
+            var paramsremark = {
+                id : $stateParams.id,
+                remark :  $scope.detailMsg.acomment,
+                accessToken : accesstoken
+            }
+            discoverRemark.save(paramsremark , function(info){
+                console.log(info)
+                if(info.status == 'suc'){
+                    $window.location.reload()
+                }
+
+            })
+
+
+        }
+    }])

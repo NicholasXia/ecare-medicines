@@ -3,8 +3,8 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>",
         hideOnStateChange: true
     })
-    .constant('SERVER', 'http://192.168.20.173:8080/hospital')
-    //.constant('SERVER', 'http://123.56.184.184:8080/hospital')
+    //.constant('SERVER', 'http://192.168.20.173:8080/hospital')
+    .constant('SERVER', 'http://123.56.184.184:8080/hospital')
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
         $ionicConfigProvider.navBar.alignTitle('center')
@@ -304,7 +304,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 controller: "doctorEndDoctorDataCtrl"
             })
             .state('discoverdetail', {
-                url: "/discoverdetail",
+                url: "/discoverdetail/:id",
                 templateUrl: "templates/discover_detail.html",
                 controller: "doctorEndDiscoverDetailCtrl"
             })

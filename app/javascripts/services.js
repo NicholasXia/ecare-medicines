@@ -176,3 +176,21 @@ angular.module('medicine.services', ['ngResource'])
            }
        })
     }])
+    .factory('discoveryDetail',['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/patient/discovery/detail/:id',{},{
+            query:{
+                method: 'GET',
+            }
+        })
+    }])
+    .factory('discoverRemark', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/patient/discovery/remark/:id', {
+            id: '@id',
+            remark: '@remark',
+            accessToken: "@accessToken",
+        }, {
+            save: {
+                method: 'POST'
+            }
+        })
+    }])
