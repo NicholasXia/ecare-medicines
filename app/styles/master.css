@@ -1,133 +1,299 @@
 /***********************helper start***************************/
-.fl{float:left;}
-.fr{float:right;}
-.mt{margin-top:15px;}
-.border{border:1px solid #ddd;padding:15px;}
-.mb{margin-bottom:35px;}
-.small{background-color: crimson;color:#eee; float: right; padding: 1px 3px;}
-.gray{color:#999;}
-.matches{border-left: 3px solid #28a54c; padding-left:9px;}
-.highlight{color:crimson;}
-.init{overflow: visible !important; text-overflow: clip !important; white-space: normal !important;}
-.wishes{background-color:aliceblue;}
-.textarea{width:100%; height: 200px; border: 1px solid #ddd;}
-.basefont{font-size:16px !important;}
-.round{border-radius:50%;}
-#core-three p{line-height:16px;padding-bottom:10px;}
-#core-three img{padding-top: 10px; height:64px; width:54px;}
-#tabs-top > div{top:44px;}
-#tabs-top > .tab-nav.tabs{background-color: rgba(40,165,76,.3); color: #999;}
-#personalData{position:relative;}
-#personalData  span, #personalData select, #personalData input{position:absolute; left: 100px; padding:0;}
-.fix-tab >div.list{margin-top:49px;}
-.rightarrow{font-size: 30px;top: 42%;right: 5%; position: absolute; color: #f6f6f6; height: 60px; width: 60px; text-align: center;}
-.noborder{border:none;}
-.inputfile {/*width: 0.1px;height: 0.1px;*/opacity: 0;overflow: hidden; position: absolute;z-index: 99;}
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.mt {
+    margin-top: 15px;
+}
+
+.border {
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+
+.mb {
+    margin-bottom: 35px;
+}
+
+.small {
+    background-color: crimson;
+    color: #eee;
+    float: right;
+    padding: 1px 3px;
+}
+
+.gray {
+    color: #999;
+}
+
+.matches {
+    border-left: 3px solid #28a54c;
+    padding-left: 9px;
+}
+
+.highlight {
+    color: crimson;
+}
+
+.init {
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
+}
+
+.wishes {
+    background-color: aliceblue;
+}
+
+.textarea {
+    width: 100%;
+    height: 200px;
+    border: 1px solid #ddd;
+}
+
+.basefont {
+    font-size: 16px !important;
+}
+
+.round {
+    border-radius: 50%;
+}
+
+#core-three p {
+    line-height: 16px;
+    padding-bottom: 10px;
+}
+
+#core-three img {
+    padding-top: 10px;
+    height: 64px;
+    width: 54px;
+}
+
+#tabs-top > div {
+    top: 44px;
+}
+
+#tabs-top > .tab-nav.tabs {
+    background-color: rgba(40, 165, 76, .3);
+    color: #999;
+}
+
+#personalData {
+    position: relative;
+}
+
+#personalData span, #personalData select, #personalData input {
+    position: absolute;
+    left: 100px;
+    padding: 0;
+}
+
+.fix-tab > div.list {
+    margin-top: 49px;
+}
+
+.rightarrow {
+    font-size: 30px;
+    top: 42%;
+    right: 5%;
+    position: absolute;
+    color: #f6f6f6;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+}
+
+.noborder {
+    border: none;
+}
+
+.inputfile {
+    /*width: 0.1px;height: 0.1px;*/
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: 99;
+}
+
 .inputfile + label {
     font-size: 1.25em;
     font-weight: 700;
     display: inline-block;
     background-image: url("../images/xiangji.png");
     background-repeat: no-repeat;
-    background-size:contain;
+    background-size: contain;
     height: 30px;
     width: 100%;
 }
+
 .inputfile:focus + label,
 .inputfile + label:hover {
     background-color: red;
 }
-.centerfm{position: absolute;
+
+.centerfm {
+    position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     text-align: center;
 }
-.centerfm p{margin:0; text-align: center; color:#f6f6f6;}
-.fk-side{position: absolute;right: 5px;}
+
+.centerfm p {
+    margin: 0;
+    text-align: center;
+    color: #f6f6f6;
+}
+
+.fk-side {
+    position: absolute;
+    right: 5px;
+}
+
 /***********************helper end*****************************/
 
 /**************fix ionic start******************/
-.flex-wrap{
+.flex-wrap {
     flex-wrap: wrap;
 }
-.no-padding{
+
+.no-padding {
     padding: 0 !important;
 }
-.full-card{
+
+.full-card {
     margin: 20px 0;
 }
-.relative{
+
+.relative {
     position: relative;
 }
-.beyond-head{
-    margin-top:50px;
+
+.beyond-head {
+    margin-top: 50px;
 }
-#jgg{
+
+#jgg {
     margin-top: 15px;
     color: #999;
 }
-#jgg > div{
+
+#jgg > div {
     border: 1px solid #f6f6f6;
     padding: 15px;
 }
-#jgg h4{
+
+#jgg h4 {
     margin: 0;
 }
-#jgg a{
+
+#jgg a {
     text-decoration: none;
     color: #999;
 }
+
 /**************fix ionic end******************/
 
 /**************ui ionic start******************/
-.imax{
-    height:150px;
-    background-image:url("../images/dabeijing.png");
+.imax {
+    height: 150px;
+    background-image: url("../images/dabeijing.png");
     background-repeat: no-repeat;
     background-position: 0 0;
     background-size: cover;
     position: relative;
 }
-.imax .imax-inwrap{
+
+.imax .imax-inwrap {
     position: absolute;
     left: 50px;
     bottom: 25px;
 }
-.imax .goorin{
+
+.imax .goorin {
     color: #f6f6f6;
     text-align: center;
     border: 1px solid #f6f6f6;
     border-radius: 3px;
 }
-.goorin a{
+
+.goorin a {
     display: inline-block;
     line-height: 32px;
     height: 32px;
     text-decoration: none;
     color: #fff;
 }
-.imax .hide-world{
+
+.imax .hide-world {
     color: #f6f6f6;
 }
-.imax.doctorimax{
-    background-image:url("../images/yishengbeijing.png");
+
+.imax.doctorimax {
+    background-image: url("../images/yishengbeijing.png");
     height: 250px;
 }
+
 /**************ui ionic end******************/
 
 /**************** index ****************/
-.pl{padding-left: 80px; height: 90px; line-height: 58px;}
-.card_h{padding-left: 18px; min-height:54px;}
-.card_h>h2{border-left: 3px solid #28a54c; padding-left: 6px}
-.textL{text-align: left;}
-.textR{text-align: right;}
-.pd{padding-left: 16px;}
-.mg{margin-top: 49px;}
-.doc_LR{position: relative; min-height: 25px;}
-.pos_R{position: absolute; top: 0; right: 0; }
-.pos_R>i{display: inline-block!important;}
-.pos_R>span{font-size: 1.2em!important;}
+.pl {
+    padding-left: 80px;
+    height: 90px;
+    line-height: 58px;
+}
+
+.card_h {
+    padding-left: 18px;
+    min-height: 54px;
+}
+
+.card_h > h2 {
+    border-left: 3px solid #28a54c;
+    padding-left: 6px
+}
+
+.textL {
+    text-align: left;
+}
+
+.textR {
+    text-align: right;
+}
+
+.pd {
+    padding-left: 16px;
+}
+
+.mg {
+    margin-top: 49px;
+}
+
+.doc_LR {
+    position: relative;
+    min-height: 25px;
+}
+
+.pos_R {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.pos_R > i {
+    display: inline-block !important;
+}
+
+.pos_R > span {
+    font-size: 1.2em !important;
+}
+
 /**************** index ****************/
 
 

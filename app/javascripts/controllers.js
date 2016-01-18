@@ -1,9 +1,9 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', function ($scope, $window, getCarouselList, currentUser,healthLecture) {
-        getCarouselList.query({type:2,category:1},function (data) {
+    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', function ($scope, $window, getCarouselList, currentUser, healthLecture) {
+        getCarouselList.query({type: 2, category: 1}, function (data) {
             $scope.data = data
         })
-        healthLecture.query(function(data){
+        healthLecture.query(function (data) {
             console.log(data)
             $scope.healthLecture = data
             console.log($scope.healthLecture)
@@ -14,25 +14,25 @@ angular.module('medicine.controllers', [])
         $scope.isLogin = currentUser.hasAuthToken()
     }])
     .controller('doctorEndKnowledgeCtrl', ['$scope', 'healthLecture', function ($scope, healthLecture) {
-        healthLecture.query(function(data){
+        healthLecture.query(function (data) {
             $scope.data = data
             /*
-            $scope.healthLecture = data.heart_knowledge
-            $scope.healthVedio = data.heart_vedio
-            $scope.healthCartoon = data.cartoon
-            */
+             $scope.healthLecture = data.heart_knowledge
+             $scope.healthVedio = data.heart_vedio
+             $scope.healthCartoon = data.cartoon
+             */
         })
     }])
 
-    .controller('doctorEndDiscoverCtrl', ['$scope', 'discoveryList', '$window','$ionicPopup','currentUser', function ($scope, discoveryList,$window,$ionicPopup, currentUser) {
+    .controller('doctorEndDiscoverCtrl', ['$scope', 'discoveryList', '$window', '$ionicPopup', 'currentUser', function ($scope, discoveryList, $window, $ionicPopup, currentUser) {
 
         var accesstoken = currentUser.getAuthToken()
-        if(accesstoken){
-            discoveryList.query({accessToken:currentUser.getAuthToken()},function(data){
+        if (accesstoken) {
+            discoveryList.query({accessToken: currentUser.getAuthToken()}, function (data) {
                 console.log(data)
                 $scope.data = data
             })
-        }else{
+        } else {
             $ionicPopup.alert({
                 title: '错误提示',
                 template: '您还未登陆不能查看发现'
@@ -40,15 +40,15 @@ angular.module('medicine.controllers', [])
             $window.location.href = '#/signup'
         }
     }])
-    .controller('doctorEndMineCtrl', ['$scope', 'checkLogin','$window','$ionicPopup', 'patientProfile', 'currentUser', function ($scope,checkLogin,$window,$ionicPopup,patientProfile,currentUser) {
+    .controller('doctorEndMineCtrl', ['$scope', 'checkLogin', '$window', '$ionicPopup', 'patientProfile', 'currentUser', function ($scope, checkLogin, $window, $ionicPopup, patientProfile, currentUser) {
         $scope.ischeck = !!checkLogin.check()
-        patientProfile.query({accessToken:currentUser.getAuthToken()},function(data){
+        patientProfile.query({accessToken: currentUser.getAuthToken()}, function (data) {
             $scope.data = data
         })
-        $scope.letugo = function(){
-            if ($scope.ischeck){
+        $scope.letugo = function () {
+            if ($scope.ischeck) {
                 $window.location.href = '#/collection'
-            }else{
+            } else {
                 $ionicPopup.alert({
                     title: '提示',
                     template: '您尚未登陆，请登陆后重试'
@@ -177,17 +177,17 @@ angular.module('medicine.controllers', [])
         }
     }])
     .controller('doctorEndPersonalDataCtrl', ['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
-        $scope.data = patientProfile.query({accessToken:currentUser.getAuthToken()},function(data){
+        $scope.data = patientProfile.query({accessToken: currentUser.getAuthToken()}, function (data) {
             console.log(data)
         })
     }])
-    .controller('doctorEndPublishDiscoverCtrl',['$scope','publishdiscover','currentUser', function($scope,publishdiscover,currentUser){
+    .controller('doctorEndPublishDiscoverCtrl', ['$scope', 'publishdiscover', 'currentUser', function ($scope, publishdiscover, currentUser) {
         $scope.publish = {
             imageBase64s: '',
-            content : '',
+            content: '',
             accessToken: ''
         }
-        $scope.publish = function(publishphoto){
+        $scope.publish = function (publishphoto) {
             console.log(publishphoto)
             $scope.publish.imageBase64s = publishphoto[0].dataURL
 
@@ -197,7 +197,7 @@ angular.module('medicine.controllers', [])
                 accessToken: currentUser.getAuthToken()
             }
             console.log(msg)
-            publishdiscover.save({},msg,function(data){
+            publishdiscover.save({}, msg, function (data) {
             })
         }
     }])
@@ -207,7 +207,7 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndBindDoctorCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndNumberWayCtrl', ['$scope', 'bindDoctor', 'currentUser', '$ionicPopup', '$timeout', '$window', function ($scope, bindDoctor, currentUser, $ionicPopup,$timeout, $window) {
+    .controller('doctorEndNumberWayCtrl', ['$scope', 'bindDoctor', 'currentUser', '$ionicPopup', '$timeout', '$window', function ($scope, bindDoctor, currentUser, $ionicPopup, $timeout, $window) {
         $scope.doctorMsg = {doctorIdentity: ''}
         $scope.bindDoc = function () {
             var bindMsg = {
@@ -236,8 +236,8 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
-    .controller('doctorAnnouncementsCtrl',['$scope','doctorAnnouncements','currentUser', function($scope,doctorAnnouncements,currentUser){
-        doctorAnnouncements.query({accessToken:currentUser.getAuthToken()},function(data){
+    .controller('doctorAnnouncementsCtrl', ['$scope', 'doctorAnnouncements', 'currentUser', function ($scope, doctorAnnouncements, currentUser) {
+        doctorAnnouncements.query({accessToken: currentUser.getAuthToken()}, function (data) {
             console.log(data)
             $scope.data = data
         })
@@ -283,25 +283,25 @@ angular.module('medicine.controllers', [])
         }
     }])
     .controller('doctorEndDoctorDataCtrl', ['$scope', '$ionicActionSheet', '$timeout', 'doctorMsg', 'currentUser', '$stateParams', function ($scope, $ionicActionSheet, $timeout, doctorMsg, currentUser, $stateParams) {
-        doctorMsg.query({accessToken: currentUser.getAuthToken(), id: $stateParams.id}, function(data){
+        doctorMsg.query({accessToken: currentUser.getAuthToken(), id: $stateParams.id}, function (data) {
             $scope.data = data
             console.log(data)
         })
-        $scope.show = function() {
+        $scope.show = function () {
             var hideSheet = $ionicActionSheet.show({
                 buttons: [
-                    { text: '是' }
+                    {text: '是'}
                 ],
                 titleText: '是否解绑',
                 cancelText: '否',
-                cancel: function() {
+                cancel: function () {
                     // add cancel code..
                 },
-                buttonClicked: function(index) {
+                buttonClicked: function (index) {
                     return true;
                 }
             });
-            $timeout(function() {
+            $timeout(function () {
                 hideSheet();
             }, 10000);
 
@@ -319,8 +319,8 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndCollectionCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorListCtrl',['$scope','doctorList','currentUser', function($scope, doctorList, currentUser){
-        doctorList.query({accessToken:currentUser.getAuthToken()},function(data){
+    .controller('doctorListCtrl', ['$scope', 'doctorList', 'currentUser', function ($scope, doctorList, currentUser) {
+        doctorList.query({accessToken: currentUser.getAuthToken()}, function (data) {
             console.log(data)
             $scope.data = data
         })
@@ -331,8 +331,8 @@ angular.module('medicine.controllers', [])
     .controller('threeKillCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
         threeKiller.get({illType: 3}, function (data) {
             $scope.model = {
-                knowledge : data.heart_knowledge,
-                vedio : data.heart_vedio,
+                knowledge: data.heart_knowledge,
+                vedio: data.heart_vedio,
                 cartoon: data.heart_cartoon
             }
             console.log($scope.model)
@@ -341,8 +341,8 @@ angular.module('medicine.controllers', [])
     .controller('guanxinbingCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
         threeKiller.get({illType: 4}, function (data) {
             $scope.model = {
-                knowledge : data.heart_knowledge,
-                vedio : data.heart_vedio,
+                knowledge: data.heart_knowledge,
+                vedio: data.heart_vedio,
                 cartoon: data.heart_cartoon
             }
             console.log($scope.model)
@@ -351,8 +351,8 @@ angular.module('medicine.controllers', [])
     .controller('xinjigengseCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
         threeKiller.get({illType: 5}, function (data) {
             $scope.model = {
-                knowledge : data.heart_knowledge,
-                vedio : data.heart_vedio,
+                knowledge: data.heart_knowledge,
+                vedio: data.heart_vedio,
                 cartoon: data.heart_cartoon
             }
             console.log($scope.model)
@@ -361,8 +361,8 @@ angular.module('medicine.controllers', [])
     .controller('xinlishuaijieCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
         threeKiller.get({illType: 6}, function (data) {
             $scope.model = {
-                knowledge : data.heart_knowledge,
-                vedio : data.heart_vedio,
+                knowledge: data.heart_knowledge,
+                vedio: data.heart_vedio,
                 cartoon: data.heart_cartoon
             }
             console.log($scope.model)
@@ -385,7 +385,7 @@ angular.module('medicine.controllers', [])
                 articleId: $stateParams.id,
                 remark: $scope.markinfo.remak
             }
-            if(accesstoken) {
+            if (accesstoken) {
                 Remark.save({}, msg, function (data) {
                     if (data.status == 'suc') {
                         $window.location.reload()
@@ -393,7 +393,7 @@ angular.module('medicine.controllers', [])
                         $window.location.href = '#/'
                     }
                 })
-            }else{
+            } else {
                 $ionicPopup.alert({
                     title: '错误提示',
                     template: '您还未登陆不能进行评论'
@@ -406,19 +406,19 @@ angular.module('medicine.controllers', [])
     //
 
 
-    .controller('doctorEndTextContentCtrl',['$scope','getArticleById','$stateParams',function($scope, getArticleById, $stateParams){
-        getArticleById.query({id:$stateParams.id},function(data){
+    .controller('doctorEndTextContentCtrl', ['$scope', 'getArticleById', '$stateParams', function ($scope, getArticleById, $stateParams) {
+        getArticleById.query({id: $stateParams.id}, function (data) {
             console.log(data)
             $scope.data = data
         })
     }])
-    .controller('changeCtrl',['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
+    .controller('changeCtrl', ['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
         $scope.patientData = {
             birthday: '',
             weight: '',
             name: '',
             phone: '',
-            agender:''
+            agender: ''
         }
 
         var monthList = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
@@ -479,23 +479,23 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-    .controller('doctorEndDiscoverDetailCtrl',['$scope','$window','currentUser','discoveryDetail','discoverRemark','$stateParams',function($scope,$window,currentUser, discoveryDetail,discoverRemark, $stateParams){
+    .controller('doctorEndDiscoverDetailCtrl', ['$scope', '$window', 'currentUser', 'discoveryDetail', 'discoverRemark', '$stateParams', function ($scope, $window, currentUser, discoveryDetail, discoverRemark, $stateParams) {
         var accesstoken = currentUser.getAuthToken()
-        var params = {id:$stateParams.id,accessToken:accesstoken}
-        discoveryDetail.query(params,function(data){
+        var params = {id: $stateParams.id, accessToken: accesstoken}
+        discoveryDetail.query(params, function (data) {
             $scope.data = data
             console.log(data)
         })
-        $scope.detailMsg={'acomment':''}
+        $scope.detailMsg = {'acomment': ''}
         //评论
-        $scope.aComment = function(){
+        $scope.aComment = function () {
             var paramsremark = {
-                id : $stateParams.id,
-                remark :  $scope.detailMsg.acomment,
-                accessToken : accesstoken
+                id: $stateParams.id,
+                remark: $scope.detailMsg.acomment,
+                accessToken: accesstoken
             }
-            discoverRemark.save(paramsremark , function(info){
-                if(info.status == 'suc'){
+            discoverRemark.save(paramsremark, function (info) {
+                if (info.status == 'suc') {
                     $window.location.reload()
                 }
 

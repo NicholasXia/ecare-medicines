@@ -76,8 +76,11 @@
         <div class="list" ng-repeat="item in data" ui-sref="textcontent({id:item.id})">
             <a class="item item-thumbnail-right" href="#">
                 <img ng-src="item.coverImageUrl">
+
                 <h2>{{item.title}}</h2>
+
                 <p ng-bind-html="item.content">{{item.content}}</p>
+
                 <p>{{item.postTime}}</p>
             </a>
         </div>

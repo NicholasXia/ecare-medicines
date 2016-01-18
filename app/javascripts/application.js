@@ -1,5 +1,5 @@
-angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.directive','medicine.filters', 'angular-carousel', 'ionic-datepicker', 'LocalStorageModule'])
-    .constant('ionicLoadingConfig',{
+angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.directive', 'medicine.filters', 'angular-carousel', 'ionic-datepicker', 'LocalStorageModule'])
+    .constant('ionicLoadingConfig', {
         template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>",
         hideOnStateChange: true
     })
@@ -332,42 +332,42 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/collection.html",
                 controller: "doctorEndCollectionCtrl"
             })
-            .state('publishdiscover',{
+            .state('publishdiscover', {
                 url: "/publishdiscover",
                 templateUrl: "templates/publish_discover.html",
                 controller: "doctorEndPublishDiscoverCtrl"
             })
-            .state('textcontent',{
+            .state('textcontent', {
                 url: "/textcontent/:id",
                 templateUrl: 'templates/textcontent.html',
                 controller: 'doctorEndTextContentCtrl'
             })
-            .state('changeicon',{
+            .state('changeicon', {
                 url: "/changeicon",
                 templateUrl: "templates/changeicon.html",
                 controller: 'changeCtrl'
             })
-            .state('changename',{
+            .state('changename', {
                 url: "/changename",
                 templateUrl: "templates/changename.html",
                 controller: 'changeCtrl'
             })
-            .state('changephone',{
+            .state('changephone', {
                 url: "/changephone",
                 templateUrl: "templates/changephone.html",
                 controller: 'changeCtrl'
             })
-            .state('changesex',{
+            .state('changesex', {
                 url: "/changesex",
                 templateUrl: "templates/changesex.html",
                 controller: 'changeCtrl'
             })
-            .state('changebirth',{
+            .state('changebirth', {
                 url: "/changebirth",
                 templateUrl: "templates/changebirth.html",
                 controller: 'changeCtrl'
             })
-            .state('changeweight',{
+            .state('changeweight', {
                 url: "/changeweight",
                 templateUrl: "templates/changeweight.html",
                 controller: 'changeCtrl'
