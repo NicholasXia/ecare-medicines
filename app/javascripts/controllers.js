@@ -314,6 +314,9 @@ angular.module('medicine.controllers', [])
             $scope.data = data
         })
     }])
+
+
+    //
     .controller('threeKillCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
         threeKiller.get({illType: 3}, function (data) {
             $scope.model = {
@@ -354,6 +357,38 @@ angular.module('medicine.controllers', [])
             console.log($scope.model)
         })
     }])
+
+
+    .controller('zhishiDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup) {
+        Detail.query({id: $stateParams.id}, function (data) {
+            $scope.zhishidetail = data
+            console.log(data)
+        })
+
+        var accesstoken = currentUser.getAuthToken()
+        $scope.markinfo = {'remak': ''}
+        $scope.remark = function () {
+
+            var msg = {
+                accessToken: accesstoken,
+                articleId: $stateParams.id,
+                remark: $scope.markinfo.remak
+            }
+            Remark.save({}, msg, function (data) {
+                if (data.status == 'suc') {
+                    $window.location.reload()
+                } else {
+                    $window.location.href = '#/'
+                }
+            })
+
+        }
+
+
+    }])
+    //
+
+
     .controller('doctorEndTextContentCtrl',['$scope','getArticleById','$stateParams',function($scope, getArticleById, $stateParams){
         getArticleById.query({id:$stateParams.id},function(data){
             console.log(data)
@@ -435,6 +470,7 @@ angular.module('medicine.controllers', [])
             console.log(data)
         })
         $scope.detailMsg={'acomment':''}
+        //评论
         $scope.aComment = function(){
             var paramsremark = {
                 id : $stateParams.id,
@@ -442,7 +478,6 @@ angular.module('medicine.controllers', [])
                 accessToken : accesstoken
             }
             discoverRemark.save(paramsremark , function(info){
-                console.log(info)
                 if(info.status == 'suc'){
                     $window.location.reload()
                 }

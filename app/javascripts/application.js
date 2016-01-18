@@ -222,7 +222,11 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                     }
                 }
             })
-
+            .state('zhishidetail', {
+                url: "/zhishidetail/:id",
+                templateUrl: "templates/zhishi_detail.html",
+                controller: "zhishiDetailCtrl"
+            })
 
             .state('confirm', {
                 url: "/confirm",
