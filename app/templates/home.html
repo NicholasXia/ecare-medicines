@@ -114,8 +114,8 @@
                 <div class="item item-avatar pd">
                     <h2>{{item.title}}</h2>
 
-                    <p ng-bind-html="item.content">{{item.content}}</p>
-                    <img class="full-image" ng-src={{item.coverImageUrl}}>
+                    <p class="home" ng-bind-html="item.content">{{item.content | limitTo : 10}}</p>
+                    <img class="home" ng-src={{item.coverImageUrl}}>
                 </div>
                 <div class="item tabs tabs-secondary tabs-icon-left">
                     <a class="tab-item textL" href="#">

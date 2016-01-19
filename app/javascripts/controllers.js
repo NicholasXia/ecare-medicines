@@ -1,6 +1,6 @@
 angular.module('medicine.controllers', [])
     .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', function ($scope, $window, getCarouselList, currentUser, healthLecture) {
-        getCarouselList.query({type: 2, category: 1}, function (data) {
+        getCarouselList.query({type: 1, category: 1}, function (data) {
             $scope.data = data
         })
         healthLecture.query(function (data) {
