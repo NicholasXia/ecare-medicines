@@ -117,7 +117,7 @@
             <ion-item class="item item-divider">
                 <span class="matches">养心讲堂</span>
             </ion-item>
-            <div class="list card full-card mg" ng-repeat="item in healthLecture" ui-sref="zhishidetail({id:item.id})">
+            <div class="list card full-card" ng-repeat="item in healthLecture" ui-sref="zhishidetail({id:item.id})">
                 <div class="item item-avatar pd">
                     <h2>{{item.title}}</h2>
 
@@ -129,9 +129,12 @@
                         {{item.postTime}}
                     </a>
                     <a class="tab-item textR" href="#">
+                        <!--
                         <i class="icon">
                             <img src="images/pinglun.png" alt="" width="25"/>
                         </i>
+                        -->
+                        <span>评论数:</span>
                         <span>30</span>
                     </a>
                 </div>
