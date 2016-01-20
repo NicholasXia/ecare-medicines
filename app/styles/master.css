@@ -308,8 +308,13 @@
 .main-wrap {
    overflow: hidden;
 }
-.main-wrap div.col-33 {
+.main-wrap div.col33 {
     width: 33%;
+    float: left;
+    text-align: center;
+}
+.mian-wrap div.col50 {
+    width: 50%;
     float: left;
     text-align: center;
 }
