@@ -304,3 +304,12 @@
     font-size: 30px;
 }
 
+
+.main-wrap {
+   overflow: hidden;
+}
+.main-wrap div.col-33 {
+    width: 33%;
+    float: left;
+    text-align: center;
+}
