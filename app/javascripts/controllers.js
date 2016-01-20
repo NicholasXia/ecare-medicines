@@ -20,11 +20,19 @@ angular.module('medicine.controllers', [])
         })
     }])
 
-    .controller('doctorEndDiscoverCtrl', ['$scope', 'discoveryList', '$window', '$ionicPopup', 'currentUser', function ($scope, discoveryList, $window, $ionicPopup, currentUser) {
-            discoveryList.query({accessToken: currentUser.getAuthToken()}, function (data) {
-                console.log(data)
-                $scope.data = data
-            })
+    .controller('doctorEndDiscoverCtrl', ['$stateParams', 'checkLogin', '$scope', 'discoveryList', '$window', '$ionicPopup', 'currentUser', function ($stateParams ,checkLogin, $scope, discoveryList, $window, $ionicPopup, currentUser) {
+        $scope.ischeck = !!checkLogin.check()
+        discoveryList.query({accessToken: currentUser.getAuthToken()}, function (data) {
+            console.log(data)
+            $scope.data = data
+        })
+        $scope.fk = function (id) {
+            if ($scope.ischeck) {
+                $window.location.href = '#/discoverdetail/' + id
+            } else {
+                $window.location.href = '#/signup'
+            }
+        }
     }])
     .controller('doctorEndMineCtrl', ['$scope', 'checkLogin', '$window', '$ionicPopup', 'patientProfile', 'currentUser', function ($scope, checkLogin, $window, $ionicPopup, patientProfile, currentUser) {
         $scope.ischeck = !!checkLogin.check()
@@ -186,7 +194,7 @@ angular.module('medicine.controllers', [])
             console.log(publishphoto)
             if (publishphoto) {
                 $scope.publish.imageBase64s = publishphoto[0].dataURL
-            }else{
+            } else {
 
             }
 
@@ -282,7 +290,7 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
-    .controller('doctorEndDoctorDataCtrl', ['doctorList','unbindDoctor','$scope', '$ionicActionSheet', '$timeout', 'doctorMsg', 'currentUser', '$stateParams', function (doctorlist,unbindDoctor, $scope, $ionicActionSheet, $timeout, doctorMsg, currentUser, $stateParams) {
+    .controller('doctorEndDoctorDataCtrl', ['doctorList', 'unbindDoctor', '$scope', '$ionicActionSheet', '$timeout', 'doctorMsg', 'currentUser', '$stateParams', function (doctorlist, unbindDoctor, $scope, $ionicActionSheet, $timeout, doctorMsg, currentUser, $stateParams) {
         doctorMsg.query({accessToken: currentUser.getAuthToken(), id: $stateParams.id}, function (data) {
             $scope.data = data
             console.log(data)
@@ -298,10 +306,10 @@ angular.module('medicine.controllers', [])
                     // add cancel code..
                 },
                 buttonClicked: function (index) {
-                    unbindDoctor.save({},{
+                    unbindDoctor.save({}, {
                         accessToken: currentUser.getAuthToken(),
                         doctorId: $scope.data.id
-                    },function(data){
+                    }, function (data) {
                         console.log(data)
                     })
                 }
@@ -424,7 +432,7 @@ angular.module('medicine.controllers', [])
             name: '',
             phone: '',
             agender: '',
-            imageBase64s :''
+            imageBase64s: ''
         }
 
         var monthList = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
@@ -467,17 +475,17 @@ angular.module('medicine.controllers', [])
             }
             console.log(msg)
             /*
-            publishdiscover.save({}, msg, function (data) {
-            })
-            */
+             publishdiscover.save({}, msg, function (data) {
+             })
+             */
         }
 
-        $scope.changeIcon = function(publishphoto) {
+        $scope.changeIcon = function (publishphoto) {
             var saveMsg = {
-                imageBase64s : publishphoto[0].dataURL,
-                accessToken : currentUser.getAuthToken()
+                imageBase64s: publishphoto[0].dataURL,
+                accessToken: currentUser.getAuthToken()
             }
-            updateMsg.save({},saveMsg, function(data){
+            updateMsg.save({}, saveMsg, function (data) {
                 console.log(data)
                 if (data.status == 'suc') {
                     var popup = $ionicPopup.alert({
@@ -586,13 +594,13 @@ angular.module('medicine.controllers', [])
             }
             console.log(msg)
             forgotReturn.save({}, msg, function (data) {
-                if(data.status == 'suc'){
+                if (data.status == 'suc') {
                     $ionicPopup.alert({
                         title: '提示',
                         template: '密码修改成功'
                     });
                     $window.history.back()
-                }else{
+                } else {
                     $ionicPopup.alert({
                         title: '提示',
                         template: data.error

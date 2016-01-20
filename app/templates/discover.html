@@ -6,7 +6,7 @@
     <ion-content has-bouncing="true">
         <div class="list" ng-repeat="item in data">
 
-            <a class=" card" href="#/discoverdetail/{{item.id}}" style="text-decoration: none">
+            <a class="card" ng-click="fk(item.id)" style="text-decoration: none;">
                 <div class="item item-avatar">
                     <img ng-src={{item.profileImageUrl}}>
 
