@@ -21,20 +21,10 @@ angular.module('medicine.controllers', [])
     }])
 
     .controller('doctorEndDiscoverCtrl', ['$scope', 'discoveryList', '$window', '$ionicPopup', 'currentUser', function ($scope, discoveryList, $window, $ionicPopup, currentUser) {
-
-        var accesstoken = currentUser.getAuthToken()
-        if (accesstoken) {
             discoveryList.query({accessToken: currentUser.getAuthToken()}, function (data) {
                 console.log(data)
                 $scope.data = data
             })
-        } else {
-            $ionicPopup.alert({
-                title: '错误提示',
-                template: '您还未登陆不能查看发现'
-            });
-            $window.location.href = '#/signup'
-        }
     }])
     .controller('doctorEndMineCtrl', ['$scope', 'checkLogin', '$window', '$ionicPopup', 'patientProfile', 'currentUser', function ($scope, checkLogin, $window, $ionicPopup, patientProfile, currentUser) {
         $scope.ischeck = !!checkLogin.check()
@@ -50,6 +40,14 @@ angular.module('medicine.controllers', [])
                     title: '提示',
                     template: '您尚未登陆，请登陆后重试'
                 })
+            }
+        }
+        $scope.fk = function () {
+            console.log($scope.ischeck)
+            if ($scope.ischeck) {
+                $window.location.href = '#/personal'
+            } else {
+                $window.location.href = '#/signup'
             }
         }
     }])
@@ -186,7 +184,11 @@ angular.module('medicine.controllers', [])
         }
         $scope.publish = function (publishphoto) {
             console.log(publishphoto)
-            $scope.publish.imageBase64s = publishphoto[0].dataURL
+            if (publishphoto) {
+                $scope.publish.imageBase64s = publishphoto[0].dataURL
+            }else{
+
+            }
 
             var msg = {
                 content: $scope.publish.content,
