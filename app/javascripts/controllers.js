@@ -178,7 +178,7 @@ angular.module('medicine.controllers', [])
             console.log(data)
         })
     }])
-    .controller('doctorEndPublishDiscoverCtrl', ['$scope', 'publishdiscover', 'currentUser', function ($scope, publishdiscover, currentUser) {
+    .controller('doctorEndPublishDiscoverCtrl', ['$scope', 'publishdiscover', 'currentUser', '$window', function ($scope, publishdiscover, currentUser, $window) {
         $scope.publish = {
             imageBase64s: '',
             content: '',
@@ -195,6 +195,7 @@ angular.module('medicine.controllers', [])
             }
             console.log(msg)
             publishdiscover.save({}, msg, function (data) {
+                $window.location.href = '#/tab/discover'
             })
         }
     }])

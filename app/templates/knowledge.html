@@ -4,6 +4,7 @@
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <!--栏目静态html测试区域 start-->
+        <div class="mt20n">
         <div class="no-padding mian-wrap">
             <div class="no-padding col50">
                 <div class="list">
@@ -46,6 +47,7 @@
                 </div>
             </div>
         </div>
+            </div>
         <!--栏目静态html测试区域 end-->
 
         <!--展示card区域 start-->
@@ -75,13 +77,13 @@
         <!--图文混排区域 start-->
         <div class="list" ng-repeat="item in data" ui-sref="textcontent({id:item.id})">
             <a class="item" href="#">
-                <img ng-src={{item.coverImageUrl}}>
-
                 <h2>{{item.title}}</h2>
-
+                <img ng-src={{item.coverImageUrl}}>
               <!--  <p  class="home" ng-bind-html="item.content">{{item.content}}</p>-->
-
-                <p>{{item.postTime}}</p>
+                <p class="col">
+                    <span class="fl">{{item.postTime}}</span>
+                    <span class="fr">评论数:{{item.remarkCount}}</span>
+                </p>
             </a>
         </div>
         <!--图文混排区域 end-->
