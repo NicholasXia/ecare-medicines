@@ -78,7 +78,7 @@
         <div class="list" ng-repeat="item in data" ui-sref="textcontent({id:item.id})">
             <a class="item" href="#">
                 <h2>{{item.title}}</h2>
-                <img ng-src={{item.coverImageUrl}}>
+                <img class="img-responsive" ng-src={{item.coverImageUrl}}>
               <!--  <p  class="home" ng-bind-html="item.content">{{item.content}}</p>-->
                 <p class="col">
                     <span class="fl">{{item.postTime}}</span>
