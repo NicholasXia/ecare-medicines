@@ -233,3 +233,25 @@ angular.module('medicine.services', ['ngResource'])
            }
         })
     }])
+    .factory('forgotpwd', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/u/pwd/forget/verifycode', {
+            mobile: "@mobile",
+        }, {
+            query: {
+                method: 'GET'
+            }
+        })
+    }])
+    .factory('forgotReturn', ['$resource', 'SERVER', function ($resource, SERVER) {
+        return $resource(SERVER + '/u/pwd/forget', {
+            mobile:'@mobile',
+            verifycode:'@verifycode',
+            newPwd:'@newPwd',
+            confirmPwd: "@confirmPwd"
+
+        }, {
+            save: {
+                method: 'POST',
+            }
+        })
+    }])

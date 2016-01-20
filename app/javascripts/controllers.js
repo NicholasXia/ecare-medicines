@@ -545,3 +545,60 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
+    .controller('forgotPwdCtrl', ['$scope', '$window', '$ionicPopup', 'forgotpwd', 'forgotReturn', 'currentUser', function ($scope, $window, $ionicPopup, forgotpwd, forgotReturn, currentUser) {
+        $scope.forgot = {
+            mobile: '',
+            verifycode: '',
+            newpwd: '',
+            confirmPwd: '',
+        };
+        var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/
+        $scope.pwdCheck = function () {
+            var msg = {
+                mobile: $scope.forgot.mobile
+            }
+            console.log(msg)
+            forgotpwd.query(msg, function (data) {
+                if (data.error || $scope.forgot.mobile == 0 || $scope.forgot.mobileh < 11 || !reg.test($scope.forgot.mobile)) {
+                    $ionicPopup.alert({
+                        title: '错误提示',
+                        template: '手机号输入有误，请重新输入'
+                    });
+                } else {
+                    $ionicPopup.alert({
+                        title: '成功提示',
+                        template: '验证码已经发送，请稍后'
+                    });
+                }
+            }, function () {
+                $ionicPopup.alert({
+                    title: '错误提示',
+                    template: '未知错误，请稍后重试'
+                });
+            })
+        }
+        $scope.pwdNext = function () {
+            var msg = {
+                mobile: $scope.forgot.mobile,
+                verifycode: $scope.forgot.verifycode,
+                newPwd: $scope.forgot.newpwd,
+                confirmPwd: $scope.forgot.confirmPwd,
+            }
+            console.log(msg)
+            forgotReturn.save({}, msg, function (data) {
+                if(data.status == 'suc'){
+                    $ionicPopup.alert({
+                        title: '提示',
+                        template: '密码修改成功'
+                    });
+                    $window.history.back()
+                }else{
+                    $ionicPopup.alert({
+                        title: '提示',
+                        template: data.error
+                    });
+
+                }
+            })
+        }
+    }])

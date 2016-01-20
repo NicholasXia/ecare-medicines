@@ -373,5 +373,10 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/changeweight.html",
                 controller: 'changeCtrl'
             })
+            .state('forgot_pwd', {
+                url: "/forgot_pwd",
+                templateUrl: "templates/forgot_pwd.html",
+                controller:"forgotPwdCtrl"
+            })
         $urlRouterProvider.otherwise("/tab/home");
     })
