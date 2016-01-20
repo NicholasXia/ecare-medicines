@@ -4,7 +4,7 @@
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <div class="list mg" ng-repeat="item in model.vedio">
-            <a class="item item-thumbnail-right" href="#">
+            <a class="item item-thumbnail-right" ng-href={{item.linkUrl}}>
                 <img ng-src={{item.coverImageUrl}}>
 
                 <h2>{{item.title}}</h2>
