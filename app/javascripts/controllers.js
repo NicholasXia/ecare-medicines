@@ -44,6 +44,7 @@ angular.module('medicine.controllers', [])
         $scope.ischeck = !!checkLogin.check()
         patientProfile.query({accessToken: currentUser.getAuthToken()}, function (data) {
             $scope.data = data
+            console.log(data)
         })
         $scope.letugo = function () {
             if ($scope.ischeck) {
@@ -423,7 +424,8 @@ angular.module('medicine.controllers', [])
             weight: '',
             name: '',
             phone: '',
-            agender: ''
+            agender: '',
+            imageBase64s :''
         }
 
         var monthList = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
@@ -457,9 +459,24 @@ angular.module('medicine.controllers', [])
             closeOnSelect: false,
         };
 
-        $scope.saveMsg = function () {
+        $scope.publish = function (publishphoto) {
+
+            var msg = {
+                content: $scope.publish.content,
+                imageBase64s: $scope.publish.imageBase64s,
+                accessToken: currentUser.getAuthToken()
+            }
+            console.log(msg)
+            /*
+            publishdiscover.save({}, msg, function (data) {
+            })
+            */
+        }
+
+        $scope.saveMsg = function (publishphoto) {
             var saveMsg = {
                 accessToken: currentUser.getAuthToken(),
+                imageBase64s :publishphoto[0].dataURL,
                 name: $scope.patientData.name,
                 birthday: $scope.patientData.birthday,
                 mobile: $scope.patientData.phone,
@@ -470,7 +487,7 @@ angular.module('medicine.controllers', [])
                 if (data.status == 'suc') {
                     var popup = $ionicPopup.alert({
                         title: '您的信息修改成功',
-                        template: '3秒后自动进入主页'
+                        template: '3秒后自动返回上层'
                     })
                     $timeout(function () {
                         popup.close()

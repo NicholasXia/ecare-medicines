@@ -4,6 +4,17 @@
         <button class="button">确认修改</button>
     </ion-header-bar>
     <ion-content has-bouncing="true" class="padding">
-        <button class="button button-block button-balanced">点击上传预览图片</button>
+        <form id='publish' enctype="multipart/form-data" method="post" name="pubilshdiscover">
+            <input id="publishphoto"
+                   type="file"
+                   accept="image/*"
+                   multiple
+                   image="publishphoto"
+                   class="inputfile button-balanced"
+                    />
+            <label for="publishphoto"></label>
+            <button class="button button-block button-balanced" type="submit" form="publish" ng-click="saveMsg(publishphoto)">点击上传预览图片</button>
+            <img ng-repeat="img in publishphoto" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
+        </form>
     </ion-content>
 </ion-view>
