@@ -20,7 +20,7 @@ angular.module('medicine.directive', [])
         var resizeImage = function (origImage, options) {
             var maxHeight = options.resizeMaxHeight || 300;
             var maxWidth = options.resizeMaxWidth || 250;
-            var quality = options.resizeQuality || 0.7;
+            var quality = options.resizeQuality || 0.2;
             var type = options.resizeType || 'image/jpg';
 
             var canvas = getResizeArea();
