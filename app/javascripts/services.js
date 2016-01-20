@@ -222,3 +222,13 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('unbindDoctor',['$resource','SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/patient/unbind', {
+           accessToken: "@accessToken",
+            doctorId: "@doctorId"
+        },{
+           save: {
+                method: 'POST'
+           }
+        })
+    }])

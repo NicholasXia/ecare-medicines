@@ -282,7 +282,7 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
-    .controller('doctorEndDoctorDataCtrl', ['$scope', '$ionicActionSheet', '$timeout', 'doctorMsg', 'currentUser', '$stateParams', function ($scope, $ionicActionSheet, $timeout, doctorMsg, currentUser, $stateParams) {
+    .controller('doctorEndDoctorDataCtrl', ['doctorList','unbindDoctor','$scope', '$ionicActionSheet', '$timeout', 'doctorMsg', 'currentUser', '$stateParams', function (doctorlist,unbindDoctor, $scope, $ionicActionSheet, $timeout, doctorMsg, currentUser, $stateParams) {
         doctorMsg.query({accessToken: currentUser.getAuthToken(), id: $stateParams.id}, function (data) {
             $scope.data = data
             console.log(data)
@@ -298,7 +298,12 @@ angular.module('medicine.controllers', [])
                     // add cancel code..
                 },
                 buttonClicked: function (index) {
-                    return true;
+                    unbindDoctor.save({},{
+                        accessToken: currentUser.getAuthToken(),
+                        doctorId: $scope.data.id
+                    },function(data){
+                        console.log(data)
+                    })
                 }
             });
             $timeout(function () {
@@ -500,7 +505,5 @@ angular.module('medicine.controllers', [])
                 }
 
             })
-
-
         }
     }])
