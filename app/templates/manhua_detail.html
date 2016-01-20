@@ -1,0 +1,44 @@
+<ion-view view-title="漫画详情" cache-view="false">
+    <ion-header-bar class="bar-balanced">
+        <h1 class="title">漫画详情</h1>
+
+        <div class="buttons">
+            <div class="ion-android-share-alt icon-size"></div>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="list">
+            <div class="item item-text-wrap" ng-click="goSite(manhuadetail.linkUrl)">
+                <p>{{manhuadetail.title}}</p>
+                <p>{{manhuadetail.content}}</p>
+                <img class="img-responsive" ng-src={{manhuadetail.coverImageUrl}} alt=""/>
+            </div>
+            <div class='item item-body '>
+                <p class='text-indent home' ng-bind-html="zhishidetail.content">
+                    {{zhishidetail.content}}
+                </p>
+
+                <div class="bar bar-header item-input-inset">
+                    <label class="item-input-wrapper">
+                        <input type="text" placeholder="我也说两句吧" ng-model="markinfo.remak">
+                    </label>
+                    <button class="button button-clear" ng-click="remark()">
+                        发表
+                    </button>
+                </div>
+            </div>
+            <div class="item item-avatar" ng-repeat="item in zhishidetail.remarkList">
+                <img src="./images/wode.png">
+
+                <div class='commenter'>
+                    <span>{{item.name}}</span>
+                    <span>{{item.postTime}}</span>
+                </div>
+                <div class="item-body pad-replate">
+                    {{item.remark}}
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>

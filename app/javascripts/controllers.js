@@ -417,6 +417,42 @@ angular.module('medicine.controllers', [])
         }
     }])
     //
+    .controller('manhuaDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup) {
+        Detail.query({id: $stateParams.id}, function (data) {
+            $scope.manhuadetail = data
+            console.log(data)
+        })
+
+        $scope.goSite = function(link) {
+            $window.location.href = link
+        }
+        var accesstoken = currentUser.getAuthToken()
+        $scope.markinfo = {'remak': ''}
+        $scope.remark = function () {
+
+            var msg = {
+                accessToken: accesstoken,
+                articleId: $stateParams.id,
+                remark: $scope.markinfo.remak
+            }
+            if (accesstoken) {
+                Remark.save({}, msg, function (data) {
+                    if (data.status == 'suc') {
+                        $window.location.reload()
+                    } else {
+                        $window.location.href = '#/'
+                    }
+                })
+            } else {
+                $ionicPopup.alert({
+                    title: '错误提示',
+                    template: '您还未登陆不能进行评论'
+                });
+                $window.location.href = '#/signup'
+            }
+
+        }
+    }])
 
 
     .controller('doctorEndTextContentCtrl', ['$scope', 'getArticleById', '$stateParams', function ($scope, getArticleById, $stateParams) {

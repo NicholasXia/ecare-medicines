@@ -228,6 +228,11 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/zhishi_detail.html",
                 controller: "zhishiDetailCtrl"
             })
+            .state('manhuadetail', {
+                url: "/manhuadetail/:id",
+                templateUrl: "templates/manhua_detail.html",
+                controller: "manhuaDetailCtrl"
+            })
 
             .state('confirm', {
                 url: "/confirm",
