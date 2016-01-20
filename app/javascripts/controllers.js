@@ -16,11 +16,7 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndKnowledgeCtrl', ['$scope', 'healthLecture', function ($scope, healthLecture) {
         healthLecture.query(function (data) {
             $scope.data = data
-            /*
-             $scope.healthLecture = data.heart_knowledge
-             $scope.healthVedio = data.heart_vedio
-             $scope.healthCartoon = data.cartoon
-             */
+            console.log(data)
         })
     }])
 

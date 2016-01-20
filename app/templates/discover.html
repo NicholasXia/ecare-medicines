@@ -17,7 +17,7 @@
                     <p>
                         {{item.content}}
                     </p>
-                    <img class="full-image" ng-src="imgs.imageUrl" ng-repeat="imgs in item.imageList">
+                    <img class="full-image" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList">
 
                     <p class="doc_LR">
                         <a href="#" class="subdued">{{item.postTime}}</a>
