@@ -470,10 +470,32 @@ angular.module('medicine.controllers', [])
             */
         }
 
+        $scope.changeIcon = function(publishphoto) {
+            var saveMsg = {
+                imageBase64s : publishphoto[0].dataURL,
+                accessToken : currentUser.getAuthToken()
+            }
+            updateMsg.save({},saveMsg, function(data){
+                console.log(data)
+                if (data.status == 'suc') {
+                    var popup = $ionicPopup.alert({
+                        title: '您的信息修改成功',
+                        template: '3秒后自动返回上层'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                        $window.location.href = '#/personal'
+                    }, 3000)
+                }
+                else {
+                    $window.location.href = '#/'
+                }
+            })
+        }
+
         $scope.saveMsg = function (publishphoto) {
             var saveMsg = {
                 accessToken: currentUser.getAuthToken(),
-                imageBase64s :publishphoto[0].dataURL,
                 name: $scope.patientData.name,
                 birthday: $scope.patientData.birthday,
                 mobile: $scope.patientData.phone,

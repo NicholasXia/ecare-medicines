@@ -13,7 +13,7 @@
                    class="inputfile button-balanced"
                     />
             <label for="publishphoto"></label>
-            <button class="button button-block button-balanced" type="submit" form="publish" ng-click="saveMsg(publishphoto)">点击上传预览图片</button>
+            <button class="button button-block button-balanced" type="submit" form="publish" ng-click="changeIcon(publishphoto)">点击上传预览图片</button>
             <img ng-repeat="img in publishphoto" title="{{img.url}}" ng-src="{{img.url}}" type="{{img.file.type}}"/>
         </form>
     </ion-content>
