@@ -255,3 +255,14 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('patientRemark', ['$resource', 'SERVER', function($resource, SERVER){
+       return $resource(SERVER + '/patient/article/remark',{
+           accessToken: '@accessToken',
+           articleId: '@articleId',
+           remark: '@remark'
+       },{
+           save: {
+               method: 'POST'
+           }
+       })
+    }])

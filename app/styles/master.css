@@ -60,6 +60,34 @@
     margin-top: -20px;
 }
 
+
+.fullborder {
+    margin: 0 -15px;
+}
+.mt15n {
+    margin-top: -15px;
+    margin-left: -15px;
+    margin-right: -15px;
+    margin-bottom: 0;
+}
+
+.mt50 {
+    margin-top: 50px;
+}
+
+.mtb10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.borderbgray {
+    border-bottom: 1px solid #333;
+}
+
+.slim {
+    border-bottom: 1px solid #ddd;
+}
+
 .img-responsive {
     display: block;
     max-width: 100%;
@@ -67,7 +95,7 @@
 }
 
 .divider{
-    height:5px;
+    height:20px;
     background-color: #ddd;
 }
 
@@ -81,6 +109,14 @@
 
 .round {
     border-radius: 50%;
+}
+
+.middle-icon {
+    font-size: 25px !important;
+}
+
+.fix-footer {
+    margin-bottom: 50px !important;
 }
 
 #core-three p {
@@ -259,6 +295,17 @@
     height: 250px;
 }
 
+#logined img {
+    position: absolute;
+    left: 15px;
+    bottom: 36px;
+}
+
+#logined span {
+    position: absolute;
+    bottom: 46px;
+    left: 100px;
+}
 /**************ui ionic end******************/
 
 /**************** index ****************/

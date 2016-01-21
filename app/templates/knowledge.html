@@ -4,88 +4,86 @@
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <!--栏目静态html测试区域 start-->
-        <div class="mt20n">
-        <div class="no-padding mian-wrap">
-            <div class="no-padding col50">
-                <div class="list">
-                    <a href="#/threekiller" class="item item-icon-left pl">
-                        <i class="icon">
-                            <img src="images/sangao.png" alt="" width="60"/>
-                        </i>
-                        三高
-                    </a>
+        <div>
+            <div class="no-padding mian-wrap clearfix">
+                <div class="no-padding col50">
+                    <div class="list">
+                        <a href="#/threekiller" class="item item-icon-left pl noborder slim">
+                            <i class="icon">
+                                <img src="images/sangao.png" alt="" width="60"/>
+                            </i>
+                            三高
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="no-padding col50">
-                <div class="list">
-                    <a href="#/guanxinbing" class="item item-icon-left pl">
-                        <i class="icon">
-                            <img src="images/guanxinbing.png" alt="" width="60"/>
-                        </i>
-                        冠心病
-                    </a>
+                <div class="no-padding col50">
+                    <div class="list">
+                        <a href="#/guanxinbing" class="item item-icon-left pl noborder slim">
+                            <i class="icon">
+                                <img src="images/guanxinbing.png" alt="" width="60"/>
+                            </i>
+                            冠心病
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="no-padding col50">
-                <div class="list">
-                    <a href="#xinjigengse" class="item item-icon-left pl">
-                        <i class="icon">
-                            <img src="images/xinjigengsi.png" alt="" width="60"/>
-                        </i>
-                        心肌梗塞
-                    </a>
+                <div class="slim clearfix"></div>
+                <div class="no-padding col50">
+                    <div class="list">
+                        <a href="#xinjigengse" class="item item-icon-left pl noborder">
+                            <i class="icon">
+                                <img src="images/xinjigengsi.png" alt="" width="60"/>
+                            </i>
+                            心肌梗塞
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="no-padding col50">
-                <div class="list">
-                    <a href="#xinlishuaijie" class="item item-icon-left pl">
-                        <i class="icon">
-                            <img src="images/xinlishuaijie.png" alt="" width="60"/>
-                        </i>
-                        心力衰竭
-                    </a>
+                <div class="no-padding col50">
+                    <div class="list">
+                        <a href="#xinlishuaijie" class="item item-icon-left pl noborder">
+                            <i class="icon">
+                                <img src="images/xinlishuaijie.png" alt="" width="60"/>
+                            </i>
+                            心力衰竭
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-            </div>
         <!--栏目静态html测试区域 end-->
 
         <!--展示card区域 start-->
-        <div class="list card full-card">
-            <div class="item item-avatar card_h">
+
+        <div class="divider"></div>
+        <div class="list">
+            <div class="item card_h borderbgray">
                 <h2>养心讲堂</h2>
             </div>
-            <div class="item item-body" ng-repeat="item in healthLecture" ui-sref="textcontent({id:item.id})">
+            <div class="item item-body noborder" style="padding-top: 0; padding-bottom: 0;" ng-repeat="item in data" ui-sref="textcontent({id:item.id})">
                 <h3>{{item.title}}</h3>
-                <img class="full-image" ng-src="item.coverImageUrl">
-
-                <div class="item tabs tabs-secondary tabs-icon-left">
-                    <span class="tab-item textL" href="#">
-                        {{item.postTime}}
-                    </span>
-                    <span class="tab-item textR" href="#">
-                        <i class="icon">
-                            <img src="images/pinglun.png" alt="" width="25"/>
-                        </i>
-                        <span>30</span>
+                <img class="full-image" ng-src={{item.coverImageUrl}}>
+                <div class="clearfix mtb10">
+                    <span class="fl">{{item.postTime}}</span>
+                    <span class="fr">
+                        {{item.remarkCount}}
                     </span>
                 </div>
+                <div class="divider fullborder"></div>
             </div>
         </div>
         <!--展示card区域 end-->
 
         <!--图文混排区域 start-->
-        <div class="list" ng-repeat="item in data" ui-sref="textcontent({id:item.id})">
+        <!--<div class="list" ng-repeat="item in data" ui-sref="textcontent({id:item.id})">
             <a class="item" href="#">
                 <h2>{{item.title}}</h2>
                 <img class="img-responsive" ng-src={{item.coverImageUrl}}>
-              <!--  <p  class="home" ng-bind-html="item.content">{{item.content}}</p>-->
+              &lt;!&ndash;  <p  class="home" ng-bind-html="item.content">{{item.content}}</p>&ndash;&gt;
                 <p class="col">
                     <span class="fl">{{item.postTime}}</span>
                     <span class="fr">评论数:{{item.remarkCount}}</span>
                 </p>
             </a>
-        </div>
+        </div>-->
         <!--图文混排区域 end-->
     </ion-content>
 </ion-view>

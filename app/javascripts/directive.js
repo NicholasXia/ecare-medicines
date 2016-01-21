@@ -1,5 +1,7 @@
 angular.module('medicine.directive', [])
     .directive('image', function($q) {
+        'use strict'
+
         var URL = window.URL || window.webkitURL;
 
         var getResizeArea = function () {
@@ -20,7 +22,7 @@ angular.module('medicine.directive', [])
         var resizeImage = function (origImage, options) {
             var maxHeight = options.resizeMaxHeight || 300;
             var maxWidth = options.resizeMaxWidth || 250;
-            var quality = options.resizeQuality || 0.2;
+            var quality = options.resizeQuality || 0.7;
             var type = options.resizeType || 'image/jpg';
 
             var canvas = getResizeArea();
@@ -28,24 +30,23 @@ angular.module('medicine.directive', [])
             var height = origImage.height;
             var width = origImage.width;
 
-            if (width > height) {
-                if (width > maxWidth) {
-                    height = Math.round(height *= maxWidth / width);
-                    width = maxWidth;
-                }
+            // calculate the width and height, constraining the proportions *** Edited by Ege
+            if(height / width < maxHeight / maxWidth) {
+                width = width * (maxHeight / height);
+                height = maxHeight;
             } else {
-                if (height > maxHeight) {
-                    width = Math.round(width *= maxHeight / height);
-                    height = maxHeight;
-                }
+                height = height * (maxWidth / width);
+                width = maxWidth;
             }
 
             canvas.width = width;
             canvas.height = height;
 
+            //draw image on canvas
             var ctx = canvas.getContext("2d");
             ctx.drawImage(origImage, 0, 0, width, height);
 
+            // get the data from canvas as 70% jpg (or specified type).
             return canvas.toDataURL(type, quality);
         };
 
@@ -61,7 +62,10 @@ angular.module('medicine.directive', [])
             var deferred = $q.defer();
             var reader = new FileReader();
             reader.onload = function (e) {
-                deferred.resolve(e.target.result);
+                deferred.resolve({
+                    data: e.target.result,
+                    file: file
+                });
             };
             reader.readAsDataURL(file);
             return deferred.promise;
@@ -90,36 +94,19 @@ angular.module('medicine.directive', [])
                     });
                 };
 
-                var applyScope = function(imageResult) {
-                    scope.$apply(function() {
-                        //console.log(imageResult);
-                        if(attrs.multiple)
-                            scope.image.push(imageResult);
-                        else
-                            scope.image = imageResult;
-                    });
-                };
-
-                var processImage =  function (file) {
-                    //create a result object for each file in files
-                    var imageResult = {
-                        file: file,
-                        url: URL.createObjectURL(file)
-                    };
-
-                    fileToDataURL(file).then(function (dataURL) {
-                        imageResult.dataURL = dataURL;
-                    });
-
-                    if(scope.resizeMaxHeight || scope.resizeMaxWidth) { //resize image
-                        doResizing(imageResult, function(imageResult) {
-                            applyScope(imageResult);
+                var applyScope = function(imageResults) {
+                    if(attrs.multiple) {
+                        for(var i in imageResults) {
+                            scope.image.push(imageResults[i]);
+                        }
+                    }
+                    else {
+                        scope.$apply(function() {
+                            scope.image = imageResults[0];
                         });
                     }
-                    else { //no resizing
-                        applyScope(imageResult);
-                    }
                 };
+
 
                 element.bind('change', function (evt) {
                     //when multiple always return an array of images
@@ -127,10 +114,41 @@ angular.module('medicine.directive', [])
                         scope.image = [];
 
                     var files = evt.target.files;
+
+                    var imageResults = [];
+
+                    var addToImageResults = function(imageResult) {
+                        imageResults.push(imageResult);
+                        if(imageResults.length === files.length) {
+                            applyScope(imageResults);
+                            imageResults = [];
+                        }
+                    }
+
+
                     for(var i = 0; i < files.length; i++) {
-                        processImage(files[i]);
+                        //create a result object for each file in files
+
+                        fileToDataURL(files[i]).then(function (object) {
+                            var file = object.file;
+                            var dataURL = object.data;
+                            var imageResult = {
+                                file: file,
+                                url: URL.createObjectURL(file),
+                                dataURL: dataURL
+                            };
+
+                            if(scope.resizeMaxHeight || scope.resizeMaxWidth) { //resize image
+                                doResizing(imageResult, function(imageResult) {
+                                    addToImageResults(imageResult);
+                                });
+                            }
+                            else { //no resizing
+                                addToImageResults(imageResult);
+                            }
+                        });
                     }
                 });
             }
         };
-    })
+    });

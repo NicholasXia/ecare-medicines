@@ -5,7 +5,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
     })
     //.constant('SERVER', 'http://192.168.20.173:8080/hospital')
     // .constant('SERVER', 'http://123.56.184.184:8080/hospital')
-    .constant('SERVER', 'http://work.e-care365.com/hospital/')
+    .constant('SERVER', 'http://work.e-care365.com/hospital')
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
         $ionicConfigProvider.navBar.alignTitle('center')

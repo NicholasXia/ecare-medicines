@@ -111,34 +111,23 @@
         <!--心愿墙 end-->
 
         <!--养心讲堂 start-->
-        <ion-list class="list">
-            <ion-item class="item item-divider">
-                <span class="matches">养心讲堂</span>
-            </ion-item>
-            <div class="list card full-card" ng-repeat="item in healthLecture" ui-sref="zhishidetail({id:item.id})">
-                <div class="item item-avatar pd">
-                    <h2>{{item.title}}</h2>
-
-                    <!--<p class="home" ng-bind-html="item.content"><img ng-src="{{item.coverImageUrl}}" /> /p>-->
-                    <img class="home img-responsive" ng-src={{item.coverImageUrl}}>
-                </div>
-                <div class="item tabs tabs-secondary tabs-icon-left">
-                    <a class="tab-item textL" href="#">
-                        {{item.postTime}}
-                    </a>
-                    <a class="tab-item textR" href="#">
-                        <!--
-                        <i class="icon">
-                            <img src="images/pinglun.png" alt="" width="25"/>
-                        </i>
-                        -->
-                        <span>评论数:</span>
-                        <span>30</span>
-                    </a>
-                </div>
-                <div class="divider"></div>
+        <div class="divider"></div>
+        <div class="list">
+            <div class="item card_h borderbgray">
+                <h2>养心讲堂</h2>
             </div>
-        </ion-list>
+            <div class="item item-body noborder" style="padding-top: 0; padding-bottom: 0;" ng-repeat="item in data | limitTo:3" ui-sref="textcontent({id:item.id})">
+                <h3>{{item.title}}</h3>
+                <img class="full-image" ng-src={{item.coverImageUrl}}>
+                <div class="clearfix mtb10">
+                    <span class="fl">{{item.postTime}}</span>
+                    <span class="fr">
+                        {{item.remarkCount}}
+                    </span>
+                </div>
+                <div class="divider fullborder"></div>
+            </div>
+        </div>
         <!--养心讲堂 end-->
 
 

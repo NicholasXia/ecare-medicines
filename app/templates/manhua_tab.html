@@ -3,7 +3,7 @@
         <h1 class="title">医生列表</h1>
     </ion-header-bar>
     <ion-content has-bouncing="true">
-        <div class="list card mg" ng-repeat="item in model.cartoon"  ui-sref="manhuadetail({id:item.id})">
+        <div class="list card" ng-repeat="item in model.cartoon"  ui-sref="manhuadetail({id:item.id})">
             <img class="img-responsive" ng-src={{item.coverImageUrl}} alt=""/>
         </div>
     </ion-content>

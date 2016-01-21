@@ -20,7 +20,7 @@ angular.module('medicine.controllers', [])
         })
     }])
 
-    .controller('doctorEndDiscoverCtrl', ['$stateParams', 'checkLogin', '$scope', 'discoveryList', '$window', '$ionicPopup', 'currentUser', function ($stateParams ,checkLogin, $scope, discoveryList, $window, $ionicPopup, currentUser) {
+    .controller('doctorEndDiscoverCtrl', ['$stateParams', 'checkLogin', '$scope', 'discoveryList', '$window', '$ionicPopup', 'currentUser', function ($stateParams, checkLogin, $scope, discoveryList, $window, $ionicPopup, currentUser) {
         $scope.ischeck = !!checkLogin.check()
         discoveryList.query({accessToken: currentUser.getAuthToken()}, function (data) {
             console.log(data)
@@ -101,13 +101,15 @@ angular.module('medicine.controllers', [])
                 return
             }
             createUser.save({}, user, function (userdata) {
+                console.log(userdata)
+                currentUser.setAuthToken(userdata.accessToken)
                 var popup = $ionicPopup.alert({
                     title: '注册成功',
                     template: '进入登陆页'
                 })
                 $timeout(function () {
                     popup.close()
-                    $window.location.href = '#/signup'
+                    $window.location.href = '#/'
                 }, 3000)
             })
         }
@@ -116,6 +118,7 @@ angular.module('medicine.controllers', [])
         $scope.signInMsg = {'username': '', 'password': ''}
         $scope.signIn = function () {
             signUp.save({}, $scope.signInMsg, function (data) {
+                console.log(data)
                 currentUser.setAuthToken(data.accessToken)
                 if (data.error) {
                     $ionicPopup.alert({
@@ -185,6 +188,7 @@ angular.module('medicine.controllers', [])
         })
     }])
     .controller('doctorEndPublishDiscoverCtrl', ['$scope', 'publishdiscover', 'currentUser', '$window', function ($scope, publishdiscover, currentUser, $window) {
+        $scope.accessToken = currentUser.getAuthToken()
         $scope.publish = {
             imageBase64s: '',
             content: '',
@@ -205,7 +209,10 @@ angular.module('medicine.controllers', [])
             }
             console.log(msg)
             publishdiscover.save({}, msg, function (data) {
-                $window.location.href = '#/tab/discover'
+                console.log(data)
+                if (data.status == 'suc') {
+                    $window.location.href = '#/tab/discover'
+                }
             })
         }
     }])
@@ -423,7 +430,7 @@ angular.module('medicine.controllers', [])
             console.log(data)
         })
 
-        $scope.goSite = function(link) {
+        $scope.goSite = function (link) {
             $window.location.href = link
         }
         var accesstoken = currentUser.getAuthToken()
@@ -454,12 +461,45 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-
-    .controller('doctorEndTextContentCtrl', ['$scope', 'getArticleById', '$stateParams', function ($scope, getArticleById, $stateParams) {
-        getArticleById.query({id: $stateParams.id}, function (data) {
-            console.log(data)
+    .controller('doctorEndTextContentCtrl', ['patientRemark', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', function (patientRemark, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup) {
+        Detail.query({id: $stateParams.id}, function (data) {
             $scope.data = data
+            console.log(data)
         })
+        $scope.saveIt = function () {
+            var msg = {
+                accessToken: currentUser.getAuthToken(),
+                articleId: $stateParams.id
+            }
+            patientRemark.save({},msg,function(data){
+                console.log(data)
+            })
+        }
+        var accesstoken = currentUser.getAuthToken()
+        $scope.markinfo = {'remak': ''}
+        $scope.remark = function () {
+
+            var msg = {
+                accessToken: accesstoken,
+                articleId: $stateParams.id,
+                remark: $scope.markinfo.remak
+            }
+            if (accesstoken) {
+                Remark.save({}, msg, function (data) {
+                    if (data.status == 'suc') {
+                        $window.location.reload()
+                    } else {
+                        $window.location.href = '#/'
+                    }
+                })
+            } else {
+                $ionicPopup.alert({
+                    title: '错误提示',
+                    template: '您还未登陆不能进行评论'
+                });
+                $window.location.href = '#/signup'
+            }
+        }
     }])
     .controller('changeCtrl', ['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
         $scope.patientData = {
