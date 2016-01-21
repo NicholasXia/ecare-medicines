@@ -66,6 +66,15 @@
     height: auto;
 }
 
+.divider{
+    height:5px;
+    background-color: #ddd;
+}
+
+.hidden {
+    overflow: hidden !important;
+}
+
 .basefont {
     font-size: 16px !important;
 }
