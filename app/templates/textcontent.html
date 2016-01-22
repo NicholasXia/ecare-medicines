@@ -1,20 +1,23 @@
 <ion-view view-title="内容详情" cache-view="false">
     <ion-header-bar class="bar-balanced">
         <h1 class="title">内容详情</h1>
-        <button class="button ion-android-star middle-icon" ng-click="saveIt()"></button>
+        <button class="button ion-plus middle-icon" ng-click="saveIt()"></button>
     </ion-header-bar>
     <ion-content>
         <div class="list">
             <div class="item item-text-wrap">
                 <p>{{data.title}}</p>
 
-                <p class='text-indent home' ng-bind-html="data.content">
-                    {{data.content}}
-                </p>
 
                 <p>来源:
                     <span>{{data.resource}}</span>
                     <span>{{data.postTime}}</span>
+                </p>
+            </div>
+
+            <div class='item item-body '>
+                <p class='text-indent home' ng-bind-html="data.content">
+                    {{data.content}}
                 </p>
             </div>
 
@@ -30,18 +33,15 @@
                 </div>
             </div>
 
-            <div class="fix-footer"></div>
 
-            <ion-footer-bar>
-                <div class="bar bar-header item-input-inset">
-                    <label class="item-input-wrapper">
-                        <input type="text" placeholder="我也说两句吧" ng-model="markinfo.remak">
-                    </label>
-                    <button class="button button-clear" ng-click="remark()">
-                        发送
-                    </button>
-                </div>
-            </ion-footer-bar>
+            <div class="bar bar-header item-input-inset">
+                <label class="item-input-wrapper">
+                    <input type="text" placeholder="我也说两句吧" ng-model="markinfo.remak">
+                </label>
+                <button class="button button-clear" ng-click="remark()">
+                    发送
+                </button>
+            </div>
         </div>
 
     </ion-content>

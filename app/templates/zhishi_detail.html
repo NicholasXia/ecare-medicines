@@ -1,7 +1,7 @@
-<ion-view view-title="知识详情" cache-view="false">
+<ion-view view-title="内容详情" cache-view="false">
     <ion-header-bar class="bar-balanced">
-        <h1 class="title">知识详情</h1>
-        <button class="button ion-android-star middle-icon"></button>
+        <h1 class="title">内容详情</h1>
+        <button class="button ion-plus middle-icon"></button>
     </ion-header-bar>
     <ion-content>
         <div class="list">
@@ -17,16 +17,8 @@
                 <p class='text-indent home' ng-bind-html="zhishidetail.content">
                     {{zhishidetail.content}}
                 </p>
-
-                <div class="bar bar-header item-input-inset">
-                    <label class="item-input-wrapper">
-                        <input type="text" placeholder="我也说两句吧" ng-model="markinfo.remak">
-                    </label>
-                    <button class="button button-clear" ng-click="remark()">
-                        发表
-                    </button>
-                </div>
             </div>
+
             <div class="item item-avatar" ng-repeat="item in zhishidetail.remarkList">
                 <img src="./images/wode.png">
 
@@ -37,6 +29,15 @@
                 <div class="item-body pad-replate">
                     {{item.remark}}
                 </div>
+            </div>
+
+            <div class="bar bar-header item-input-inset">
+                <label class="item-input-wrapper">
+                    <input type="text" placeholder="我也说两句吧" ng-model="markinfo.remak">
+                </label>
+                <button class="button button-clear" ng-click="remark()">
+                    发表
+                </button>
             </div>
         </div>
 
