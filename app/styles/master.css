@@ -60,6 +60,13 @@
     margin-top: -20px;
 }
 
+.ml20 {
+   margin-left: 20px;
+}
+
+.mr20 {
+    margin-right: 20px;
+}
 
 .fullborder {
     margin: 0 -15px;
