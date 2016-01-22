@@ -93,11 +93,12 @@
 
 .slim {
     border-bottom: 1px solid #ddd !important;
+}
+
+.slim1 {
     height: 3px !important;
     background-color: #ddd !important;
 }
-
-
 .verticalmd {
     vertical-align: middle !important;
 }
