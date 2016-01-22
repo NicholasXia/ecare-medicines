@@ -5,7 +5,7 @@
         <button class="button" ng-click="fk1()">发表</button>
     </ion-header-bar>
     <ion-content has-bouncing="true">
-        <div class="list" ng-repeat="item in data">
+        <div class="list" ng-repeat="item in data | limitTo:5">
             <a class="card" ng-click="fk(item.id)" style="text-decoration: none;">
                 <div class="item item-avatar">
                     <img ng-src={{item.profileImageUrl}}>

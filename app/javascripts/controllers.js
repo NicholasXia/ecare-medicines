@@ -1,17 +1,29 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', function ($scope, $window, getCarouselList, currentUser, healthLecture) {
+    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', function ($scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout) {
         getCarouselList.query({type: 1, category: 1}, function (data) {
             $scope.data = data
+            console.log(data)
         })
         healthLecture.query(function (data) {
-            console.log(data)
             $scope.healthLecture = data
-            console.log($scope.healthLecture)
         })
         $scope.goToActivity = function (activity) {
             $window.location.href = activity
         }
         $scope.isLogin = currentUser.hasAuthToken()
+        $scope.goMyDoctor = function(){
+            if ($scope.isLogin) {
+                $window.location.href = '#/mydoctor'
+            } else {
+                var popup = $ionicPopup.alert({
+                    title: '提示',
+                    template: '请先登陆'
+                })
+                $timeout(function(){
+                    $window.location.href = '#/signup'
+                },3000)
+            }
+        }
     }])
     .controller('doctorEndKnowledgeCtrl', ['$scope', 'healthLecture', function ($scope, healthLecture) {
         healthLecture.query(function (data) {
@@ -20,19 +32,25 @@ angular.module('medicine.controllers', [])
         })
     }])
 
-    .controller('doctorEndDiscoverCtrl', ['$stateParams', 'checkLogin', '$scope', 'discoveryList', '$window', '$ionicPopup', 'currentUser', function ($stateParams, checkLogin, $scope, discoveryList, $window, $ionicPopup, currentUser) {
+    .controller('doctorEndDiscoverCtrl', ['$stateParams', 'checkLogin', '$scope', 'discoveryList', '$window', '$ionicPopup', 'currentUser', '$timeout', function ($stateParams, checkLogin, $scope, discoveryList, $window, $ionicPopup, currentUser, $timeout) {
         $scope.ischeck = !!checkLogin.check()
         discoveryList.query({accessToken: currentUser.getAuthToken()}, function (data) {
             console.log(data)
             $scope.data = data
         })
 
-
         $scope.fk1 = function (id) {
-            if ($scope.ischeck) {
-                $window.location.href = '#/publishdiscover'
+            if (!$scope.ischeck) {
+                var popup = $ionicPopup.alert({
+                    'title': '提示',
+                    'template': '你还是没有登陆'
+                })
+                $timeout(function () {
+                    popup.close()
+                    $window.location.href = '#/signup'
+                }, 3000)
             } else {
-                $window.location.href = '#/signup'
+                $window.location.href = '#/publishdiscover'
             }
         }
 
@@ -40,7 +58,14 @@ angular.module('medicine.controllers', [])
             if ($scope.ischeck) {
                 $window.location.href = '#/discoverdetail/' + id
             } else {
-                $window.location.href = '#/signup'
+                var popup = $ionicPopup.alert({
+                    'title': '提示',
+                    'template': '你还没有登陆'
+                })
+                $timeout(function () {
+                    popup.close()
+                    $window.location.href = '#/signup'
+                }, 3000)
             }
         }
     }])
@@ -197,7 +222,7 @@ angular.module('medicine.controllers', [])
             console.log(data)
         })
     }])
-    .controller('doctorEndPublishDiscoverCtrl', ['$http','$scope', 'publishdiscover', 'currentUser', '$window', function ($http, $scope, publishdiscover, currentUser, $window) {
+    .controller('doctorEndPublishDiscoverCtrl', ['$http', '$scope', 'publishdiscover', 'currentUser', '$window', function ($http, $scope, publishdiscover, currentUser, $window) {
         $scope.accessToken = currentUser.getAuthToken()
         $scope.publish = {
             imageBase64s: '',
@@ -212,9 +237,9 @@ angular.module('medicine.controllers', [])
 
             }
 
-            var getbase64arr = function() {
+            var getbase64arr = function () {
                 var temp = []
-                for (var i=0, len=publishphoto.length; i < len; i++) {
+                for (var i = 0, len = publishphoto.length; i < len; i++) {
                     temp[i] = publishphoto[i].dataURL
                 }
                 console.log(temp)
@@ -231,14 +256,14 @@ angular.module('medicine.controllers', [])
 
             var formData = new FormData()
             formData.append('content', $scope.publish.content)
-            formData.append('imageBase64s',getbase64arr())
-            formData.append('accessToken',currentUser.getAuthToken())
+            formData.append('imageBase64s', getbase64arr())
+            formData.append('accessToken', currentUser.getAuthToken())
 
             $http.post('http://work.e-care365.com/hospital/patient/discovery/add', formData, {
-                headers: { 'Content-Type': undefined },
+                headers: {'Content-Type': undefined},
                 transformRequest: angular.identity
-            }).success(function(data){
-               console.log(data)
+            }).success(function (data) {
+                console.log(data)
                 if (data.status == 'suc') {
                     alert('success')
                     $window.location.href = '#/tab/discover'
@@ -246,13 +271,12 @@ angular.module('medicine.controllers', [])
             })
 
 
-
-           /* publishdiscover.save({}, msg, function (data) {
-                console.log(data)
-                if (data.status == 'suc') {
-                    $window.location.href = '#/tab/discover'
-                }
-            })*/
+            /* publishdiscover.save({}, msg, function (data) {
+             console.log(data)
+             if (data.status == 'suc') {
+             $window.location.href = '#/tab/discover'
+             }
+             })*/
         }
     }])
     .controller('doctorEndWishWallCtrl', ['$scope', function ($scope) {
@@ -540,7 +564,7 @@ angular.module('medicine.controllers', [])
             }
         }
     }])
-    .controller('changeCtrl', ['$http','$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($http, $scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
+    .controller('changeCtrl', ['$http', '$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($http, $scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
         $scope.patientData = {
             birthday: '',
             weight: '',
@@ -583,13 +607,13 @@ angular.module('medicine.controllers', [])
 
         $scope.changeIcon = function (publishphoto) {
             var formData = new FormData()
-            formData.append('imageBase64s',publishphoto[0].dataURL)
-            formData.append('accessToken',currentUser.getAuthToken())
+            formData.append('imageBase64s', publishphoto[0].dataURL)
+            formData.append('accessToken', currentUser.getAuthToken())
 
             $http.post('http://work.e-care365.com/hospital/patient/profile/update', formData, {
-                headers: { 'Content-Type': undefined },
+                headers: {'Content-Type': undefined},
                 transformRequest: angular.identity
-            }).success(function(data){
+            }).success(function (data) {
                 if (data.status == 'suc') {
                     var popup = $ionicPopup.alert({
                         title: '您的信息修改成功',
