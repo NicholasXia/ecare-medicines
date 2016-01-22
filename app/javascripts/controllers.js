@@ -26,6 +26,16 @@ angular.module('medicine.controllers', [])
             console.log(data)
             $scope.data = data
         })
+
+
+        $scope.fk1 = function (id) {
+            if ($scope.ischeck) {
+                $window.location.href = '#/publishdiscover'
+            } else {
+                $window.location.href = '#/signup'
+            }
+        }
+
         $scope.fk = function (id) {
             if ($scope.ischeck) {
                 $window.location.href = '#/discoverdetail/' + id

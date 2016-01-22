@@ -12,11 +12,12 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         $ionicConfigProvider.views.maxCache(0);
         $ionicConfigProvider.backButton.text('Go Back').icon('ion-chevron-left');
     })
-    /*    .config(function(localStorageServiceProvider){
+
+    .config(function(localStorageServiceProvider){
      localStorageServiceProvider
      .setStorageType('sessionStorage')
      .setNotify(true, true)
-     })*/
+     })
 
     .config(function ($stateProvider, $urlRouterProvider) {
 
