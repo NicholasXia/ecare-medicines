@@ -3,35 +3,20 @@
         <h1 class="title">发现详情</h1>
     </ion-header-bar>
     <ion-content has-bouncing="true" class="padding">
-        <div class="list card">
+        <div class="list">
             <div class="item item-avatar">
                 <img ng-src="{{data.profileImageUrl}}">
-
                 <h2>{{data.name}}</h2>
+                <p>{{data.content}}</p>
+                <img class="img-responsive" ng-src="{{data.imageList[0].imageUrl}}" alt=""/>
+                <p>{{data.postTime}}</p>
             </div>
 
-            <div class="item item-body">
-                <p>
-                    {{data.content}}
-                </p>
 
-                <p class="doc_LR">
-                    <a href="#" class="subdued">{{data.postTime}}</a>
+            <h4>评论:({{data.remarkCount}})</h4>
 
-                </p>
-
-                <div class="bar bar-header item-input-inset">
-                    <label class="item-input-wrapper">
-                        <input type="text" placeholder="我也说两句吧" required ng-model="detailMsg.acomment">
-                    </label>
-                    <button class="button button-clear" ng-click="aComment()">
-                        发表
-                    </button>
-                </div>
-            </div>
             <div class="item item-avatar" ng-repeat="item in data.remarkList">
                 <img ng-src="{{item.remarkUserProfile}}">
-
                 <div class='commenter'>
                     <span>{{item.remarkUserName}}</span>
                     <span>{{item.postTime}}</span>
@@ -40,6 +25,16 @@
                     {{item.remark}}
                 </div>
             </div>
+
+            <div class="bar bar-header item-input-inset">
+                <label class="item-input-wrapper">
+                    <input type="text" placeholder="我也说两句吧" required ng-model="detailMsg.acomment">
+                </label>
+                <button class="button button-clear" ng-click="aComment()">
+                    发表
+                </button>
+            </div>
+
         </div>
     </ion-content>
 </ion-view>

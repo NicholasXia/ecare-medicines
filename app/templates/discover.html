@@ -5,35 +5,21 @@
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <div class="list" ng-repeat="item in data">
-
             <a class="card" ng-click="fk(item.id)" style="text-decoration: none;">
                 <div class="item item-avatar">
                     <img ng-src={{item.profileImageUrl}}>
-
                     <h2>{{item.name}}</h2>
-                </div>
-
-                <div class="item item-body" style="border-top: none;">
-                    <p>
-                        {{item.content}}
-                    </p>
-                    <img class="full-image" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList">
-
-                    <p class="doc_LR">
-                        <a href="#" class="subdued">{{item.postTime}}</a>
-                        <a class="tab-item textR pos_R" href="#">
-                            <!--
-                            <i class="icon">
-                                <img src="images/pinglun.png" alt="" width="25"/>
-                            </i>
-                            -->
+                    <p>{{item.content}}</p>
+                    <img class="img-responsive" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList">
+                    <p class="clearfix">
+                        <span class="fl">{{item.postTime}}</span>
+                        <span class="fr">
                             <span>评论数:</span>
                             <span>{{item.remarkCount}}</span>
-                        </a>
+                        </span>
                     </p>
                 </div>
             </a>
-
         </div>
     </ion-content>
 </ion-view>
