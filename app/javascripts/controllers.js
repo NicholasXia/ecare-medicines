@@ -187,7 +187,7 @@ angular.module('medicine.controllers', [])
             console.log(data)
         })
     }])
-    .controller('doctorEndPublishDiscoverCtrl', ['$scope', 'publishdiscover', 'currentUser', '$window', function ($scope, publishdiscover, currentUser, $window) {
+    .controller('doctorEndPublishDiscoverCtrl', ['$http','$scope', 'publishdiscover', 'currentUser', '$window', function ($http, $scope, publishdiscover, currentUser, $window) {
         $scope.accessToken = currentUser.getAuthToken()
         $scope.publish = {
             imageBase64s: '',
@@ -202,18 +202,46 @@ angular.module('medicine.controllers', [])
 
             }
 
+            var getbase64arr = function() {
+                var temp = []
+                for (var i=0, len=publishphoto.length; i < len; i++) {
+                    temp[i] = publishphoto[i].dataURL
+                }
+                console.log(temp)
+                return temp
+            }
+
+
             var msg = {
                 content: $scope.publish.content,
                 imageBase64s: $scope.publish.imageBase64s,
                 accessToken: currentUser.getAuthToken()
             }
-            console.log(msg)
-            publishdiscover.save({}, msg, function (data) {
-                console.log(data)
+
+
+            var formData = new FormData()
+            formData.append('content', $scope.publish.content)
+            formData.append('imageBase64s',getbase64arr())
+            formData.append('accessToken',currentUser.getAuthToken())
+
+            $http.post('http://work.e-care365.com/hospital/patient/discovery/add', formData, {
+                headers: { 'Content-Type': undefined },
+                transformRequest: angular.identity
+            }).success(function(data){
+               console.log(data)
                 if (data.status == 'suc') {
                     $window.location.href = '#/tab/discover'
                 }
             })
+
+
+
+           /* publishdiscover.save({}, msg, function (data) {
+                console.log(data)
+                if (data.status == 'suc') {
+                    $window.location.href = '#/tab/discover'
+                }
+            })*/
         }
     }])
     .controller('doctorEndWishWallCtrl', ['$scope', function ($scope) {
@@ -471,7 +499,7 @@ angular.module('medicine.controllers', [])
                 accessToken: currentUser.getAuthToken(),
                 articleId: $stateParams.id
             }
-            patientRemark.save({},msg,function(data){
+            patientRemark.save({}, msg, function (data) {
                 console.log(data)
             })
         }
@@ -501,7 +529,7 @@ angular.module('medicine.controllers', [])
             }
         }
     }])
-    .controller('changeCtrl', ['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
+    .controller('changeCtrl', ['$http','$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($http, $scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
         $scope.patientData = {
             birthday: '',
             weight: '',
@@ -561,7 +589,12 @@ angular.module('medicine.controllers', [])
                 imageBase64s: publishphoto[0].dataURL,
                 accessToken: currentUser.getAuthToken()
             }
-            updateMsg.save({}, saveMsg, function (data) {
+            var formData = new FormData()
+            formData.append('imageBase64s',publishphoto[0].dataURL)
+            formData.append('accessToken',currentUser.getAuthToken())
+
+
+           /* updateMsg.save({}, saveMsg, function (data) {
                 console.log(data)
                 if (data.status == 'suc') {
                     var popup = $ionicPopup.alert({
@@ -576,7 +609,7 @@ angular.module('medicine.controllers', [])
                 else {
                     $window.location.href = '#/'
                 }
-            })
+            })*/
         }
 
         $scope.saveMsg = function (publishphoto) {
