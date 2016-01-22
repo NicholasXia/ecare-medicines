@@ -113,9 +113,10 @@
         <!--养心讲堂 start-->
         <div class="divider"></div>
         <div class="list">
-            <div class="item card_h borderbgray">
+            <div class="item card_h">
                 <h2>养心讲堂</h2>
             </div>
+            <div class="slim clearfix"></div>
             <div class="item item-body noborder" style="padding-top: 0; padding-bottom: 0;" ng-repeat="item in data | limitTo:3" ui-sref="textcontent({id:item.id})">
                 <h3>{{item.title}}</h3>
                 <img class="full-image" ng-src={{item.coverImageUrl}}>

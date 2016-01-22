@@ -92,7 +92,9 @@
 }
 
 .slim {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #ddd !important;
+    height: 5px !important;
+    background-color: #ddd !important;
 }
 
 
