@@ -230,6 +230,7 @@ angular.module('medicine.controllers', [])
             }).success(function(data){
                console.log(data)
                 if (data.status == 'suc') {
+                    alert('success')
                     $window.location.href = '#/tab/discover'
                 }
             })
@@ -584,18 +585,16 @@ angular.module('medicine.controllers', [])
              */
         }
 
+
         $scope.changeIcon = function (publishphoto) {
-            var saveMsg = {
-                imageBase64s: publishphoto[0].dataURL,
-                accessToken: currentUser.getAuthToken()
-            }
             var formData = new FormData()
             formData.append('imageBase64s',publishphoto[0].dataURL)
             formData.append('accessToken',currentUser.getAuthToken())
 
-
-           /* updateMsg.save({}, saveMsg, function (data) {
-                console.log(data)
+            $http.post('http://work.e-care365.com/hospital/patient/profile/update', formData, {
+                headers: { 'Content-Type': undefined },
+                transformRequest: angular.identity
+            }).success(function(data){
                 if (data.status == 'suc') {
                     var popup = $ionicPopup.alert({
                         title: '您的信息修改成功',
@@ -609,7 +608,26 @@ angular.module('medicine.controllers', [])
                 else {
                     $window.location.href = '#/'
                 }
-            })*/
+            })
+
+
+
+            /* updateMsg.save({}, saveMsg, function (data) {
+                 console.log(data)
+                 if (data.status == 'suc') {
+                     var popup = $ionicPopup.alert({
+                         title: '您的信息修改成功',
+                         template: '3秒后自动返回上层'
+                     })
+                     $timeout(function () {
+                         popup.close()
+                         $window.location.href = '#/personal'
+                     }, 3000)
+                 }
+                 else {
+                     $window.location.href = '#/'
+                 }
+             })*/
         }
 
         $scope.saveMsg = function (publishphoto) {
