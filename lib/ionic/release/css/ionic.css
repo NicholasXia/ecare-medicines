@@ -3960,15 +3960,17 @@ a.subdued {
       color: #fff; }
     .bar.bar-assertive.bar-footer {
       background-image: linear-gradient(180deg, #e42112, #e42112 50%, transparent 50%); }
+
+    /*此处有颜色改动*/
   .bar.bar-balanced {
-    border-color: #28a54c;
-    background-color: #33cd5f;
-    background-image: linear-gradient(0deg, #28a54c, #28a54c 50%, transparent 50%);
+    border-color: #2bce84;
+    background-color: #2bce84;
+    background-image: linear-gradient(0deg, #2bce84, #2bce84 50%, transparent 50%);
     color: #fff; }
     .bar.bar-balanced .title {
       color: #fff; }
     .bar.bar-balanced.bar-footer {
-      background-image: linear-gradient(180deg, #28a54c, #0c60ee 50%, transparent 50%); }
+      background-image: linear-gradient(180deg, #2bce84, #0c60ee 50%, transparent 50%); }
   .bar.bar-energized {
     border-color: #e6b500;
     background-color: #ffc900;
@@ -4190,15 +4192,18 @@ a.subdued {
     border-color: transparent;
     background: none; }
 
+  /*此处颜色有改动*/
 .bar-balanced .button {
   border-color: transparent;
-  background-color: #33cd5f;
+  background-color: #2bce8f;
   color: #fff; }
   .bar-balanced .button:hover {
     color: #fff;
     text-decoration: none; }
+
+  /*此处颜色有改动*/
   .bar-balanced .button.active, .bar-balanced .button.activated {
-    background-color: #28a54c; }
+    background-color: #2bce8f; }
   .bar-balanced .button.button-clear {
     border-color: transparent;
     background: none;
@@ -4420,11 +4425,12 @@ a.subdued {
     background-color: #fff;
     color: #ef473a; }
 
+  /*此处有颜色有改动*/
 .tabs-balanced > .tabs,
 .tabs.tabs-balanced {
-  border-color: #28a54c;
-  background-color: #33cd5f;
-  background-image: linear-gradient(0deg, #28a54c, #28a54c 50%, transparent 50%);
+  border-color: #2bce8f;
+  background-color: #2bce8f;
+  background-image: linear-gradient(0deg, #2bce8f, #2bce8f 50%, transparent 50%);
   color: #fff; }
   .tabs-balanced > .tabs .tab-item .badge,
   .tabs.tabs-balanced .tab-item .badge {
@@ -8693,7 +8699,7 @@ progress {
         color: #fff; }
   .button.button-balanced {
     border-color: transparent;
-    background-color: #33cd5f;
+    background-color: #2bce8f;
     color: #fff; }
     .button.button-balanced:hover {
       color: #fff;
