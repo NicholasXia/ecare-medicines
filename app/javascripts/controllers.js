@@ -571,21 +571,6 @@ angular.module('medicine.controllers', [])
             closeOnSelect: false,
         };
 
-        $scope.publish = function (publishphoto) {
-
-            var msg = {
-                content: $scope.publish.content,
-                imageBase64s: $scope.publish.imageBase64s,
-                accessToken: currentUser.getAuthToken()
-            }
-            console.log(msg)
-            /*
-             publishdiscover.save({}, msg, function (data) {
-             })
-             */
-        }
-
-
         $scope.changeIcon = function (publishphoto) {
             var formData = new FormData()
             formData.append('imageBase64s',publishphoto[0].dataURL)
@@ -609,25 +594,6 @@ angular.module('medicine.controllers', [])
                     $window.location.href = '#/'
                 }
             })
-
-
-
-            /* updateMsg.save({}, saveMsg, function (data) {
-                 console.log(data)
-                 if (data.status == 'suc') {
-                     var popup = $ionicPopup.alert({
-                         title: '您的信息修改成功',
-                         template: '3秒后自动返回上层'
-                     })
-                     $timeout(function () {
-                         popup.close()
-                         $window.location.href = '#/personal'
-                     }, 3000)
-                 }
-                 else {
-                     $window.location.href = '#/'
-                 }
-             })*/
         }
 
         $scope.saveMsg = function (publishphoto) {

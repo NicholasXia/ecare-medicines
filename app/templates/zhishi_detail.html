@@ -19,6 +19,17 @@
                 </p>
             </div>
 
+
+            <div class="bar bar-header item-input-inset">
+                <label class="item-input-wrapper">
+                    <input type="text" placeholder="我也说两句吧" ng-model="markinfo.remak">
+                </label>
+                <button class="button button-clear" ng-click="remark()">
+                    发表
+                </button>
+            </div>
+
+
             <div class="item item-avatar" ng-repeat="item in zhishidetail.remarkList">
                 <img src="./images/wode.png">
 
@@ -31,14 +42,7 @@
                 </div>
             </div>
 
-            <div class="bar bar-header item-input-inset">
-                <label class="item-input-wrapper">
-                    <input type="text" placeholder="我也说两句吧" ng-model="markinfo.remak">
-                </label>
-                <button class="button button-clear" ng-click="remark()">
-                    发表
-                </button>
-            </div>
+
         </div>
 
     </ion-content>

@@ -7,8 +7,6 @@
         <div class="list">
             <div class="item item-text-wrap">
                 <p>{{data.title}}</p>
-
-
                 <p>来源:
                     <span>{{data.resource}}</span>
                     <span>{{data.postTime}}</span>
@@ -20,6 +18,17 @@
                     {{data.content}}
                 </p>
             </div>
+
+
+            <div class="bar bar-header item-input-inset">
+                <label class="item-input-wrapper">
+                    <input type="text" placeholder="我也说两句吧" ng-model="markinfo.remak">
+                </label>
+                <button class="button button-clear" ng-click="remark()">
+                    发送
+                </button>
+            </div>
+
 
             <div class="item item-avatar" ng-repeat="item in data.remarkList">
                 <img src="./images/wode.png">
@@ -34,14 +43,7 @@
             </div>
 
 
-            <div class="bar bar-header item-input-inset">
-                <label class="item-input-wrapper">
-                    <input type="text" placeholder="我也说两句吧" ng-model="markinfo.remak">
-                </label>
-                <button class="button button-clear" ng-click="remark()">
-                    发送
-                </button>
-            </div>
+
         </div>
 
     </ion-content>

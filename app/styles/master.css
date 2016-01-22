@@ -21,7 +21,7 @@
 }
 
 .small {
-    background-color: crimson;
+    background-color: #d56495;
     color: #eee;
     float: right;
     padding: 1px 3px;
@@ -37,7 +37,7 @@
 }
 
 .highlight {
-    color: crimson;
+    color: #d56495;
 }
 
 .init {
@@ -83,8 +83,8 @@
 }
 
 .mtb10 {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
 }
 
 .borderbgray {
@@ -93,6 +93,11 @@
 
 .slim {
     border-bottom: 1px solid #ddd;
+}
+
+
+.verticalmd {
+    vertical-align: middle !important;
 }
 
 .img-responsive {
@@ -264,11 +269,11 @@
 
 /**************ui ionic start******************/
 .imax {
-    height: 150px;
+    height: 200px;
     background-image: url("../images/dabeijing.png");
     background-repeat: no-repeat;
     background-position: 0 0;
-    background-size: cover;
+    background-size: 100% 100%;
     position: relative;
 }
 
@@ -305,12 +310,13 @@
 #logined img {
     position: absolute;
     left: 15px;
-    bottom: 36px;
+    bottom: 70px;
 }
 
 #logined span {
     position: absolute;
-    bottom: 46px;
+    bottom: 72px;
+    font-size: 16px;
     left: 100px;
 }
 /**************ui ionic end******************/
