@@ -809,7 +809,7 @@ angular.module('medicine.controllers', [])
 
         patientProfile.query({accessToken: currentUser.getAuthToken()}, function(data){
             console.log(data)
-            $scope.userId = data.userId
+            $scope.myId = data.userId
         })
         var alternate,
             isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
@@ -818,7 +818,7 @@ angular.module('medicine.controllers', [])
             alternate = !alternate;
 
             $scope.messages.push({
-                userId: alternate ? '12345' : '54321',
+                userId: alternate ? $scope.myId : '10077',
                 text: $scope.data.message,
                 accessToken : currentUser.getAuthToken(),
                 fromChat : $scope.data.message,
@@ -862,6 +862,7 @@ angular.module('medicine.controllers', [])
         $scope.data = {};
         $scope.myId = '12345';
         $scope.messages = [];
+
 
     }]);
 
