@@ -5,7 +5,9 @@
     </ion-header-bar>
     <ion-content>
         <div class="list">
-            <div class='item item-body '>
+            <div class='item item-text-wrap home'>
+                <h4>{{data.title}}</h4>
+                <p><img ng-src="{{data.coverImageUrl}}"/></p>
                 <p class='text-indent home' ng-bind-html="data.content">
                     {{data.content}}
                 </p>
