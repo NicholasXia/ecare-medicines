@@ -645,6 +645,7 @@ angular.module('medicine.controllers', [])
                 headers: {'Content-Type': undefined},
                 transformRequest: angular.identity
             }).success(function (data) {
+                console.log(data)
                 if (data.status == 'suc') {
                     var popup = $ionicPopup.alert({
                         title: '您的信息修改成功',
