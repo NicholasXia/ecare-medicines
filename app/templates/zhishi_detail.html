@@ -6,7 +6,7 @@
     <ion-content>
         <div class="list">
             <div class='item item-text-wrap home'>
-                <h4>{{zhishidetail.title}}</h4>
+                <h2>{{zhishidetail.title}}</h2>
                 <p><img ng-src="{{zhishidetail.coverImageUrl}}"/></p>
                 <p class='text-indent home' ng-bind-html="zhishidetail.content">
                     {{zhishidetail.content}}
@@ -24,7 +24,7 @@
 
 
             <div class="item item-avatar" ng-repeat="item in zhishidetail.remarkList">
-                <img src="./images/wode.png">
+                <img ng-src="{{item.profileImageUrl}}">
 
                 <div class='commenter'>
                     <span>{{item.name}}</span>

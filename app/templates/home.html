@@ -113,12 +113,12 @@
         <!--养心讲堂 start-->
         <div class="divider"></div>
         <div class="list">
-            <div class="item card_h">
+            <div class="item card_h slim">
                 <h2>养心讲堂</h2>
             </div>
-            <div class="slim clearfix"></div>
+            <!--<div class="slim clearfix"></div>-->
             <div class="item item-body noborder" style="padding-top: 0; padding-bottom: 0;" ng-repeat="item in data | limitTo:3" ui-sref="textcontent({id:item.id})">
-                <h3>{{item.title}}</h3>
+                <h2>{{item.title}}</h2>
                 <img class="full-image" ng-src={{item.coverImageUrl}}>
                 <div class="clearfix mtb10">
                     <span class="fl gray">{{item.postTime}}</span>

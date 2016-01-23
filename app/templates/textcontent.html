@@ -6,7 +6,7 @@
     <ion-content>
         <div class="list">
             <div class='item item-text-wrap home'>
-                <h4>{{data.title}}</h4>
+                <h2>{{data.title}}</h2>
                 <p><img ng-src="{{data.coverImageUrl}}"/></p>
                 <p class='text-indent home' ng-bind-html="data.content">
                     {{data.content}}
@@ -25,11 +25,11 @@
 
 
             <div class="item item-avatar" ng-repeat="item in data.remarkList">
-                <img src="./images/wode.png">
+                <img ng-src="{{item.profileImageUrl}}">
 
                 <div class='commenter'>
                     <span>{{item.name}}</span>
-                    <span>{{item.postTime}}</span>
+                    <span style="margin-left: 10px ;color:rgba(0,0,0,.3)">{{item.postTime}}</span>
                 </div>
                 <div class="item-body pad-replate">
                     {{item.remark}}
