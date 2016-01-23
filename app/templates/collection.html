@@ -4,7 +4,10 @@
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <ion-list can-swipe="true">
-            <ion-item class="item item-avatar" ng-repeat="item in datadiscover">
+            <ion-item class="item item-avatar" ng-repeat="item in datadiscover" ui-sref="discoverdetail({id:item.discoveryId})"/>
+
+                <h1>{{item.id}}</h1>
+
                 <img ng-src={{item.profileImageUrl}}>
 
                 <div class="clearfix">
@@ -29,7 +32,7 @@
 
 
 
-            <ion-item class="item item-avatar" ng-repeat="item in articlediscover">
+            <ion-item class="item item-avatar" ng-repeat="item in articlediscover" ui-sref="textcontent({id:item.id})">
                 <h4>{{item.title}}</h4>
                 <img ng-src={{item.coverImageUrl}} class="img-responsive">
 

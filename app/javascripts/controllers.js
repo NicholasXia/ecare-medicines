@@ -688,7 +688,7 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-    .controller('doctorEndDiscoverDetailCtrl', ['discoverCollect', '$scope', '$window', 'currentUser', 'discoveryDetail', 'discoverRemark', '$stateParams', function (discoverCollect, $scope, $window, currentUser, discoveryDetail, discoverRemark, $stateParams) {
+    .controller('doctorEndDiscoverDetailCtrl', ['discoverCollect', '$scope', '$window', 'currentUser', 'discoveryDetail', 'discoverRemark', '$stateParams', '$ionicPopup', '$timeout', function (discoverCollect, $scope, $window, currentUser, discoveryDetail, discoverRemark, $stateParams, $ionicPopup, $timeout) {
         var msg = {
             accessToken: currentUser.getAuthToken(),
             discoveryId: $stateParams.id
