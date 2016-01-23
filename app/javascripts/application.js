@@ -1,4 +1,4 @@
-angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.directive', 'medicine.filters', 'angular-carousel', 'ionic-datepicker', 'LocalStorageModule'])
+angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.directive', 'medicine.filters', 'angular-carousel', 'ionic-datepicker', 'LocalStorageModule','monospaced.elastic'])
     .constant('ionicLoadingConfig', {
         template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>",
         hideOnStateChange: true
@@ -383,6 +383,11 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/forgot_pwd",
                 templateUrl: "templates/forgot_pwd.html",
                 controller:"forgotPwdCtrl"
+            })
+            .state('communication', {
+                url: "/communication",
+                templateUrl: "templates/communication.html",
+                controller: 'UserMessagesCtrl'
             })
         $urlRouterProvider.otherwise("/tab/home");
     })
