@@ -190,4 +190,3 @@ angular.module('medicine.directive', [])
         }
     })
 
-

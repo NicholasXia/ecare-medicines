@@ -1,15 +1,20 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', function ($scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout) {
+    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout','$ionicLoading','ionicLoadingConfig', function ($scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout,$ionicLoading,ionicLoadingConfig) {
+
+        $ionicLoading.show({
+            template:ionicLoadingConfig.template,
+        });
         getCarouselList.query({type: 1, category: 1}, function (data) {
             $scope.data = data
-            console.log(data)
         })
         healthLecture.query(function (data) {
             $scope.healthLecture = data
+            $ionicLoading.hide()
         })
         $scope.goToActivity = function (activity) {
             $window.location.href = activity
         }
+
         $scope.isLogin = currentUser.hasAuthToken()
         $scope.goMyDoctor = function () {
             if ($scope.isLogin) {
@@ -120,6 +125,7 @@ angular.module('medicine.controllers', [])
                     template: '未知错误，请稍后重试'
                 });
             })
+
         }
         $scope.signIn = function () {
             var user = {
@@ -140,7 +146,7 @@ angular.module('medicine.controllers', [])
                 currentUser.setAuthToken(userdata.accessToken)
                 var popup = $ionicPopup.alert({
                     title: '注册成功',
-                    template: '进入登陆页'
+                    template: '即将进入首页'
                 })
                 $timeout(function () {
                     popup.close()
@@ -322,11 +328,12 @@ angular.module('medicine.controllers', [])
     }])
     .controller('doctorEndChangePwdCtrl', ['$scope', 'currentUser', 'resetPwd', '$ionicPopup', '$timeout', '$window', function ($scope, currentUser, resetPwd, $ionicPopup, $timeout, $window) {
 
-        $scope.newMsg = {oldPwd: '', newPwd: '', accessToken: ''}
+        $scope.newMsg = {oldPwd: '', confirmPwd: '', accessToken: ''}
         $scope.resetPwd = function () {
             var newMsg = {
                 oldPwd: $scope.newMsg.oldPwd,
                 newPwd: $scope.newMsg.newPwd,
+                confirmPwd: $scope.newMsg.confirmPwd,
                 accessToken: currentUser.getAuthToken()
             }
             resetPwd.save({}, newMsg, function (data) {
@@ -857,6 +864,4 @@ angular.module('medicine.controllers', [])
         $scope.messages = [];
 
     }]);
-
-
 
