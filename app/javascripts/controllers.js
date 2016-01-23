@@ -11,7 +11,7 @@ angular.module('medicine.controllers', [])
             $window.location.href = activity
         }
         $scope.isLogin = currentUser.hasAuthToken()
-        $scope.goMyDoctor = function(){
+        $scope.goMyDoctor = function () {
             if ($scope.isLogin) {
                 $window.location.href = '#/mydoctor'
             } else {
@@ -19,9 +19,9 @@ angular.module('medicine.controllers', [])
                     title: '提示',
                     template: '请先登陆'
                 })
-                $timeout(function(){
+                $timeout(function () {
                     $window.location.href = '#/signup'
-                },3000)
+                }, 3000)
             }
         }
     }])
@@ -237,26 +237,12 @@ angular.module('medicine.controllers', [])
 
             }
 
-            var getbase64arr = function () {
-                var temp = []
-                for (var i = 0, len = publishphoto.length; i < len; i++) {
-                    temp[i] = publishphoto[i].dataURL
-                }
-                console.log(temp)
-                return temp
-            }
-
-
-            var msg = {
-                content: $scope.publish.content,
-                imageBase64s: $scope.publish.imageBase64s,
-                accessToken: currentUser.getAuthToken()
-            }
-
-
+            console.log(currentUser.getAuthToken())
             var formData = new FormData()
             formData.append('content', $scope.publish.content)
-            formData.append('imageBase64s', getbase64arr())
+            for (var i = 0, len = publishphoto.length; i < len; i++) {
+                formData.append('imageBase64s', publishphoto[i].dataURL)
+            }
             formData.append('accessToken', currentUser.getAuthToken())
 
             $http.post('http://work.e-care365.com/hospital/patient/discovery/add', formData, {
@@ -344,7 +330,6 @@ angular.module('medicine.controllers', [])
                 newPwd: $scope.newMsg.newPwd,
                 accessToken: currentUser.getAuthToken()
             }
-            console.log(newMsg)
             resetPwd.save({}, newMsg, function (data) {
                 console.log(data)
                 if (data.status == 'suc') {
@@ -390,17 +375,47 @@ angular.module('medicine.controllers', [])
 
         };
     }])
-    .controller('doctorEndDiscoverDetailCtrl', ['$scope', function ($scope) {
-
-    }])
     .controller('doctorEndDiscoverPostCtrl', ['$scope', function ($scope) {
 
     }])
     .controller('doctorEndEvaluationListCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndCollectionCtrl', ['$scope', function ($scope) {
-
+    .controller('doctorEndCollectionCtrl', ['deleteDiscover', 'deleteArticle', 'articleCollectList', '$scope', 'collectList', 'currentUser', '$stateParams', function (deleteDiscover, deleteArticle, articleCollectList, $scope, collectList, currentUser, $stateParams) {
+        collectList.query({accessToken: currentUser.getAuthToken()}, function (data) {
+            console.log('---------discover-----------')
+            console.log(data)
+            $scope.datadiscover = data
+        })
+        //articleCollect
+        articleCollectList.query({accessToken: currentUser.getAuthToken()}, function (data) {
+            console.log('---------article------------')
+            console.log(data)
+            $scope.articlediscover = data
+        })
+        $scope.deleteArticle = function (item) {
+            var msg = {
+                accessToken: currentUser.getAuthToken(),
+                articleId: item
+            }
+            deleteArticle.save({}, msg, function () {
+                articleCollectList.query({accessToken: currentUser.getAuthToken()}, function (data) {
+                    $scope.articlediscover = data
+                })
+            })
+        }
+        $scope.deleteDiscover = function (item) {
+            var msg = {
+                accessToken: currentUser.getAuthToken(),
+                discoveryId: item
+            }
+            console.log(msg)
+            deleteDiscover.save({}, msg, function () {
+                collectList.query({accessToken: currentUser.getAuthToken()}, function (data) {
+                    $scope.datadiscover = data
+                })
+            })
+        }
     }])
     .controller('doctorListCtrl', ['$scope', 'doctorList', 'currentUser', function ($scope, doctorList, currentUser) {
         doctorList.query({accessToken: currentUser.getAuthToken()}, function (data) {
@@ -524,7 +539,7 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-    .controller('doctorEndTextContentCtrl', ['patientRemark', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', function (patientRemark, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup) {
+    .controller('doctorEndTextContentCtrl', ['articleCollect', 'patientRemark', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', function (articleCollect, patientRemark, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup) {
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.data = data
             console.log(data)
@@ -534,7 +549,7 @@ angular.module('medicine.controllers', [])
                 accessToken: currentUser.getAuthToken(),
                 articleId: $stateParams.id
             }
-            patientRemark.save({}, msg, function (data) {
+            articleCollect.save({}, msg, function (data) {
                 console.log(data)
             })
         }
@@ -657,7 +672,19 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-    .controller('doctorEndDiscoverDetailCtrl', ['$scope', '$window', 'currentUser', 'discoveryDetail', 'discoverRemark', '$stateParams', function ($scope, $window, currentUser, discoveryDetail, discoverRemark, $stateParams) {
+    .controller('doctorEndDiscoverDetailCtrl', ['discoverCollect', '$scope', '$window', 'currentUser', 'discoveryDetail', 'discoverRemark', '$stateParams', function (discoverCollect, $scope, $window, currentUser, discoveryDetail, discoverRemark, $stateParams) {
+        var msg = {
+            accessToken: currentUser.getAuthToken(),
+            discoveryId: $stateParams.id
+        }
+        console.log(msg)
+        $scope.discoverAdd = function () {
+            discoverCollect.save({}, msg, function (data) {
+                console.log(data)
+            })
+        }
+
+
         var accesstoken = currentUser.getAuthToken()
         var params = {id: $stateParams.id, accessToken: accesstoken}
         discoveryDetail.query(params, function (data) {

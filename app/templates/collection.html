@@ -4,23 +4,46 @@
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <ion-list can-swipe="true">
-            <ion-item class="list card">
-                <h2>养生原则</h2>
+            <ion-item class="item item-avatar" ng-repeat="item in datadiscover">
+                <img ng-src={{item.profileImageUrl}}>
 
-                <div class="item item-image">
-                    <img src="images/1.jpg"/>
+                <div class="clearfix">
+                    <span class="fl">{{item.name}}</span>
+                    <span class="fr">{{item.postTime}}</span>
                 </div>
-                <div class="item tabs tabs-secondary tabs-icon-left">
-                    <a class="tab-item" href="#">
-                        <i class="icon ion-thumbsup"></i>
-                        发布时间
-                    </a>
-                    <a class="tab-item" href="#">
-                        <i class="icon ion-chatbox"></i>
-                        评论数
-                    </a>
-                </div>
-                <ion-option-button class="button-assertive" ng-click="delete(item)">
+
+                <p>{{item.content}}</p>
+
+                <img class="img-responsive" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList">
+
+                <p class="clearfix mtb10">
+                        <span class="fr">
+                            <span>评论数:</span>
+                            <span>{{item.remarkCount}}</span>
+                        </span>
+                </p>
+                <ion-option-button class="button-assertive" ng-click="deleteDiscover(item.discoveryId)">
+                    删除
+                </ion-option-button>
+            </ion-item>
+
+
+
+            <ion-item class="item item-avatar" ng-repeat="item in articlediscover">
+                <h4>{{item.title}}</h4>
+                <img ng-src={{item.coverImageUrl}} class="img-responsive">
+
+
+                <p class="clearfix mtb10">
+                    <span class="fl">{{item.postTime}}</span>
+                        <span class="fr">
+                            <span>{{item.postTime}}</span>
+                            <span>评论数:</span>
+                            <span>{{item.remarkCount}}</span>
+                        </span>
+                </p>
+
+                <ion-option-button class="button-assertive" ng-click="deleteArticle(item.articleId)">
                     删除
                 </ion-option-button>
             </ion-item>

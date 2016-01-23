@@ -266,3 +266,63 @@ angular.module('medicine.services', ['ngResource'])
            }
        })
     }])
+    .factory('discoverCollect', ['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/patient/discovery/collect', {
+            accessToken: '@accessToken',
+            discoveryId: '@discoveryId'
+        },{
+            save: {
+                method: 'POST'
+            }
+        })
+    }])
+    .factory('collectList', ['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/patient/discovery/collect/list',{
+            accessToken: '@accessToken',
+        },{
+            get: {
+                method: 'GET',
+            }
+        })
+    }])
+    .factory('articleCollect', ['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/patient/article/collect', {
+            accessToken: '@accessToken',
+            articleId: '@articleId'
+        },{
+            save: {
+                method: 'POST'
+            }
+        })
+    }])
+    .factory('articleCollectList', ['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/patient/article/collect/list',{
+            accessToken: '@accessToken',
+        },{
+            get: {
+                method: 'GET',
+            }
+        })
+    }])
+    .factory('deleteArticle', ['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/patient/article/collect/del', {
+            accessToken: '@accessToken',
+            articleId: '@articleId'
+        },{
+            save: {
+                method: 'POST'
+            }
+        })
+    }])
+    .factory('deleteDiscover', ['$resource', 'SERVER', function($resource, SERVER){
+        return $resource(SERVER + '/patient/discovery/collect/del', {
+            accessToken: '@accessToken',
+            discoveryId: '@discoveryId'
+        },{
+            save: {
+                method: 'POST'
+            }
+        })
+    }])
+
+
