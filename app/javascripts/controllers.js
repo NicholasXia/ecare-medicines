@@ -549,7 +549,24 @@ angular.module('medicine.controllers', [])
                 articleId: $stateParams.id
             }
             articleCollect.save({}, msg, function (data) {
-                console.log(data)
+                if (data.status == 'suc') {
+                    var popup = $ionicPopup.alert({
+                        title: '提示',
+                        template: '收藏成功'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                    }, 3000)
+                } else {
+                    var popup = $ionicPopup.alert({
+                        title: '提示',
+                        template: data.error
+                    })
+                    $timeout(function () {
+                        popup.close()
+                    }, 3000)
+                }
+
             })
         }
         var accesstoken = currentUser.getAuthToken()
