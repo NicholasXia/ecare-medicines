@@ -251,7 +251,6 @@ angular.module('medicine.controllers', [])
             }).success(function (data) {
                 console.log(data)
                 if (data.status == 'suc') {
-                    alert('success')
                     $window.location.href = '#/tab/discover'
                 }
             })
