@@ -152,47 +152,42 @@ angular.module('medicine.directive', [])
             }
         };
     })
-
-
-//////////////////////
-// directives
-.directive('autolinker', ['$timeout',
-    function($timeout) {
+    .directive('input', function($timeout) {
         return {
-            restrict: 'A',
-            link: function(scope, element, attrs) {
-                $timeout(function() {
-                    var eleHtml = element.html();
-
-                    if (eleHtml === '') {
-                        return false;
-                    }
-
-                    var text = Autolinker.link(eleHtml, {
-                        className: 'autolinker',
-                        newWindow: false
-                    });
-
-                    element.html(text);
-
-                    var autolinks = element[0].getElementsByClassName('autolinker');
-
-                    for (var i = 0; i < autolinks.length; i++) {
-                        angular.element(autolinks[i]).bind('click', function(e) {
-                            var href = e.target.href;
-                            console.log('autolinkClick, href: ' + href);
-
-                            if (href) {
-                                //window.open(href, '_system');
-                                window.open(href, '_blank');
-                            }
-
-                            e.preventDefault();
-                            return false;
+            restrict: 'E',
+            scope: {
+                'returnClose': '=',
+                'onReturn': '&',
+                'onFocus': '&',
+                'onBlur': '&'
+            },
+            link: function(scope, element, attr) {
+                element.bind('focus', function(e) {
+                    if (scope.onFocus) {
+                        $timeout(function() {
+                            scope.onFocus();
                         });
                     }
-                }, 0);
+                });
+                element.bind('blur', function(e) {
+                    if (scope.onBlur) {
+                        $timeout(function() {
+                            scope.onBlur();
+                        });
+                    }
+                });
+                element.bind('keydown', function(e) {
+                    if (e.which == 13) {
+                        if (scope.returnClose) element[0].blur();
+                        if (scope.onReturn) {
+                            $timeout(function() {
+                                scope.onReturn();
+                            });
+                        }
+                    }
+                });
             }
         }
-    }
-])
+    })
+
+
