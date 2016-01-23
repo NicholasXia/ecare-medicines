@@ -5,12 +5,13 @@
     </ion-header-bar>
     <ion-content>
         <div class="list">
-            <div class='item item-body '>
+            <div class='item item-text-wrap home'>
+                <h4>{{zhishidetail.title}}</h4>
+                <p><img ng-src="{{zhishidetail.coverImageUrl}}"/></p>
                 <p class='text-indent home' ng-bind-html="zhishidetail.content">
                     {{zhishidetail.content}}
                 </p>
             </div>
-
 
             <div class="bar bar-header item-input-inset">
                 <label class="item-input-wrapper">

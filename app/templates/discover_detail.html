@@ -1,7 +1,11 @@
 <ion-view view-title="发现详情" cache-view="false">
     <ion-header-bar class="bar-balanced">
         <h1 class="title">发现详情</h1>
+<<<<<<< HEAD
         <button class="button ion ion-plus" ng-click="discoverAdd()"></button>
+=======
+        <button class="ion ion-plus middle-icon button" ng-click="addcollection()"></button>
+>>>>>>> 20553896f4782e9b39a09e8f8953c7702602444f
     </ion-header-bar>
     <ion-content has-bouncing="true" class="padding">
         <div class="list">
@@ -14,7 +18,7 @@
             </div>
 
 
-            <h4>评论:({{data.remarkCount}})</h4>
+            <p>评论:({{data.remarkCount}})</p>
 
             <div class="item item-avatar" ng-repeat="item in data.remarkList">
                 <img ng-src="{{item.remarkUserProfile}}">

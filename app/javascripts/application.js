@@ -3,9 +3,9 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>",
         hideOnStateChange: true
     })
-     .constant('SERVER', 'http://192.168.20.173:8080/hospital')
+    // .constant('SERVER', 'http://192.168.20.173:8080/hospital')
     // .constant('SERVER', 'http://123.56.184.184:8080/hospital')
-    // .constant('SERVER', 'http://work.e-care365.com/hospital')
+    .constant('SERVER', 'http://work.e-care365.com/hospital')
     .config(function ($ionicConfigProvider) {
         $ionicConfigProvider.tabs.position('bottom')
         $ionicConfigProvider.navBar.alignTitle('center')
@@ -13,11 +13,11 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         $ionicConfigProvider.backButton.text('Go Back').icon('ion-chevron-left');
     })
 
-  /*  .config(function(localStorageServiceProvider){
+    .config(function(localStorageServiceProvider){
      localStorageServiceProvider
      .setStorageType('sessionStorage')
      .setNotify(true, true)
-     })*/
+     })
 
     .config(function ($stateProvider, $urlRouterProvider) {
 
