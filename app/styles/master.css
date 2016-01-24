@@ -93,7 +93,7 @@
 }
 
 .borderbgray {
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #ddd;
 }
 
 .slim {
@@ -337,6 +337,10 @@
     padding-left: 80px;
     height: 90px;
     line-height: 58px;
+}
+
+.white {
+    background-color: #fff !important;
 }
 
 .card_h {
