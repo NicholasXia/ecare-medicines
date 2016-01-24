@@ -355,7 +355,7 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
-    .controller('doctorEndDoctorDataCtrl', ['doctorList', 'unbindDoctor', '$scope', '$ionicActionSheet', '$timeout', 'doctorMsg', 'currentUser', '$stateParams', function (doctorlist, unbindDoctor, $scope, $ionicActionSheet, $timeout, doctorMsg, currentUser, $stateParams) {
+    .controller('doctorEndDoctorDataCtrl', ['doctorList', 'unbindDoctor', '$scope', '$ionicActionSheet', '$timeout', 'doctorMsg', 'currentUser', '$stateParams', '$ionicPopup', function (doctorlist, unbindDoctor, $scope, $ionicActionSheet, $timeout, doctorMsg, currentUser, $stateParams, $ionicPopup) {
         doctorMsg.query({accessToken: currentUser.getAuthToken(), id: $stateParams.id}, function (data) {
             $scope.data = data
             console.log(data)
@@ -375,13 +375,21 @@ angular.module('medicine.controllers', [])
                         accessToken: currentUser.getAuthToken(),
                         doctorId: $scope.data.id
                     }, function (data) {
-                        console.log(data)
+                        if (data.status == 'suc') {
+                            var popup = $ionicPopup.alert({
+                                'title' : '提示',
+                                'template' : '解绑成功'
+                            })
+                            $timeout(function(){
+                                popup.close()
+                            },2000)
+                        }
                     })
                 }
             });
             $timeout(function () {
                 hideSheet();
-            }, 10000);
+            }, 2000);
 
         };
     }])
