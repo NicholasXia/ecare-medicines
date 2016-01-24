@@ -1521,15 +1521,7 @@
   content: ""; }
 
 .ion-home:before {
-  background-position: 7px 6px;
-  background-size: 27px;
-  width: 40px;
-  height: 40px;
-  background-repeat: no-repeat;
-  background-image: url(../../../../app/images/lanshouye.png);
-  content: " ";
-}
-  /*content: ""; }*/
+  content: ""; }
 
 .ion-icecream:before {
   content: ""; }
@@ -1946,15 +1938,7 @@
   content: ""; }
 
 .ion-ios-information:before {
-  background-position: 9px 4px;
-  background-size: 22px;
-  width: 40px;
-  height: 40px;
-  background-repeat: no-repeat;
-  background-image: url(../../../../app/images/lanzhishi.png);
-  content: " ";
-
-  /*content: "";*/
+  content: "";
 }
 
 .ion-ios-information-empty:before {
@@ -2360,15 +2344,7 @@
   content: ""; }
 
 .ion-ios-world:before {
-
-  background-position: 8px 3px;
-  background-size: 28px;
-  width: 40px;
-  height: 40px;
-  background-repeat: no-repeat;
-  background-image: url(../../../../app/images/faxian.png);
-  content: " ";
-  /*content: "";*/
+  content: "";
 
 }
 
@@ -2526,15 +2502,7 @@
   content: ""; }
 
 .ion-person:before {
-
-  background-position: 6px 2px;
-  background-size: 30px;
-  width: 40px;
-  height: 40px;
-  background-repeat: no-repeat;
-  background-image: url(../../../../app/images/lanwode.png);
-  content: " ";
-  /*content: "";*/
+  content: "";
 }
 
 .ion-person-add:before {
