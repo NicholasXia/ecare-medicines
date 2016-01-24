@@ -1,5 +1,5 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', '$ionicLoading', 'ionicLoadingConfig', function ($scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout, $ionicLoading, ionicLoadingConfig) {
+    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', '$ionicLoading', 'ionicLoadingConfig', 'reply', function ($scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout, $ionicLoading, ionicLoadingConfig, reply) {
 
         /*  $ionicLoading.show({
          template:ionicLoadingConfig.template,
@@ -28,6 +28,10 @@ angular.module('medicine.controllers', [])
                 }, 3000)
             }
         }
+        reply.query({accessToken: currentUser.getAuthToken()}, function (data) {
+            console.log('-----reply------')
+            console.log(data)
+        })
     }])
     .controller('doctorEndKnowledgeCtrl', ['$scope', 'healthLecture', function ($scope, healthLecture) {
         healthLecture.query(function (data) {
@@ -492,12 +496,12 @@ angular.module('medicine.controllers', [])
                 Remark.save({}, msg, function (data) {
                     if (data.status == 'suc') {
                         var popup = $ionicPopup.alert({
-                            "title" : '提示',
-                            "template" : '评论发布成功'
+                            "title": '提示',
+                            "template": '评论发布成功'
                         })
-                        $timeout(function(){
+                        $timeout(function () {
                             popup.close()
-                        },3000)
+                        }, 3000)
                         Detail.query({id: $stateParams.id}, function (data) {
                             $scope.zhishidetail = data
                         })
@@ -538,12 +542,12 @@ angular.module('medicine.controllers', [])
                 Remark.save({}, msg, function (data) {
                     if (data.status == 'suc') {
                         var popup = $ionicPopup.alert({
-                            "title" : '提示',
-                            "template" : '评论发布成功'
+                            "title": '提示',
+                            "template": '评论发布成功'
                         })
-                        $timeout(function(){
+                        $timeout(function () {
                             popup.close()
-                        },3000)
+                        }, 3000)
                         Detail.query({id: $stateParams.id}, function (data) {
                             $scope.manhuadetail = data
                         })
@@ -825,15 +829,15 @@ angular.module('medicine.controllers', [])
     }])
 
 
-    .controller('Messages', ['$scope','$timeout', '$interval', '$ionicScrollDelegate', 'chart', 'currentUser', 'patientProfile', 'getChart','$stateParams','$window',function ($scope,$timeout, $interval, $ionicScrollDelegate, chart, currentUser, patientProfile, getChart,$stateParams,$window) {
+    .controller('Messages', ['$scope', '$timeout', '$interval', '$ionicScrollDelegate', 'chart', 'currentUser', 'patientProfile', 'getChart', '$stateParams', '$window', function ($scope, $timeout, $interval, $ionicScrollDelegate, chart, currentUser, patientProfile, getChart, $stateParams, $window) {
 
         $scope.hideTime = true;
         var isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
         var doctorId = $stateParams.userId
-        console.log('doctorid'+doctorId)
+        console.log('doctorid' + doctorId)
         patientProfile.query({accessToken: currentUser.getAuthToken()}, function (data) {
 
-            $scope.myId=data.userId
+            $scope.myId = data.userId
             var patientId = data.userId
             console.log(patientId)
             $interval(

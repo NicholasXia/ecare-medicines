@@ -339,6 +339,10 @@
     line-height: 58px;
 }
 
+.white {
+    background-color: #fff !important;
+}
+
 .card_h {
     padding-left: 18px;
     min-height: 54px;

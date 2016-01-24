@@ -349,3 +349,12 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('reply',['$resource','SERVER',function($resource, SERVER){
+        return $resource(SERVER + '/patient/reply/new',{
+            accessToken: "@accessToken"
+        },{
+            query:{
+                method: 'GET'
+            }
+        })
+    }])
