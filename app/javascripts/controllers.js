@@ -606,7 +606,9 @@ angular.module('medicine.controllers', [])
             if (accesstoken) {
                 Remark.save({}, msg, function (data) {
                     if (data.status == 'suc') {
-                        $window.location.reload()
+                        Detail.query({id: $stateParams.id}, function (data) {
+                            $scope.data = data
+                        })
                     } else {
                         $window.location.href = '#/'
                     }
