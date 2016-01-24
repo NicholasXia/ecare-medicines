@@ -478,7 +478,37 @@ angular.module('medicine.controllers', [])
     }])
 
 //文章detail
-    .controller('zhishiDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout) {
+    .controller('zhishiDetailCtrl', ['articleCollect', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout', function (articleCollect, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout) {
+
+        $scope.saveIt = function () {
+            var msg = {
+                accessToken: currentUser.getAuthToken(),
+                articleId: $stateParams.id
+            }
+            articleCollect.save({}, msg, function (data) {
+                if (data.status == 'suc') {
+                    var popup = $ionicPopup.alert({
+                        title: '提示',
+                        template: '收藏成功'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                    }, 3000)
+                } else {
+                    var popup = $ionicPopup.alert({
+                        title: '提示',
+                        template: data.error
+                    })
+                    $timeout(function () {
+                        popup.close()
+                    }, 3000)
+                }
+
+            })
+        }
+
+
+
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.zhishidetail = data
             console.log(data)
@@ -521,7 +551,34 @@ angular.module('medicine.controllers', [])
         }
     }])
     //
-    .controller('manhuaDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout) {
+    .controller('manhuaDetailCtrl', ['articleCollect', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout', function (articleCollect, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout) {
+        $scope.saveIt = function () {
+            var msg = {
+                accessToken: currentUser.getAuthToken(),
+                articleId: $stateParams.id
+            }
+            articleCollect.save({}, msg, function (data) {
+                if (data.status == 'suc') {
+                    var popup = $ionicPopup.alert({
+                        title: '提示',
+                        template: '收藏成功'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                    }, 3000)
+                } else {
+                    var popup = $ionicPopup.alert({
+                        title: '提示',
+                        template: data.error
+                    })
+                    $timeout(function () {
+                        popup.close()
+                    }, 3000)
+                }
+
+            })
+        }
+
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.manhuadetail = data
             console.log(data)
@@ -721,6 +778,10 @@ angular.module('medicine.controllers', [])
     }])
 
     .controller('doctorEndDiscoverDetailCtrl', ['discoverCollect', '$scope', '$window', 'currentUser', 'discoveryDetail', 'discoverRemark', '$stateParams', '$ionicPopup', '$timeout', function (discoverCollect, $scope, $window, currentUser, discoveryDetail, discoverRemark, $stateParams, $ionicPopup, $timeout) {
+        var msg = {
+            accessToken: currentUser.getAuthToken(),
+            discoveryId: $stateParams.id
+        }
         $scope.discoverAdd = function () {
             discoverCollect.save({}, msg, function (data) {
                 if (data.status == 'suc') {
