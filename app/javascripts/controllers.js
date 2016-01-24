@@ -474,7 +474,7 @@ angular.module('medicine.controllers', [])
     }])
 
 //文章detail
-    .controller('zhishiDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup) {
+    .controller('zhishiDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout) {
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.zhishidetail = data
             console.log(data)
@@ -492,7 +492,16 @@ angular.module('medicine.controllers', [])
             if (accesstoken) {
                 Remark.save({}, msg, function (data) {
                     if (data.status == 'suc') {
-                        $window.location.reload()
+                        var popup = $ionicPopup.alert({
+                            "title" : '提示',
+                            "template" : '评论发布成功'
+                        })
+                        $timeout(function(){
+                            popup.close()
+                        },3000)
+                        Detail.query({id: $stateParams.id}, function (data) {
+                            $scope.zhishidetail = data
+                        })
                     } else {
                         $window.location.href = '#/'
                     }
@@ -508,7 +517,7 @@ angular.module('medicine.controllers', [])
         }
     }])
     //
-    .controller('manhuaDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup) {
+    .controller('manhuaDetailCtrl', ['$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout', function ($scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout) {
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.manhuadetail = data
             console.log(data)
@@ -529,7 +538,16 @@ angular.module('medicine.controllers', [])
             if (accesstoken) {
                 Remark.save({}, msg, function (data) {
                     if (data.status == 'suc') {
-                        $window.location.reload()
+                        var popup = $ionicPopup.alert({
+                            "title" : '提示',
+                            "template" : '评论发布成功'
+                        })
+                        $timeout(function(){
+                            popup.close()
+                        },3000)
+                        Detail.query({id: $stateParams.id}, function (data) {
+                            $scope.manhuadetail = data
+                        })
                     } else {
                         $window.location.href = '#/'
                     }
