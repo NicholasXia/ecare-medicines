@@ -6,18 +6,18 @@
         <ion-list class="list" ng-repeat="item in model.knowledge">
             <div class="item" ui-sref="zhishidetail({id:item.id})">
                 <div class="">
-                    <h2>{{item.title}}</h2>
+                    <h2 class="mtb10">{{item.title}}</h2>
                     <img class="full-image" ng-src={{item.coverImageUrl}}>
                 </div>
-                <div class="clearfix gray">
-                    <span class="fl ml20" href="#">
+                <div class="clearfix gray mtb5">
+                    <span class="fl" href="#">
                         {{item.postTime}}
                     </span>
-                    <a class="fr mr20 gray">
+                    <a class="fr gray">
                         <i class="icon">
                             <img src="images/pinglun.png" alt="" width="20" height="20px" class="verticalmd"/>
                         </i>
-                        <span>{{item.remarkCount}}</span>
+                        <span class="verticalbt">{{item.remarkCount}}</span>
                     </a>
                 </div>
             </div>

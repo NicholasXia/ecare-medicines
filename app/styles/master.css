@@ -87,6 +87,11 @@
     margin-bottom: 10px !important;
 }
 
+.mtb5 {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
 .borderbgray {
     border-bottom: 1px solid #333;
 }
@@ -101,6 +106,9 @@
 }
 .verticalmd {
     vertical-align: middle !important;
+}
+.verticalbt {
+    vertical-align: bottom;
 }
 
 .img-responsive {

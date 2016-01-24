@@ -5,17 +5,17 @@
     <ion-content has-bouncing="true">
         <div class="list" ng-repeat="item in model.cartoon"  ui-sref="manhuadetail({id:item.id})">
             <div class="item">
-                <h2 class="">{{item.title}}</h2>
+                <h2 class="mtb10">{{item.title}}</h2>
                 <img class="img-responsive" ng-src={{item.coverImageUrl}} alt=""/>
                 <div class="clearfix gray noborder mtb10">
-                    <span class="fl ml20" href="#">
+                    <span class="fl" href="#">
                         {{item.postTime}}
                     </span>
-                    <a class="fr mr20 gray">
+                    <a class="fr gray">
                         <i class="icon">
                             <img src="images/pinglun.png" alt="" width="20" height="20px" class="verticalmd"/>
                         </i>
-                        <span>{{item.remarkCount}}</span>
+                        <span class="verticalbt">{{item.remarkCount}}</span>
                     </a>
                 </div>
             </div>

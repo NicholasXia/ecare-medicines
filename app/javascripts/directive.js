@@ -1,5 +1,5 @@
 angular.module('medicine.directive', [])
-    .directive('image', function($q) {
+    .directive('image', function ($q) {
         'use strict'
 
         var URL = window.URL || window.webkitURL;
@@ -31,7 +31,7 @@ angular.module('medicine.directive', [])
             var width = origImage.width;
 
             // calculate the width and height, constraining the proportions *** Edited by Ege
-            if(height / width < maxHeight / maxWidth) {
+            if (height / width < maxHeight / maxWidth) {
                 width = width * (maxHeight / height);
                 height = maxHeight;
             } else {
@@ -50,9 +50,9 @@ angular.module('medicine.directive', [])
             return canvas.toDataURL(type, quality);
         };
 
-        var createImage = function(url, callback) {
+        var createImage = function (url, callback) {
             var image = new Image();
-            image.onload = function() {
+            image.onload = function () {
                 callback(image);
             };
             image.src = url;
@@ -83,8 +83,8 @@ angular.module('medicine.directive', [])
             },
             link: function postLink(scope, element, attrs, ctrl) {
 
-                var doResizing = function(imageResult, callback) {
-                    createImage(imageResult.url, function(image) {
+                var doResizing = function (imageResult, callback) {
+                    createImage(imageResult.url, function (image) {
                         var dataURL = resizeImage(image, scope);
                         imageResult.resized = {
                             dataURL: dataURL,
@@ -94,14 +94,14 @@ angular.module('medicine.directive', [])
                     });
                 };
 
-                var applyScope = function(imageResults) {
-                    if(attrs.multiple) {
-                        for(var i in imageResults) {
+                var applyScope = function (imageResults) {
+                    if (attrs.multiple) {
+                        for (var i in imageResults) {
                             scope.image.push(imageResults[i]);
                         }
                     }
                     else {
-                        scope.$apply(function() {
+                        scope.$apply(function () {
                             scope.image = imageResults[0];
                         });
                     }
@@ -110,23 +110,23 @@ angular.module('medicine.directive', [])
 
                 element.bind('change', function (evt) {
                     //when multiple always return an array of images
-                    if(attrs.multiple)
+                    if (attrs.multiple)
                         scope.image = [];
 
                     var files = evt.target.files;
 
                     var imageResults = [];
 
-                    var addToImageResults = function(imageResult) {
+                    var addToImageResults = function (imageResult) {
                         imageResults.push(imageResult);
-                        if(imageResults.length === files.length) {
+                        if (imageResults.length === files.length) {
                             applyScope(imageResults);
                             imageResults = [];
                         }
                     }
 
 
-                    for(var i = 0; i < files.length; i++) {
+                    for (var i = 0; i < files.length; i++) {
                         //create a result object for each file in files
 
                         fileToDataURL(files[i]).then(function (object) {
@@ -138,8 +138,8 @@ angular.module('medicine.directive', [])
                                 dataURL: dataURL
                             };
 
-                            if(scope.resizeMaxHeight || scope.resizeMaxWidth) { //resize image
-                                doResizing(imageResult, function(imageResult) {
+                            if (scope.resizeMaxHeight || scope.resizeMaxWidth) { //resize image
+                                doResizing(imageResult, function (imageResult) {
                                     addToImageResults(imageResult);
                                 });
                             }

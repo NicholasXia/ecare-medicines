@@ -9,15 +9,15 @@
     <ion-content>
         <div class="list">
             <div class="item item-text-wrap" >
-                <h2>{{manhuadetail.title}}</h2>
-                <p ng-bind-html="manhuadetail.content" class="hidden">{{manhuadetail.content}}</p>
+                <h2 class="mtb10">{{manhuadetail.title}}</h2>
                 <img class="img-responsive" ng-src={{manhuadetail.coverImageUrl}} alt=""/>
+                <p ng-bind-html="manhuadetail.content" class="hidden">{{manhuadetail.content}}</p>
             </div>
 
 
             <div class='item item-body '>
-                <p class='text-indent home' ng-bind-html="zhishidetail.content">
-                    {{zhishidetail.content}}
+                <p class='text-indent home' ng-bind-html="manhuadetail.content">
+                    {{manhuadetail.content}}
                 </p>
             </div>
 
@@ -32,7 +32,7 @@
             </div>
 
 
-            <div class="item item-avatar" ng-repeat="item in zhishidetail.remarkList">
+            <div class="item item-avatar" ng-repeat="item in manhuadetail.remarkList">
                 <img src="./images/wode.png">
 
                 <div class='commenter'>
