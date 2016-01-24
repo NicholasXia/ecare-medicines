@@ -825,7 +825,7 @@ angular.module('medicine.controllers', [])
                         })
                     })
             },
-            20000)
+            1000)
 
         $scope.data = {};
         $scope.messages = [];
