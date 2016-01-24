@@ -339,8 +339,13 @@ angular.module('medicine.services', ['ngResource'])
     }])
     .factory('getChart',['$resource','SERVER', function($resource, SERVER){
         return $resource(SERVER + '/u/chatonline/info',{
-            get:{
-                method:'GET'
+            accessToken: "@accessToken",
+            fromUserId: "@fromUserId",
+            toUserID: "@toUserID"
+        },{
+            query:{
+                method:'GET',
+                isArray: true
             }
         })
     }])

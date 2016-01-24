@@ -801,18 +801,31 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
-    .controller('Messages', ['$scope', '$timeout', '$ionicScrollDelegate', 'chart', 'currentUser', 'patientProfile', function($scope, $timeout, $ionicScrollDelegate, chart, currentUser, patientProfile) {
+    .controller('Messages', ['$scope', '$timeout', '$ionicScrollDelegate', 'chart', 'currentUser', 'patientProfile', 'getChart', function($scope, $timeout, $ionicScrollDelegate, chart, currentUser, patientProfile, getChart) {
         $scope.hideTime = true;
 
         patientProfile.query({accessToken: currentUser.getAuthToken()}, function(data){
-            console.log(data)
             $scope.myId = data.userId
         })
+       /* console.log($scope.myId)*/
+
+
         var alternate,
             isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
 
+        getChart.query({accessToken:currentUser.getAuthToken(),fromUserId:10076,toUserID:10077},function(data){
+            console.log(data)
+            $scope.toChar = data[0].toChat
+        })
+
+
         $scope.sendMessage = function() {
             alternate = !alternate;
+
+
+          /*  $scope.messages = {
+                userId: alternate ? $scope.myId : '10077',
+            }*/
 
             $scope.messages.push({
                 userId: alternate ? $scope.myId : '10077',
@@ -825,7 +838,7 @@ angular.module('medicine.controllers', [])
             var msg = {
                 accessToken : currentUser.getAuthToken(),
                 fromChat : $scope.data.message,
-                fromUserId : $scope.userId,
+                fromUserId : 10076,
                 toUserID: 10077
             }
             chart.save({},msg,function(data){
@@ -857,9 +870,6 @@ angular.module('medicine.controllers', [])
 
 
         $scope.data = {};
-        $scope.myId = '12345';
         $scope.messages = [];
-
-
     }]);
 
