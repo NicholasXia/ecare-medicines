@@ -54,40 +54,38 @@
             <ion-item class="item item-divider white">
                 <span class="matches">最新回复</span>
             </ion-item>
-            <ion-item class="item item-avatar" href="#">
-                <img src="images/tongxiang.png" alt="用户头像"/>
-
+            <ion-item class="item item-avatar" href="#" ng-repeat="item in newChat" ui-sref="chart({id:item.toUserID})">
+                <img ng-src={{item.profileImageUrl}} alt=""/>
                 <div>
-                    <span>用户姓名</span>
+                    <span>{{item.name}}</span>
                     <span class="small fk-side">已绑定</span>
-                    <span class="gray">2015年12月28年</span>
+                    <span class="gray">{{item.timePoint}}</span>
                 </div>
-                <p><span class="highlight">回复:</span><span>祝您平安喜乐</span></p>
+                <p><span class="highlight">回复:</span><span>{{item.toChat}}</span></p>
             </ion-item>
-        </ion-list>
         <!--回复方式二 涉及到心愿墙，一期不做-->
-        <!--
-        <ion-item class="item item-avatar" href="#/wishwall">
-            <img src="images/tongxiang.png" alt="用户头像"/>
+
+        <ion-item class="item item-avatar" ng-repeat="item in newRemark | limitTo:3" ui-sref="discoverdetail({id:item.id})">
+            <img src={{item.profileImageUrl}} alt=""/>
 
             <div>
-                <span>用户姓名</span>
-                <span class="gray">2015年12月28年</span>
+                <span>{{item.name}}</span>
+                <span class="gray">{{item.postTime}}</span>
             </div>
             <p class="wish">
                 <span class="init">
-                我想怎么着
+                    {{item.content}}
                 </span>
             </p>
 
             <p class="wishes">
-                <span class="highlight">心血管系统</span>
+                <span>{{item.remarkList[0].remarkUserName}}</span>
+                <span class="highlight">回复</span>
                 <span class="init">
-                    你想怎么着就怎么着
+                    {{item.remarkList[0].remark}}
                 </span>
             </p>
         </ion-item>
-        -->
         <!--  </ion-list>-->
         <!--心愿墙 start 二期内容暂时隐藏-->
         <!--  <ion-list class="list" ng-if="false">
@@ -107,8 +105,8 @@
 
                   <p class="text-right">2015年12月20日</p>
               </ion-item>
-          </ion-list>-->
         <!--心愿墙 end-->
+        </ion-list>
 
         <!--养心讲堂 start-->
         <div class="divider" ng-if="isLogin"></div>

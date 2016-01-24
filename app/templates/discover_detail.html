@@ -13,8 +13,16 @@
                 <p>{{data.postTime}}</p>
             </div>
 
+            <div class="bar bar-header item-input-inset">
+                <label class="item-input-wrapper">
+                    <input type="text" placeholder="我也说两句吧" required ng-model="detailMsg.acomment">
+                </label>
+                <button class="button button-clear" ng-click="aComment()">
+                    发表
+                </button>
+            </div>
 
-            <p>评论:({{data.remarkCount}})</p>
+            <p class="mtb10">评论:({{data.remarkCount}})</p>
 
             <div class="item item-avatar" ng-repeat="item in data.remarkList">
                 <img ng-src="{{item.remarkUserProfile}}">
@@ -27,14 +35,7 @@
                 </div>
             </div>
 
-            <div class="bar bar-header item-input-inset">
-                <label class="item-input-wrapper">
-                    <input type="text" placeholder="我也说两句吧" required ng-model="detailMsg.acomment">
-                </label>
-                <button class="button button-clear" ng-click="aComment()">
-                    发表
-                </button>
-            </div>
+
 
         </div>
     </ion-content>

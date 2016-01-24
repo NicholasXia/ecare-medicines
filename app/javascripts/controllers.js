@@ -29,8 +29,9 @@ angular.module('medicine.controllers', [])
             }
         }
         reply.query({accessToken: currentUser.getAuthToken()}, function (data) {
-            console.log('-----reply------')
             console.log(data)
+            $scope.newChat = data.newChat
+            $scope.newRemark = data.newRemark
         })
     }])
     .controller('doctorEndKnowledgeCtrl', ['$scope', 'healthLecture', function ($scope, healthLecture) {
@@ -720,11 +721,6 @@ angular.module('medicine.controllers', [])
     }])
 
     .controller('doctorEndDiscoverDetailCtrl', ['discoverCollect', '$scope', '$window', 'currentUser', 'discoveryDetail', 'discoverRemark', '$stateParams', '$ionicPopup', '$timeout', function (discoverCollect, $scope, $window, currentUser, discoveryDetail, discoverRemark, $stateParams, $ionicPopup, $timeout) {
-        var msg = {
-            accessToken: currentUser.getAuthToken(),
-            discoveryId: $stateParams.id
-        }
-        console.log(msg)
         $scope.discoverAdd = function () {
             discoverCollect.save({}, msg, function (data) {
                 if (data.status == 'suc') {
@@ -764,7 +760,9 @@ angular.module('medicine.controllers', [])
             }
             discoverRemark.save(paramsremark, function (info) {
                 if (info.status == 'suc') {
-                    $window.location.reload()
+                    discoveryDetail.query(params, function (data) {
+                        $scope.data = data
+                    })
                 }
 
             })
@@ -833,7 +831,7 @@ angular.module('medicine.controllers', [])
 
         $scope.hideTime = true;
         var isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
-        var doctorId = $stateParams.userId
+        var doctorId = $stateParams.id
         console.log('doctorid' + doctorId)
         patientProfile.query({accessToken: currentUser.getAuthToken()}, function (data) {
 
