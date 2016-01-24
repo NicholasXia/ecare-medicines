@@ -32,7 +32,8 @@
 
 
 
-            <ion-item class="item item-avatar" ng-repeat="item in articlediscover" ui-sref="textcontent({id:item.id})">
+            <ion-item class="item item-avatar" ng-repeat="item in articlediscover" ui-sref="textcontent({id:item.articleId})">
+                <h1>{{item.id}}</h1>
                 <h4>{{item.title}}</h4>
                 <img ng-src={{item.coverImageUrl}} class="img-responsive">
 
