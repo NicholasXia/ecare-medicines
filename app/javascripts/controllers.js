@@ -1,7 +1,9 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', function ($scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout) {
+    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', '$ionicLoading', 'ionicLoadingConfig', function ($scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout, $ionicLoading, ionicLoadingConfig) {
 
-
+        /*  $ionicLoading.show({
+         template:ionicLoadingConfig.template,
+         });*/
         getCarouselList.query({type: 1, category: 1}, function (data) {
             $scope.data = data
         })
@@ -801,47 +803,53 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
-    .controller('Messages', ['$scope', '$timeout', '$ionicScrollDelegate', 'chart', 'currentUser', 'patientProfile', 'getChart', function($scope, $timeout, $ionicScrollDelegate, chart, currentUser, patientProfile, getChart) {
+
+
+    .controller('Messages', ['$scope','$timeout', '$interval', '$ionicScrollDelegate', 'chart', 'currentUser', 'patientProfile', 'getChart','$stateParams','$window',function ($scope,$timeout, $interval, $ionicScrollDelegate, chart, currentUser, patientProfile, getChart,$stateParams,$window) {
+
         $scope.hideTime = true;
+        var isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
+        var doctorId = $stateParams.userId
+        console.log('doctorid'+doctorId)
+        patientProfile.query({accessToken: currentUser.getAuthToken()}, function (data) {
 
-        patientProfile.query({accessToken: currentUser.getAuthToken()}, function(data){
-            $scope.myId = data.userId
+            $scope.myId=data.userId
+            var patientId = data.userId
+            console.log(patientId)
+            $interval(
+                function () {
+                    getChart.query(
+                        {accessToken: currentUser.getAuthToken(), fromUserId: patientId, toUserID: doctorId},
+                        function (data) {
+                            console.log(data)
+                            $scope.toChar = data[0].toChat
+                            $scope.messages.push({
+                                userId: doctorId,
+                                text: $scope.toChar
+                            })
+                        })
+                },
+                1000)
         })
-       /* console.log($scope.myId)*/
 
+        $scope.data = {};
+        $scope.messages = [];
 
-        var alternate,
-            isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
-
-        getChart.query({accessToken:currentUser.getAuthToken(),fromUserId:10076,toUserID:10077},function(data){
-            console.log(data)
-            $scope.toChar = data[0].toChat
-        })
-
-
-        $scope.sendMessage = function() {
-            alternate = !alternate;
-
-
-          /*  $scope.messages = {
-                userId: alternate ? $scope.myId : '10077',
-            }*/
+        $scope.sendMessage = function () {
 
             $scope.messages.push({
-                userId: alternate ? $scope.myId : '10077',
-                text: $scope.data.message,
-                accessToken : currentUser.getAuthToken(),
-                fromChat : $scope.data.message,
-                fromUserId : $scope.userId
+                userId: $scope.myId,
+                text: $scope.data.message
             });
 
             var msg = {
-                accessToken : currentUser.getAuthToken(),
-                fromChat : $scope.data.message,
-                fromUserId : 10076,
-                toUserID: 10077
+                accessToken: currentUser.getAuthToken(),
+                fromChat: $scope.data.message,
+                fromUserId: $scope.myId,
+                toUserID: doctorId
             }
-            chart.save({},msg,function(data){
+            console.log(msg)
+            chart.save({}, msg, function (data) {
                 console.log(data)
             })
 
@@ -850,26 +858,22 @@ angular.module('medicine.controllers', [])
 
         };
 
-
-        $scope.inputUp = function() {
+        $scope.inputUp = function () {
             if (isIOS) $scope.data.keyboardHeight = 216;
-            $timeout(function() {
+            $timeout(function () {
                 $ionicScrollDelegate.scrollBottom(true);
             }, 300);
 
         };
 
-        $scope.inputDown = function() {
+        $scope.inputDown = function () {
             if (isIOS) $scope.data.keyboardHeight = 0;
             $ionicScrollDelegate.resize();
         };
 
-        $scope.closeKeyboard = function() {
+        $scope.closeKeyboard = function () {
             // cordova.plugins.Keyboard.close();
         };
-
-
-        $scope.data = {};
-        $scope.messages = [];
     }]);
+
 

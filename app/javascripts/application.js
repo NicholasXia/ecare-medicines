@@ -3,7 +3,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>",
         hideOnStateChange: true
     })
-     .constant('SERVER', 'http://192.168.20.173:8080/hospital')
+    .constant('SERVER', 'http://192.168.20.173:8080/hospital')
     // .constant('SERVER', 'http://123.56.184.184:8080/hospital')
     // .constant('SERVER', 'http://work.e-care365.com/hospital')
     .config(function ($ionicConfigProvider) {
@@ -385,7 +385,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 controller:"forgotPwdCtrl"
             })
             .state('chart', {
-                url: "/chart",
+                url: "/chart/:userId",
                 templateUrl: "templates/chart.html",
                 controller: "Messages"
             })
