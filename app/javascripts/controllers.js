@@ -1,15 +1,12 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout','$ionicLoading','ionicLoadingConfig', function ($scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout,$ionicLoading,ionicLoadingConfig) {
+    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', function ($scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout) {
 
-        $ionicLoading.show({
-            template:ionicLoadingConfig.template,
-        });
+
         getCarouselList.query({type: 1, category: 1}, function (data) {
             $scope.data = data
         })
         healthLecture.query(function (data) {
             $scope.healthLecture = data
-            $ionicLoading.hide()
         })
         $scope.goToActivity = function (activity) {
             $window.location.href = activity
