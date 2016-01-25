@@ -5,7 +5,7 @@
         <title>angular-carousel demo</title>
         <meta name="viewport" content="width=620, user-scalable=no">
         <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
-        <link href='./dist/angular-carousel.css' rel='stylesheet' type='text/css'>
+        <link href='dist/angular-carousel.css' rel='stylesheet' type='text/css'>
         <link href='./demo/demo.css' rel='stylesheet' type='text/css'>
         <style>
         html, body{
@@ -39,8 +39,8 @@
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular-touch.min.js"></script>
-    
-    <script src="./dist/angular-carousel.min.js"></script>
+
+    <script src="dist/angular-carousel.min.js"></script>
     <!--<script src="./src/angular-carousel.js"></script>
     <script src="./src/directives/rn-carousel.js"></script>
     <script src="./src/directives/rn-carousel-indicators.js"></script>
@@ -74,7 +74,7 @@
             };
 
             $scope.carouselIndex = 3;
-           
+
             function addSlides(target, style, qty) {
                 for (var i=0; i < qty; i++) {
                     addSlide(target, style);

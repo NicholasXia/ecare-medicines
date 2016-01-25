@@ -677,6 +677,7 @@ angular.module('medicine.controllers', [])
                     if (data.status == 'suc') {
                         Detail.query({id: $stateParams.id}, function (data) {
                             $scope.data = data
+                            $scope.markinfo = ''
                         })
                     } else {
                         $window.location.href = '#/'
