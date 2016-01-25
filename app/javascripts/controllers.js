@@ -5,6 +5,7 @@ angular.module('medicine.controllers', [])
          template:ionicLoadingConfig.template,
          });*/
         getCarouselList.query({type: 1, category: 1}, function (data) {
+            console.log(data)
             $scope.data = data
         })
         healthLecture.query(function (data) {
@@ -664,6 +665,10 @@ angular.module('medicine.controllers', [])
             if (accesstoken) {
                 Remark.save({}, msg, function (data) {
                     if (data.status == 'suc') {
+                        $ionicPopup.alert({
+                            'title' : '提示',
+                            'template' : '评论成功'
+                        })
                         Detail.query({id: $stateParams.id}, function (data) {
                             $scope.data = data
                             $scope.markinfo = ''
