@@ -264,14 +264,6 @@ angular.module('medicine.controllers', [])
                     $window.location.href = '#/tab/discover'
                 }
             })
-
-
-            /* publishdiscover.save({}, msg, function (data) {
-             console.log(data)
-             if (data.status == 'suc') {
-             $window.location.href = '#/tab/discover'
-             }
-             })*/
         }
     }])
     .controller('doctorEndWishWallCtrl', ['$scope', function ($scope) {
@@ -401,14 +393,10 @@ angular.module('medicine.controllers', [])
     }])
     .controller('doctorEndCollectionCtrl', ['deleteDiscover', 'deleteArticle', 'articleCollectList', '$scope', 'collectList', 'currentUser', '$stateParams', function (deleteDiscover, deleteArticle, articleCollectList, $scope, collectList, currentUser, $stateParams) {
         collectList.query({accessToken: currentUser.getAuthToken()}, function (data) {
-            console.log('---------discover-----------')
-            console.log(data)
             $scope.datadiscover = data
         })
         //articleCollect
         articleCollectList.query({accessToken: currentUser.getAuthToken()}, function (data) {
-            console.log('---------article------------')
-            console.log(data)
             $scope.articlediscover = data
         })
         $scope.deleteArticle = function (item) {
@@ -666,7 +654,6 @@ angular.module('medicine.controllers', [])
         var accesstoken = currentUser.getAuthToken()
         $scope.markinfo = {'remak': ''}
         $scope.remark = function () {
-
             var msg = {
                 accessToken: accesstoken,
                 articleId: $stateParams.id,
