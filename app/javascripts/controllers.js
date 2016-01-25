@@ -238,7 +238,7 @@ angular.module('medicine.controllers', [])
             console.log(data)
         })
     }])
-    .controller('doctorEndPublishDiscoverCtrl', ['$http', '$scope', 'publishdiscover', 'currentUser', '$window', function ($http, $scope, publishdiscover, currentUser, $window) {
+    .controller('doctorEndPublishDiscoverCtrl', ['$http', '$scope', 'publishdiscover', 'currentUser', '$window', '$ionicPopup', function ($http, $scope, publishdiscover, currentUser, $window, $ionicPopup) {
         $scope.accessToken = currentUser.getAuthToken()
         $scope.publish = {
             imageBase64s: '',
@@ -267,6 +267,10 @@ angular.module('medicine.controllers', [])
             }).success(function (data) {
                 console.log(data)
                 if (data.status == 'suc') {
+                    $ionicPopup.alert({
+                        title: '提示',
+                        template: '发表发现成功'
+                    })
                     $window.location.href = '#/tab/discover'
                 }
             })
