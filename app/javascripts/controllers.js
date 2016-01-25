@@ -141,13 +141,18 @@ angular.module('medicine.controllers', [])
             }
             if ($scope.account.verCode.length !== 4 || $scope.account.password.length == 0) {
                 $ionicPopup.alert({
-                    title: '错误提示',
+                    title: '提示',
                     template: '请输入个人正确的信息'
                 })
                 return
             }
-            createUser.save({}, user, function (userdata) {
-                console.log(userdata)
+            createUser.save({}, user, function (data) {
+                if (data.error) {
+                    $ionicPopup.alert({
+                        'title' : '提示',
+                        'template' : data.error
+                    })
+                }
                 currentUser.setAuthToken(userdata.accessToken)
                 var popup = $ionicPopup.alert({
                     title: '注册成功',
