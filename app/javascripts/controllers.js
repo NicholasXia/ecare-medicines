@@ -534,6 +534,7 @@ angular.module('medicine.controllers', [])
             if (accesstoken) {
                 Remark.save({}, msg, function (data) {
                     if (data.status == 'suc') {
+                        $scope.markinfo.remak = ''
                         var popup = $ionicPopup.alert({
                             "title": '提示',
                             "template": '评论发布成功'
@@ -611,6 +612,7 @@ angular.module('medicine.controllers', [])
                             "title": '提示',
                             "template": '评论发布成功'
                         })
+                        $scope.markinfo.remak = ''
                         $timeout(function () {
                             popup.close()
                         }, 3000)
@@ -830,6 +832,7 @@ angular.module('medicine.controllers', [])
             }
             discoverRemark.save(paramsremark, function (info) {
                 if (info.status == 'suc') {
+                    $scope.detailMsg = ''
                     discoveryDetail.query(params, function (data) {
                         $scope.data = data
                     })
