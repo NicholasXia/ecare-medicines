@@ -11,7 +11,9 @@
                     <img ng-src={{item.profileImageUrl}}>
                     <h2>{{item.name}}</h2>
                     <p class="mtb10">{{item.content}}</p>
-                    <img class="img-responsive" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList">
+                    <div class="main-wrap">
+                        <img class="img-responsive ng-class:{'col25':(item.imageList.length>1)}" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList">
+                    </div>
                     <p class="clearfix mtb10">
                         <span class="fl">{{item.postTime}}</span>
                         <span class="fr">
