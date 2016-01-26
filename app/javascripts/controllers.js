@@ -23,10 +23,13 @@ angular.module('medicine.controllers', [])
         }
 
         $scope.static = function () {
+            /*
             $ionicPopup.alert ({
                 "title" : "提示",
                 "template": "没有内页图片"
             })
+            */
+            $window.location.href = '#/fkshow'
         }
         $scope.fkmsg = function(){
             helper.fkmsg()

@@ -389,5 +389,9 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/chart.html",
                 controller: "Messages"
             })
+            .state('fkshow',{
+                url: "/fkshow",
+                templateUrl: "templates/fk.html"
+            })
         $urlRouterProvider.otherwise("/tab/home");
     })
