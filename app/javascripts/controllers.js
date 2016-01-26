@@ -255,6 +255,17 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndPersonalDataCtrl', ['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
         $scope.data = patientProfile.query({accessToken: currentUser.getAuthToken()}, function (data) {
             console.log(data)
+            $scope.notallow = function () {
+                if (data.mobile == '') {
+                    $window.location.href = '#/changephone'
+                }
+                else {
+                    $ionicPopup.alert({
+                        'title': '提示',
+                        'template': '电话号码注册后不能修改'
+                    })
+                }
+            }
         })
     }])
     .controller('doctorEndPublishDiscoverCtrl', ['$http', '$scope', 'publishdiscover', 'currentUser', '$window', '$ionicPopup', '$ionicLoading', function ($http, $scope, publishdiscover, currentUser, $window, $ionicPopup, $ionicLoading) {
