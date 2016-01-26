@@ -1,6 +1,6 @@
 angular.module('medicine.controllers', [])
     .controller('doctorEndIndexCtrl', ['helper','$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', '$ionicLoading', 'ionicLoadingConfig', 'reply', function (helper, $scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout, $ionicLoading, ionicLoadingConfig, reply) {
-        getCarouselList.query({type: 1, category: 1}, function (data) {
+        getCarouselList.query({type: 2, illType: 1}, function (data) {
             $scope.data = data
         })
         healthLecture.query(function (data) {
@@ -10,7 +10,6 @@ angular.module('medicine.controllers', [])
             if (linkurl) {
                 $window.location.href = linkUrl
             } else {
-                console.log($scope.data)
                 $window.location.href = '#/textcontent/' + artiacleid
             }
         }

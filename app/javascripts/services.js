@@ -1,13 +1,9 @@
 angular.module('medicine.services', ['ngResource'])
     .constant('CURRENT_USER', 'currentUser')
     .factory('getCarouselList', ['$resource', 'SERVER', function ($resource, SERVER) {
-        return $resource(SERVER + '/patient/article/list/:type/:category', {}, {
+        return $resource(SERVER + '/patient/article/list/:type/:illType', {}, {
             query: {
                 method: 'GET',
-              /*  params: {
-                    type: 2,
-                    category: 1
-                },*/
                 isArray: true
             }
         })
