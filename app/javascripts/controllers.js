@@ -8,7 +8,7 @@ angular.module('medicine.controllers', [])
         })
         $scope.goToActivity = function (artiacleid,linkurl) {
             if (linkurl) {
-                $window.location.href = linkUrl
+                $window.location.href = linkurl
             } else {
                 $window.location.href = '#/textcontent/' + artiacleid
             }
