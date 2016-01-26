@@ -358,8 +358,7 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndMyDoctorCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndChangePwdCtrl', ['$scope', 'currentUser', 'resetPwd', '$ionicPopup', '$timeout', '$window', function ($scope, currentUser, resetPwd, $ionicPopup, $timeout, $window) {
-
+    .controller('doctorEndChangePwdCtrl', ['patientProfile', '$scope', 'currentUser', 'resetPwd', '$ionicPopup', '$timeout', '$window', function (patientProfile, $scope, currentUser, resetPwd, $ionicPopup, $timeout, $window) {
         $scope.newMsg = {oldPwd: '', confirmPwd: '', accessToken: ''}
         $scope.resetPwd = function () {
             var newMsg = {
@@ -721,7 +720,11 @@ angular.module('medicine.controllers', [])
             }
         }
     }])
-    .controller('changeCtrl', ['$http', '$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($http, $scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
+    .controller('changeCtrl', ['patientProfile', '$http', '$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function (patientProfile, $http, $scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
+        patientProfile.query({accessToken: currentUser.getAuthToken()},function(data){
+            console.log(data)
+            $scope.patient = data
+        })
         $scope.patientData = {
             birthday: '',
             weight: '',
@@ -925,8 +928,6 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
-
-
     .controller('Messages', ['$scope', '$timeout', '$interval', '$ionicScrollDelegate', 'chart', 'currentUser', 'patientProfile', 'getChart', '$stateParams', '$window', function ($scope, $timeout, $interval, $ionicScrollDelegate, chart, currentUser, patientProfile, getChart, $stateParams, $window) {
 
         $scope.hideTime = true;
@@ -997,5 +998,6 @@ angular.module('medicine.controllers', [])
             // cordova.plugins.Keyboard.close();
         };
     }]);
+
 
 
