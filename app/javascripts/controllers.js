@@ -36,7 +36,10 @@ angular.module('medicine.controllers', [])
             }
         }
         reply.query({accessToken: currentUser.getAuthToken()}, function (data) {
-            console.log(data)
+            if (!data) {
+                $scope.isNew = !!data
+                return
+            }
             $scope.newChat = data.newChat
             $scope.newRemark = data.newRemark
         })
