@@ -124,8 +124,8 @@ angular.module('medicine.controllers', [])
             getVerificationCode.query({mobile: $scope.account.phoneNum}, function (data) {
                 if (data.error || $scope.account.phoneNum.length == 0 || $scope.account.phoneNum.length < 11 || !reg.test($scope.account.phoneNum)) {
                     $ionicPopup.alert({
-                        title: '错误提示',
-                        template: '手机号输入有误，请重新输入'
+                        title: '提示',
+                        template: data.error
                     });
                 } else {
                     $ionicPopup.alert({
