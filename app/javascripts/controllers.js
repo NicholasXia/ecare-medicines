@@ -1,5 +1,5 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorEndIndexCtrl', ['$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', '$ionicLoading', 'ionicLoadingConfig', 'reply', function ($scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout, $ionicLoading, ionicLoadingConfig, reply) {
+    .controller('doctorEndIndexCtrl', ['helper','$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', '$ionicLoading', 'ionicLoadingConfig', 'reply', function (helper, $scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout, $ionicLoading, ionicLoadingConfig, reply) {
 
         /*  $ionicLoading.show({
          template:ionicLoadingConfig.template,
@@ -13,6 +13,9 @@ angular.module('medicine.controllers', [])
         })
         $scope.goToActivity = function (activity) {
             $window.location.href = activity
+        }
+        $scope.fkmsg = function(){
+            helper.fkmsg()
         }
 
         $scope.isLogin = currentUser.hasAuthToken()

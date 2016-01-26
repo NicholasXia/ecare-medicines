@@ -358,3 +358,13 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('helper',function($ionicPopup){
+        var helperObj = {}
+        helperObj.fkmsg = function(){
+            $ionicPopup.alert({
+                title: "提示",
+                template: '努力开发中~敬请期待~'
+            })
+        }
+        return helperObj
+    })
