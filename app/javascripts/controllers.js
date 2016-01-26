@@ -150,7 +150,6 @@ angular.module('medicine.controllers', [])
                     template: '未知错误，请稍后重试'
                 });
             })
-
         }
         $scope.signIn = function () {
             var user = {
