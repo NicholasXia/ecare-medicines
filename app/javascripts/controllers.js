@@ -275,11 +275,11 @@ angular.module('medicine.controllers', [])
             console.log(currentUser.getAuthToken())
             var formData = new FormData()
             formData.append('content', $scope.publish.content)
-            var len = publishphoto ? publishphoto.lenght : []
+            if (publishphoto) {
+                var len = publishphoto.length
+            }
             for (var i = 0; i < len; i++) {
-                if (publishphoto[i]) {
-                    formData.append('imageBase64s', publishphoto[i].dataURL)
-                }
+                formData.append('imageBase64s', publishphoto[i].dataURL)
             }
             formData.append('accessToken', currentUser.getAuthToken())
 
