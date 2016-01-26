@@ -38,7 +38,6 @@ angular.module('medicine.controllers', [])
         reply.query({accessToken: currentUser.getAuthToken()}, function (data) {
             if (!data) {
                 $scope.isNew = !!data
-                return
             }
             $scope.newChat = data.newChat
             $scope.newRemark = data.newRemark
@@ -280,8 +279,17 @@ angular.module('medicine.controllers', [])
             }
             for (var i = 0; i < len; i++) {
                 formData.append('imageBase64s', publishphoto[i].dataURL)
+                if (publishphoto[i].file.size > 1024000) {
+                    $ionicPopup.alert({
+                        'title':'提示',
+                        'template': '图片尺寸太大'
+                    })
+                    $scope.isLarge = true
+                    return
+                }
             }
             formData.append('accessToken', currentUser.getAuthToken())
+
 
             $ionicLoading.show({
                 template: '图片正在上传，请稍等'
