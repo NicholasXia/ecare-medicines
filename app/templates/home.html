@@ -2,7 +2,7 @@
     <ion-content has-bouncing="true">
         <!--首页轮播图-->
         <ion-slide-box ng-if="data.length > 0" auto-play="true" does-continue="true">
-            <ion-slide ng-repeat="item in data" ng-click="goToActivity(item.linkUrl)">
+            <ion-slide ng-repeat="item in data" ng-click="goToActivity(item.id, item.linkUrl)">
                 <div class="box blue"><img ng-src={{item.coverImageUrl}} width="100%" height="200px"/></div>
             </ion-slide>
         </ion-slide-box>

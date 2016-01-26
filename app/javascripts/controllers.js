@@ -1,34 +1,21 @@
 angular.module('medicine.controllers', [])
     .controller('doctorEndIndexCtrl', ['helper','$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', '$ionicLoading', 'ionicLoadingConfig', 'reply', function (helper, $scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout, $ionicLoading, ionicLoadingConfig, reply) {
-
-        /*  $ionicLoading.show({
-         template:ionicLoadingConfig.template,
-         });*/
         getCarouselList.query({type: 1, category: 1}, function (data) {
-            console.log(data)
             $scope.data = data
         })
         healthLecture.query(function (data) {
             $scope.healthLecture = data
         })
-        $scope.goToActivity = function (activity) {
-            if (activity) {
-                $window.location.href = activity
+        $scope.goToActivity = function (artiacleid,linkurl) {
+            if (linkurl) {
+                $window.location.href = linkUrl
             } else {
-                $ionicPopup.alert({
-                    title: "提示",
-                    template: "后台没有编辑链接！！！"
-                })
+                console.log($scope.data)
+                $window.location.href = '#/textcontent/' + artiacleid
             }
         }
 
         $scope.static = function () {
-            /*
-            $ionicPopup.alert ({
-                "title" : "提示",
-                "template": "没有内页图片"
-            })
-            */
             $window.location.href = '#/fkshow'
         }
         $scope.fkmsg = function(){
