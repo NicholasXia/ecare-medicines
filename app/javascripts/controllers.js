@@ -12,7 +12,21 @@ angular.module('medicine.controllers', [])
             $scope.healthLecture = data
         })
         $scope.goToActivity = function (activity) {
-            $window.location.href = activity
+            if (activity) {
+                $window.location.href = activity
+            } else {
+                $ionicPopup.alert({
+                    title: "提示",
+                    template: "后台没有编辑链接！！！"
+                })
+            }
+        }
+
+        $scope.static = function () {
+            $ionicPopup.alert ({
+                "title" : "提示",
+                "template": "没有内页图片"
+            })
         }
         $scope.fkmsg = function(){
             helper.fkmsg()
