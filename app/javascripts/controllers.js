@@ -252,7 +252,7 @@ angular.module('medicine.controllers', [])
             console.log(data)
         })
     }])
-    .controller('doctorEndPublishDiscoverCtrl', ['$http', '$scope', 'publishdiscover', 'currentUser', '$window', '$ionicPopup', function ($http, $scope, publishdiscover, currentUser, $window, $ionicPopup) {
+    .controller('doctorEndPublishDiscoverCtrl', ['$http', '$scope', 'publishdiscover', 'currentUser', '$window', '$ionicPopup', '$ionicLoading', function ($http, $scope, publishdiscover, currentUser, $window, $ionicPopup, $ionicLoading) {
         $scope.accessToken = currentUser.getAuthToken()
         $scope.publish = {
             imageBase64s: '',
@@ -275,11 +275,15 @@ angular.module('medicine.controllers', [])
             }
             formData.append('accessToken', currentUser.getAuthToken())
 
+            $ionicLoading.show({
+                template: '图片正在上传，请稍等'
+            });
             $http.post('http://work.e-care365.com/hospital/patient/discovery/add', formData, {
                 headers: {'Content-Type': undefined},
                 transformRequest: angular.identity
             }).success(function (data) {
                 console.log(data)
+                $ionicLoading.hide()
                 if (data.status == 'suc') {
                     $ionicPopup.alert({
                         title: '提示',
