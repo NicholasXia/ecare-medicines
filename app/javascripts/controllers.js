@@ -132,12 +132,7 @@ angular.module('medicine.controllers', [])
                         template: '验证码已经发送，请稍后'
                     });
                 }
-            }, function () {
-                $ionicPopup.alert({
-                    title: '错误提示',
-                    template: '未知错误，请稍后重试'
-                });
-            })
+            }
         }
         $scope.signIn = function () {
             var user = {
@@ -1006,6 +1001,3 @@ angular.module('medicine.controllers', [])
             // cordova.plugins.Keyboard.close();
         };
     }]);
-
-
-
