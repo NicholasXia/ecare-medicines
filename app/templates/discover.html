@@ -7,7 +7,7 @@
         <div class="list" ng-repeat="item in data | limitTo:5">
             <a class="card" ng-click="fk(item.id)" style="text-decoration: none;">
                 <div class="item item-avatar">
-                    <img ng-src={{item.profileImageUrl}}>
+                    <img ng-src={{item.profileImageUrl}} onerror="this.src='./images/yisheng.png'"/>
                     <h2>{{item.name}}</h2>
                     <p class="mtb10">{{item.content}}</p>
                     <div class="main-wrap">
@@ -16,7 +16,7 @@
                     <p class="clearfix mtb10">
                         <span class="fl">{{item.postTime}}</span>
                         <span class="fr">
-                            <i class="ion ion-android-chat"></i>
+                            <i class="ion-chatbubble-working"></i>
                             <span>{{item.remarkCount}}</span>
                         </span>
                     </p>

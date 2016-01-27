@@ -4,51 +4,53 @@
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <ion-list can-swipe="true">
-            <ion-item class="item item-avatar" ng-repeat="item in datadiscover" ui-sref="discoverdetail({id:item.discoveryId})"/>
+            <ion-item ng-if="datadiscover" class="item item-avatar" ng-repeat="item in datadiscover"
+                      ui-sref="discoverdetail({id:item.discoveryId})"/>
+            <img ng-src={{item.profileImageUrl}}>
 
-                <h1>{{item.id}}</h1>
+            <h1>{{item.id}}</h1>
 
-                <img ng-src={{item.profileImageUrl}}>
 
-                <div class="clearfix">
-                    <span class="fl">{{item.name}}</span>
-                    <span class="fr">{{item.postTime}}</span>
-                </div>
+            <div class="clearfix">
+                <span class="fl">{{item.name}}</span>
+                <span class="fr">{{item.postTime}}</span>
+            </div>
 
-                <p>{{item.content}}</p>
+            <p>{{item.content}}</p>
 
-                <img class="img-responsive" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList">
+            <img class="img-responsive" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList">
 
-                <p class="clearfix mtb10">
+            <p class="clearfix mtb10">
                         <span class="fr">
-                            <span>评论数:</span>
+                            <i class="icon ion-chatbubble-working">
+                            </i>
                             <span>{{item.remarkCount}}</span>
                         </span>
-                </p>
-                <ion-option-button class="button-assertive" ng-click="deleteDiscover(item.discoveryId)">
-                    删除
-                </ion-option-button>
+            </p>
+            <ion-option-button class="button-assertive" ng-click="deleteDiscover(item.discoveryId)">
+                删除
+            </ion-option-button>
             </ion-item>
 
 
-
-            <ion-item class="item item-avatar" ng-repeat="item in articlediscover" ui-sref="textcontent({id:item.articleId})">
-                <h1>{{item.id}}</h1>
+            <ion-item ng-if="articlediscover" ng-repeat="item in articlediscover"
+                      ui-sref="textcontent({id:item.articleId})" class="item item-avatar">
+                <!--<img src="{{item.profileImageUrl}}" alt=""/>-->
+                <img src="{{item.coverImageUrl}}" alt=""/>
                 <h4>{{item.title}}</h4>
-                <img ng-src={{item.coverImageUrl}} class="img-responsive">
 
-
-                <p class="clearfix mtb10">
-                    <span class="fl">{{item.postTime}}</span>
-                        <span class="fr">
-                            <span>评论数:</span>
-                            <span>{{item.remarkCount}}</span>
-                        </span>
-                </p>
 
                 <ion-option-button class="button-assertive" ng-click="deleteArticle(item.articleId)">
                     删除
                 </ion-option-button>
+                <p class="clearfix mtb10">
+                    <span class="fl">{{item.postTime}}</span>
+                        <span class="fr">
+                            <i class="icon ion-chatbubble-working">
+                            </i>
+                            <span>{{item.remarkCount}}</span>
+                        </span>
+                </p>
             </ion-item>
         </ion-list>
     </ion-content>
