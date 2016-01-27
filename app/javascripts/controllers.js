@@ -133,6 +133,7 @@ angular.module('medicine.controllers', [])
                     });
                 }
             }
+          )
         }
         $scope.signIn = function () {
             var user = {
