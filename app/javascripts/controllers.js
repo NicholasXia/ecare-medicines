@@ -441,6 +441,7 @@ angular.module('medicine.controllers', [])
         //articleCollect
         articleCollectList.query({accessToken: currentUser.getAuthToken()}, function (data) {
             $scope.articlediscover = data
+            console.log(data)
         })
         $scope.deleteArticle = function (item) {
             var msg = {
@@ -639,19 +640,10 @@ angular.module('medicine.controllers', [])
             if (accesstoken) {
                 Remark.save({}, msg, function (data) {
                     if (data.status == 'suc') {
-                        var popup = $ionicPopup.alert({
-                            "title": '提示',
-                            "template": '评论发布成功'
-                        })
-                        $scope.markinfo.remak = ''
-                        $timeout(function () {
-                            popup.close()
-                        }, 3000)
                         Detail.query({id: $stateParams.id}, function (data) {
                             $scope.manhuadetail = data
                         })
-                    } else {
-                        $window.location.href = '#/'
+                        $scope.markinfo.remak = ''
                     }
                 })
             } else {
@@ -707,17 +699,16 @@ angular.module('medicine.controllers', [])
             if (accesstoken) {
                 Remark.save({}, msg, function (data) {
                     if (data.status == 'suc') {
-                        $ionicPopup.alert({
-                            'title' : '提示',
-                            'template' : '评论成功'
-                        })
+                        $scope.markinfo.remak = ''
                         Detail.query({id: $stateParams.id}, function (data) {
                             $scope.data = data
-                            $scope.markinfo = ''
                         })
+
                     } else {
                         $window.location.href = '#/'
                     }
+
+
                 })
             } else {
                 $ionicPopup.alert({
@@ -870,7 +861,7 @@ angular.module('medicine.controllers', [])
             }
             discoverRemark.save(paramsremark, function (info) {
                 if (info.status == 'suc') {
-                    $scope.detailMsg = ''
+                    $scope.detailMsg.acomment = ''
                     discoveryDetail.query(params, function (data) {
                         $scope.data = data
                     })
