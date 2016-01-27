@@ -160,7 +160,7 @@ angular.module('medicine.controllers', [])
                         'template' : data.error
                     })
                 }
-                currentUser.setAuthToken(userdata.accessToken)
+                currentUser.setAuthToken(data.accessToken)
                 var popup = $ionicPopup.alert({
                     title: '注册成功',
                     template: '即将进入首页'

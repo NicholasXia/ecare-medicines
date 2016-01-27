@@ -25,7 +25,7 @@
             <p class="mtb10">评论:({{data.remarkCount}})</p>
 
             <div class="item item-avatar" ng-repeat="item in data.remarkList">
-                <img ng-src="{{item.remarkUserProfile}}">
+                <img ng-src="{{item.remarkUserProfile}}" onerror="this.src='./images/yisheng.png'" />
                 <div class='commenter'>
                     <span>{{item.remarkUserName}}</span>
                     <span>{{item.postTime}}</span>

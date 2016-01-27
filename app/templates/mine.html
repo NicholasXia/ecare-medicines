@@ -17,7 +17,7 @@
             </div>
             <div ng-if="ischeck == true">
                 <div id="logined">
-                    <img ng-src={{data.profileImageUrl}} alt="" width="60" height="60" class="round" style=""/>
+                    <img ng-src={{data.profileImageUrl}} alt="" width="60" height="60" class="round" onerror="this.src='./images/yisheng.png'"/>
                     <span class="gray">{{data.name}}</span>
                 </div>
             </div>
