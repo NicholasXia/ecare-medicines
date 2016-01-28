@@ -17,7 +17,7 @@
             <button type="submit" form="publish" class='button button-balanced button-block'
                     ng-click="publish(publishphoto)">发表
             </button>
-            <img ng-if="!isLarge" width="50" height="50" ng-repeat="img in publishphoto" title="{{img.url}}" ng-src="{{img.url}}"
+            <img width="50" height="50" ng-repeat="img in publishphoto" title="{{img.url}}" ng-src="{{img.url}}"
                  type="{{img.file.type}}"/>
         </form>
     </ion-content>

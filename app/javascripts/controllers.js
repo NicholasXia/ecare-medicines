@@ -260,14 +260,14 @@ angular.module('medicine.controllers', [])
             accessToken: ''
         }
         $scope.publish = function (publishphoto) {
-            console.log(publishphoto)
+            //console.log(publishphoto)
             if (publishphoto) {
                 $scope.publish.imageBase64s = publishphoto[0].dataURL
             } else {
 
             }
 
-            console.log(currentUser.getAuthToken())
+            //console.log(currentUser.getAuthToken())
             var formData = new FormData()
             formData.append('content', $scope.publish.content)
             if (publishphoto) {
@@ -275,14 +275,14 @@ angular.module('medicine.controllers', [])
             }
             for (var i = 0; i < len; i++) {
                 formData.append('imageBase64s', publishphoto[i].dataURL)
-                if (publishphoto[i].file.size > 1024000) {
-                    $ionicPopup.alert({
-                        'title':'提示',
-                        'template': '图片尺寸太大'
-                    })
-                    $scope.isLarge = true
-                    return
-                }
+                //if (publishphoto[i].file.size > 1024000) {
+                //    $ionicPopup.alert({
+                //        'title':'提示',
+                //        'template': '图片尺寸太大'
+                //    })
+                //    $scope.isLarge = true
+                //    return
+                //}
             }
             formData.append('accessToken', currentUser.getAuthToken())
 
@@ -296,6 +296,7 @@ angular.module('medicine.controllers', [])
             }).success(function (data) {
                 console.log(data)
                 $ionicLoading.hide()
+                /*
                 if (data.status == 'suc') {
                     $ionicPopup.alert({
                         title: '提示',
@@ -303,6 +304,8 @@ angular.module('medicine.controllers', [])
                     })
                     $window.location.href = '#/tab/discover'
                 }
+                */
+                $window.location.href = '#/tab/discover'
             })
         }
     }])
