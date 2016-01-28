@@ -269,7 +269,7 @@ angular.module('medicine.controllers', [])
 
             //console.log(currentUser.getAuthToken())
             var formData = new FormData()
-            formData.append('content', $scope.publish.content)
+            formData.append('content', $scope.publish.content ? $scope.publish.content : '')
             if (publishphoto) {
                 var len = publishphoto.length
             }
