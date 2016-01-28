@@ -334,7 +334,7 @@ angular.module('medicine.controllers', [])
                 } else {
                     var popup = $ionicPopup.alert({
                         title: '提示',
-                        template: data.status
+                        template: '已发送申请，请耐心等待！'
                     })
                     $timeout(function () {
                         popup.close()
