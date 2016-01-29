@@ -118,7 +118,7 @@
             </div>
             <!--<div class="slim clearfix"></div>-->
             <div class="item item-body" style="padding-top: 0; padding-bottom: 0;"
-                 ng-repeat="item in data | limitTo:3" ng-click="goToActivity(item.id,item.linkUrl)">
+                 ng-repeat="item in healthLecture | limitTo:5" ng-click="goToActivity(item.id,item.linkUrl)">
                 <h2>{{item.title}}</h2>
                 <img class="full-image" ng-src={{item.coverImageUrl}}>
 

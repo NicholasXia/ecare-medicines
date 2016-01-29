@@ -1,7 +1,10 @@
 angular.module('medicine.controllers', [])
-    .controller('doctorEndIndexCtrl', ['helper','$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', '$ionicLoading', 'ionicLoadingConfig', 'reply', function (helper, $scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout, $ionicLoading, ionicLoadingConfig, reply) {
+    .controller('doctorEndIndexCtrl', ['healthLecture', 'helper','$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', '$ionicLoading', 'ionicLoadingConfig', 'reply', function (healthLecture, helper, $scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout, $ionicLoading, ionicLoadingConfig, reply) {
         getCarouselList.query({type: 2, illType: 1}, function (data) {
             $scope.data = data
+        })
+        healthLecture.query(function(data){
+           $scope.healthLecture = data
         })
         healthLecture.query(function (data) {
             $scope.healthLecture = data
@@ -48,6 +51,13 @@ angular.module('medicine.controllers', [])
             $scope.data = data
             console.log(data)
         })
+        $scope.goToActivity = function (artiacleid,linkurl) {
+            if (linkurl) {
+                $window.location.href = linkurl
+            } else {
+                $window.location.href = '#/textcontent/' + artiacleid
+            }
+        }
     }])
 
     .controller('doctorEndDiscoverCtrl', ['$stateParams', 'checkLogin', '$scope', 'discoveryList', '$window', '$ionicPopup', 'currentUser', '$timeout', function ($stateParams, checkLogin, $scope, discoveryList, $window, $ionicPopup, currentUser, $timeout) {
