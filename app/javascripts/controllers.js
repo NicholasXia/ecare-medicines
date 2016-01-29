@@ -87,12 +87,15 @@ angular.module('medicine.controllers', [])
             }
         }
     }])
-    .controller('doctorEndMineCtrl', ['$scope', 'checkLogin', '$window', '$ionicPopup', 'patientProfile', 'currentUser', function ($scope, checkLogin, $window, $ionicPopup, patientProfile, currentUser) {
+    .controller('doctorEndMineCtrl', ['$scope', 'checkLogin', '$window', '$ionicPopup', 'patientProfile', 'currentUser', 'helper', function ($scope, checkLogin, $window, $ionicPopup, patientProfile, currentUser, helper) {
         $scope.ischeck = !!checkLogin.check()
         patientProfile.query({accessToken: currentUser.getAuthToken()}, function (data) {
             $scope.data = data
             console.log(data)
         })
+        $scope.fkmsg = function(){
+            helper.fkmsg()
+        }
         $scope.letugo = function () {
             if ($scope.ischeck) {
                 $window.location.href = '#/collection'
