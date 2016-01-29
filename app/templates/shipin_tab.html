@@ -3,10 +3,10 @@
         <h1 class="title">医生列表</h1>
     </ion-header-bar>
     <ion-content has-bouncing="true">
-        <div class="list" ng-repeat="item in model.vedio" ui-sref="manhuadetail({id:item.id})">
+        <!--ui-sref="manhuadetail({id:item.id})"-->
+        <div class="list" ng-repeat="item in model.vedio" ng-click="go(item)">
             <a class="item item-thumbnail-right" ng-href={{item.linkUrl}}>
-                <!--<img ng-src={{item.coverImageUrl}}>-->
-
+                <img ng-src={{item.coverImageUrl}}/>
                 <h2 class="mtb10">{{item.title}}</h2>
 
                 <p ng-bind-html="item.content">{{item.content}}</p>

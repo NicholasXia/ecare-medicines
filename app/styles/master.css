@@ -331,8 +331,10 @@
 #logined span {
     position: absolute;
     bottom: 75px;
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: bold;
     left: 80px;
+    color: #666;
 }
 /**************ui ionic end******************/
 

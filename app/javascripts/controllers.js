@@ -475,7 +475,7 @@ angular.module('medicine.controllers', [])
 
 
     //
-    .controller('threeKillCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
+    .controller('threeKillCtrl', ['$scope', 'threeKiller', '$window', function ($scope, threeKiller,$window) {
         threeKiller.get({illType: 3}, function (data) {
             $scope.model = {
                 knowledge: data.heart_knowledge,
@@ -484,8 +484,15 @@ angular.module('medicine.controllers', [])
             }
             console.log($scope.model)
         })
+        $scope.go = function(item){
+            if (item.linkUrl) {
+                $window.location.href = item.linkUrl
+            } else {
+                //后期留白
+            }
+        }
     }])
-    .controller('guanxinbingCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
+    .controller('guanxinbingCtrl', ['$scope', 'threeKiller', '$window', function ($scope, threeKiller, $window) {
         threeKiller.get({illType: 4}, function (data) {
             $scope.model = {
                 knowledge: data.heart_knowledge,
@@ -493,6 +500,13 @@ angular.module('medicine.controllers', [])
                 cartoon: data.heart_cartoon
             }
             console.log($scope.model)
+            $scope.go = function(item){
+                if (item.linkUrl) {
+                    $window.location.href = item.linkUrl
+                } else {
+                    //后期留白
+                }
+            }
         })
     }])
     .controller('xinjigengseCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
@@ -503,6 +517,13 @@ angular.module('medicine.controllers', [])
                 cartoon: data.heart_cartoon
             }
             console.log($scope.model)
+            $scope.go = function(item){
+                if (item.linkUrl) {
+                    $window.location.href = item.linkUrl
+                } else {
+                    //后期留白
+                }
+            }
         })
     }])
     .controller('xinlishuaijieCtrl', ['$scope', 'threeKiller', function ($scope, threeKiller) {
@@ -513,6 +534,13 @@ angular.module('medicine.controllers', [])
                 cartoon: data.heart_cartoon
             }
             console.log($scope.model)
+            $scope.go = function(item){
+                if (item.linkUrl) {
+                    $window.location.href = item.linkUrl
+                } else {
+                    //后期留白
+                }
+            }
         })
     }])
 
