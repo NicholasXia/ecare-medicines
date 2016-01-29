@@ -6,10 +6,13 @@
     <ion-content has-bouncing="true" class="padding">
         <div class="list">
             <div class="item item-avatar">
-                <img ng-src="{{data.profileImageUrl}}">
+                <img ng-src="{{data.profileImageUrl}}" onerror="this.src='./images/tongxiang.png">
                 <h2>{{data.name}}</h2>
                 <p>{{data.content}}</p>
-                <img class="img-responsive" ng-src="{{data.imageList[0].imageUrl}}" alt=""/>
+                <div ng-repeat="item in data.imageList">
+
+                    <img class="img-responsive"  ng-src="{{item.imageUrl}}" alt=""/>
+                </div>
                 <p>{{data.postTime}}</p>
             </div>
 
@@ -25,7 +28,7 @@
             <p class="mtb10">评论:({{data.remarkCount}})</p>
 
             <div class="item item-avatar" ng-repeat="item in data.remarkList">
-                <img ng-src="{{item.remarkUserProfile}}" onerror="this.src='./images/yisheng.png'" />
+                <img ng-src="{{item.remarkUserProfile}}" onerror="this.src='./images/tongxiang.png'" />
                 <div class='commenter'>
                     <span>{{item.remarkUserName}}</span>
                     <span>{{item.postTime}}</span>
