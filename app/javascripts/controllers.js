@@ -706,8 +706,6 @@ angular.module('medicine.controllers', [])
                     } else {
                         $window.location.href = '#/'
                     }
-
-
                 })
             } else {
                 $ionicPopup.alert({

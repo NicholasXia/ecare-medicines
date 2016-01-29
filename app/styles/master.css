@@ -20,6 +20,10 @@
     margin-bottom: 35px;
 }
 
+.item .text-indent {
+    text-indent: 30px;
+}
+
 .small {
     background-color: #d56495;
     color: #eee;
