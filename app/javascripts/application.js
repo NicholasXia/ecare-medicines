@@ -316,11 +316,29 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/doctor_data.html",
                 controller: "doctorEndDoctorDataCtrl"
             })
+
+
+
+
+
+
+
             .state('discoverdetail', {
                 url: "/discoverdetail/:id",
                 templateUrl: "templates/discover_detail.html",
                 controller: "doctorEndDiscoverDetailCtrl"
             })
+            .state('discoverdetailv', {
+                url: "/discoverdetail/:id/:remarkId",
+                templateUrl: "templates/discover_detail.html",
+                controller: "doctorEndDiscoverDetailvCtrl"
+            })
+
+
+
+
+
+
             .state('discoverpost', {
                 url: "/discoverpost",
                 templateUrl: "templates/discover_post.html",

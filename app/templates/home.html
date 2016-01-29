@@ -67,9 +67,8 @@
         </div>
         <!--回复方式二 涉及到心愿墙，一期不做-->
 
-        <ion-item class="item item-avatar" ng-repeat="item in newRemark | limitTo:3" ui-sref="discoverdetail({id:item.id})">
+        <ion-item class="item item-avatar" ng-repeat="item in newRemark | limitTo:3" ui-sref="discoverdetailv({id:item.id, remarkId:item.remarkList[$index].remarkId})">
             <img src={{item.profileImageUrl}} alt=""/>
-
             <div>
                 <span>{{item.name}}</span>
                 <span class="gray">{{item.postTime}}</span>

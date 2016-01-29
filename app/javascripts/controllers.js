@@ -39,18 +39,22 @@ angular.module('medicine.controllers', [])
             }
         }
         reply.query({accessToken: currentUser.getAuthToken()}, function (data) {
-            if (!data) {
-                $scope.isNew = !!data
+            console.log(data)
+            if (data.newRemark || data.newChat) {
+                $scope.isNew = true
+                $scope.newChat = data.newChat
+                $scope.newRemark = data.newRemark
+            }else {
+                $scope.isNew = false
             }
-            $scope.newChat = data.newChat
-            $scope.newRemark = data.newRemark
         })
     }])
-    .controller('doctorEndKnowledgeCtrl', ['$scope', 'healthLecture', function ($scope, healthLecture) {
+    .controller('doctorEndKnowledgeCtrl', ['$scope', 'healthLecture', '$window', function ($scope, healthLecture, $window) {
         healthLecture.query(function (data) {
             $scope.data = data
             console.log(data)
         })
+
         $scope.goToActivity = function (artiacleid,linkurl) {
             if (linkurl) {
                 $window.location.href = linkurl
@@ -908,6 +912,81 @@ angular.module('medicine.controllers', [])
             })
         }
     }])
+
+
+
+
+
+
+
+    .controller('doctorEndDiscoverDetailvCtrl', ['discoverCollect', '$scope', '$window', 'currentUser', 'discoveryDetailv', 'discoverRemark', '$stateParams', '$ionicPopup', '$timeout', function (discoverCollect, $scope, $window, currentUser, discoveryDetail, discoverRemark, $stateParams, $ionicPopup, $timeout) {
+        var msg = {
+            accessToken: currentUser.getAuthToken(),
+            discoveryId: $stateParams.id
+        }
+        $scope.discoverAdd = function () {
+            discoverCollect.save({}, msg, function (data) {
+                if (data.status == 'suc') {
+                    var popup = $ionicPopup.alert({
+                        title: '提示',
+                        template: '收藏成功'
+                    })
+                    $timeout(function () {
+                        popup.close()
+                    }, 3000)
+                } else {
+                    var popup = $ionicPopup.alert({
+                        title: '提示',
+                        template: data.error
+                    })
+                    $timeout(function () {
+                        popup.close()
+                    }, 3000)
+                }
+            })
+        }
+
+
+        var accesstoken = currentUser.getAuthToken()
+        var params = {id: $stateParams.id, remarkId: $stateParams.remarkId, accessToken: accesstoken}
+        discoveryDetail.query(params, function (data) {
+            $scope.data = data
+            console.log(data)
+        })
+        $scope.detailMsg = {'acomment': ''}
+        //评论
+        $scope.aComment = function () {
+            var paramsremark = {
+                id: $stateParams.id,
+                remark: $scope.detailMsg.acomment,
+                accessToken: accesstoken
+            }
+            discoverRemark.save(paramsremark, function (info) {
+                if (info.status == 'suc') {
+                    $scope.detailMsg.acomment = ''
+                    discoveryDetail.query(params, function (data) {
+                        $scope.data = data
+                    })
+                }
+
+            })
+        }
+    }])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     .controller('forgotPwdCtrl', ['$scope', '$window', '$ionicPopup', 'forgotpwd', 'forgotReturn', 'currentUser', function ($scope, $window, $ionicPopup, forgotpwd, forgotReturn, currentUser) {
         $scope.forgot = {
             mobile: '',
