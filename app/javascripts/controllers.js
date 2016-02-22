@@ -499,15 +499,12 @@ angular.module('medicine.controllers', [])
                 vedio: data.heart_vedio,
                 cartoon: data.heart_cartoon
             }
-            console.log($scope.model)
-        })
-        $scope.go = function(item){
-            if (item.linkUrl) {
-                $window.location.href = item.linkUrl
-            } else {
-                //后期留白
-            }
-        }
+            console.log($scope.model);
+        });
+        $scope.go=function(){
+          console.log('on go go');
+        };
+
     }])
     .controller('guanxinbingCtrl', ['$scope', 'threeKiller', '$window', function ($scope, threeKiller, $window) {
         threeKiller.get({illType: 4}, function (data) {
