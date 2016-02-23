@@ -4,11 +4,12 @@ angular.module('medicine.controllers', [])
             $scope.data = data
         })
         healthLecture.query(function(data){
+          console.log(data);
            $scope.healthLecture = data
         })
-        healthLecture.query(function (data) {
-            $scope.healthLecture = data
-        })
+        // healthLecture.query(function (data) {
+        //     $scope.healthLecture = data
+        // })
         $scope.goToActivity = function (artiacleid,linkurl) {
             if (linkurl) {
                 $window.location.href = linkurl
