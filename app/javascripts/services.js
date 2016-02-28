@@ -219,7 +219,9 @@ angular.module('medicine.services', ['ngResource'])
     }])
 
     .factory('Detail', ['$resource', 'SERVER', function ($resource, SERVER) {
-        return $resource(SERVER + '/patient/article/detail/:id', {}, {
+        return $resource(SERVER + '/patient/article/detail/:id', {
+          accessToken: '@accessToken'
+        }, {
             query: {
                 method: 'GET'
             }

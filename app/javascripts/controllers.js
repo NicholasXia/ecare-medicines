@@ -700,7 +700,8 @@ angular.module('medicine.controllers', [])
     }])
 
     .controller('doctorEndTextContentCtrl', ['articleCollect', 'patientRemark', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', function (articleCollect, patientRemark, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup) {
-        Detail.query({id: $stateParams.id}, function (data) {
+
+        Detail.query({id: $stateParams.id},{accessToken: currentUser.getAuthToken()}, function (data) {
             $scope.data = data
             console.log(data)
         })
