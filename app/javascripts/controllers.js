@@ -200,14 +200,14 @@ angular.module('medicine.controllers', [])
                     ;
                     return
                 } else {
-                    var popup = $ionicPopup.alert({
-                        title: '登陆成功',
-                        template: '3秒后自动进入主页'
-                    })
-                    $timeout(function () {
-                        popup.close()
-                        $window.location.href = '#/'
-                    }, 3000)
+                    // var popup = $ionicPopup.alert({
+                    //     title: '登陆成功',
+                    //     template: '3秒后自动进入主页'
+                    // })
+                    // $timeout(function () {
+                    //     popup.close()
+                        $window.location.href = '#/';
+                    // }, 3000)
                 }
             })
         }
@@ -222,14 +222,14 @@ angular.module('medicine.controllers', [])
             }
             addFeedback.save({}, msg, function (data) {
                 if (data.status == 'suc') {
-                    var popup = $ionicPopup.alert({
-                        title: '反馈提交成功',
-                        template: '3秒后自动进入首页'
-                    })
-                    $timeout(function () {
-                        popup.close()
+                    // var popup = $ionicPopup.alert({
+                    //     title: '反馈提交成功',
+                    //     template: '3秒后自动进入首页'
+                    // })
+                    // $timeout(function () {
+                    //     popup.close()
                         $window.location.href = '#/'
-                    }, 3000)
+                    // }, 3000)
                 }
                 else {
                     $ionicPopup.alert({
@@ -244,14 +244,14 @@ angular.module('medicine.controllers', [])
         $scope.isLogin = currentUser.hasAuthToken()
         $scope.destroyU = function () {
             currentUser.destroy()
-            var popup = $ionicPopup.alert({
-                title: '您已经注销',
-                template: '3秒后自动进入主页'
-            })
-            $timeout(function () {
-                popup.close()
+            // var popup = $ionicPopup.alert({
+            //     title: '您已经注销',
+            //     template: '3秒后自动进入主页'
+            // })
+            // $timeout(function () {
+            //     popup.close()
                 $window.location.href = '#/'
-            }, 3000)
+            // }, 3000)
         }
     }])
     .controller('doctorEndPersonalDataCtrl', ['$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function ($scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
@@ -395,14 +395,14 @@ angular.module('medicine.controllers', [])
             resetPwd.save({}, newMsg, function (data) {
                 console.log(data)
                 if (data.status == 'suc') {
-                    var popup = $ionicPopup.alert({
-                        title: '密码修改成功',
-                        template: '3秒后进入登陆界面'
-                    })
-                    $timeout(function () {
-                        popup.close()
+                    // var popup = $ionicPopup.alert({
+                    //     title: '密码修改成功',
+                    //     template: '3秒后进入登陆界面'
+                    // })
+                    // $timeout(function () {
+                    //     popup.close()
                         $window.location.href = '#/signup'
-                    }, 3000)
+                    // }, 3000)
                 }
             })
         }
@@ -816,14 +816,14 @@ angular.module('medicine.controllers', [])
             }).success(function (data) {
                 console.log(data)
                 if (data.status == 'suc') {
-                    var popup = $ionicPopup.alert({
-                        title: '您的信息修改成功',
-                        template: '3秒后自动返回上层'
-                    })
-                    $timeout(function () {
-                        popup.close()
+                    // var popup = $ionicPopup.alert({
+                    //     title: '您的信息修改成功',
+                    //     template: '3秒后自动返回上层'
+                    // })
+                    // $timeout(function () {
+                    //     popup.close()
                         $window.location.href = '#/personal'
-                    }, 3000)
+                    // }, 3000)
                 }
                 else {
                     $window.location.href = '#/'
@@ -842,14 +842,14 @@ angular.module('medicine.controllers', [])
             }
             updateMsg.save({}, saveMsg, function (data) {
                 if (data.status == 'suc') {
-                    var popup = $ionicPopup.alert({
-                        title: '您的信息修改成功',
-                        template: '3秒后自动返回上层'
-                    })
-                    $timeout(function () {
-                        popup.close()
+                    // var popup = $ionicPopup.alert({
+                    //     title: '您的信息修改成功',
+                    //     template: '3秒后自动返回上层'
+                    // })
+                    // $timeout(function () {
+                    //     popup.close()
                         $window.location.href = '#/personal'
-                    }, 3000)
+                    // }, 3000)
                 }
                 else {
                     $window.location.href = '#/'
