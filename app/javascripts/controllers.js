@@ -187,7 +187,7 @@ angular.module('medicine.controllers', [])
         }
     }])
     .controller('doctorEndSignUpCtrl', ['$scope', 'signUp', '$window', '$ionicPopup', '$timeout', 'currentUser', function ($scope, signUp, $window, $ionicPopup, $timeout, currentUser) {
-        $scope.signInMsg = {'username': '', 'password': ''}
+        $scope.signInMsg = {'username': '', 'password': '',type:'2'};//患者登陆类型
         $scope.signIn = function () {
             signUp.save({}, $scope.signInMsg, function (data) {
                 console.log(data)

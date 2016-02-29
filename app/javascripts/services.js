@@ -34,7 +34,8 @@ angular.module('medicine.services', ['ngResource'])
     .factory('signUp', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/u/login', {
             username: '@username',
-            password: '@password'
+            password: '@password',
+            type:'@type'
         }, {
             save: {
                 method: 'POST',
