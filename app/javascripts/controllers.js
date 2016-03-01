@@ -68,10 +68,26 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndDiscoverCtrl', ['$stateParams', 'checkLogin', '$scope', 'discoveryList', '$window', '$ionicPopup', 'currentUser', '$timeout', function ($stateParams, checkLogin, $scope, discoveryList, $window, $ionicPopup, currentUser, $timeout) {
         $scope.ischeck = !!checkLogin.check()
         discoveryList.query({accessToken: currentUser.getAuthToken()}, function (data) {
-            console.log(data)
-            $scope.data = data
+            var dataAry=[];
+            data.forEach(function(d){
+              if(d.content&&d.content.length>60){//超过50个字儿
+                 console.log(d.content.length);
+                  d.showMore=true;
+              }else{
+                  d.showMore=false;
+              }
+              dataAry.push(d);
+            });
+            console.log(dataAry);
+            $scope.data = dataAry;
+            console.log($scope.data);
         })
-
+        $scope.viewAll=function($event,$index){
+          console.log($scope.data[$index]);
+          var data=$scope.data[$index];
+          data.showMore=false;
+          $scope.data[$index]=data;
+        }
         $scope.fk1 = function (id) {
             if (!$scope.ischeck) {
                 var popup = $ionicPopup.alert({
@@ -505,6 +521,19 @@ angular.module('medicine.controllers', [])
         $scope.go=function(){
           console.log('on go go');
         };
+
+        $scope.loadMore=function(){
+          threeKiller.get({illType: 3}, function (data) {
+            console.log(data);
+              $scope.model = {
+                  knowledge: data.heart_knowledge,
+                  vedio: data.heart_vedio,
+                  cartoon: data.heart_cartoon
+              }
+
+          });
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+        }
 
     }])
     .controller('guanxinbingCtrl', ['$scope', 'threeKiller', '$window', function ($scope, threeKiller, $window) {

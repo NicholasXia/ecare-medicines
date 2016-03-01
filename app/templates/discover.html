@@ -6,11 +6,18 @@
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <div class="list" ng-repeat="item in data | limitTo:5">
-            <a class="card" ng-click="fk(item.id)" style="text-decoration: none;">
-                <div class="item item-avatar">
+            <div class="card"  style="text-decoration: none;">
+                <div class="item item-avatar item-text-wrap">
                     <img ng-src={{item.profileImageUrl}} onerror="this.src='./images/tongxiang.png'"/>
                     <h2>{{item.name}}</h2>
-                    <p class="mtb10">{{item.content}}</p>
+                    <div ng-if='item.showMore==true'>
+                      <p class="mtb10" ng-click="fk(item.id)">{{item.content|limitTo:60}}</p>
+                      <p><a  ng-click="viewAll($event,$index);">查看全部</a></p>
+                    </div>
+                    <div ng-if='item.showMore==false'>
+                      <p class="mtb10" ng-click="fk(item.id)">{{item.content}}</p>
+                    </div>
+
                     <div class="main-wrap">
                         <img class="img-responsive ng-class:{'col25':(item.imageList.length>1)}" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList">
                     </div>
@@ -22,7 +29,7 @@
                         </span>
                     </p>
                 </div>
-            </a>
+            </div>
             <div class="slim clearfix"></div>
         </div>
     </ion-content>
