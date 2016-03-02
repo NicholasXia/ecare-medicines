@@ -414,4 +414,11 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/fk.html"
             })
         $urlRouterProvider.otherwise("/tab/home");
-    })
+    }).run(['$rootScope',function($rootScope){
+      $rootScope.$on('$stateChangeSuccess',
+          function(event, toState, toParams, fromState, fromParams){
+            console.log(toState);
+             _hmt.push(['_trackPageview', toState.url]);
+
+          });
+    }]);
