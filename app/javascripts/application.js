@@ -139,7 +139,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'zhishi-tab': {
                         templateUrl: "templates/zhishi_tab.html",
-                        controller: "guanxinbingCtrl"
+                        controller: "threeKillCtrl"
                     }
                 }
             })
@@ -148,7 +148,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'manhua-tab': {
                         templateUrl: "templates/manhua_tab.html",
-                        controller: "guanxinbingCtrl"
+                        controller: "threeKillCtrl"
                     }
                 }
             })
@@ -157,7 +157,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'shipin-tab': {
                         templateUrl: "templates/shipin_tab.html",
-                        controller: "guanxinbingCtrl"
+                        controller: "threeKillCtrl"
                     }
                 }
             })
@@ -172,7 +172,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'zhishi-tab': {
                         templateUrl: "templates/zhishi_tab.html",
-                        controller: "xinjigengseCtrl"
+                        controller: "threeKillCtrl"
                     }
                 }
             })
@@ -181,7 +181,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'manhua-tab': {
                         templateUrl: "templates/manhua_tab.html",
-                        controller: "xinjigengseCtrl"
+                        controller: "threeKillCtrl"
                     }
                 }
             })
@@ -190,7 +190,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'shipin-tab': {
                         templateUrl: "templates/shipin_tab.html",
-                        controller: "xinjigengseCtrl"
+                        controller: "threeKillCtrl"
                     }
                 }
             })
@@ -204,7 +204,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'zhishi-tab': {
                         templateUrl: "templates/zhishi_tab.html",
-                        controller: "xinlishuaijieCtrl"
+                        controller: "threeKillCtrl"
                     }
                 }
             })
@@ -213,7 +213,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'manhua-tab': {
                         templateUrl: "templates/manhua_tab.html",
-                        controller: "xinlishuaijieCtrl"
+                        controller: "threeKillCtrl"
                     }
                 }
             })
@@ -222,7 +222,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 views: {
                     'shipin-tab': {
                         templateUrl: "templates/shipin_tab.html",
-                        controller: "xinlishuaijieCtrl"
+                        controller: "threeKillCtrl"
                     }
                 }
             })

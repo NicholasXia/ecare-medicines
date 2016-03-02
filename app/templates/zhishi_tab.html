@@ -22,9 +22,9 @@
                 </div>
             </div>
         </ion-list>
-        <ion-infinite-scroll
+        <ion-infinite-scroll ng-if="more==true"
           on-infinite="loadMore()"
-          distance="1%">
+          distance="1%" immediate-check='false'>
         </ion-infinite-scroll>
     </ion-content>
 </ion-view>

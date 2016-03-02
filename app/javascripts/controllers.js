@@ -509,8 +509,24 @@ angular.module('medicine.controllers', [])
 
 
     //
-    .controller('threeKillCtrl', ['$scope', 'threeKiller', '$window', function ($scope, threeKiller,$window) {
-        threeKiller.get({illType: 3}, function (data) {
+    .controller('threeKillCtrl', ['$scope', 'threeKiller', '$window','$location', function ($scope, threeKiller,$window,$location) {
+      var illType=-1;
+      if($location.path().indexOf('threekiller')!=-1){
+        illType=3;
+      }else if ($location.path().indexOf('guanxinbing')!=-1) {
+        illType=4;
+      }else if($location.path().indexOf('xinjigengse')!=-1){
+        illType=5;
+      }else if($location.path().indexOf('xinlishuaijie')!=-1){
+        illType=6;
+      }
+      var page={
+        start:0,
+        limit:5
+      }
+      console.log($location);
+      $scope.more=true;//默认有最多
+        threeKiller.get({illType: illType,start:page.start,limit:page.limit}, function (data) {
             $scope.model = {
                 knowledge: data.heart_knowledge,
                 vedio: data.heart_vedio,
@@ -521,18 +537,48 @@ angular.module('medicine.controllers', [])
         $scope.go=function(){
           console.log('on go go');
         };
+        $scope.hasMore=function(){
+          return true;
+        }
 
         $scope.loadMore=function(){
-          threeKiller.get({illType: 3}, function (data) {
-            console.log(data);
-              $scope.model = {
-                  knowledge: data.heart_knowledge,
-                  vedio: data.heart_vedio,
-                  cartoon: data.heart_cartoon
-              }
+          page.start+=page.limit;
+          threeKiller.get({illType: illType,start:page.start,limit:page.limit}, function (data) {
+            console.log($scope.model.knowledge);
+            console.log(data.heart_knowledge);
+            if(data.heart_knowledge.length>0){
+              data.heart_knowledge.forEach(function(d){
+                $scope.model.knowledge.push(d);
+              });
+            }else{
+              $scope.more=false;
+            }
 
+            if(data.heart_vedio.length>0){
+              data.heart_vedio.forEach(function(d){
+                $scope.model.vedio.push(d);
+              });
+            }else{
+              $scope.more=false;
+            }
+
+            if(data.heart_cartoon.length>0){
+              data.heart_cartoon.forEach(function(d){
+                $scope.model.cartoon.push(d);
+              });
+            }else{
+              $scope.more=false;
+            }
+
+
+              // $scope.model = {
+              //     knowledge: data.heart_knowledge,
+              //     vedio: data.heart_vedio,
+              //     cartoon: data.heart_cartoon
+              // }
+              $scope.$broadcast('scroll.infiniteScrollComplete');
           });
-          $scope.$broadcast('scroll.infiniteScrollComplete');
+
         }
 
     }])

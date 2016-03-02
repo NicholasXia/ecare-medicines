@@ -119,7 +119,7 @@ angular.module('medicine.services', ['ngResource'])
         })
     }])
     .factory('threeKiller', ['$resource', 'SERVER', function ($resource, SERVER) {
-        return $resource(SERVER + '/patient/ill/articles/:illType', {}, {
+        return $resource(SERVER + '/patient/ill/articles/:illType', {start:'@start',limit:'@limit'}, {
             get: {
                 method: 'GET'
             }
