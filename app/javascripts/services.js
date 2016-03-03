@@ -1,5 +1,6 @@
 angular.module('medicine.services', ['ngResource'])
     .constant('CURRENT_USER', 'currentUser')
+    .constant('SHARE_APP','1009643115684')
     .factory('getCarouselList', ['$resource', 'SERVER', function ($resource, SERVER) {
         return $resource(SERVER + '/patient/article/list/:type/:illType', {}, {
             query: {

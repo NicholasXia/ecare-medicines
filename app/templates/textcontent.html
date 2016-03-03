@@ -8,6 +8,10 @@
         <div class="list">
             <div class='item item-text-wrap home'>
                 <h2 class="mtb10">{{data.title}}</h2>
+                <p>
+                  <button ng-click='shareWeibo()'>分享到微博</button>
+              <button ng-click='shareQzone()'>分享到QQ空间</button>
+                </p>
                <!-- <img ng-src="{{data.coverImageUrl}}" class="img-responsive"/>-->
                 <p class='home' ng-bind-html="data.content | trustHtml">
                     {{data.content}}

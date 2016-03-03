@@ -10,6 +10,10 @@
 
                 <!-- <h2 class="mtb10">{{zhishidetail.title}}</h2> -->
                 <!--<img ng-src="{{zhishidetail.coverImageUrl}}" class="img-responsive"/>-->
+                <p>
+                  <button ng-click='shareWeibo()'>分享到微博</button>
+              <button ng-click='shareQzone()'>分享到QQ空间</button>
+                </p>
                 <p class='home' ng-bind-html="zhishidetail.content | trustHtml">
                     {{zhishidetail.content}}
                 </p>

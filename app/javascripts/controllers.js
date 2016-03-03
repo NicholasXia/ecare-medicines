@@ -635,7 +635,7 @@ angular.module('medicine.controllers', [])
     }])
 
 //文章detail
-    .controller('zhishiDetailCtrl', ['articleCollect', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout', function (articleCollect, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout) {
+    .controller('zhishiDetailCtrl', ['articleCollect', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout','SHARE_APP', function (articleCollect, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout,SHARE_APP) {
 
         $scope.saveIt = function () {
             var msg = {
@@ -668,6 +668,18 @@ angular.module('medicine.controllers', [])
 
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.zhishidetail = data
+            mobShare.config({
+              appkey: SHARE_APP,
+              params:{title:data.title}
+            });
+            $scope.shareWeibo=function(){
+              var weibo = mobShare( 'weibo' );
+               weibo.send();
+            }
+            $scope.shareQzone=function(){
+              var qzone = mobShare( 'qzone' );
+              qzone.send();
+            }
             console.log(data)
         })
 
@@ -709,7 +721,7 @@ angular.module('medicine.controllers', [])
         }
     }])
     //
-    .controller('manhuaDetailCtrl', ['articleCollect', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout', function (articleCollect, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout) {
+    .controller('manhuaDetailCtrl', ['articleCollect', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout','SHARE_APP', function (articleCollect, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout,SHARE_APP) {
         $scope.saveIt = function () {
             var msg = {
                 accessToken: currentUser.getAuthToken(),
@@ -739,6 +751,18 @@ angular.module('medicine.controllers', [])
 
         Detail.query({id: $stateParams.id}, function (data) {
             $scope.manhuadetail = data
+            mobShare.config({
+              appkey: SHARE_APP,
+              params:{title:data.title}
+            });
+            $scope.shareWeibo=function(){
+              var weibo = mobShare( 'weibo' );
+               weibo.send();
+            }
+            $scope.shareQzone=function(){
+              var qzone = mobShare( 'qzone' );
+              qzone.send();
+            }
             console.log(data)
         })
 
@@ -774,10 +798,23 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-    .controller('doctorEndTextContentCtrl', ['articleCollect', 'patientRemark', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', function (articleCollect, patientRemark, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup) {
+    .controller('doctorEndTextContentCtrl', ['articleCollect', 'patientRemark', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup','SHARE_APP', function (articleCollect, patientRemark, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup,SHARE_APP) {
 
         Detail.query({id: $stateParams.id},{accessToken: currentUser.getAuthToken()}, function (data) {
             $scope.data = data
+
+            mobShare.config({
+              appkey: SHARE_APP,
+              params:{title:data.title}
+            });
+            $scope.shareWeibo=function(){
+              var weibo = mobShare( 'weibo' );
+               weibo.send();
+            }
+            $scope.shareQzone=function(){
+              var qzone = mobShare( 'qzone' );
+              qzone.send();
+            }
             console.log(data)
         })
         $scope.saveIt = function () {
