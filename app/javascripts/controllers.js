@@ -149,11 +149,15 @@ angular.module('medicine.controllers', [])
     .controller('doctorEndConfirmIdCtrl', ['$scope', function ($scope) {
 
     }])
-    .controller('doctorEndSignInCtrl', ['$scope', '$ionicPopup', 'getVerificationCode', 'createUser', '$timeout', '$window', 'currentUser', function ($scope, $ionicPopup, getVerificationCode, createUser, $timeout, $window, currentUser) {
+    .controller('doctorEndSignInCtrl', ['$scope', '$ionicPopup', 'getVerificationCode', 'createUser', '$timeout', '$window', 'currentUser','$interval', function ($scope, $ionicPopup, getVerificationCode, createUser, $timeout, $window, currentUser,$interval) {
         //用户注册模块
+        console.log('注册controller');
         var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/
         $scope.account = {phoneNum: '', verCode: '', password: ''}
-        $scope.getVerificationCode = function () {
+        $scope.hasSend=false;//没有发送
+        $scope.second=60;//默认60s
+        $scope.getCode = function () {
+            console.log('发送验证码');
             getVerificationCode.query({mobile: $scope.account.phoneNum}, function (data) {
                 if (data.error || $scope.account.phoneNum.length == 0 || $scope.account.phoneNum.length < 11 || !reg.test($scope.account.phoneNum)) {
                     $ionicPopup.alert({
@@ -165,17 +169,29 @@ angular.module('medicine.controllers', [])
                         title: '成功提示',
                         template: '验证码已经发送，请稍后'
                     });
+                    $scope.hasSend=true;//已发送
+                    var timer=$interval(function(){
+                      var _self=this;
+                      if($scope.second==0){
+                        console.log('clear timer');
+                        $interval.cancel(timer);
+                        $scope.hasSend=false;
+                      }
+                      $scope.second=$scope.second-1;
+                    },1000);
                 }
             }
           )
         }
         $scope.signIn = function () {
+          console.log('注册账号');
             var user = {
                 registerType: 2,
                 mobile: $scope.account.phoneNum,
                 password: $scope.account.password,
                 verifycode: $scope.account.verCode
             }
+
             if ($scope.account.verCode.length !== 4 || $scope.account.password.length == 0) {
                 $ionicPopup.alert({
                     title: '提示',
