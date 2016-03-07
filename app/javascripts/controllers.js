@@ -300,9 +300,18 @@ angular.module('medicine.controllers', [])
             } else {
 
             }
+            if($scope.publish.content.length>200){
+              $ionicPopup.alert({
+                     'title':'提示',
+                     'template': '发送的说说不能超过200个字~'
+                 });
+                 return;
+            }
 
             //console.log(currentUser.getAuthToken())
             var formData = new FormData()
+
+
             formData.append('content', $scope.publish.content ? $scope.publish.content : '')
             if (publishphoto) {
                 var len = publishphoto.length
@@ -852,6 +861,13 @@ angular.module('medicine.controllers', [])
                 remark: $scope.markinfo.remak
             }
             if (accesstoken) {
+              if($scope.markinfo.remak.length==0){
+                $ionicPopup.alert({
+                    title: '提示',
+                    template: '对不起，您没填写评论内容'
+                });
+                return ;
+              }
                 Remark.save({}, msg, function (data) {
                     if (data.status == 'suc') {
                         $scope.markinfo.remak = ''
