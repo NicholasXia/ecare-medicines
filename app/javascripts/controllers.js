@@ -65,7 +65,7 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-    .controller('doctorEndDiscoverCtrl', ['$stateParams', 'checkLogin', '$scope', 'discoveryList', '$window', '$ionicPopup', 'currentUser', '$timeout', function ($stateParams, checkLogin, $scope, discoveryList, $window, $ionicPopup, currentUser, $timeout) {
+    .controller('doctorEndDiscoverCtrl', ['$stateParams', 'checkLogin', '$scope', 'discoveryList', '$window', '$ionicPopup', 'currentUser', '$timeout','$ionicScrollDelegate', function ($stateParams, checkLogin, $scope, discoveryList, $window, $ionicPopup, currentUser, $timeout,$ionicScrollDelegate) {
         $scope.ischeck = !!checkLogin.check()
         var page={
           start:0,
@@ -147,9 +147,11 @@ angular.module('medicine.controllers', [])
                 $scope.more=false;
               }
               $scope.$broadcast('scroll.infiniteScrollComplete');
+              $ionicScrollDelegate.scrollBy(0,50);
               console.log($scope.data);
           })
         }
+
     }])
     .controller('doctorEndMineCtrl', ['$scope', 'checkLogin', '$window', '$ionicPopup', 'patientProfile', 'currentUser', 'helper', function ($scope, checkLogin, $window, $ionicPopup, patientProfile, currentUser, helper) {
         $scope.ischeck = !!checkLogin.check()
