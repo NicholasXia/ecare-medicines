@@ -2,16 +2,17 @@
     <ion-header-bar class="bar-balanced">
         <a class="button icon  ion-chevron-left" href="javascript:history.go(-1)"></a>
         <h1 class="title">内容详情</h1>
-        <button class="button ion-plus middle-icon" ng-click="saveIt()"></button>
+        <!-- <button class="button ion-navicon middle-icon" ng-click="saveIt()"></button> -->
+        <button class="button ion-navicon middle-icon" ng-click="showAction()"></button>
     </ion-header-bar>
     <ion-content>
         <div class="list">
             <div class='item item-text-wrap home'>
                 <!-- <h2 class="mtb10">{{data.title}}</h2> -->
-                <p>
+                <!-- <p>
                   <button ng-click='shareWeibo()'>分享到微博</button>
               <button ng-click='shareQzone()'>分享到QQ空间</button>
-                </p>
+                </p> -->
                <!-- <img ng-src="{{data.coverImageUrl}}" class="img-responsive"/>-->
                 <p class='home' ng-bind-html="data.content | trustHtml">
                     {{data.content}}

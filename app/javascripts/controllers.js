@@ -693,8 +693,27 @@ angular.module('medicine.controllers', [])
     }])
 
 //文章detail
-    .controller('zhishiDetailCtrl', ['articleCollect', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout','SHARE_APP', function (articleCollect, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout,SHARE_APP) {
-
+    .controller('zhishiDetailCtrl', ['articleCollect', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout','SHARE_APP','$ionicActionSheet', function (articleCollect, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout,SHARE_APP,$ionicActionSheet) {
+        $scope.showAction=function(){
+          var hideSheet=$ionicActionSheet.show({
+            buttons:[
+              {text:'<b>分享到新浪微博</b>'},
+              {text:'<b>分享到QQ空间</b>'},
+              {text:'<b>收藏</b>'}
+            ],
+            buttonClicked:function(index){
+              if(index==0){
+                $scope.shareWeibo();
+              }else if(index==1){
+                $scope.shareQzone();
+              }else if(index==2){
+                $scope.saveIt();
+              }
+              return true;
+            },
+            cancelText:'关闭'
+          });
+        }
         $scope.saveIt = function () {
             var msg = {
                 accessToken: currentUser.getAuthToken(),
@@ -779,7 +798,27 @@ angular.module('medicine.controllers', [])
         }
     }])
     //
-    .controller('manhuaDetailCtrl', ['articleCollect', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout','SHARE_APP', function (articleCollect, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout,SHARE_APP) {
+    .controller('manhuaDetailCtrl', ['articleCollect', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout','SHARE_APP','$ionicActionSheet', function (articleCollect, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout,SHARE_APP,$ionicActionSheet) {
+      $scope.showAction=function(){
+        var hideSheet=$ionicActionSheet.show({
+          buttons:[
+            {text:'<b>分享到新浪微博</b>'},
+            {text:'<b>分享到QQ空间</b>'},
+            {text:'<b>收藏</b>'}
+          ],
+          buttonClicked:function(index){
+            if(index==0){
+              $scope.shareWeibo();
+            }else if(index==1){
+              $scope.shareQzone();
+            }else if(index==2){
+              $scope.saveIt();
+            }
+            return true;
+          },
+          cancelText:'关闭'
+        });
+      }
         $scope.saveIt = function () {
             var msg = {
                 accessToken: currentUser.getAuthToken(),
@@ -856,7 +895,7 @@ angular.module('medicine.controllers', [])
         }
     }])
 
-    .controller('doctorEndTextContentCtrl', ['articleCollect', 'patientRemark', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup','SHARE_APP', function (articleCollect, patientRemark, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup,SHARE_APP) {
+    .controller('doctorEndTextContentCtrl', ['articleCollect', 'patientRemark', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup','SHARE_APP','$ionicActionSheet', function (articleCollect, patientRemark, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup,SHARE_APP,$ionicActionSheet) {
 
         Detail.query({id: $stateParams.id},{accessToken: currentUser.getAuthToken()}, function (data) {
             $scope.data = data
@@ -875,6 +914,27 @@ angular.module('medicine.controllers', [])
             }
             console.log(data)
         })
+
+        $scope.showAction=function(){
+          var hideSheet=$ionicActionSheet.show({
+            buttons:[
+              {text:'<b>分享到新浪微博</b>'},
+              {text:'<b>分享到QQ空间</b>'},
+              {text:'<b>收藏</b>'}
+            ],
+            buttonClicked:function(index){
+              if(index==0){
+                $scope.shareWeibo();
+              }else if(index==1){
+                $scope.shareQzone();
+              }else if(index==2){
+                $scope.saveIt();
+              }
+              return true;
+            },
+            cancelText:'关闭'
+          });
+        }
         $scope.saveIt = function () {
             var msg = {
                 accessToken: currentUser.getAuthToken(),
