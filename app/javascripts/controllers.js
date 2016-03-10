@@ -67,7 +67,13 @@ angular.module('medicine.controllers', [])
 
     .controller('doctorEndDiscoverCtrl', ['$stateParams', 'checkLogin', '$scope', 'discoveryList', '$window', '$ionicPopup', 'currentUser', '$timeout', function ($stateParams, checkLogin, $scope, discoveryList, $window, $ionicPopup, currentUser, $timeout) {
         $scope.ischeck = !!checkLogin.check()
-        discoveryList.query({accessToken: currentUser.getAuthToken()}, function (data) {
+        var page={
+          start:0,
+          limit:5
+        }
+        $scope.more=true;//默认有最多
+
+        discoveryList.query({accessToken: currentUser.getAuthToken(),start:page.start,limit:page.limit}, function (data) {
             var dataAry=[];
             data.forEach(function(d){
               if(d.content&&d.content.length>60){//超过50个字儿
@@ -116,6 +122,33 @@ angular.module('medicine.controllers', [])
                     $window.location.href = '#/signup'
                 }, 3000)
             }
+        }
+
+        $scope.loadMore=function(){
+          page.start+=page.limit;
+          discoveryList.query({accessToken: currentUser.getAuthToken(),start:page.start,limit:page.limit}, function (data) {
+              var dataAry=[];
+              data.forEach(function(d){
+                if(d.content&&d.content.length>60){//超过50个字儿
+                   console.log(d.content.length);
+                    d.showMore=true;
+                }else{
+                    d.showMore=false;
+                }
+                dataAry.push(d);
+              });
+              console.log(dataAry);
+              if(dataAry.length>0){
+                dataAry.forEach(function(d){
+                  $scope.data.push(d);
+                });
+
+              }else{
+                $scope.more=false;
+              }
+              $scope.$broadcast('scroll.infiniteScrollComplete');
+              console.log($scope.data);
+          })
         }
     }])
     .controller('doctorEndMineCtrl', ['$scope', 'checkLogin', '$window', '$ionicPopup', 'patientProfile', 'currentUser', 'helper', function ($scope, checkLogin, $window, $ionicPopup, patientProfile, currentUser, helper) {

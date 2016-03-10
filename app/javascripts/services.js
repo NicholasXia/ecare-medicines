@@ -168,7 +168,7 @@ angular.module('medicine.services', ['ngResource'])
         })
     }])
     .factory('discoveryList', ['$resource', 'SERVER', function ($resource, SERVER) {
-        return $resource(SERVER + '/patient/discovery/list', {}, {
+        return $resource(SERVER + '/patient/discovery/list', {start:'@start',limit:'@limit'}, {
             query: {
                 method: 'GET',
                 isArray: true

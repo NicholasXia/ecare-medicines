@@ -1,15 +1,15 @@
-<ion-view view-title="医生列表-乐柏健康" cache-view="false">
+<ion-view view-title="心视频-乐柏健康" cache-view="false">
     <ion-header-bar class="bar-balanced">
-        <h1 class="title">医生列表</h1>
+        <h1 class="title">心视频</h1>
     </ion-header-bar>
     <ion-content has-bouncing="true">
         <!--ui-sref="manhuadetail({id:item.id})"-->
-        <div class="list" ng-repeat="item in model.vedio" ng-click="go(item)">
+        <div class="list" ng-repeat="item in model.vedio" >
             <a class="item item-thumbnail-right" ng-href={{item.linkUrl}}>
                 <img ng-src={{item.coverImageUrl}}/>
                 <h2 class="mtb10">{{item.title}}</h2>
 
-                <p ng-bind-html="item.content">{{item.content}}</p>
+                <!-- <p ng-bind-html="item.content">{{item.content}}</p> -->
 
                 <p>{{item.postTime}}</p>
             </a>
