@@ -317,12 +317,6 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 controller: "doctorEndDoctorDataCtrl"
             })
 
-
-
-
-
-
-
             .state('discoverdetail', {
                 url: "/discoverdetail/:id",
                 templateUrl: "templates/discover_detail.html",
@@ -333,11 +327,6 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 templateUrl: "templates/discover_detail.html",
                 controller: "doctorEndDiscoverDetailvCtrl"
             })
-
-
-
-
-
 
             .state('discoverpost', {
                 url: "/discoverpost",
@@ -413,6 +402,10 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
                 url: "/fkshow",
                 templateUrl: "templates/fk.html"
             })
+            .state('xinyuan',{
+              url:"/xinyuan",
+              templateUrl:"templates/xinyuan.html"
+            });
         $urlRouterProvider.otherwise("/tab/home");
     }).run(['$rootScope',function($rootScope){
       $rootScope.$on('$stateChangeSuccess',
