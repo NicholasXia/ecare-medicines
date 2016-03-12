@@ -147,7 +147,7 @@ angular.module('medicine.controllers', [])
                 $scope.more=false;
               }
               $scope.$broadcast('scroll.infiniteScrollComplete');
-              $ionicScrollDelegate.scrollBy(0,50);
+              $ionicScrollDelegate.resize();
               console.log($scope.data);
           })
         }
@@ -241,6 +241,7 @@ angular.module('medicine.controllers', [])
                         'template' : data.error
                     })
                 }
+                return
                 currentUser.setAuthToken(data.accessToken)
                 var popup = $ionicPopup.alert({
                     title: '注册成功',
