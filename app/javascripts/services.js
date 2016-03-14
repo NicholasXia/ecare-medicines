@@ -376,6 +376,16 @@ angular.module('medicine.services', ['ngResource'])
             }
         })
     }])
+    .factory('wish',['$resource','SERVER',function($resource, SERVER){
+        return $resource(SERVER + '/patient/wish',{
+            accessToken: "@accessToken",
+            content:"@content"
+        },{
+            save:{
+                method: 'POST'
+            }
+        })
+    }])
     .factory('helper',function($ionicPopup){
         var helperObj = {}
         helperObj.fkmsg = function(){
@@ -386,3 +396,21 @@ angular.module('medicine.services', ['ngResource'])
         }
         return helperObj
     })
+    .factory('mywish',['$http','SERVER',function($http,SERVER){
+      var fa={};
+      fa.getMyWish=function(params,cb){
+        $http({method:'GET',params:params,url:SERVER+'/patient/wishlist'}).then(function success(res){
+          return cb(null,res.data);
+        },function error(){
+          return cb(res.status,null);//ERROR
+        });
+      }
+      fa.getSuggest=function(params,cb){
+        $http({method:'GET',params:params,url:SERVER+'/patient/suggestwish'}).then(function success(res){
+          return cb(null,res.data);
+        },function error(){
+          return cb(res.status,null);//ERROR
+        });
+      }
+      return fa;
+    }]);

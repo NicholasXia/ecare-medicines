@@ -1,0 +1,36 @@
+<ion-view class="xinyuan" view-title="我的心愿" cache-view="false">
+  <ion-header-bar class="bar-balanced">
+    <a class="button icon ion-chevron-left" href="javascript:history.go(-1)"></a>
+    <h1 class="title">我的心愿</h1>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <div class="list card" ng-repeat="item in wishes">
+
+      <div class="item item-avatar">
+        <img src={{item.patientProfileImageUrl}}>
+        <h2>{{item.patientName}}</h2>
+        <p>{{item.postTime}}</p>
+        <p class="xinyuanTag" ng-if="item.isComeTrue==1">
+          <span >心愿成真</span>
+        </p>
+      </div>
+
+      <div class="item item-body">
+        <p>
+          {{item.wishContent}}
+        </p>
+
+        <p class="xinyuanRemark" ng-repeat="remark in item.wishRemarkList"
+          style="overflow:hidden;background-color:green;color:white;padding:10px 10px;border-radius:10px">
+          回复
+          <br/>
+          {{remark.remark}}
+          <br/>
+          <span style="float:right">{{remark.remarkTime}}</span>
+        </p>
+
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

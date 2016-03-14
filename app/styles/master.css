@@ -1,519 +1,461 @@
 /***********************helper start***************************/
+
 .fl {
-    float: left;
+  float: left;
 }
-
 .fr {
-    float: right;
+  float: right;
 }
-
 .mt {
-    margin-top: 15px;
+  margin-top: 15px;
 }
-
 .border {
-    border: 1px solid #ddd;
-    padding: 15px;
+  border: 1px solid #ddd;
+  padding: 15px;
 }
-
 .mb {
-    margin-bottom: 35px;
+  margin-bottom: 35px;
 }
-
 .item .text-indent {
-    text-indent: 30px;
+  text-indent: 30px;
 }
-
 .small {
-    background-color: #d56495;
-    color: #eee;
-    float: right;
-    padding: 1px 3px;
+  background-color: #d56495;
+  color: #eee;
+  float: right;
+  padding: 1px 3px;
 }
-
 .gray {
-    color: #999;
+  color: #999;
 }
-
 .matches {
-    border-left: 3px solid #28a54c;
-    padding-left: 9px;
+  border-left: 3px solid #28a54c;
+  padding-left: 9px;
 }
-
 .highlight {
-    color: #d56495;
+  color: #d56495;
 }
-
 .init {
-    overflow: visible !important;
-    text-overflow: clip !important;
-    white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
 }
-
 .wishes {
-    background-color: aliceblue;
+  background-color: aliceblue;
 }
-
 .textarea {
-    width: 100%;
-    height: 200px;
-    border: 1px solid #ddd;
+  width: 100%;
+  height: 200px;
+  border: 1px solid #ddd;
 }
-
 .mt20n {
-    margin-top: -20px;
+  margin-top: -20px;
 }
-
 .ml20 {
-   margin-left: 20px;
+  margin-left: 20px;
 }
-
 .mr20 {
-    margin-right: 20px;
+  margin-right: 20px;
 }
-
 .fullborder {
-    margin: 0 -15px;
+  margin: 0 -15px;
 }
 .mt15n {
-    margin-top: -15px;
-    margin-left: -15px;
-    margin-right: -15px;
-    margin-bottom: 0;
+  margin-top: -15px;
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-bottom: 0;
 }
-
 .mt50 {
-    margin-top: 50px;
+  margin-top: 50px;
 }
-
 .mtb10 {
-    margin-top: 10px !important;
-    margin-bottom: 10px !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
 }
-
 .mtb5 {
-    margin-top: 5px !important;
-    margin-bottom: 5px !important;
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
 }
-
 .borderbgray {
-    border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
-
 .slim {
-    border-bottom: 2px solid #ddd !important;
+  border-bottom: 2px solid #ddd !important;
 }
-
 .slim1 {
-    height: 3px !important;
-    background-color: #ddd !important;
+  height: 3px !important;
+  background-color: #ddd !important;
 }
 .verticalmd {
-    vertical-align: middle !important;
+  vertical-align: middle !important;
 }
 .verticalbt {
-    vertical-align: bottom;
+  vertical-align: bottom;
 }
-
 .img-responsive {
-    display: block;
-    max-width: 100%;
-    height: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
-
-.divider{
-    height:20px;
-    background-color: #ddd;
+.divider {
+  height: 20px;
+  background-color: #ddd;
 }
-
 .hidden {
-    overflow: hidden !important;
+  overflow: hidden !important;
 }
-
 .basefont {
-    font-size: 16px !important;
+  font-size: 16px !important;
 }
-
 .round {
-    border-radius: 50%;
+  border-radius: 50%;
 }
-
 .middle-icon {
-    font-size: 25px !important;
+  font-size: 25px !important;
 }
-
 .fix-footer {
-    margin-bottom: 50px !important;
+  margin-bottom: 50px !important;
 }
-
 #core-three p {
-    line-height: 16px;
-    padding-bottom: 10px;
+  line-height: 16px;
+  padding-bottom: 10px;
 }
-
 #core-three img {
-    padding-top: 10px;
-    height: 64px;
-    width: 54px;
+  padding-top: 10px;
+  height: 64px;
+  width: 54px;
 }
-
 #tabs-top > div {
-    top: 44px;
+  top: 44px;
 }
-
 #tabs-top > .tab-nav.tabs {
-    background-color: rgba(40, 165, 76, .3);
-    color: #999;
+  background-color: rgba(40, 165, 76, .3);
+  color: #999;
 }
-
 #personalData {
-    position: relative;
+  position: relative;
 }
-
 #personalData span, #personalData select, #personalData input {
-    position: absolute;
-    left: 100px;
-    padding: 0;
+  position: absolute;
+  left: 100px;
+  padding: 0;
 }
-
 .fix-tab > div.list {
-    margin-top: 49px;
+  margin-top: 49px;
 }
-
 .rightarrow {
-    font-size: 30px;
-    top: 42%;
-    right: 5%;
-    position: absolute;
-    color: #f6f6f6;
-    height: 60px;
-    width: 60px;
-    text-align: center;
+  font-size: 30px;
+  top: 42%;
+  right: 5%;
+  position: absolute;
+  color: #f6f6f6;
+  height: 60px;
+  width: 60px;
+  text-align: center;
 }
-
 .noborder {
-    border: none;
+  border: none;
 }
-
 .inputfile {
-    /*width: 0.1px;height: 0.1px;*/
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: 99;
+  /*width: 0.1px;height: 0.1px;*/
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: 99;
 }
-
 .inputfile + label {
-    font-size: 1.25em;
-    font-weight: 700;
-    display: inline-block;
-    background-image: url("../images/xiangji.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 30px;
-    width: 100%;
+  font-size: 1.25em;
+  font-weight: 700;
+  display: inline-block;
+  background-image: url("../images/xiangji.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 30px;
+  width: 100%;
 }
-
-.inputfile:focus + label,
-.inputfile + label:hover {
-    background-color: red;
+.inputfile:focus + label, .inputfile + label:hover {
+  background-color: red;
 }
-
 .centerfm {
-    /*position: absolute;*/
-    left: 50%;
-    top: 50%;
-    /*transform: translate(-50%, -50%);*/
-    text-align: center;
+  /*position: absolute;*/
+  left: 50%;
+  top: 50%;
+  /*transform: translate(-50%, -50%);*/
+  text-align: center;
 }
-
 .centerfm p {
-    margin: 0;
-    text-align: center;
-    color: #f6f6f6;
+  margin: 0;
+  text-align: center;
+  color: #f6f6f6;
 }
-
 .fk-side {
-    position: absolute;
-    right: 5px;
+  position: absolute;
+  right: 5px;
 }
 
 /***********************helper end*****************************/
 
+
 /**************fix ionic start******************/
+
 .flex-wrap {
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 }
-
 .no-padding {
-    padding: 0 !important;
+  padding: 0 !important;
 }
-
 .full-card {
-    margin: 20px 0;
+  margin: 20px 0;
 }
-
 .relative {
-    position: relative;
+  position: relative;
 }
-
 .beyond-head {
-    margin-top: 50px;
+  margin-top: 50px;
 }
-
 #jgg {
-    margin-top: 15px;
-    color: #999;
+  margin-top: 15px;
+  color: #999;
 }
-
 #jgg > div {
-    border: 1px solid #f6f6f6;
-    padding: 15px;
+  border: 1px solid #f6f6f6;
+  padding: 15px;
 }
-
 #jgg h4 {
-    margin: 0;
+  margin: 0;
 }
-
 #jgg a {
-    text-decoration: none;
-    color: #999;
+  text-decoration: none;
+  color: #999;
 }
 
 /**************fix ionic end******************/
 
+
 /**************ui ionic start******************/
+
 .imax {
-    height: 200px;
-    background-image: url("../images/dabeijing.png");
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background-size: 100% 100%;
-    position: relative;
+  height: 200px;
+  background-image: url("../images/dabeijing.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 100% 100%;
+  position: relative;
 }
-
 .imax .imax-inwrap {
-    position: absolute;
-    left: 50px;
-    bottom: 60px;
+  position: absolute;
+  left: 50px;
+  bottom: 60px;
 }
-
 .imax .goorin {
-    color: #f6f6f6;
-    text-align: center;
-    border: 1px solid #f6f6f6;
-    border-radius: 3px;
+  color: #f6f6f6;
+  text-align: center;
+  border: 1px solid #f6f6f6;
+  border-radius: 3px;
 }
-
 .goorin a {
-    display: inline-block;
-    line-height: 32px;
-    height: 32px;
-    text-decoration: none;
-    color: #fff;
+  display: inline-block;
+  line-height: 32px;
+  height: 32px;
+  text-decoration: none;
+  color: #fff;
 }
-
 .imax .hide-world {
-    color: #f6f6f6;
+  color: #f6f6f6;
 }
-
 .imax.doctorimax {
-    background-image: url("../images/yishengbeijing.png");
-    height: 250px;
+  background-image: url("../images/yishengbeijing.png");
+  height: 250px;
 }
-
 #logined img {
-    position: absolute;
-    left: 15px;
-    bottom: 70px;
+  position: absolute;
+  left: 15px;
+  bottom: 70px;
+}
+#logined span {
+  position: absolute;
+  bottom: 75px;
+  font-size: 18px;
+  font-weight: bold;
+  left: 85px;
+  color: #666;
 }
 
-#logined span {
-    position: absolute;
-    bottom: 75px;
-    font-size: 18px;
-    font-weight: bold;
-    left: 85px;
-    color: #666;
-}
 /**************ui ionic end******************/
 
+
 /**************** index ****************/
+
 .pl {
-    padding-left: 80px;
-    height: 90px;
-    line-height: 58px;
+  padding-left: 80px;
+  height: 90px;
+  line-height: 58px;
 }
-
 .white {
-    background-color: #fff !important;
+  background-color: #fff !important;
 }
-
 .card_h {
-    padding-left: 18px;
-    min-height: 54px;
+  padding-left: 18px;
+  min-height: 54px;
 }
-
 .card_h > h2 {
-    border-left: 3px solid #28a54c;
-    padding-left: 6px
+  border-left: 3px solid #28a54c;
+  padding-left: 6px
 }
-
 .textL {
-    text-align: left;
+  text-align: left;
 }
-
 .textR {
-    text-align: right;
+  text-align: right;
 }
-
 .height100 {
-    height: 110px;
+  height: 110px;
 }
 .pd {
-    padding-left: 16px;
+  padding-left: 16px;
 }
-
 .mg {
-    margin-top: 49px;
+  margin-top: 49px;
 }
-
 .doc_LR {
-    position: relative;
-    min-height: 25px;
+  position: relative;
+  min-height: 25px;
 }
-
 .pos_R {
-    position: absolute;
-    top: 0;
-    right: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
-
 .pos_R > i {
-    display: inline-block !important;
+  display: inline-block !important;
 }
-
 .pos_R > span {
-    font-size: 1.2em !important;
+  font-size: 1.2em !important;
 }
 
 /**************** index ****************/
 
-
-.home img{
-    width:100%;
+.home img {
+  width: 100%;
 }
-.icon-size{
-    font-size: 30px;
+.icon-size {
+  font-size: 30px;
 }
-
-
 .main-wrap {
-   overflow: hidden;
+  overflow: hidden;
 }
 .main-wrap div.col33 {
-    width: 33%;
-    float: left;
-    text-align: center;
+  width: 33%;
+  float: left;
+  text-align: center;
 }
 .main-wrap img.col25 {
-    display: inline-block;
-    padding: 5px;
-    height:64px;
-    width:64px;
-    float: left;
-    text-align: center;
+  display: inline-block;
+  padding: 5px;
+  height: 64px;
+  width: 64px;
+  float: left;
+  text-align: center;
 }
 .mian-wrap div.col50 {
-    width: 50%;
-    float: left;
-    text-align: center;
+  width: 50%;
+  float: left;
+  text-align: center;
 }
 
 /*************** chart ****************/
 
 #mock .scroll {
-    padding: 10px 0 50px !important;
+  padding: 10px 0 50px !important;
 }
-
 #mock .messages {
-    display: -webkit-box !important;
-    display: -moz-box !important;
-    display: -ms-flexbox !important;
-    display: -webkit-flex !important;
-    display: flex !important;
-    -webkit-align-content: center !important;
-    -ms-flex-line-pack: center !important;
-    align-content: center !important;
-    -webkit-box-align: center !important;
-    -moz-box-align: center !important;
-    -webkit-align-items: center !important;
-    -ms-flex-align: center !important;
-    align-items: center !important;
-    margin-bottom: 20px !important;
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-align-content: center !important;
+  -ms-flex-line-pack: center !important;
+  align-content: center !important;
+  -webkit-box-align: center !important;
+  -moz-box-align: center !important;
+  -webkit-align-items: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  margin-bottom: 20px !important;
 }
 #mock .messages .message {
-    -webkit-box-flex: 1 !important;
-    -moz-box-flex: 1 !important;
-    -webkit-flex: 1 1 auto !important;
-    -ms-flex: 1 1 auto !important;
-    flex: 1 1 auto !important;
-    padding: 10px !important;
-    -webkit-transition: all 250ms ease-in-out !important;
-    transition: all 250ms ease-in-out !important;
-    overflow: hidden !important;
-    text-align: left !important;
-    -webkit-transform: translate3d(0, 0, 0) !important;
-    -moz-transform: translate3d(0, 0, 0) !important;
-    transform: translate3d(0, 0, 0) !important;
+  -webkit-box-flex: 1 !important;
+  -moz-box-flex: 1 !important;
+  -webkit-flex: 1 1 auto !important;
+  -ms-flex: 1 1 auto !important;
+  flex: 1 1 auto !important;
+  padding: 10px !important;
+  -webkit-transition: all 250ms ease-in-out !important;
+  transition: all 250ms ease-in-out !important;
+  overflow: hidden !important;
+  text-align: left !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  -moz-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
 }
-
 #mock .time {
-    -webkit-box-flex: 0 !important;
-    -moz-box-flex: 0 !important;
-    -webkit-flex: 0 1 auto !important;
-    -ms-flex: 0 1 auto !important;
-    flex: 0 1 auto !important;
-    -webkit-align-self: auto !important;
-    -ms-flex-item-align: auto !important;
-    align-self: auto !important;
-    width: 120px !important;
-    text-align: center !important;
-    padding: 0 0 0 0 !important;
-    -webkit-transition: all 250ms ease-in-out !important;
-    transition: all 250ms ease-in-out !important;
-    -webkit-transform: translate3d(10px, 0, 0) !important;
-    -moz-transform: translate3d(10px, 0, 0) !important;
-    transform: translate3d(10px, 0, 0) !important;
+  -webkit-box-flex: 0 !important;
+  -moz-box-flex: 0 !important;
+  -webkit-flex: 0 1 auto !important;
+  -ms-flex: 0 1 auto !important;
+  flex: 0 1 auto !important;
+  -webkit-align-self: auto !important;
+  -ms-flex-item-align: auto !important;
+  align-self: auto !important;
+  width: 120px !important;
+  text-align: center !important;
+  padding: 0 0 0 0 !important;
+  -webkit-transition: all 250ms ease-in-out !important;
+  transition: all 250ms ease-in-out !important;
+  -webkit-transform: translate3d(10px, 0, 0) !important;
+  -moz-transform: translate3d(10px, 0, 0) !important;
+  transform: translate3d(10px, 0, 0) !important;
 }
 #mock .time.slide-right {
-    -webkit-transform: translate3d(130px, 0, 0) !important;
-    -moz-transform: translate3d(130px, 0, 0) !important;
-    transform: translate3d(130px, 0, 0) !important;
+  -webkit-transform: translate3d(130px, 0, 0) !important;
+  -moz-transform: translate3d(130px, 0, 0) !important;
+  transform: translate3d(130px, 0, 0) !important;
 }
-
 #mock .messages.other .message {
-    -webkit-transform: translate3d(0, 0, 0) !important;
-    -moz-transform: translate3d(0, 0, 0) !important;
-    transform: translate3d(0, 0, 0) !important;
-    text-align: right !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  -moz-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+  text-align: right !important;
 }
 #mock .messages.other .message.slide-right {
-    -webkit-transform: translate3d(120px, 0, 0) !important;
-    -moz-transform: translate3d(120px, 0, 0) !important;
-    transform: translate3d(120px, 0, 0) !important;
+  -webkit-transform: translate3d(120px, 0, 0) !important;
+  -moz-transform: translate3d(120px, 0, 0) !important;
+  transform: translate3d(120px, 0, 0) !important;
 }
 #mock .messages.other span {
-    color: black !important;
-    background-color: #C7C7CC !important;
+  color: black !important;
+  background-color: #C7C7CC !important;
+}
+#mock span {
+  background: #007AFF !important;
+  display: inline-block !important;
+  color: white !important;
+  padding: 10px !important;
+  border-radius: 10px !important;
+  text-align: left !important;
+  max-width: 240px !important;
 }
 
-#mock span {
-    background: #007AFF !important;
-    display: inline-block !important;
-    color: white !important;
-    padding: 10px !important;
-    border-radius: 10px !important;
-    text-align: left !important;
-    max-width: 240px !important;
+/* 心愿墙 */
+
+.xinyuanTag span{
+  color: white;
+  background-color: #d56495;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 25px;
+  padding: 5px 10px;
 }

@@ -1,42 +1,27 @@
 <ion-view title="心愿墙-乐柏健康" cache-view="false" hide-nav-bar="isNavBarHide">
-    <ion-header-bar class="bar-balanced">
-        <h1 class="title">心愿墙</h1>
-        <button class="button">许愿</button>
-    </ion-header-bar>
-    <ion-content has-bouncing="true">
-        <!--心愿列表 start-->
-        <ion-list class="list">
-            <ion-item class="item item-avatar" href="#">
-                <img src=images/2.jpg" alt=""/>
+  <ion-header-bar class="bar-balanced">
+    <a class="button icon  ion-chevron-left" href="javascript:history.go(-1)"></a>
+    <h1 class="title">心愿墙</h1>
+    <!-- <button class="button ion-navicon middle-icon" ng-click="saveIt()"></button> -->
+    <button class="button" ng-click="showAction()">许愿</button>
+  </ion-header-bar>
+  <ion-content has-bouncing="true">
+    <!--心愿列表 start-->
+    <ion-list class="list">
+      <ion-item class="item item-avatar" href="#/wishwall" ng-repeat='wish in wishes'>
+          <img src="{{wish.patientProfileImageUrl}}" alt="用户头像"/>
 
-                <div class="wish-head">
-                    <span>文章标题</span>
-                    <span class="small fr">心愿成真</span>
-                </div>
-                <p class="init">
-                    文章内容文章内容
-                    文章内容文章内容
-                    文章内容文章内容
-                </p>
+          <div>
+              <span>{{wish.patientName}}</span>
+              <span class="small">心愿成真</span>
+          </div>
+          <p class="init">
+              {{wish.content}}
+          </p>
 
-                <p class="fr">2015年10月20号</p>
-            </ion-item>
+          <p class="text-right">{{wish.postTime}}</p>
+      </ion-item>
 
-            <ion-item class="item item-avatar" href="#">
-                <img src=images/2.jpg" alt=""/>
-
-                <div class="wish-head">
-                    <span>文章标题</span>
-                    <span class="small fr">心愿成真</span>
-                </div>
-                <p class="init">
-                    文章内容文章内容
-                    文章内容文章内容
-                    文章内容文章内容
-                </p>
-
-                <p class="fr">2015年10月20号</p>
-            </ion-item>
         </ion-list>
         <!--心愿列表 end-->
     </ion-content>

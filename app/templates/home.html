@@ -64,7 +64,7 @@
                 </div>
                 <p><span class="highlight">回复:</span><span>{{item.toChat}}</span></p>
             </ion-item>
-        </div>
+
         <!--回复方式二 涉及到心愿墙，一期不做-->
 
         <ion-item class="item item-avatar" ng-repeat="item in newRemark | limitTo:3" ui-sref="discoverdetailv({id:item.id, remarkId:item.remarkList[$index].remarkId})">
@@ -87,27 +87,29 @@
                 </span>
             </p>
         </ion-item>
-        <!--  </ion-list>-->
+         </ion-list>
+         </div>
         <!--心愿墙 start 二期内容暂时隐藏-->
-        <!--  <ion-list class="list" ng-if="false">
+      <ion-list class="list" >
               <ion-item class="item item-divider">
                   <span class="matches">心愿墙</span>
               </ion-item>
-              <ion-item class="item item-avatar" href="#/wishwall">
-                  <img src="images/tongxiang.png" alt="用户头像"/>
+              <ion-item class="item item-avatar" href="#/wishwall" ng-repeat='wish in wishes'>
+                  <img src="{{wish.patientProfileImageUrl}}" alt="用户头像"/>
 
                   <div>
-                      <span>用户姓名</span>
+                      <span>{{wish.patientName}}</span>
                       <span class="small">心愿成真</span>
                   </div>
                   <p class="init">
-                      祝您平安喜乐祝您平安喜乐
+                      {{wish.content}}
                   </p>
 
-                  <p class="text-right">2015年12月20日</p>
+                  <p class="text-right">{{wish.postTime}}</p>
               </ion-item>
-        <!--心愿墙 end-->
+
         </ion-list>
+          <!--心愿墙 end-->
 
         <!--养心讲堂 start-->
         <div class="divider" ng-if="isLogin"></div>
