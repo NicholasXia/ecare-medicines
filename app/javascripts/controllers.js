@@ -6,10 +6,14 @@ angular.module('medicine.controllers', [])
     }, function(data) {
       $scope.data = data
     })
+    $scope.isWish=false;
     $scope.wishes=[];
     mywish.getSuggest({limit: 3},function(err,data){
       if(err){return;}
         $scope.wishes=data;
+        if(data.length>0){
+          $scope.isWish=true;
+        }
         console.log('my wishes ',data);
     });
 
