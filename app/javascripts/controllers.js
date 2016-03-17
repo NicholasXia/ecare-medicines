@@ -1494,7 +1494,9 @@ angular.module('medicine.controllers', [])
   }])
   .controller('xinyuanCtrl', ['$scope', '$window', 'currentUser', '$ionicPopup','$timeout','patientProfile', function($scope, $window, currentUser, $ionicPopup,$timeout,patientProfile) {
     var isLogin = currentUser.hasAuthToken();
+    console.log("xinyuanCtrl");
     $scope.help = function() {
+      console.log("xinyuanCtrl.help");
       $window.location.href = '#/xinyuan_help'
     }
     $scope.fabu = function() {
