@@ -401,13 +401,16 @@ angular.module('medicine.controllers', [])
       } else {
 
       }
-      if ($scope.publish.content.length > 200) {
-        $ionicPopup.alert({
-          'title': '提示',
-          'template': '发送的说说不能超过200个字~'
-        });
-        return;
+      if($scope.publish.content){
+        if ($scope.publish.content.length > 200) {
+          $ionicPopup.alert({
+            'title': '提示',
+            'template': '发送的说说不能超过200个字~'
+          });
+          return;
+        }
       }
+
 
       //console.log(currentUser.getAuthToken())
       var formData = new FormData()

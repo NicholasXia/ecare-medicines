@@ -420,6 +420,10 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
       url:"/xinyuan_wode",
       templateUrl:"templates/xinyuan_wode.html",
       controller:"xinyuanWodeCtrl"
+    })
+    .state('about',{
+      url:"/about",
+      templateUrl:"templates/about.html"
     });
   $urlRouterProvider.otherwise("/tab/home");
 }).run(['$rootScope', function($rootScope) {
