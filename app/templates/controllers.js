@@ -401,16 +401,13 @@ angular.module('medicine.controllers', [])
       } else {
 
       }
-      if($scope.publish.content){
-        if ($scope.publish.content.length > 200) {
-          $ionicPopup.alert({
-            'title': '提示',
-            'template': '发送的说说不能超过200个字~'
-          });
-          return;
-        }
+      if ($scope.publish.content.length > 200) {
+        $ionicPopup.alert({
+          'title': '提示',
+          'template': '发送的说说不能超过200个字~'
+        });
+        return;
       }
-
 
       //console.log(currentUser.getAuthToken())
       var formData = new FormData()
@@ -683,13 +680,8 @@ angular.module('medicine.controllers', [])
       }
       console.log($scope.model);
     });
-    $scope.go = function(item) {
-      if(item.linkType==2){//外链
-        $window.location.href=item.linkUrl;
-      }else if(item.linkType==1){
-        $window.location.href="#/zhishidetail/"+item.id;
-      }
-      console.log(item);
+    $scope.go = function() {
+      console.log('on go go');
     };
     $scope.hasMore = function() {
       return true;
@@ -915,7 +907,6 @@ angular.module('medicine.controllers', [])
   }])
   //
   .controller('manhuaDetailCtrl', ['articleCollect', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout', 'SHARE_APP', '$ionicActionSheet', function(articleCollect, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout, SHARE_APP, $ionicActionSheet) {
-
     $scope.showAction = function() {
       var hideSheet = $ionicActionSheet.show({
         buttons: [{

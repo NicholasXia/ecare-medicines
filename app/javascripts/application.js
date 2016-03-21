@@ -424,6 +424,10 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
     .state('about',{
       url:"/about",
       templateUrl:"templates/about.html"
+    })
+    .state('mianze',{
+      url:"/mianze",
+      templateUrl:"templates/mianze.html"
     });
   $urlRouterProvider.otherwise("/tab/home");
 }).run(['$rootScope', function($rootScope) {

@@ -1,7 +1,8 @@
-<ion-view view-title="医生列表-乐柏健康" cache-view="false">
+<ion-view view-title="漫画列表-乐柏健康" cache-view="false">
     <ion-content has-bouncing="true">
-        <div class="list" ng-repeat="item in model.cartoon"  ui-sref="manhuadetail({id:item.id})">
-            <div class="item">
+       <!-- ui-sref="manhuadetail({id:item.id})" -->
+        <div class="list" ng-repeat="item in model.cartoon" >
+            <div class="item" ng-click="go(item)">
                 <h2 class="mtb10">{{item.title}}</h2>
                 <img class="img-responsive" width='100%' ng-src={{item.coverImageUrl}} alt=""/>
                 <div class="clearfix gray noborder mtb10">

@@ -5,7 +5,7 @@
     <ion-content has-bouncing="true">
         <!--ui-sref="manhuadetail({id:item.id})"-->
         <div class="list" ng-repeat="item in model.vedio" >
-            <a class="item item-thumbnail-right" ng-href={{item.linkUrl}}>
+            <a class="item item-thumbnail-right" ng-click='go(item)'>
                 <img ng-src={{item.coverImageUrl}}/>
                 <h2 class="mtb10">{{item.title}}</h2>
 
