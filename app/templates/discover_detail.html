@@ -9,6 +9,7 @@
             <div class="item item-avatar item-text-wrap">
                 <img ng-src="{{data.profileImageUrl}}" onerror="this.src='./images/tongxiang.png'">
                 <h2>{{data.name}}</h2>
+                <h2 ng-if="data.name==null">医康世纪</h2>
                 <p>{{data.content}}</p>
                 <div ng-repeat="item in data.imageList">
 
