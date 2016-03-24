@@ -38,8 +38,12 @@ angular.module('medicine.controllers', [])
     $scope.fkmsg = function() {
       helper.fkmsg()
     }
+    $scope.readWish=function(wish){
+      mywish.readWish({wishId:wish.id,accessToken:currentUser.getAuthToken()},function(){});
+      $window.location.href="/#/xinyuan_wode";
+    }
 
-    $scope.isLogin = currentUser.hasAuthToken()
+    $scope.isLogin = currentUser.hasAuthToken();
     $scope.goMyDoctor = function() {
       if ($scope.isLogin) {
         $window.location.href = '#/mydoctor'
@@ -58,10 +62,11 @@ angular.module('medicine.controllers', [])
       accessToken: currentUser.getAuthToken()
     }, function(data) {
       console.log(data)
-      if (data.newRemark || data.newChat) {
-        $scope.isNew = true
-        $scope.newChat = data.newChat
-        $scope.newRemark = data.newRemark
+      if (data.newRemark || data.newChat||data.wishes) {
+        $scope.isNew = true;
+        $scope.newChat = data.newChat;
+        $scope.newRemark = data.newRemark;
+        $scope.wishContent=data.wishes;
       } else {
         $scope.isNew = false
       }

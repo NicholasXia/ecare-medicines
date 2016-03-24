@@ -412,5 +412,14 @@ angular.module('medicine.services', ['ngResource'])
           return cb(res.status,null);//ERROR
         });
       }
+      fa.readWish=function(params,cb){
+        $http({method:'GET',params:params,url:SERVER+'/patient/wish/read'}).then(function success(res){
+          console.log('read wish');
+          return cb(null,res.data);
+        },function error(){
+          return cb(res.status,null);//ERROR
+        });
+
+      }
       return fa;
     }]);

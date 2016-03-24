@@ -1,152 +1,177 @@
 <ion-view view-title="乐柏健康" cache-view='false' hide-nav-bar="isNavBarHide">
-    <ion-content has-bouncing="true">
-        <!--首页轮播图-->
-        <ion-slide-box ng-if="data.length > 0" auto-play="true" does-continue="true">
-            <ion-slide ng-repeat="item in data" ng-click="goToActivity(item.id, item.linkUrl)">
-                <div class="box blue"><img ng-src={{item.coverImageUrl}} width="100%" height="200px"/></div>
-            </ion-slide>
-        </ion-slide-box>
+  <ion-content has-bouncing="true">
+    <!--首页轮播图-->
+    <ion-slide-box ng-if="data.length > 0" auto-play="true" does-continue="true">
+      <ion-slide ng-repeat="item in data" ng-click="goToActivity(item.id, item.linkUrl)">
+        <div class="box blue"><img ng-src={{item.coverImageUrl}} width="100%" height="200px" /></div>
+      </ion-slide>
+    </ion-slide-box>
 
-        <div style="padding:10px;" ng-click="static()">
-            <!-- <img class="img-responsive" style="width:100%" ng-src="images/111.png" alt="111.png"/> -->
-            <img class="img-responsive" style="width:100%" ng-src="images/506.pic_hd.jpg" />
+    <div style="padding:10px;" ng-click="static()">
+      <!-- <img class="img-responsive" style="width:100%" ng-src="images/111.png" alt="111.png"/> -->
+      <img class="img-responsive" style="width:100%" ng-src="images/506.pic_hd.jpg" />
 
-        </div>
+    </div>
 
-        <!--二级大图-->
-        <!--核心功能-->
-        <div class="row" id="core-three">
-            <div class="col">
-                <div class="button-bar height100">
-                    <a class="button border" href="#/binddoctor">
-                        <i class="icon">
+    <!--二级大图-->
+    <!--核心功能-->
+    <div class="row" id="core-three">
+      <div class="col">
+        <div class="button-bar height100">
+          <a class="button border" href="#/binddoctor">
+            <i class="icon">
                             <img src="images/bangding.png" alt=""/>
                         </i>
 
-                        <p>绑定医生</p>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="button-bar height100">
-                    <button ng-click="goMyDoctor()" class="button border">
-                        <i class="icon">
+            <p>绑定医生</p>
+          </a>
+        </div>
+      </div>
+      <div class="col">
+        <div class="button-bar height100">
+          <button ng-click="goMyDoctor()" class="button border">
+            <i class="icon">
                             <img src="images/yisheng.png" alt=""/>
                         </i>
 
-                        <p>我的医生</p>
-                    </button>
-                </div>
-            </div>
-            <div class="col" >
-                <div class="button-bar height100">
-                    <a class="button border" href="#/xinyuan">
-                        <i class="icon">
+            <p>我的医生</p>
+          </button>
+        </div>
+      </div>
+      <div class="col">
+        <div class="button-bar height100">
+          <a class="button border" href="#/xinyuan">
+            <i class="icon">
                             <img src="images/xinyuan1.png" alt=""/>
                         </i>
 
-                        <p>发表心愿</p>
-                    </a>
-                </div>
-            </div>
+            <p>发表心愿</p>
+          </a>
         </div>
+      </div>
+    </div>
 
-        <div ng-if="isNew">
-        <div class="divider"></div>
-        <ion-list class="list" ng-if="isLogin">
-            <ion-item class="item item-divider white">
-                <span class="matches">最新回复</span>
-            </ion-item>
-            <ion-item class="item item-avatar" href="#" ng-repeat="item in newChat" ui-sref="chart({id:item.toUserID})">
-                <img ng-src={{item.profileImageUrl}} alt=""/>
-                <div>
-                    <span>{{item.name}}</span>
-                    <span class="small fk-side">已绑定</span>
-                    <span class="gray">{{item.timePoint}}</span>
-                </div>
-                <p><span class="highlight">回复:</span><span>{{item.toChat}}</span></p>
-            </ion-item>
+    <div ng-if="isNew">
+      <div class="divider"></div>
+      <ion-list class="list" ng-if="isLogin">
+        <ion-item class="item item-divider white">
+          <span class="matches">最新回复</span>
+        </ion-item>
+        <ion-item class="item item-avatar" href="#" ng-repeat="item in newChat" ui-sref="chart({id:item.toUserID})">
+          <img ng-src={{item.profileImageUrl}} alt="" />
+          <div>
+            <span>{{item.name}}</span>
+            <span class="small fk-side">已绑定</span>
+            <span class="gray">{{item.timePoint}}</span>
+          </div>
+          <p><span class="highlight">回复:</span><span>{{item.toChat}}</span></p>
+        </ion-item>
 
-        <!--回复方式二 涉及到心愿墙，一期不做-->
+
+
+        <!--回复方式二 -->
 
         <ion-item class="item item-avatar" ng-repeat="item in newRemark | limitTo:3" ui-sref="discoverdetailv({id:item.id, remarkId:item.remarkList[$index].remarkId})">
-            <img src={{item.profileImageUrl}} alt=""/>
-            <div>
-                <span>{{item.name}}</span>
-                <span class="gray">{{item.postTime}}</span>
-            </div>
-            <p class="wish">
-                <span class="init">
+          <img src={{item.profileImageUrl}} alt="" />
+          <div>
+            <span>{{item.name}}</span>
+            <span class="gray">{{item.postTime}}</span>
+          </div>
+          <p class="wish">
+            <span class="init">
                     {{item.content}}
                 </span>
-            </p>
+          </p>
 
-            <p class="wishes">
-                <span>{{item.remarkList[0].remarkUserName}}</span>
-                <span class="highlight">回复</span>
-                <span class="init">
+          <p class="wishes">
+            <span>{{item.remarkList[0].remarkUserName}}</span>
+            <span class="highlight">回复</span>
+            <span class="init">
                     {{item.remarkList[0].remark}}
                 </span>
+          </p>
+        </ion-item>
+
+        <ion-item class="item item-avatar" ng-click="readWish(item)" ng-repeat="item in wishContent">
+            <img src={{item.patientProfileImageUrl}}>
+            <h2>{{item.patientName}}</h2>
+            <p>{{item.postTime}}</p>
+            <p class="xinyuanTag" ng-if="item.isComeTrue==1">
+              <span >心愿成真</span>
+            </p>
+
+            <p>
+              {{item.wishContent}}
+            </p>
+            <p class="xinyuanRemark"
+              style="white-space:normal;overflow:hidden;background-color:green;color:white;padding:10px 10px;border-radius:10px">
+              回复
+              <br/>
+              {{item.remark}}
+              <br/>
+              <span style="float:right">{{item.remarkTime}}</span>
             </p>
         </ion-item>
-         </ion-list>
-         </div>
-        <!--心愿墙 start 二期内容暂时隐藏-->
-      <ion-list class="list" ng-if="isWish">
-              <ion-item class="item item-divider">
-                  <span class="matches">心愿墙</span>
-              </ion-item>
-              <ion-item class="item item-avatar" href="#/wishwall" ng-repeat='wish in wishes'>
-                  <img src="{{wish.patientProfileImageUrl}}" alt="用户头像"/>
 
-                  <div>
-                      <span>{{wish.patientName}}</span>
-                      <span class="small">心愿成真</span>
-                  </div>
-                  <p class="init">
-                      {{wish.content}}
-                  </p>
+      </ion-list>
+    </div>
 
-                  <p class="text-right">{{wish.postTime}}</p>
-              </ion-item>
+    <!--心愿墙 完成-->
+    <ion-list class="list" ng-if="wishes.length!=0">
+      <ion-item class="item item-divider">
+        <span class="matches">心愿墙</span>
+      </ion-item>
+      <ion-item class="item item-avatar" href="#/wishwall" ng-repeat='wish in wishes'>
+        <img src="{{wish.patientProfileImageUrl}}" alt="用户头像" />
 
-        </ion-list>
-          <!--心愿墙 end-->
+        <div>
+          <span>{{wish.patientName}}</span>
+          <span class="small">心愿成真</span>
+        </div>
+        <p class="init">
+          {{wish.content}}
+        </p>
 
-        <!--养心讲堂 start-->
-        <div class="divider" ng-if="isLogin"></div>
-        <div class="list">
-            <div class="item item-divider white">
-                <h2><span class="color_blue">|</span> <span>养心讲堂</span></h2>
-            </div>
-            <!--<div class="slim clearfix"></div>-->
-            <div class="item item-body" style="padding-top: 0; padding-bottom: 0;"
-                 ng-repeat="item in healthLecture" ng-click="goToActivity(item.id,item.linkUrl)">
-                <h2>{{item.title}}</h2>
-                <img class="full-image" ng-src={{item.coverImageUrl}}>
+        <p class="text-right">{{wish.postTime}}</p>
+      </ion-item>
 
-                <div class="clearfix mtb10">
-                    <span class="fl gray">{{item.postTime}}</span>
-                    <span class="fr gray">
+    </ion-list>
+    <!--心愿墙 end-->
+
+
+    <!--养心讲堂 start-->
+    <div class="divider" ng-if="isLogin"></div>
+    <div class="list">
+      <div class="item item-divider white">
+        <h2><span class="color_blue">|</span> <span>养心讲堂</span></h2>
+      </div>
+      <!--<div class="slim clearfix"></div>-->
+      <div class="item item-body" style="padding-top: 0; padding-bottom: 0;" ng-repeat="item in healthLecture" ng-click="goToActivity(item.id,item.linkUrl)">
+        <h2>{{item.title}}</h2>
+        <img class="full-image" ng-src={{item.coverImageUrl}}>
+
+        <div class="clearfix mtb10">
+          <span class="fl gray">{{item.postTime}}</span>
+          <span class="fr gray">
                         <i class="ion-chatbubble-working">
                         </i>
                         <span class="verticalbt">
                             {{item.remarkCount}}
                         </span>
-                    </span>
-                </div>
-                <div class="divider fullborder"></div>
-            </div>
+          </span>
         </div>
-        <!--养心讲堂 end-->
+        <div class="divider fullborder"></div>
+      </div>
+    </div>
+    <!--养心讲堂 end-->
 
 
-        <!--健康评估 start-->
-        <!--
+    <!--健康评估 start-->
+    <!--
         <div class="padding">
             <button class="button button-block button-balanced">健康评估</button>
         </div>
         -->
-        <!--健康评估 end-->
-    </ion-content>
+    <!--健康评估 end-->
+  </ion-content>
 </ion-view>
