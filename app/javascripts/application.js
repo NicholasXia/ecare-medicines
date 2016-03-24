@@ -433,8 +433,12 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
 }).run(['$rootScope', function($rootScope) {
   $rootScope.$on('$stateChangeSuccess',
     function(event, toState, toParams, fromState, fromParams) {
-      console.log(toState);
-      _hmt.push(['_trackPageview', toState.url]);
+      if(toParams.id){
+            // console.log(toState.url.replace(":id",toParams.id));
+            _hmt.push(['_trackPageview', toState.url.replace(":id",toParams.id)]);
+      }else{
+        _hmt.push(['_trackPageview', toState.url]);
+      }
 
     });
 }]);
