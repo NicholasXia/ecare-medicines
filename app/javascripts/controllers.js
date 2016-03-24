@@ -49,8 +49,9 @@ angular.module('medicine.controllers', [])
           template: '请先登陆'
         })
         $timeout(function() {
+          popup.close();
           $window.location.href = '#/signup'
-        }, 3000)
+        }, 2000)
       }
     }
     reply.query({
@@ -1112,6 +1113,9 @@ angular.module('medicine.controllers', [])
             title: '提示',
             template: '对不起，您没填写评论内容'
           });
+          $timeout(function() {
+            popup.close()
+          }, 2000)
           return;
         }
         Remark.save({}, msg, function(data) {
