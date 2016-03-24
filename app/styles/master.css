@@ -1,5 +1,7 @@
 /***********************helper start***************************/
-
+body{
+  font-family: '微软雅黑'
+}
 .fl {
   float: left;
 }
@@ -458,4 +460,19 @@
   right: 10px;
   border-radius: 25px;
   padding: 5px 10px;
+}
+
+/* 发现 */
+
+.discover .ion-comment{
+  display: inline-block;
+  background-repeat: no-repeat;
+  width:25px;
+  height: 20px;
+  background-size: 25px 20px;
+  background-image: url("../images/comment.png");
+  margin-right: 5px;
+}
+.discover comment-num{
+  font-size:20px;
 }

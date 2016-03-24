@@ -1,4 +1,40 @@
 angular.module('medicine.directive', [])
+.directive('gohistory',function($window){
+      function isWeiXin(){
+          var ua = $window.navigator.userAgent.toLowerCase();
+          if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+            return true;
+            }else{
+            return false;
+          }
+        }
+      return {
+        replace:true,
+        restrict:'AE',
+        scope:{},
+        template:'<a class="button icon ion-chevron-left" ng-click="goHis()"></a>',
+        controller:function(){
+        },
+        link: function(scope, element, attrs, ctrl) {
+          console.log($window.history.length);
+          scope.goHis=function(){
+            // if(!isWeiXin()){
+
+              // $window.history.back();
+            // }else{
+              console.log($window.history);
+              if($window.history.length>2){//有历史信息
+                $window.history.back();//返回历史
+              }else{
+                $window.location.href='/#/tab/home';//没有历史信息返回首页
+              }
+
+            // }
+          }
+        }
+      }
+    })
+
     .directive('image', function ($q) {
         'use strict'
 
