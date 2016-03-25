@@ -1,4 +1,4 @@
-angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.directive', 'medicine.filters', 'angular-carousel', 'ionic-datepicker', 'LocalStorageModule'])
+angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services', 'medicine.directive', 'medicine.filters', 'angular-carousel', 'ionic-datepicker', 'LocalStorageModule','ngTouch','ui.calendar'])
   .constant('ionicLoadingConfig', {
     template: "<ion-spinner icon='ripple' class='spinner-energized'></ion-spinner>",
     hideOnStateChange: true
@@ -12,6 +12,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
     $ionicConfigProvider.views.maxCache(0);
     $ionicConfigProvider.backButton.text('Go Back').icon('ion-chevron-left');
   })
+
 
 /*
 .config(function(localStorageServiceProvider){
@@ -425,12 +426,22 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
       url:"/about",
       templateUrl:"templates/about.html"
     })
+    .state('jilu',{
+      url:"/jilu",
+      templateUrl:"templates/jilu.html",
+      controller:"jiluCtrl"
+    })
     .state('mianze',{
       url:"/mianze",
       templateUrl:"templates/mianze.html"
     });
   $urlRouterProvider.otherwise("/tab/home");
 }).run(['$rootScope', function($rootScope) {
+  document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+    }, false);
+
+
   $rootScope.$on('$stateChangeSuccess',
     function(event, toState, toParams, fromState, fromParams) {
       if(toParams.id){

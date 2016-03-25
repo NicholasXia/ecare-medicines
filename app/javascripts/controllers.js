@@ -1,20 +1,24 @@
 angular.module('medicine.controllers', [])
-  .controller('doctorEndIndexCtrl', ['healthLecture', 'helper', '$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', '$ionicLoading', 'ionicLoadingConfig', 'reply','mywish', function(healthLecture, helper, $scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout, $ionicLoading, ionicLoadingConfig, reply,mywish) {
+  .controller('doctorEndIndexCtrl', ['healthLecture', 'helper', '$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', '$ionicLoading', 'ionicLoadingConfig', 'reply', 'mywish', function(healthLecture, helper, $scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout, $ionicLoading, ionicLoadingConfig, reply, mywish) {
     getCarouselList.query({
       type: 2,
       illType: 1
     }, function(data) {
       $scope.data = data
     })
-    $scope.isWish=false;
-    $scope.wishes=[];
-    mywish.getSuggest({limit: 3},function(err,data){
-      if(err){return;}
-        $scope.wishes=data;
-        if(data.length>0){
-          $scope.isWish=true;
-        }
-        console.log('my wishes ',data);
+    $scope.isWish = false;
+    $scope.wishes = [];
+    mywish.getSuggest({
+      limit: 3
+    }, function(err, data) {
+      if (err) {
+        return;
+      }
+      $scope.wishes = data;
+      if (data.length > 0) {
+        $scope.isWish = true;
+      }
+      console.log('my wishes ', data);
     });
 
     healthLecture.query(function(data) {
@@ -38,9 +42,12 @@ angular.module('medicine.controllers', [])
     $scope.fkmsg = function() {
       helper.fkmsg()
     }
-    $scope.readWish=function(wish){
-      mywish.readWish({wishId:wish.id,accessToken:currentUser.getAuthToken()},function(){});
-      $window.location.href="/#/xinyuan_wode";
+    $scope.readWish = function(wish) {
+      mywish.readWish({
+        wishId: wish.id,
+        accessToken: currentUser.getAuthToken()
+      }, function() {});
+      $window.location.href = "/#/xinyuan_wode";
     }
 
     $scope.isLogin = currentUser.hasAuthToken();
@@ -62,11 +69,11 @@ angular.module('medicine.controllers', [])
       accessToken: currentUser.getAuthToken()
     }, function(data) {
       console.log(data)
-      if (data.newRemark || data.newChat||data.wishes) {
+      if (data.newRemark || data.newChat || data.wishes) {
         $scope.isNew = true;
         $scope.newChat = data.newChat;
         $scope.newRemark = data.newRemark;
-        $scope.wishContent=data.wishes;
+        $scope.wishContent = data.wishes;
       } else {
         $scope.isNew = false
       }
@@ -194,7 +201,7 @@ angular.module('medicine.controllers', [])
     $scope.fkmsg = function() {
       helper.fkmsg()
     }
-    $scope.xinyuan=function(){
+    $scope.xinyuan = function() {
       if ($scope.ischeck) {
         $window.location.href = '#/xinyuan_wode';
       } else {
@@ -407,7 +414,7 @@ angular.module('medicine.controllers', [])
       } else {
 
       }
-      if($scope.publish.content){
+      if ($scope.publish.content) {
         if ($scope.publish.content.length > 200) {
           $ionicPopup.alert({
             'title': '提示',
@@ -464,16 +471,20 @@ angular.module('medicine.controllers', [])
       })
     }
   }])
-  .controller('doctorEndWishWallCtrl', ['$scope','$window','mywish', function($scope,$window,mywish) {
-    mywish.getSuggest({limit: 5},function(err,data){
-      if(err){return;}
-        $scope.wishes=data;
-        console.log('my wishes ',data);
+  .controller('doctorEndWishWallCtrl', ['$scope', '$window', 'mywish', function($scope, $window, mywish) {
+    mywish.getSuggest({
+      limit: 5
+    }, function(err, data) {
+      if (err) {
+        return;
+      }
+      $scope.wishes = data;
+      console.log('my wishes ', data);
     });
 
-    $scope.showAction=function(){
-      $window.location.href="#/xinyuan";
-      $scope.wishes=[];
+    $scope.showAction = function() {
+      $window.location.href = "#/xinyuan";
+      $scope.wishes = [];
 
     }
   }])
@@ -690,10 +701,10 @@ angular.module('medicine.controllers', [])
       console.log($scope.model);
     });
     $scope.go = function(item) {
-      if(item.linkType==2){//外链
-        $window.location.href=item.linkUrl;
-      }else if(item.linkType==1){
-        $window.location.href="#/zhishidetail/"+item.id;
+      if (item.linkType == 2) { //外链
+        $window.location.href = item.linkUrl;
+      } else if (item.linkType == 1) {
+        $window.location.href = "#/zhishidetail/" + item.id;
       }
       console.log(item);
     };
@@ -1028,15 +1039,16 @@ angular.module('medicine.controllers', [])
     }
   }])
 
-.controller('doctorEndTextContentCtrl', ['articleCollect', 'patientRemark', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', 'SHARE_APP', '$ionicActionSheet', function(articleCollect, patientRemark, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, SHARE_APP, $ionicActionSheet) {
+.controller('doctorEndTextContentCtrl', ['$document','articleCollect', 'patientRemark', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', 'SHARE_APP', '$ionicActionSheet', function($document,articleCollect, patientRemark, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, SHARE_APP, $ionicActionSheet) {
 
     Detail.query({
       id: $stateParams.id
     }, {
       accessToken: currentUser.getAuthToken()
     }, function(data) {
-      $scope.data = data
-
+      $document.title='asdfa';
+      console.log($document.title);
+      $scope.data=data;
       mobShare.config({
         appkey: SHARE_APP,
         params: {
@@ -1510,7 +1522,7 @@ angular.module('medicine.controllers', [])
       // cordova.plugins.Keyboard.close();
     };
   }])
-  .controller('xinyuanCtrl', ['$scope', '$window', 'currentUser', '$ionicPopup','$timeout','patientProfile', function($scope, $window, currentUser, $ionicPopup,$timeout,patientProfile) {
+  .controller('xinyuanCtrl', ['$scope', '$window', 'currentUser', '$ionicPopup', '$timeout', 'patientProfile', function($scope, $window, currentUser, $ionicPopup, $timeout, patientProfile) {
     var isLogin = currentUser.hasAuthToken();
     console.log("xinyuanCtrl");
     $scope.help = function() {
@@ -1531,17 +1543,17 @@ angular.module('medicine.controllers', [])
           accessToken: currentUser.getAuthToken()
         }, function(data) {
           console.log(data)
-            if(!data.name){
-              var popup = $ionicPopup.alert({
-                title: '提示',
-                template: '请完善个人信息'
-              });
-              $timeout(function() {
-                $window.location.href = '#/personal'
-              }, 2000)
-            }else{
-                $window.location.href = '#/xinyuan_fabu'
-            }
+          if (!data.name) {
+            var popup = $ionicPopup.alert({
+              title: '提示',
+              template: '请完善个人信息'
+            });
+            $timeout(function() {
+              $window.location.href = '#/personal'
+            }, 2000)
+          } else {
+            $window.location.href = '#/xinyuan_fabu'
+          }
 
         })
 
@@ -1550,28 +1562,31 @@ angular.module('medicine.controllers', [])
 
     }
   }])
-  .controller('xinyuanFabuCtrl', ['$scope', '$window','wish','$ionicPopup','currentUser', function($scope, $window,wish,$ionicPopup,currentUser) {
+  .controller('xinyuanFabuCtrl', ['$scope', '$window', 'wish', '$ionicPopup', 'currentUser', function($scope, $window, wish, $ionicPopup, currentUser) {
     console.log('xinyuanFabuCtrl');
-    $scope.xinyuan={
-      content:""
+    $scope.xinyuan = {
+      content: ""
     };
-    $scope.add=function(){
-      console.log('fabu content '+$scope.xinyuan.content);
-      if($scope.xinyuan.content==''){
+    $scope.add = function() {
+      console.log('fabu content ' + $scope.xinyuan.content);
+      if ($scope.xinyuan.content == '') {
         var popup = $ionicPopup.alert({
           title: '提示',
           template: '请您填写心愿'
         });
         return;
-      }else{
-        wish.save({content:$scope.xinyuan.content,accessToken:currentUser.getAuthToken()},function(data){
-          console.log('存储返回 ',data);
+      } else {
+        wish.save({
+          content: $scope.xinyuan.content,
+          accessToken: currentUser.getAuthToken()
+        }, function(data) {
+          console.log('存储返回 ', data);
           if (data.status == 'suc') {
             $ionicPopup.alert({
               title: '提示',
               template: '心愿成功，请耐心等待'
             });
-            $window.location='#/xinyuan_wode';
+            $window.location = '#/xinyuan_wode';
           } else {
             $ionicPopup.alert({
               title: '提示',
@@ -1583,12 +1598,65 @@ angular.module('medicine.controllers', [])
       }
     }
   }])
-  .controller('xinyuanWodeCtrl', ['$scope', '$window','wish','$ionicPopup','currentUser','mywish','currentUser', function($scope, $window,wish,$ionicPopup,currentUser,mywish,currentUser) {
-    var accessToken=currentUser.getAuthToken();
-    $scope.wishes=[];
-    mywish.getMyWish({accessToken:accessToken},function(err,data){
-      if(err){return;}
-        $scope.wishes=data;
-        console.log('my wishes ',data);
+  .controller('xinyuanWodeCtrl', ['$scope', '$window', 'wish', '$ionicPopup', 'currentUser', 'mywish', 'currentUser', function($scope, $window, wish, $ionicPopup, currentUser, mywish, currentUser) {
+    var accessToken = currentUser.getAuthToken();
+    $scope.wishes = [];
+    mywish.getMyWish({
+      accessToken: accessToken
+    }, function(err, data) {
+      if (err) {
+        return;
+      }
+      $scope.wishes = data;
+      console.log('my wishes ', data);
+    })
+
+  }])
+  .controller('jiluCtrl', ['$ionicModal','$scope', '$window', 'wish', '$ionicPopup', 'currentUser', 'mywish', 'currentUser', function($ionicModal,$scope, $window, wish, $ionicPopup, currentUser, mywish, currentUser) {
+    //full calendar
+    $scope.eventSources = [];
+    $scope.uiConfig = {
+      calendar: {
+        lang: 'zh-cn',
+        // height: 400,
+        contentHeight:350,
+        editable: true,
+        header: {
+          left: 'prev',
+          center: 'title',
+          right: 'next'
+        },
+        views: {
+          month: { // name of view
+              // other view-specific options here
+          }
+        },
+        selectable: true,
+        //
+        // selectHelper: true,
+        dayClick: function(date, jsEvent, view) {
+
+        }
+      }
+    };
+    //default
+    $scope.high=110;
+    $scope.low=80;
+
+    $ionicModal.fromTemplateUrl('xueya.html',{
+      scope:$scope,
+      animation:'slide-in-up'
+    }).then(function(modal){
+      $scope.modal=modal;
     });
+    $scope.jilu=function(type){
+
+      $scope.modal.show();
+
+    }
+    $scope.closeModal=function(){
+      $scope.modal.hide();
+    }
+
+
   }]);

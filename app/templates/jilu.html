@@ -1,0 +1,46 @@
+<ion-header-bar class="bar-balanced">
+  <gohistory></gohistory>
+  <h1 class="title">健康记录</h1>
+</ion-header-bar>
+<ion-content start-y="0" has-bouncing="true">
+  <div ui-calendar="uiConfig.calendar" ng-model="eventSources" data-tap-disabled="true"></div>
+  <ion-item>
+    <span>血压</span> <span style="float:right" ng-click="jilu('xueya')">记录</span>
+    <!-- <button type="button" name="button"></button> -->
+  </ion-item>
+  <ion-item>
+    <span>体重</span><span ng-click="jilu('tizhong')">记录</span>
+  </ion-item>
+  <ion-item>
+    <span>心率</span><span ng-click="jilu('xinlv')">记录</span>
+  </ion-item>
+</ion-content>
+
+<script id="xueya.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <a class="button icon ion-chevron-left" ng-click="closeModal()"></a>
+      <h1 class="title">记录血压</h1>
+    </ion-header-bar>
+    <ion-content>
+      <ion-item>
+        <h2>高压:{{high}}</h2>
+        <div class="range">
+          70
+          <input type="range" ng-model="high" min='70' max='200'>
+          200
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <h2>低压:{{low}}</h2>
+        <div class="range">
+          40
+          <input type="range" ng-model="low" min='40' max='180'>
+          180
+        </div>
+      </ion-item>
+
+    </ion-content>
+  </ion-modal-view>
+</script>

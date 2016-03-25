@@ -1,57 +1,72 @@
 <!DOCTYPE html>
 <html ng-app="medicine">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="referrer" content="always">
-    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <!-- <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"> -->
-    <link rel="apple-touch-icon-precomposed" href="images/450.pic_hd.jpg">
-    <!-- <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta charset="utf-8">
+  <meta name="referrer" content="always">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <!-- <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width"> -->
+  <link rel="apple-touch-icon-precomposed" href="images/450.pic_hd.jpg">
+  <!-- <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" /> -->
-    <meta name="format-detection" content="telephone=no">
-    <title>乐柏健康</title>
-    <link href="lib/ionic/release/css/ionic.css" rel="stylesheet">
-    <link rel="stylesheet" href="lib/angular-carousel/dist/angular-carousel.css"/>
-    <link rel="stylesheet" href="styles/master.css"/>
-    <script src="lib/ionic/release/js/ionic.bundle.js"></script>
-    <script src="lib/angular-resource/angular-resource.js"></script>
-    <script src="lib/angular-touch/angular-touch.js"></script>
-    <script src="lib/angular-carousel/dist/angular-carousel.js"></script>
-    <script src="lib/ionic-datepicker/dist/ionic-datepicker.bundle.min.js"></script>
-    <script src="lib/angular-local-storage/dist/angular-local-storage.js"></script>
-    <!-- <script src="bower_components/ng-iscroll/src/ng-iscroll.min.js"></script> -->
-    <script src="javascripts/application.js"></script>
-    <script src="javascripts/controllers.js"></script>
-    <script src="javascripts/services.js"></script>
-    <script src="javascripts/filter.js"></script>
-    <script src="javascripts/directive.js"></script>
+  <meta name="format-detection" content="telephone=no">
+  <title>乐柏健康</title>
+  <link href="lib/ionic/release/css/ionic.css" rel="stylesheet">
+  <link rel="stylesheet" href="lib/angular-carousel/dist/angular-carousel.css" />
+  <link rel="stylesheet" href="styles/master.css" />
+  <script src="lib/ionic/release/js/ionic.bundle.js"></script>
+  <script src="lib/angular-resource/angular-resource.js"></script>
+  <script src="lib/angular-touch/angular-touch.js"></script>
+  <script src="lib/angular-carousel/dist/angular-carousel.js"></script>
+  <script src="lib/ionic-datepicker/dist/ionic-datepicker.bundle.min.js"></script>
+  <script src="lib/angular-local-storage/dist/angular-local-storage.js"></script>
+  <script type="text/javascript" src="bower_components/fastclick/lib/fastclick.js"></script>
+  <!-- jquery, moment, and angular have to get included before fullcalendar -->
+  <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+  <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
+  <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.js"></script>
+  <script type="text/javascript" src="bower_components/fullcalendar/dist/gcal.js"></script>
+    <script type="text/javascript" src="bower_components/fullcalendar/dist/lang-all.js"></script>
+
+  <!-- bootstrap calendar
+  <link href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
+  <script src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>-->
+
+  <script src="javascripts/application.js"></script>
+  <script src="javascripts/controllers.js"></script>
+  <script src="javascripts/services.js"></script>
+  <script src="javascripts/filter.js"></script>
+  <script src="javascripts/directive.js"></script>
 
 </head>
+
 <body ng-app="medicine">
-<ion-nav-view></ion-nav-view>
-<script
-src="http://f1.webshare.mob.com/code/mob-share.js?appkey=1009643115684"></script>
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?6255f2722c4cc01f45ff979b7a4ef559";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-<script type="text/javascript">
-var _py = _py || [];
-_py.push(['a', '4es..YpyGLpiGUvNtPn13lR8tOP']);
-_py.push(['domain','stats.ipinyou.com']);
-_py.push(['e','']);
--function(d) {
-var s = d.createElement('script'),
-e = d.body.getElementsByTagName('script')[0]; e.parentNode.insertBefore(s, e),
-f = 'https:' == location.protocol;
-s.src = (f ? 'https' : 'http') + '://'+(f?'fm.ipinyou.com':'fm.p0y.cn')+'/j/adv.js';
-}(document);
-</script>
-<noscript><img src="//stats.ipinyou.com/adv.gif?a=4es..YpyGLpiGUvNtPn13lR8tOP&e=" style="display:none;"/></noscript>
+  <ion-nav-view></ion-nav-view>
+  <script src="http://f1.webshare.mob.com/code/mob-share.js?appkey=1009643115684"></script>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?6255f2722c4cc01f45ff979b7a4ef559";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <script type="text/javascript">
+    var _py = _py || [];
+    _py.push(['a', '4es..YpyGLpiGUvNtPn13lR8tOP']);
+    _py.push(['domain', 'stats.ipinyou.com']);
+    _py.push(['e', '']); - function(d) {
+      var s = d.createElement('script'),
+        e = d.body.getElementsByTagName('script')[0];
+      e.parentNode.insertBefore(s, e),
+        f = 'https:' == location.protocol;
+      s.src = (f ? 'https' : 'http') + '://' + (f ? 'fm.ipinyou.com' : 'fm.p0y.cn') + '/j/adv.js';
+    }(document);
+  </script>
+  <!-- <noscript><img src="//stats.ipinyou.com/adv.gif?a=4es..YpyGLpiGUvNtPn13lR8tOP&e=" style="display:none;" /></noscript> -->
 </body>
+
 </html>
