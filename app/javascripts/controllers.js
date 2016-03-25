@@ -816,7 +816,7 @@ angular.module('medicine.controllers', [])
   }])
 
 //文章detail
-.controller('zhishiDetailCtrl', ['articleCollect', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout', 'SHARE_APP', '$ionicActionSheet', function(articleCollect, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout, SHARE_APP, $ionicActionSheet) {
+.controller('zhishiDetailCtrl', ['$document','articleCollect', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout', 'SHARE_APP', '$ionicActionSheet', function($document,articleCollect, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout, SHARE_APP, $ionicActionSheet) {
     $scope.showAction = function() {
       var hideSheet = $ionicActionSheet.show({
         buttons: [{
@@ -866,28 +866,31 @@ angular.module('medicine.controllers', [])
       })
     }
 
-
-
-    Detail.query({
-      id: $stateParams.id
-    }, function(data) {
-      $scope.zhishidetail = data
-      mobShare.config({
-        appkey: SHARE_APP,
-        params: {
-          title: data.title
+    $scope.$on('$ionicView.enter',function(e,d){
+      Detail.query({
+        id: $stateParams.id
+      }, function(data) {
+        $scope.zhishidetail = data
+        $document[0].title=data.title;
+        mobShare.config({
+          appkey: SHARE_APP,
+          params: {
+            title: data.title
+          }
+        });
+        $scope.shareWeibo = function() {
+          var weibo = mobShare('weibo');
+          weibo.send();
         }
-      });
-      $scope.shareWeibo = function() {
-        var weibo = mobShare('weibo');
-        weibo.send();
-      }
-      $scope.shareQzone = function() {
-        var qzone = mobShare('qzone');
-        qzone.send();
-      }
-      console.log(data)
-    })
+        $scope.shareQzone = function() {
+          var qzone = mobShare('qzone');
+          qzone.send();
+        }
+        console.log(data)
+      })
+    });
+
+
 
     var accesstoken = currentUser.getAuthToken()
     $scope.markinfo = {
