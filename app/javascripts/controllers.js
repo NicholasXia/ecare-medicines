@@ -1039,16 +1039,17 @@ angular.module('medicine.controllers', [])
     }
   }])
 
-.controller('doctorEndTextContentCtrl', ['$document','articleCollect', 'patientRemark', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', 'SHARE_APP', '$ionicActionSheet', function($document,articleCollect, patientRemark, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, SHARE_APP, $ionicActionSheet) {
-
+.controller('doctorEndTextContentCtrl', ['$rootScope','$document','articleCollect', 'patientRemark', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', 'SHARE_APP', '$ionicActionSheet', function($rootScope,$document,articleCollect, patientRemark, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, SHARE_APP, $ionicActionSheet) {
+  $scope.data={};
+  $scope.$on('$ionicView.enter',function(e,d){
     Detail.query({
       id: $stateParams.id
     }, {
       accessToken: currentUser.getAuthToken()
     }, function(data) {
-      $document.title='asdfa';
-      console.log($document.title);
+
       $scope.data=data;
+      $document[0].title=data.title;
       mobShare.config({
         appkey: SHARE_APP,
         params: {
@@ -1065,6 +1066,8 @@ angular.module('medicine.controllers', [])
       }
       console.log(data)
     })
+  });
+
 
     $scope.showAction = function() {
       var hideSheet = $ionicActionSheet.show({
