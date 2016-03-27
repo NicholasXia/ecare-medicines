@@ -195,12 +195,15 @@ angular.module('medicine.controllers', [])
   }])
   .controller('doctorEndMineCtrl', ['$scope', 'checkLogin', '$window', '$ionicPopup', 'patientProfile', 'currentUser', 'helper', function($scope, checkLogin, $window, $ionicPopup, patientProfile, currentUser, helper) {
     $scope.ischeck = !!checkLogin.check()
-    patientProfile.query({
-      accessToken: currentUser.getAuthToken()
-    }, function(data) {
-      $scope.data = data
-      console.log(data)
-    })
+    if(currentUser.getAuthToken()){
+      patientProfile.query({
+        accessToken: currentUser.getAuthToken()
+      }, function(data) {
+        $scope.data = data
+        console.log(data)
+      })
+    }
+
     $scope.fkmsg = function() {
       helper.fkmsg()
     }
@@ -1483,12 +1486,14 @@ angular.module('medicine.controllers', [])
               toUserID: doctorId
             },
             function(data) {
-              console.log(data)
-              $scope.toChar = data[0].toChat
-              $scope.messages.push({
-                userId: doctorId,
-                text: $scope.toChar
-              })
+              if(data[0]){
+                $scope.toChar = data[0].toChat
+                $scope.messages.push({
+                  userId: doctorId,
+                  text: $scope.toChar
+                })
+              }
+
             })
         },
         1000)
