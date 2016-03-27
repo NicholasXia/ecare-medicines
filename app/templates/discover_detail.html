@@ -11,6 +11,9 @@
                 <h2>{{data.name}}</h2>
                 <h2 ng-if="data.name==null">医康世纪</h2>
                 <p>{{data.content}}</p>
+                <div ng-click="link(data)" ng-if="data.url!=null" class="" style="font-size:14px;color:#737373;margin-bottom:10px">
+                  <span style="" class="ion-link"></span><span style="margin-left:5px;">网页链接</span>
+                </div>
                 <div ng-repeat="item in data.imageList">
 
                     <img style="margin-top:10px;width:300px" class="img-responsive"  ng-src="{{item.imageUrl}}" alt=""/>

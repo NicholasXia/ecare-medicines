@@ -101,7 +101,10 @@ angular.module('medicine.controllers', [])
       limit: 5
     }
     $scope.more = true; //默认有最多
-
+    $scope.link=function(discovery){
+      console.log('link');
+      $window.location.href=discovery.url;
+    }
     discoveryList.query({
       accessToken: currentUser.getAuthToken(),
       start: page.start,
@@ -407,6 +410,7 @@ angular.module('medicine.controllers', [])
       content: '',
       accessToken: ''
     }
+
     $scope.publish = function(publishphoto) {
       //console.log(publishphoto)
       if (publishphoto) {
@@ -423,6 +427,7 @@ angular.module('medicine.controllers', [])
           return;
         }
       }
+
 
 
       //console.log(currentUser.getAuthToken())
@@ -1267,6 +1272,10 @@ angular.module('medicine.controllers', [])
   var msg = {
     accessToken: currentUser.getAuthToken(),
     discoveryId: $stateParams.id
+  }
+  $scope.link=function(discovery){
+    console.log('link');
+    $window.location.href=discovery.url;
   }
   $scope.discoverAdd = function() {
     discoverCollect.save({}, msg, function(data) {

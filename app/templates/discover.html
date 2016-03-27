@@ -1,47 +1,51 @@
-<ion-view view-title="发现-乐柏健康" cache-view='false' hide-nav-bar="isNavBarHide" >
-    <ion-header-bar class="bar-balanced">
-        <h1 class="title">发现</h1>
+<ion-view view-title="发现-乐柏健康" cache-view='false' hide-nav-bar="isNavBarHide">
+  <ion-header-bar class="bar-balanced">
+    <h1 class="title">发现</h1>
 
-        <button class="button ion ion-compose middle-icon" ng-click="fk1()"></button>
-    </ion-header-bar>
-    <ion-content class="discover" overflow-scroll="false" has-bouncing="true">
-        <div id="wrapper" ng-iscroll>
-          <on-list class="list">
-            <ion-item ng-repeat="item in data">
-              <!-- <div class="card"  style="text-decoration: none;"> -->
-                  <div class=" item-avatar item-text-wrap" >
-                      <img ng-src={{item.profileImageUrl}} onerror="this.src='./images/tongxiang.png'"/>
-                      <h2>{{item.name}}</h2>
-                        <h2 ng-if="item.name==null">医康世纪</h2>
-                      <div ng-if='item.showMore==true'>
-                        <p ng-click="fk(item.id)" class="mtb10" >{{item.content|limitTo:60}}</p>
-                        <p><a style="color:black" ng-click="viewAll($event,$index);">查看全部</a></p>
-                      </div>
-                      <div ng-if='item.showMore==false'>
-                        <p class="mtb10" ng-click="fk(item.id)">{{item.content}}</p>
-                      </div>
+    <button class="button ion ion-compose middle-icon" ng-click="fk1()"></button>
+  </ion-header-bar>
+  <ion-content class="discover" overflow-scroll="false" has-bouncing="true">
+    <div id="wrapper" ng-iscroll>
+      <on-list class="list">
+        <ion-item ng-repeat="item in data">
+          <!-- <div class="card"  style="text-decoration: none;"> -->
+          <div class=" item-avatar item-text-wrap">
+            <img ng-src={{item.profileImageUrl}} onerror="this.src='./images/tongxiang.png'" />
+            <h2>{{item.name}}</h2>
+            <h2 ng-if="item.name==null">医康世纪</h2>
+            <div ng-if='item.showMore==true'>
+              <p ng-click="fk(item.id)" class="mtb10">{{item.content|limitTo:60}}</p>
+              <div ng-click="link(item)" ng-if="item.url!=null" class="" style="font-size:14px;color:#737373;margin-bottom:10px">
+                <span style="" class="ion-link"></span><span style="margin-left:5px;">网页链接</span>
+              </div>
+              <p><a style="color:black;" ng-click="viewAll($event,$index);">查看全部</a></p>
+            </div>
+            <div ng-if='item.showMore==false'>
+              <p class="mtb10" ng-click="fk(item.id)">{{item.content}}</p>
+              <div ng-click="link(item)" ng-if="item.url!=null" class="" style="font-size:14px;color:#737373;margin-bottom:10px">
+                <span style="" class="ion-link"></span><span style="margin-left:5px;">网页链接</span>
+              </div>
+            </div>
 
-                      <div ng-click="fk(item.id)" class="main-wrap">
-                          <img class="img-responsive ng-class:{'col25':(item.imageList.length>1)}" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList">
-                      </div>
-                      <p class="clearfix mtb10">
-                          <span class="fl">{{item.postTime}}</span>
-                          <!-- <span class="discover-comment fr"> -->
-                              <span class="comment-num fr">{{item.remarkCount}}</span>
-                              <i class="ion-comment fr"></i>
+            <div ng-click="fk(item.id)" class="main-wrap">
+              <img class="img-responsive ng-class:{'col25':(item.imageList.length>1)}" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList">
+            </div>
+            <p class="clearfix mtb10">
+              <span class="fl">{{item.postTime}}</span>
+              <!-- <span class="discover-comment fr"> -->
+              <span class="comment-num fr">{{item.remarkCount}}</span>
+              <i class="ion-comment fr"></i>
 
-                          <!-- </span> -->
-                      </p>
-                  </div>
-              <!-- </div> -->
-               </ion-item>
-              <div class="slim clearfix"></div>
-          </on-list>
-          <ion-infinite-scroll ng-if="more==true"
-            on-infinite="loadMore()"
-            distance="1%" immediate-check='false'>
-          </ion-infinite-scroll>
-        </div>
+              <!-- </span> -->
+            </p>
+          </div>
+          <!-- </div> -->
+        </ion-item>
+        <div class="slim clearfix"></div>
+      </on-list>
+      <ion-infinite-scroll ng-if="more==true" on-infinite="loadMore()" distance="1%" immediate-check='false'>
+      </ion-infinite-scroll>
+    </div>
 
-    </ion-content>
+  </ion-content>
 </ion-view>
