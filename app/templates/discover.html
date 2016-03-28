@@ -10,9 +10,12 @@
         <ion-item ng-repeat="item in data">
           <!-- <div class="card"  style="text-decoration: none;"> -->
           <div class=" item-avatar item-text-wrap">
-            <img ng-src={{item.profileImageUrl}} onerror="this.src='./images/tongxiang.png'" />
-            <h2>{{item.name}}</h2>
-            <h2 ng-if="item.name==null">医康世纪</h2>
+
+            <img ng-if="item.type==2" ng-src={{item.profileImageUrl}} onerror="this.src='./images/tongxiang0.png'" />
+            <h2 ng-if="item.type==2">{{item.name}}</h2>
+            <img ng-if="item.type==1" ng-src='./images/tongxiang.png'  />
+            <h2 ng-if="item.type==1">医康世纪</h2>
+
             <div ng-if='item.showMore==true'>
               <p ng-click="fk(item.id)" class="mtb10">{{item.content|limitTo:60}}</p>
               <div ng-click="link(item)" ng-if="item.url!=null" class="" style="font-size:14px;color:#737373;margin-bottom:10px">

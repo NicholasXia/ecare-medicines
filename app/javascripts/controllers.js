@@ -198,7 +198,7 @@ angular.module('medicine.controllers', [])
     }
 
   }])
-  .controller('doctorEndMineCtrl', ['$scope', 'checkLogin', '$window', '$ionicPopup', 'patientProfile', 'currentUser', 'helper', function($scope, checkLogin, $window, $ionicPopup, patientProfile, currentUser, helper) {
+  .controller('doctorEndMineCtrl', ['$timeout','$scope', 'checkLogin', '$window', '$ionicPopup', 'patientProfile', 'currentUser', 'helper', function($timeout,$scope, checkLogin, $window, $ionicPopup, patientProfile, currentUser, helper) {
     $scope.ischeck = !!checkLogin.check()
     if(currentUser.getAuthToken()){
       patientProfile.query({
@@ -216,10 +216,13 @@ angular.module('medicine.controllers', [])
       if ($scope.ischeck) {
         $window.location.href = '#/xinyuan_wode';
       } else {
-        $ionicPopup.alert({
+        var popup=$ionicPopup.alert({
           title: '提示',
           template: '您尚未登陆，请登陆后重试'
         })
+        $timeout(function() {
+          popup.close();
+        }, 2000)
       }
       return;
 
@@ -228,10 +231,13 @@ angular.module('medicine.controllers', [])
       if ($scope.ischeck) {
         $window.location.href = '#/collection'
       } else {
-        $ionicPopup.alert({
+        var popup=$ionicPopup.alert({
           title: '提示',
           template: '您尚未登陆，请登陆后重试'
         })
+        $timeout(function() {
+          popup.close();
+        }, 2000)
       }
     }
     $scope.fk = function() {
@@ -263,15 +269,21 @@ angular.module('medicine.controllers', [])
         mobile: $scope.account.phoneNum
       }, function(data) {
         if (data.error || $scope.account.phoneNum.length == 0 || $scope.account.phoneNum.length < 11 || !reg.test($scope.account.phoneNum)) {
-          $ionicPopup.alert({
+          var popup=$ionicPopup.alert({
             title: '提示',
             template: data.error
           });
+          $timeout(function() {
+            popup.close();
+          }, 2000)
         } else {
-          $ionicPopup.alert({
+          var popup=$ionicPopup.alert({
             title: '成功提示',
             template: '验证码已经发送，请稍后'
           });
+          $timeout(function() {
+            popup.close();
+          }, 2000)
           $scope.hasSend = true; //已发送
           var timer = $interval(function() {
             var _self = this;
@@ -295,18 +307,24 @@ angular.module('medicine.controllers', [])
       }
 
       if ($scope.account.verCode.length !== 4 || $scope.account.password.length == 0) {
-        $ionicPopup.alert({
+        var popup=$ionicPopup.alert({
           title: '提示',
           template: '请输入个人正确的信息'
         })
+        $timeout(function() {
+          popup.close();
+        }, 2000)
         return
       }
       createUser.save({}, user, function(data) {
         if (data.error) {
-          $ionicPopup.alert({
+          var popup=$ionicPopup.alert({
             'title': '提示',
             'template': data.error
           })
+          $timeout(function() {
+            popup.close();
+          }, 2000)
         }
         return
         currentUser.setAuthToken(data.accessToken)
@@ -332,10 +350,13 @@ angular.module('medicine.controllers', [])
         console.log(data)
         currentUser.setAuthToken(data.accessToken)
         if (data.error) {
-          $ionicPopup.alert({
+          var popup=$ionicPopup.alert({
             title: '错误提示',
             template: data.error
           });
+          $timeout(function() {
+            popup.close();
+          }, 2000)
           return
         } else {
           // var popup = $ionicPopup.alert({
@@ -372,10 +393,13 @@ angular.module('medicine.controllers', [])
           $window.location.href = '#/'
             // }, 3000)
         } else {
-          $ionicPopup.alert({
+          var popup=$ionicPopup.alert({
             title: '友情提示',
             template: data.error
           })
+          $timeout(function() {
+            popup.close();
+          }, 2000)
         }
       })
     }
@@ -403,15 +427,18 @@ angular.module('medicine.controllers', [])
         if (data.mobile == '') {
           $window.location.href = '#/changephone'
         } else {
-          $ionicPopup.alert({
+          var popup=$ionicPopup.alert({
             'title': '提示',
             'template': '电话号码注册后不能修改'
           })
+          $timeout(function() {
+            popup.close();
+          }, 2000)
         }
       }
     })
   }])
-  .controller('doctorEndPublishDiscoverCtrl', ['$http', '$scope', 'publishdiscover', 'currentUser', '$window', '$ionicPopup', '$ionicLoading', function($http, $scope, publishdiscover, currentUser, $window, $ionicPopup, $ionicLoading) {
+  .controller('doctorEndPublishDiscoverCtrl', ['$timeout','$http', '$scope', 'publishdiscover', 'currentUser', '$window', '$ionicPopup', '$ionicLoading', function($timeout,$http, $scope, publishdiscover, currentUser, $window, $ionicPopup, $ionicLoading) {
     $scope.accessToken = currentUser.getAuthToken()
     $scope.publish = {
       imageBase64s: '',
@@ -428,10 +455,13 @@ angular.module('medicine.controllers', [])
       }
       if ($scope.publish.content) {
         if ($scope.publish.content.length > 200) {
-          $ionicPopup.alert({
+          var popup=$ionicPopup.alert({
             'title': '提示',
             'template': '发送的说说不能超过200个字~'
           });
+          $timeout(function() {
+            popup.close();
+          }, 2000)
           return;
         }
       }
@@ -516,10 +546,13 @@ angular.module('medicine.controllers', [])
       bindDoctor.save({}, bindMsg, function(data) {
         console.log(data)
         if (data.error) {
-          $ionicPopup.alert({
+          var popup=$ionicPopup.alert({
             title: '提示',
             template: data.error
           });
+          $timeout(function() {
+            popup.close();
+          }, 2000)
           return
         } else {
           var popup = $ionicPopup.alert({
@@ -681,7 +714,6 @@ angular.module('medicine.controllers', [])
       $scope.data = data
     })
   }])
-
 
 //
 .controller('threeKillCtrl', ['$scope', 'threeKiller', '$window', '$location', function($scope, threeKiller, $window, $location) {
@@ -937,10 +969,13 @@ angular.module('medicine.controllers', [])
           }
         })
       } else {
-        $ionicPopup.alert({
+        var popup=$ionicPopup.alert({
           title: '错误提示',
           template: '您还未登陆不能进行评论'
         });
+        $timeout(function() {
+          popup.close();
+        }, 2000)
         $window.location.href = '#/signup'
       }
 
@@ -1045,17 +1080,20 @@ angular.module('medicine.controllers', [])
           }
         })
       } else {
-        $ionicPopup.alert({
+        var popup=$ionicPopup.alert({
           title: '错误提示',
           template: '您还未登陆不能进行评论'
         });
+        $timeout(function() {
+          popup.close();
+        }, 2000)
         $window.location.href = '#/signup'
       }
 
     }
   }])
 
-.controller('doctorEndTextContentCtrl', ['$rootScope','$document','articleCollect', 'patientRemark', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', 'SHARE_APP', '$ionicActionSheet', function($rootScope,$document,articleCollect, patientRemark, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, SHARE_APP, $ionicActionSheet) {
+.controller('doctorEndTextContentCtrl', ['$timeout','$rootScope','$document','articleCollect', 'patientRemark', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', 'SHARE_APP', '$ionicActionSheet', function($timeout,$rootScope,$document,articleCollect, patientRemark, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, SHARE_APP, $ionicActionSheet) {
   $scope.data={};
   $scope.$on('$ionicView.enter',function(e,d){
     Detail.query({
@@ -1145,7 +1183,7 @@ angular.module('medicine.controllers', [])
       }
       if (accesstoken) {
         if ($scope.markinfo.remak.length == 0) {
-          $ionicPopup.alert({
+          var popup=$ionicPopup.alert({
             title: '提示',
             template: '对不起，您没填写评论内容'
           });
@@ -1168,10 +1206,13 @@ angular.module('medicine.controllers', [])
           }
         })
       } else {
-        $ionicPopup.alert({
+        var popup=$ionicPopup.alert({
           title: '错误提示',
           template: '您还未登陆不能进行评论'
         });
+        $timeout(function() {
+          popup.close();
+        }, 2000)
         $window.location.href = '#/signup'
       }
     }
@@ -1340,11 +1381,6 @@ angular.module('medicine.controllers', [])
 }])
 
 
-
-
-
-
-
 .controller('doctorEndDiscoverDetailvCtrl', ['discoverCollect', '$scope', '$window', 'currentUser', 'discoveryDetailv', 'discoverRemark', '$stateParams', '$ionicPopup', '$timeout', function(discoverCollect, $scope, $window, currentUser, discoveryDetail, discoverRemark, $stateParams, $ionicPopup, $timeout) {
   var msg = {
     accessToken: currentUser.getAuthToken(),
@@ -1407,13 +1443,7 @@ angular.module('medicine.controllers', [])
 
 
 
-
-
-
-
-
-
-.controller('forgotPwdCtrl', ['$scope', '$window', '$ionicPopup', 'forgotpwd', 'forgotReturn', 'currentUser', function($scope, $window, $ionicPopup, forgotpwd, forgotReturn, currentUser) {
+.controller('forgotPwdCtrl', ['$timeout','$scope', '$window', '$ionicPopup', 'forgotpwd', 'forgotReturn', 'currentUser', function($timeout,$scope, $window, $ionicPopup, forgotpwd, forgotReturn, currentUser) {
     $scope.forgot = {
       mobile: '',
       verifycode: '',
@@ -1428,21 +1458,30 @@ angular.module('medicine.controllers', [])
       console.log(msg)
       forgotpwd.query(msg, function(data) {
         if (data.error || $scope.forgot.mobile == 0 || $scope.forgot.mobileh < 11 || !reg.test($scope.forgot.mobile)) {
-          $ionicPopup.alert({
+          var popup=$ionicPopup.alert({
             title: '错误提示',
             template: '手机号输入有误，请重新输入'
           });
+          $timeout(function() {
+            popup.close();
+          }, 2000)
         } else {
-          $ionicPopup.alert({
+          var popup=$ionicPopup.alert({
             title: '成功提示',
             template: '验证码已经发送，请稍后'
           });
+          $timeout(function() {
+            popup.close();
+          }, 2000)
         }
       }, function() {
-        $ionicPopup.alert({
+        var popup=$ionicPopup.alert({
           title: '错误提示',
           template: '未知错误，请稍后重试'
         });
+        $timeout(function() {
+          popup.close();
+        }, 2000)
       })
     }
     $scope.pwdNext = function() {
@@ -1455,16 +1494,22 @@ angular.module('medicine.controllers', [])
       console.log(msg)
       forgotReturn.save({}, msg, function(data) {
         if (data.status == 'suc') {
-          $ionicPopup.alert({
+          var popup=$ionicPopup.alert({
             title: '提示',
             template: '密码修改成功'
           });
+          $timeout(function() {
+            popup.close();
+          }, 2000)
           $window.history.back()
         } else {
-          $ionicPopup.alert({
+          var popup=$ionicPopup.alert({
             title: '提示',
             template: data.error
           });
+          $timeout(function() {
+            popup.close();
+          }, 2000)
 
         }
       })
@@ -1599,6 +1644,9 @@ angular.module('medicine.controllers', [])
           title: '提示',
           template: '请您填写心愿'
         });
+        $timeout(function() {
+          popup.close();
+        }, 2000)
         return;
       } else {
         wish.save({
@@ -1607,16 +1655,22 @@ angular.module('medicine.controllers', [])
         }, function(data) {
           console.log('存储返回 ', data);
           if (data.status == 'suc') {
-            $ionicPopup.alert({
+            var popup=$ionicPopup.alert({
               title: '提示',
               template: '心愿成功，请耐心等待'
             });
+            $timeout(function() {
+              popup.close();
+            }, 2000)
             $window.location = '#/xinyuan_wode';
           } else {
-            $ionicPopup.alert({
+            var popup=$ionicPopup.alert({
               title: '提示',
               template: data.error
             });
+            $timeout(function() {
+              popup.close();
+            }, 2000)
 
           }
         });
