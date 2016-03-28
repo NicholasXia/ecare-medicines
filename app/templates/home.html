@@ -102,27 +102,39 @@
                 </span>
           </p>
         </ion-item>
-
+        <!-- 心愿 -->
         <ion-item class="item item-avatar" ng-click="readWish(item)" ng-repeat="item in wishContent">
-            <img src={{item.patientProfileImageUrl}}>
-            <h2>{{item.patientName}}</h2>
-            <p>{{item.postTime}}</p>
-            <p class="xinyuanTag" ng-if="item.isComeTrue==1">
-              <span >心愿成真</span>
-            </p>
+          <img src={{item.patientProfileImageUrl}}>
+          <h2>{{item.patientName}}</h2>
+          <p>{{item.postTime}}</p>
+          <p class="xinyuanTag" ng-if="item.isComeTrue==1">
+            <span>心愿成真</span>
+          </p>
 
-            <p>
-              {{item.wishContent}}
-            </p>
-            <p class="xinyuanRemark"
-              style="white-space:normal;overflow:hidden;background-color:green;color:white;padding:10px 10px;border-radius:10px">
-              回复
-              <br/>
-              {{item.remark}}
-              <br/>
-              <span style="float:right">{{item.remarkTime}}</span>
-            </p>
+          <p>
+            {{item.wishContent}}
+          </p>
+          <p class="xinyuanRemark" style="white-space:normal;overflow:hidden;background-color:green;color:white;padding:10px 10px;border-radius:10px">
+            回复
+            <br/> {{item.remark}}
+            <br/>
+            <span style="float:right">{{item.remarkTime}}</span>
+          </p>
         </ion-item>
+
+        <!-- 公告
+
+        <ion-item class="item-avatar-left" ng-repeat="item in anns" ng-click="goAnn()">
+          <img ng-src={{item.imageUrl}}/>
+          <div>
+            <span>{{item.name}}</span>
+            <span class="small fk-side">已绑定</span>
+            <span class="gray">{{item.postTime}}</span>
+          </div>
+          <p>{{item.content}}</p>
+        </ion-item>
+        -->
+
 
       </ion-list>
     </div>

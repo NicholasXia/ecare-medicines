@@ -36,6 +36,10 @@ angular.module('medicine.controllers', [])
       }
     }
 
+    $scope.goAnn=function(){
+      $window.location.href = '#/mydoctor/notice';
+    }
+
     $scope.static = function() {
       $window.location.href = '#/fkshow'
     }
@@ -69,11 +73,12 @@ angular.module('medicine.controllers', [])
       accessToken: currentUser.getAuthToken()
     }, function(data) {
       console.log(data)
-      if (data.newRemark || data.newChat || data.wishes) {
+      if (data.newRemark || data.newChat || data.wishes||data.anns) {
         $scope.isNew = true;
         $scope.newChat = data.newChat;
         $scope.newRemark = data.newRemark;
         $scope.wishContent = data.wishes;
+        $scope.anns=data.anns;
       } else {
         $scope.isNew = false
       }
