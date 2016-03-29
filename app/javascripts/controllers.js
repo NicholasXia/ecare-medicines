@@ -1691,12 +1691,32 @@ angular.module('medicine.controllers', [])
     })
 
   }])
-  .controller('jiluCtrl', ['$ionicModal','$scope', '$window', 'wish', '$ionicPopup', 'currentUser', 'mywish', 'currentUser', function($ionicModal,$scope, $window, wish, $ionicPopup, currentUser, mywish, currentUser) {
+  .controller('jiluDeailtsCtrl', ['jilu','$scope', '$window', 'wish', '$ionicPopup', 'currentUser', 'mywish', 'currentUser', function(jilu,$scope, $window, wish, $ionicPopup, currentUser, mywish, currentUser) {
+    var accessToken = currentUser.getAuthToken();
+    var params={
+      accessToken:currentUser.getAuthToken()
+    };
+    $scope.items=[];
+    jilu.query(params,function(err,data){
+      $scope.items=data;
+      console.log($scope.items);
+    });
+  }])
+
+  .controller('jiluCtrl', ['jilu','$ionicModal','$scope', '$window', 'wish', '$ionicPopup', 'currentUser', 'mywish', 'currentUser', function(jilu,$ionicModal,$scope, $window, wish, $ionicPopup, currentUser, mywish, currentUser) {
     //full calendar
     $scope.eventSources = [];
 
     var $selectDateObj={};
-    var selectObjs=[];
+    var cellDays={};//{day:(String) :cell}
+    var selectObjs=[];//选中日期对象
+    var selectDateStr="";//选中日期
+    var startDate;//开始日期
+    var endDate;//开始日期
+    var jiluData=[];
+
+
+
     $scope.uiConfig = {
       calendar: {
         lang: 'zh-cn',
@@ -1718,33 +1738,111 @@ angular.module('medicine.controllers', [])
         // selectHelper: true,
 
         dayClick: function(date, jsEvent, view) {
+          //初始化
+          $scope.isXueYa=false;
+          $scope.isTizhong=false;
+          $scope.isXinlv=false;
           console.log(date.format());
           console.log(jsEvent);
           console.log(view);
+
           $selectDateObj.attr('style', 'background-color:white !important');
           for(var i=0;i<selectObjs.length;i++){
             selectObjs[i].attr('style', 'background-color:white !important');
           }
 
           $selectDateObj=$(this);
-          $(this).attr('style', ';background-color:#E06E5C !important');
+          selectDateStr=date.format('YYYY-MM-DD');
+          $(this).attr('style', ';background-color:#2CCD8F !important');
           selectObjs.push($(this));
-          $(this).html('<div></div>');
-          console.log($(this).text());
+
+          //更新记录model
+          for(var i=0;i<jiluData.length;i++){
+            if(selectDateStr==jiluData[i].dayStr){
+
+              if(jiluData[i].gaoya){
+                $scope.isXueYa=true;
+                $scope.lu.high=jiluData[i].gaoya;
+                $scope.lu.low=jiluData[i].diya;
+              }
+              if(jiluData[i].tizhong){
+                $scope.isTizhong=true;
+                $scope.lu.tizhong=jiluData[i].tizhong;
+              }
+              if(jiluData[i].xinlv){
+                $scope.isXinlv=true;
+                $scope.lu.isXinlv=jiluData[i].isXinlv;
+              }
+              break;
+            }
+
+          }
+
         },
         dayRender:function( date, cell ) { //查询所有记录
           if(date.isSame(new Date(),'day')){
             $selectDateObj=cell;
-            $selectDateObj.attr('style', ';background-color:#E06E5C !important');
+            $selectDateObj.attr('style', ';background-color:#2CCD8F;color:#fff');
+            selectDateStr=date.format('YYYY-MM-DD');
           }
-          // console.log(cell.html('dd'));
-         }
+          cellDays[date.format('YYYY-MM-DD')]=cell;
+
+
+          //渲染
+          // for()
+
+        },
+        viewRender:function(view, element){
+          console.log('view ok');
+          console.log(cellDays);
+
+          startDate=view.start.format('YYYY-MM-DD');
+          endDate=view.end.format('YYYY-MM-DD');
+          var params={
+            startday:startDate,
+            endday:endDate,
+            accessToken:currentUser.getAuthToken()
+          };
+          jilu.query(params,function(err,data){
+            jiluData=data.jilus;
+            for(var i=0;i<jiluData.length;i++){
+              var cell=cellDays[jiluData[i].dayStr]
+              if(cell){
+                console.log('找到 '+jiluData[i].dayStr);
+                cell.html('<div style="border-radius:2px;float:right;margin-top:5px;margin-right:5px;width:5px;height:5px;background-color:#2CCD8F"></div>');
+              }
+            }
+            //更新记录model
+            for(var i=0;i<jiluData.length;i++){
+              if(selectDateStr==jiluData[i].dayStr){
+
+                if(jiluData[i].gaoya){
+                  $scope.isXueYa=true;
+                  $scope.lu.high=jiluData[i].gaoya;
+                  $scope.lu.low=jiluData[i].diya;
+                }
+                if(jiluData[i].tizhong){
+                  $scope.isTizhong=true;
+                  $scope.lu.tizhong=jiluData[i].tizhong;
+                }
+                if(jiluData[i].xinlv){
+                  $scope.isXinlv=true;
+                  $scope.lu.xinlv=jiluData[i].xinlv;
+                }
+                break;
+              }
+
+            }
+          });
+        }
       }
     };
     //default
     $scope.lu={
       high:110,
-      low:80
+      low:80,
+      tizhong:50,
+      xinlv:70
     }
     $scope.isXueYa=false;
     $ionicModal.fromTemplateUrl('xueya.html',{
@@ -1753,19 +1851,77 @@ angular.module('medicine.controllers', [])
     }).then(function(modal){
       $scope.xueYaModal=modal;
     });
+    $ionicModal.fromTemplateUrl('tizhong.html',{
+      scope:$scope,
+      animation:'slide-in-up'
+    }).then(function(modal){
+      $scope.tiZhongModal=modal;
+    });
+    $ionicModal.fromTemplateUrl('xinlv.html',{
+      scope:$scope,
+      animation:'slide-in-up'
+    }).then(function(modal){
+      $scope.xinLvModal=modal;
+    });
     $scope.jilu=function(type){
-      $scope.xueYaModal.show();
+      if(type=='xueya'){
+        $scope.xueYaModal.show();
+      }
+      if(type=="tizhong"){
+        $scope.tiZhongModal.show();
+      }
+      if(type=="xinlv"){
+        $scope.xinLvModal.show();
+      }
+
+
     }
     $scope.closeModal=function(){
       $scope.xueYaModal.hide();
+      $scope.tiZhongModal.hide();
+      $scope.xinLvModal.hide();
     }
+    function sync(){
+      var day=selectDateStr;
+      var formData = new FormData();
+      formData.append('day', day);
+      formData.append('accessToken', currentUser.getAuthToken())
+      if($scope.isXueYa){
+        formData.append('gaoya', $scope.lu.high)
+        formData.append('diya', $scope.lu.low)
+      }
+      if($scope.isTizhong){
+          formData.append('tizhong', $scope.lu.tizhong)
+      }
+      if($scope.isXinlv){
+          formData.append('xinlv', $scope.lu.xinlv)
+      }
+
+      jilu.add(formData,function(){
+
+        // $selectDateObj.html('<div style="border-radius:2px;float:right;margin-top:5px;margin-right:5px;width:5px;height:5px;background-color:#2CCD8F"></div>');
+      });
+    }
+
     $scope.saveXueYa=function(){
       $scope.isXueYa=true;
       $scope.xueYaModal.hide();
-      console.log($selectDateObj);
-      $selectDateObj.html("已记录");
-
+      sync();
     }
+
+    $scope.saveTizhong=function(){
+      $scope.isTizhong=true;
+      $scope.tiZhongModal.hide();
+      sync();
+    }
+
+    $scope.saveXinlv=function(){
+      $scope.isXinlv=true;
+      $scope.xinLvModal.hide();
+      sync();
+    }
+
+
 
 
   }]);

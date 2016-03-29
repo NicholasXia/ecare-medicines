@@ -396,6 +396,28 @@ angular.module('medicine.services', ['ngResource'])
         }
         return helperObj
     })
+    .factory('jilu',['$http','SERVER',function($http,SERVER){
+      var fa={};
+      fa.add=function(formData,cb){
+        $http.post(SERVER+'/patient/jilu/add', formData,{
+          headers: {
+            'Content-Type': undefined
+          },
+          transformRequest: angular.identity
+        }).
+        success(cb).
+        error(cb);
+      }
+      fa.query=function(params,cb){
+        $http({method:'GET',params:params,url:SERVER+'/patient/jilu/query'}).then(function success(res){
+          return cb(null,res.data);
+        },function error(){
+          return cb(res.status,null);//ERROR
+        });
+      }
+      return fa;
+    }])
+
     .factory('mywish',['$http','SERVER',function($http,SERVER){
       var fa={};
       fa.getMyWish=function(params,cb){

@@ -431,6 +431,26 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
       templateUrl:"templates/jilu.html",
       controller:"jiluCtrl"
     })
+    .state('jilu_details',{
+      url:"/jilu_details",
+      templateUrl:"templates/jilu_details.html",
+
+    })
+    .state('jilu_xueya',{
+      url:"/jilu_xueya",
+      templateUrl:"templates/jilu_xueya.html",
+      controller:"jiluDeailtsCtrl"
+    })
+    .state('jilu_tizhong',{
+      url:"/jilu_tizhong",
+      templateUrl:"templates/jilu_tizhong.html",
+      controller:"jiluDeailtsCtrl"
+    })
+    .state('jilu_xinlv',{
+      url:"/jilu_xinlv",
+      templateUrl:"templates/jilu_xinlv.html",
+      controller:"jiluDeailtsCtrl"
+    })
     .state('mianze',{
       url:"/mianze",
       templateUrl:"templates/mianze.html"

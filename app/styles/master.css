@@ -1,5 +1,6 @@
 /***********************helper start***************************/
-body{
+
+body {
   font-family: '微软雅黑'
 }
 .fl {
@@ -452,7 +453,7 @@ body{
 
 /* 心愿墙 */
 
-.xinyuanTag span{
+.xinyuanTag span {
   color: white;
   background-color: #d56495;
   position: absolute;
@@ -464,76 +465,59 @@ body{
 
 /* 发现 */
 
-.discover .ion-comment{
+.discover .ion-comment {
   display: inline-block;
   background-repeat: no-repeat;
-  width:25px;
+  width: 25px;
   height: 20px;
   background-size: 25px 20px;
   background-image: url("../images/comment.png");
   margin-right: 5px;
 }
-.discover comment-num{
-  font-size:20px;
+.discover comment-num {
+  font-size: 20px;
 }
-
-
-  .fc-center,
-  .fc-left,
-  .fc-right {
-    margin: 10px;
-  }
-
-  .fc-left {
-    font-weight: normal;
-    margin-left: 10%;
-  }
-
-  .fc-state-default.fc-corner-right {
-    border-radius: 0px;
-  }
-
-  .fc-state-default {
-    background-color: #D3EFE0 !important;
-    background-image: none !important;
-  }
-
-  .fc-next-button,
-  .fc-prev-button {
-    color: #20CC8C;
-    border-radius: none !important;
-    border: none !important;
-    box-shadow: none !important;
-  }
-
-  .fc-right {
-    font-weight: normal;
-    margin-right: 10%;
-  }
-
-  .fc-center h2 {
-    font-weight: normal;
-    color: #20CC8C;
-    font-size: 20px;
-  }
-
-  .fc-toolbar {
-    background-color: #D3EFE0;
-  }
-
-  .fc-basic-view .fc-body .fc-row {
-    min-height: 3em !important;
-    height: 30px !important;
-  }
-
-  .fc th,
-  .fc td {
-    border: none !important;
-  }
-
-  .fc-basic-view td.fc-week-number span,
-  .fc-basic-view td.fc-day-number {
-    padding-top: 10px !important;
-    /*padding-left: 5px !important;*/
-    padding-right: 15px !important;
-  }
+.fc-center, .fc-left, .fc-right {
+  margin: 10px;
+}
+.fc-left {
+  font-weight: normal;
+  margin-left: 10%;
+}
+.fc-state-default.fc-corner-right {
+  border-radius: 0px;
+}
+.fc-state-default {
+  background-color: #D3EFE0 !important;
+  background-image: none !important;
+}
+.fc-next-button, .fc-prev-button {
+  color: #20CC8C;
+  border-radius: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.fc-right {
+  font-weight: normal;
+  margin-right: 10%;
+}
+.fc-center h2 {
+  font-weight: normal;
+  color: #20CC8C;
+  font-size: 20px;
+}
+.fc-toolbar {
+  background-color: #D3EFE0;
+}
+.fc-basic-view .fc-body .fc-row {
+  min-height: 3em !important;
+  height: 30px !important;
+}
+.fc th, .fc td {
+  border: none !important;
+}
+.fc-basic-view td.fc-week-number span, .fc-basic-view td.fc-day-number {
+  padding-top: 10px !important;
+  /*padding-left: 5px !important;*/
+  padding-right: 15px !important;
+}
