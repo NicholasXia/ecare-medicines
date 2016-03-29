@@ -1694,6 +1694,9 @@ angular.module('medicine.controllers', [])
   .controller('jiluCtrl', ['$ionicModal','$scope', '$window', 'wish', '$ionicPopup', 'currentUser', 'mywish', 'currentUser', function($ionicModal,$scope, $window, wish, $ionicPopup, currentUser, mywish, currentUser) {
     //full calendar
     $scope.eventSources = [];
+
+    var $selectDateObj={};
+    var selectObjs=[];
     $scope.uiConfig = {
       calendar: {
         lang: 'zh-cn',
@@ -1710,31 +1713,58 @@ angular.module('medicine.controllers', [])
               // other view-specific options here
           }
         },
-        selectable: true,
+        // selectable: true,
         //
         // selectHelper: true,
-        dayClick: function(date, jsEvent, view) {
 
-        }
+        dayClick: function(date, jsEvent, view) {
+          console.log(date.format());
+          console.log(jsEvent);
+          console.log(view);
+          $selectDateObj.attr('style', 'background-color:white !important');
+          for(var i=0;i<selectObjs.length;i++){
+            selectObjs[i].attr('style', 'background-color:white !important');
+          }
+
+          $selectDateObj=$(this);
+          $(this).attr('style', ';background-color:#E06E5C !important');
+          selectObjs.push($(this));
+          $(this).html('<div></div>');
+          console.log($(this).text());
+        },
+        dayRender:function( date, cell ) { //查询所有记录
+          if(date.isSame(new Date(),'day')){
+            $selectDateObj=cell;
+            $selectDateObj.attr('style', ';background-color:#E06E5C !important');
+          }
+          // console.log(cell.html('dd'));
+         }
       }
     };
     //default
-    $scope.high=110;
-    $scope.low=80;
-
+    $scope.lu={
+      high:110,
+      low:80
+    }
+    $scope.isXueYa=false;
     $ionicModal.fromTemplateUrl('xueya.html',{
       scope:$scope,
       animation:'slide-in-up'
     }).then(function(modal){
-      $scope.modal=modal;
+      $scope.xueYaModal=modal;
     });
     $scope.jilu=function(type){
-
-      $scope.modal.show();
-
+      $scope.xueYaModal.show();
     }
     $scope.closeModal=function(){
-      $scope.modal.hide();
+      $scope.xueYaModal.hide();
+    }
+    $scope.saveXueYa=function(){
+      $scope.isXueYa=true;
+      $scope.xueYaModal.hide();
+      console.log($selectDateObj);
+      $selectDateObj.html("已记录");
+
     }
 
 

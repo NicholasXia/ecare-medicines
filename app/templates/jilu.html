@@ -5,15 +5,17 @@
 <ion-content start-y="0" has-bouncing="true">
   <div ui-calendar="uiConfig.calendar" ng-model="eventSources" data-tap-disabled="true"></div>
   <ion-item>
-    <span>血压</span> <span style="float:right" ng-click="jilu('xueya')">记录</span>
+    <span>血压</span>
+    <span ng-if="!isXueYa" style="float:right" ng-click="jilu('xueya')">记录</span>
+    <span ng-if="isXueYa" style="float:right" ng-click="jilu('xueya')">高压:{{lu.high}}/低压:{{lu.low}}</span>
     <!-- <button type="button" name="button"></button> -->
   </ion-item>
-  <ion-item>
-    <span>体重</span><span ng-click="jilu('tizhong')">记录</span>
+  <!-- <ion-item>
+    <span>体重</span><span style="float:right" ng-click="jilu('tizhong')">记录</span>
   </ion-item>
   <ion-item>
-    <span>心率</span><span ng-click="jilu('xinlv')">记录</span>
-  </ion-item>
+    <span>心率</span><span style="float:right" ng-click="jilu('xinlv')">记录</span>
+  </ion-item> -->
 </ion-content>
 
 <script id="xueya.html" type="text/ng-template">
@@ -21,22 +23,23 @@
     <ion-header-bar>
       <a class="button icon ion-chevron-left" ng-click="closeModal()"></a>
       <h1 class="title">记录血压</h1>
+      <a class="button" ng-click="saveXueYa()">保存</a>
     </ion-header-bar>
     <ion-content>
       <ion-item>
-        <h2>高压:{{high}}</h2>
+        <h2>高压:{{lu.high}}</h2>
         <div class="range">
           70
-          <input type="range" ng-model="high" min='70' max='200'>
+          <input type="range" ng-model="lu.high" min='70' max='200'>
           200
         </div>
       </ion-item>
 
       <ion-item>
-        <h2>低压:{{low}}</h2>
+        <h2>低压:{{lu.low}}</h2>
         <div class="range">
           40
-          <input type="range" ng-model="low" min='40' max='180'>
+          <input type="range" ng-model="lu.low" min='40' max='180'>
           180
         </div>
       </ion-item>
