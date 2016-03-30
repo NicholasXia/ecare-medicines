@@ -456,7 +456,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
       templateUrl:"templates/mianze.html"
     });
   $urlRouterProvider.otherwise("/tab/home");
-}).run(['$rootScope', function($rootScope) {
+}).run(['$timeout','$window','$ionicPopup','currentUser','$rootScope', function($timeout,$window,$ionicPopup,currentUser,$rootScope) {
   document.addEventListener('DOMContentLoaded', function() {
         FastClick.attach(document.body);
     }, false);
@@ -464,6 +464,28 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
 
   $rootScope.$on('$stateChangeSuccess',
     function(event, toState, toParams, fromState, fromParams) {
+      var forbit=['jilu'];
+            for(i in forbit){
+              console.log(forbit[i]);
+              console.log(toState.name);
+
+              if(forbit[i]==toState.name){
+                if(currentUser.getAuthToken()==null){
+                  var popup = $ionicPopup.alert({
+                      title: '错误提示',
+                      template: '没有登录'
+                  });
+                  $timeout(function(){
+                    popup.close();
+                    $window.location.href="#/signup";
+                  }, 1500);
+
+                }
+                break;
+              }
+            }
+
+
       if(toParams.id){
             // console.log(toState.url.replace(":id",toParams.id));
             _hmt.push(['_trackPageview', toState.url.replace(":id",toParams.id)]);

@@ -73,7 +73,7 @@ angular.module('medicine.controllers', [])
       accessToken: currentUser.getAuthToken()
     }, function(data) {
       console.log(data)
-      if (data.newRemark || data.newChat || data.wishes||data.anns) {
+      if (data.newRemark || data.newChat || data.wishes) { //||data.anns
         $scope.isNew = true;
         $scope.newChat = data.newChat;
         $scope.newRemark = data.newRemark;

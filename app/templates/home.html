@@ -1,3 +1,8 @@
+<style media="screen">
+  .homeFont{
+    font-size:10px;
+  }
+</style>
 <ion-view view-title="乐柏健康" cache-view='false' hide-nav-bar="isNavBarHide">
   <ion-content has-bouncing="true">
     <!--首页轮播图-->
@@ -19,11 +24,11 @@
       <div class="col">
         <div class="button-bar height100">
           <a class="button border" href="#/binddoctor">
-            <i class="icon">
-                            <img src="images/bangding.png" alt=""/>
+            <i class="icon" style="width:10px;">
+                            <img height="10px" src="images/bangding.png" alt=""/>
                         </i>
 
-            <p>绑定医生</p>
+            <p class="homeFont">绑定医生</p>
           </a>
         </div>
       </div>
@@ -34,7 +39,7 @@
                             <img src="images/yisheng.png" alt=""/>
                         </i>
 
-            <p>我的医生</p>
+            <p class="homeFont">我的医生</p>
           </button>
         </div>
       </div>
@@ -45,21 +50,21 @@
                             <img src="images/xinyuan1.png" alt=""/>
                         </i>
 
-            <p>发表心愿</p>
+            <p class="homeFont">发表心愿</p>
           </a>
         </div>
       </div>
-      <!-- <div class="col">
+       <!-- <div class="col">
         <div class="button-bar height100">
           <a class="button border" href="#/jilu">
             <i class="icon">
                             <img src="images/xinyuan1.png" alt=""/>
                         </i>
 
-            <p>健康记录</p>
+            <p class="homeFont">健康记录</p>
           </a>
-        </div>
-      </div> -->
+        </div> -->
+      </div>
     </div>
 
     <div ng-if="isNew">
