@@ -101,6 +101,11 @@ body {
   max-width: 100%;
   height: auto;
 }
+.img-responsive50 {
+  display: block;
+  max-width: 75%;
+  height: auto;
+}
 .divider {
   height: 20px;
   background-color: #ddd;
@@ -249,23 +254,34 @@ body {
 .imax .imax-inwrap {
   position: absolute;
   left: 50px;
-  bottom: 60px;
+  bottom: 30px;
 }
 .imax .goorin {
-  color: #f6f6f6;
+  font-weight: bolder;
+  margin-left: 50px;
+  width: 120px;
+  color: #4AD095;
   text-align: center;
   border: 1px solid #f6f6f6;
-  border-radius: 3px;
+  border-radius: 4px;
+  background-color: #EDF4CF;
+  padding:2px;
 }
 .goorin a {
+  font-size: 20px;
   display: inline-block;
   line-height: 32px;
   height: 32px;
   text-decoration: none;
-  color: #fff;
+  color: #4AD095;
 }
 .imax .hide-world {
+  text-shadow: 2px 1px 1px #B5CF9D;
   color: #f6f6f6;
+  margin-top: 10px;
+  margin-left: -20px;
+  font-size: 16px;
+  font-weight: bolder;
 }
 .imax.doctorimax {
   background-image: url("../images/yishengbeijing.png");
