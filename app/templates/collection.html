@@ -7,17 +7,21 @@
         <ion-list can-swipe="true">
             <ion-item ng-if="datadiscover" class="item item-avatar" ng-repeat="item in datadiscover"
                       ui-sref="discoverdetail({id:item.discoveryId})"/>
-            <img ng-src={{item.profileImageUrl}}>
 
-            <h1>{{item.id}}</h1>
+            <img ng-if="item.type==2" ng-src={{item.profileImageUrl}} onerror="this.src='./images/tongxiang0.png'" />
+
+            <img ng-if="item.type==1" ng-src='./images/tongxiang.png'  />
+
+            <!-- <h1>{{item.id}}</h1> -->
 
 
-            <div class="clearfix">
-                <span class="fl">{{item.name}}</span>
+            <div style="margin-top:10px" class="clearfix">
+              <span ng-if="item.type==2" class="fl">{{item.name}}</span>
+                <span ng-if="item.type==1" class="fl">医康世纪</span>
                 <span class="fr">{{item.postTime}}</span>
             </div>
 
-            <p>{{item.content}}</p>
+            <p style="margin-top:20px">{{item.content}}</p>
 
             <img class="img-responsive" ng-src={{imgs.imageUrl}} ng-repeat="imgs in item.imageList">
 
