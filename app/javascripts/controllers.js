@@ -36,7 +36,7 @@ angular.module('medicine.controllers', [])
       }
     }
 
-    $scope.goAnn=function(){
+    $scope.goAnn = function() {
       $window.location.href = '#/mydoctor/notice';
     }
 
@@ -78,7 +78,7 @@ angular.module('medicine.controllers', [])
         $scope.newChat = data.newChat;
         $scope.newRemark = data.newRemark;
         $scope.wishContent = data.wishes;
-        $scope.anns=data.anns;
+        $scope.anns = data.anns;
       } else {
         $scope.isNew = false
       }
@@ -106,9 +106,9 @@ angular.module('medicine.controllers', [])
       limit: 5
     }
     $scope.more = true; //默认有最多
-    $scope.link=function(discovery){
+    $scope.link = function(discovery) {
       console.log('link');
-      $window.location.href=discovery.url;
+      $window.location.href = discovery.url;
     }
     discoveryList.query({
       accessToken: currentUser.getAuthToken(),
@@ -198,9 +198,9 @@ angular.module('medicine.controllers', [])
     }
 
   }])
-  .controller('doctorEndMineCtrl', ['$timeout','$scope', 'checkLogin', '$window', '$ionicPopup', 'patientProfile', 'currentUser', 'helper', function($timeout,$scope, checkLogin, $window, $ionicPopup, patientProfile, currentUser, helper) {
+  .controller('doctorEndMineCtrl', ['$timeout', '$scope', 'checkLogin', '$window', '$ionicPopup', 'patientProfile', 'currentUser', 'helper', function($timeout, $scope, checkLogin, $window, $ionicPopup, patientProfile, currentUser, helper) {
     $scope.ischeck = !!checkLogin.check()
-    if(currentUser.getAuthToken()){
+    if (currentUser.getAuthToken()) {
       patientProfile.query({
         accessToken: currentUser.getAuthToken()
       }, function(data) {
@@ -216,7 +216,7 @@ angular.module('medicine.controllers', [])
       if ($scope.ischeck) {
         $window.location.href = '#/xinyuan_wode';
       } else {
-        var popup=$ionicPopup.alert({
+        var popup = $ionicPopup.alert({
           title: '提示',
           template: '您尚未登陆，请登陆后重试'
         })
@@ -231,7 +231,7 @@ angular.module('medicine.controllers', [])
       if ($scope.ischeck) {
         $window.location.href = '#/collection'
       } else {
-        var popup=$ionicPopup.alert({
+        var popup = $ionicPopup.alert({
           title: '提示',
           template: '您尚未登陆，请登陆后重试'
         })
@@ -252,9 +252,10 @@ angular.module('medicine.controllers', [])
   .controller('doctorEndConfirmIdCtrl', ['$scope', function($scope) {
 
   }])
-  .controller('doctorEndSignInCtrl', ['$scope', '$ionicPopup', 'getVerificationCode', 'createUser', '$timeout', '$window', 'currentUser', '$interval', function($scope, $ionicPopup, getVerificationCode, createUser, $timeout, $window, currentUser, $interval) {
+  .controller('doctorEndSignInCtrl', ['huanxin', '$scope', '$ionicPopup', 'getVerificationCode', 'createUser', '$timeout', '$window', 'currentUser', '$interval', function(huanxin, $scope, $ionicPopup, getVerificationCode, createUser, $timeout, $window, currentUser, $interval) {
     //用户注册模块
     console.log('注册controller');
+    huanxin.registerUser();
     var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/
     $scope.account = {
       phoneNum: '',
@@ -269,7 +270,7 @@ angular.module('medicine.controllers', [])
         mobile: $scope.account.phoneNum
       }, function(data) {
         if (data.error || $scope.account.phoneNum.length == 0 || $scope.account.phoneNum.length < 11 || !reg.test($scope.account.phoneNum)) {
-          var popup=$ionicPopup.alert({
+          var popup = $ionicPopup.alert({
             title: '提示',
             template: data.error
           });
@@ -277,7 +278,7 @@ angular.module('medicine.controllers', [])
             popup.close();
           }, 2000)
         } else {
-          var popup=$ionicPopup.alert({
+          var popup = $ionicPopup.alert({
             title: '成功提示',
             template: '验证码已经发送，请稍后'
           });
@@ -307,7 +308,7 @@ angular.module('medicine.controllers', [])
       }
 
       if ($scope.account.verCode.length !== 4 || $scope.account.password.length == 0) {
-        var popup=$ionicPopup.alert({
+        var popup = $ionicPopup.alert({
           title: '提示',
           template: '请输入个人正确的信息'
         })
@@ -318,7 +319,7 @@ angular.module('medicine.controllers', [])
       }
       createUser.save({}, user, function(data) {
         if (data.error) {
-          var popup=$ionicPopup.alert({
+          var popup = $ionicPopup.alert({
             'title': '提示',
             'template': data.error
           })
@@ -339,7 +340,8 @@ angular.module('medicine.controllers', [])
       })
     }
   }])
-  .controller('doctorEndSignUpCtrl', ['$scope', 'signUp', '$window', '$ionicPopup', '$timeout', 'currentUser', function($scope, signUp, $window, $ionicPopup, $timeout, currentUser) {
+  .controller('doctorEndSignUpCtrl', ['huanxin', '$scope', 'signUp', '$window', '$ionicPopup', '$timeout', 'currentUser', function(huanxin, $scope, signUp, $window, $ionicPopup, $timeout, currentUser) {
+
     $scope.signInMsg = {
       'username': '',
       'password': '',
@@ -347,10 +349,28 @@ angular.module('medicine.controllers', [])
     }; //患者登陆类型
     $scope.signIn = function() {
       signUp.save({}, $scope.signInMsg, function(data) {
-        console.log(data)
+        console.log(data);
+        huanxin.registerUser({
+          username: $scope.signInMsg.username,
+          password: $scope.signInMsg.password,
+          success: function(result) { //注册成功
+            console.log('IM注册成功');
+            huanxin.connect($scope.signInMsg.username,$scope.signInMsg.password,function(){
+              console.log('IM连接成功');
+            });
+          },
+          error: function(e) {//注册失败
+            console.log('IM注册失败');
+            huanxin.connect($scope.signInMsg.username,$scope.signInMsg.password,function(){
+              console.log('IM连接成功');
+            });
+
+          }
+        });
+        currentUser.setUser($scope.signInMsg.username,$scope.signInMsg.password);
         currentUser.setAuthToken(data.accessToken)
         if (data.error) {
-          var popup=$ionicPopup.alert({
+          var popup = $ionicPopup.alert({
             title: '错误提示',
             template: data.error
           });
@@ -393,7 +413,7 @@ angular.module('medicine.controllers', [])
           $window.location.href = '#/'
             // }, 3000)
         } else {
-          var popup=$ionicPopup.alert({
+          var popup = $ionicPopup.alert({
             title: '友情提示',
             template: data.error
           })
@@ -427,7 +447,7 @@ angular.module('medicine.controllers', [])
         if (data.mobile == '') {
           $window.location.href = '#/changephone'
         } else {
-          var popup=$ionicPopup.alert({
+          var popup = $ionicPopup.alert({
             'title': '提示',
             'template': '电话号码注册后不能修改'
           })
@@ -438,7 +458,7 @@ angular.module('medicine.controllers', [])
       }
     })
   }])
-  .controller('doctorEndPublishDiscoverCtrl', ['$timeout','$http', '$scope', 'publishdiscover', 'currentUser', '$window', '$ionicPopup', '$ionicLoading', function($timeout,$http, $scope, publishdiscover, currentUser, $window, $ionicPopup, $ionicLoading) {
+  .controller('doctorEndPublishDiscoverCtrl', ['$timeout', '$http', '$scope', 'publishdiscover', 'currentUser', '$window', '$ionicPopup', '$ionicLoading', function($timeout, $http, $scope, publishdiscover, currentUser, $window, $ionicPopup, $ionicLoading) {
     $scope.accessToken = currentUser.getAuthToken()
     $scope.publish = {
       imageBase64s: '',
@@ -455,7 +475,7 @@ angular.module('medicine.controllers', [])
       }
       if ($scope.publish.content) {
         if ($scope.publish.content.length > 200) {
-          var popup=$ionicPopup.alert({
+          var popup = $ionicPopup.alert({
             'title': '提示',
             'template': '发送的说说不能超过200个字~'
           });
@@ -546,7 +566,7 @@ angular.module('medicine.controllers', [])
       bindDoctor.save({}, bindMsg, function(data) {
         console.log(data)
         if (data.error) {
-          var popup=$ionicPopup.alert({
+          var popup = $ionicPopup.alert({
             title: '提示',
             template: data.error
           });
@@ -861,7 +881,7 @@ angular.module('medicine.controllers', [])
   }])
 
 //文章detail
-.controller('zhishiDetailCtrl', ['$document','articleCollect', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout', 'SHARE_APP', '$ionicActionSheet', function($document,articleCollect, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout, SHARE_APP, $ionicActionSheet) {
+.controller('zhishiDetailCtrl', ['$document', 'articleCollect', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', '$timeout', 'SHARE_APP', '$ionicActionSheet', function($document, articleCollect, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, $timeout, SHARE_APP, $ionicActionSheet) {
     $scope.showAction = function() {
       var hideSheet = $ionicActionSheet.show({
         buttons: [{
@@ -911,12 +931,12 @@ angular.module('medicine.controllers', [])
       })
     }
 
-    $scope.$on('$ionicView.enter',function(e,d){
+    $scope.$on('$ionicView.enter', function(e, d) {
       Detail.query({
         id: $stateParams.id
       }, function(data) {
         $scope.zhishidetail = data
-        $document[0].title=data.title;
+        $document[0].title = data.title;
         mobShare.config({
           appkey: SHARE_APP,
           params: {
@@ -969,7 +989,7 @@ angular.module('medicine.controllers', [])
           }
         })
       } else {
-        var popup=$ionicPopup.alert({
+        var popup = $ionicPopup.alert({
           title: '错误提示',
           template: '您还未登陆不能进行评论'
         });
@@ -1080,7 +1100,7 @@ angular.module('medicine.controllers', [])
           }
         })
       } else {
-        var popup=$ionicPopup.alert({
+        var popup = $ionicPopup.alert({
           title: '错误提示',
           template: '您还未登陆不能进行评论'
         });
@@ -1093,34 +1113,34 @@ angular.module('medicine.controllers', [])
     }
   }])
 
-.controller('doctorEndTextContentCtrl', ['$timeout','$rootScope','$document','articleCollect', 'patientRemark', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', 'SHARE_APP', '$ionicActionSheet', function($timeout,$rootScope,$document,articleCollect, patientRemark, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, SHARE_APP, $ionicActionSheet) {
-  $scope.data={};
-  $scope.$on('$ionicView.enter',function(e,d){
-    Detail.query({
-      id: $stateParams.id
-    }, {
-      accessToken: currentUser.getAuthToken()
-    }, function(data) {
+.controller('doctorEndTextContentCtrl', ['$timeout', '$rootScope', '$document', 'articleCollect', 'patientRemark', '$scope', 'Detail', 'currentUser', '$window', '$stateParams', 'Remark', '$ionicPopup', 'SHARE_APP', '$ionicActionSheet', function($timeout, $rootScope, $document, articleCollect, patientRemark, $scope, Detail, currentUser, $window, $stateParams, Remark, $ionicPopup, SHARE_APP, $ionicActionSheet) {
+    $scope.data = {};
+    $scope.$on('$ionicView.enter', function(e, d) {
+      Detail.query({
+        id: $stateParams.id
+      }, {
+        accessToken: currentUser.getAuthToken()
+      }, function(data) {
 
-      $scope.data=data;
-      $document[0].title=data.title;
-      mobShare.config({
-        appkey: SHARE_APP,
-        params: {
-          title: data.title
+        $scope.data = data;
+        $document[0].title = data.title;
+        mobShare.config({
+          appkey: SHARE_APP,
+          params: {
+            title: data.title
+          }
+        });
+        $scope.shareWeibo = function() {
+          var weibo = mobShare('weibo');
+          weibo.send();
         }
-      });
-      $scope.shareWeibo = function() {
-        var weibo = mobShare('weibo');
-        weibo.send();
-      }
-      $scope.shareQzone = function() {
-        var qzone = mobShare('qzone');
-        qzone.send();
-      }
-      console.log(data)
-    })
-  });
+        $scope.shareQzone = function() {
+          var qzone = mobShare('qzone');
+          qzone.send();
+        }
+        console.log(data)
+      })
+    });
 
 
     $scope.showAction = function() {
@@ -1183,7 +1203,7 @@ angular.module('medicine.controllers', [])
       }
       if (accesstoken) {
         if ($scope.markinfo.remak.length == 0) {
-          var popup=$ionicPopup.alert({
+          var popup = $ionicPopup.alert({
             title: '提示',
             template: '对不起，您没填写评论内容'
           });
@@ -1206,7 +1226,7 @@ angular.module('medicine.controllers', [])
           }
         })
       } else {
-        var popup=$ionicPopup.alert({
+        var popup = $ionicPopup.alert({
           title: '错误提示',
           template: '您还未登陆不能进行评论'
         });
@@ -1322,9 +1342,9 @@ angular.module('medicine.controllers', [])
     accessToken: currentUser.getAuthToken(),
     discoveryId: $stateParams.id
   }
-  $scope.link=function(discovery){
+  $scope.link = function(discovery) {
     console.log('link');
-    $window.location.href=discovery.url;
+    $window.location.href = discovery.url;
   }
   $scope.discoverAdd = function() {
     discoverCollect.save({}, msg, function(data) {
@@ -1443,7 +1463,7 @@ angular.module('medicine.controllers', [])
 
 
 
-.controller('forgotPwdCtrl', ['$timeout','$scope', '$window', '$ionicPopup', 'forgotpwd', 'forgotReturn', 'currentUser', function($timeout,$scope, $window, $ionicPopup, forgotpwd, forgotReturn, currentUser) {
+.controller('forgotPwdCtrl', ['$timeout', '$scope', '$window', '$ionicPopup', 'forgotpwd', 'forgotReturn', 'currentUser', function($timeout, $scope, $window, $ionicPopup, forgotpwd, forgotReturn, currentUser) {
     $scope.forgot = {
       mobile: '',
       verifycode: '',
@@ -1458,7 +1478,7 @@ angular.module('medicine.controllers', [])
       console.log(msg)
       forgotpwd.query(msg, function(data) {
         if (data.error || $scope.forgot.mobile == 0 || $scope.forgot.mobileh < 11 || !reg.test($scope.forgot.mobile)) {
-          var popup=$ionicPopup.alert({
+          var popup = $ionicPopup.alert({
             title: '错误提示',
             template: '手机号输入有误，请重新输入'
           });
@@ -1466,7 +1486,7 @@ angular.module('medicine.controllers', [])
             popup.close();
           }, 2000)
         } else {
-          var popup=$ionicPopup.alert({
+          var popup = $ionicPopup.alert({
             title: '成功提示',
             template: '验证码已经发送，请稍后'
           });
@@ -1475,7 +1495,7 @@ angular.module('medicine.controllers', [])
           }, 2000)
         }
       }, function() {
-        var popup=$ionicPopup.alert({
+        var popup = $ionicPopup.alert({
           title: '错误提示',
           template: '未知错误，请稍后重试'
         });
@@ -1494,7 +1514,7 @@ angular.module('medicine.controllers', [])
       console.log(msg)
       forgotReturn.save({}, msg, function(data) {
         if (data.status == 'suc') {
-          var popup=$ionicPopup.alert({
+          var popup = $ionicPopup.alert({
             title: '提示',
             template: '密码修改成功'
           });
@@ -1503,7 +1523,7 @@ angular.module('medicine.controllers', [])
           }, 2000)
           $window.history.back()
         } else {
-          var popup=$ionicPopup.alert({
+          var popup = $ionicPopup.alert({
             title: '提示',
             template: data.error
           });
@@ -1515,12 +1535,30 @@ angular.module('medicine.controllers', [])
       })
     }
   }])
-  .controller('Messages', ['$scope', '$timeout', '$interval', '$ionicScrollDelegate', 'chart', 'currentUser', 'patientProfile', 'getChart', '$stateParams', '$window', function($scope, $timeout, $interval, $ionicScrollDelegate, chart, currentUser, patientProfile, getChart, $stateParams, $window) {
+  .controller('Messages', ['huanxin','doctorMsg','$scope', '$timeout', '$interval', '$ionicScrollDelegate', 'chart', 'currentUser', 'patientProfile', 'getChart', '$stateParams', '$window', function(huanxin,doctorMsg,$scope, $timeout, $interval, $ionicScrollDelegate, chart, currentUser, patientProfile, getChart, $stateParams, $window) {
 
     $scope.hideTime = true;
     var isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
     var doctorId = $stateParams.id
     console.log('doctorid' + doctorId)
+
+    doctorMsg.query({
+      accessToken: currentUser.getAuthToken(),
+      id: $stateParams.id
+    }, function(data) {
+      $scope.doctor = data
+      console.log(data)
+    })
+    huanxin.onReceive(function(message){//收取消息处理
+      console.log(message);
+      $scope.$apply(function () {
+        $scope.messages.push({
+                 userId: doctorId,
+                 text: message.data
+        })
+      });
+    });
+
     patientProfile.query({
       accessToken: currentUser.getAuthToken()
     }, function(data) {
@@ -1528,25 +1566,30 @@ angular.module('medicine.controllers', [])
       $scope.myId = data.userId
       var patientId = data.userId
       console.log(patientId)
-      $interval(
-        function() {
+      // $interval(
+      //   function() {
           getChart.query({
               accessToken: currentUser.getAuthToken(),
               fromUserId: patientId,
               toUserID: doctorId
             },
             function(data) {
-              if(data[0]){
-                $scope.toChar = data[0].toChat
+              console.log('unread');
+              console.log(data.length);
+              for(var i=0 ;i<data.length;i++){
+                // $scope.toChar = data[i].toChat
                 $scope.messages.push({
                   userId: doctorId,
-                  text: $scope.toChar
+                  text: data[i].toChat
                 })
               }
+              // if (data[0]) {
+
+              // }
 
             })
-        },
-        1000)
+      //   },
+      //   1000)
     })
 
     $scope.data = {};
@@ -1566,6 +1609,7 @@ angular.module('medicine.controllers', [])
         toUserID: doctorId
       }
       console.log(msg)
+      huanxin.sendText(msg.fromChat,$scope.doctor.mobile);//Huanxin
       chart.save({}, msg, function(data) {
         console.log(data)
       })
@@ -1655,7 +1699,7 @@ angular.module('medicine.controllers', [])
         }, function(data) {
           console.log('存储返回 ', data);
           if (data.status == 'suc') {
-            var popup=$ionicPopup.alert({
+            var popup = $ionicPopup.alert({
               title: '提示',
               template: '心愿成功，请耐心等待'
             });
@@ -1664,7 +1708,7 @@ angular.module('medicine.controllers', [])
             }, 2000)
             $window.location = '#/xinyuan_wode';
           } else {
-            var popup=$ionicPopup.alert({
+            var popup = $ionicPopup.alert({
               title: '提示',
               template: data.error
             });
@@ -1691,237 +1735,238 @@ angular.module('medicine.controllers', [])
     })
 
   }])
-  .controller('jiluDeailtsCtrl', ['jilu','$scope', '$window', 'wish', '$ionicPopup', 'currentUser', 'mywish', 'currentUser', function(jilu,$scope, $window, wish, $ionicPopup, currentUser, mywish, currentUser) {
+  .controller('jiluDeailtsCtrl', ['jilu', '$scope', '$window', 'wish', '$ionicPopup', 'currentUser', 'mywish', 'currentUser', function(jilu, $scope, $window, wish, $ionicPopup, currentUser, mywish, currentUser) {
     var accessToken = currentUser.getAuthToken();
-    var params={
-      accessToken:currentUser.getAuthToken()
+    var params = {
+      accessToken: currentUser.getAuthToken()
     };
-    $scope.items=[];
-    jilu.query(params,function(err,data){
-      $scope.items=data;
+    $scope.items = [];
+    jilu.query(params, function(err, data) {
+      $scope.items = data;
       console.log($scope.items);
     });
   }])
 
-  .controller('jiluCtrl', ['jilu','$ionicModal','$scope', '$window', 'wish', '$ionicPopup', 'currentUser', 'mywish', 'currentUser', function(jilu,$ionicModal,$scope, $window, wish, $ionicPopup, currentUser, mywish, currentUser) {
-    //full calendar
-    $scope.eventSources = [];
+.controller('jiluCtrl', ['jilu', '$ionicModal', '$scope', '$window', 'wish', '$ionicPopup', 'currentUser', 'mywish', 'currentUser', function(jilu, $ionicModal, $scope, $window, wish, $ionicPopup, currentUser, mywish, currentUser) {
+  //full calendar
+  $scope.eventSources = [];
 
-    var $selectDateObj={};
-    var cellDays={};//{day:(String) :cell}
-    var selectObjs=[];//选中日期对象
-    var selectDateStr="";//选中日期
-    var startDate;//开始日期
-    var endDate;//开始日期
-    var jiluData=[];
+  var $selectDateObj = {};
+  var cellDays = {}; //{day:(String) :cell}
+  var selectObjs = []; //选中日期对象
+  var selectDateStr = ""; //选中日期
+  var startDate; //开始日期
+  var endDate; //开始日期
+  var jiluData = [];
 
 
 
-    $scope.uiConfig = {
-      calendar: {
-        lang: 'zh-cn',
-        // height: 400,
-        contentHeight:350,
-        editable: true,
-        header: {
-          left: 'prev',
-          center: 'title',
-          right: 'next'
-        },
-        views: {
-          month: { // name of view
-              // other view-specific options here
+  $scope.uiConfig = {
+    calendar: {
+      lang: 'zh-cn',
+      // height: 400,
+      contentHeight: 350,
+      editable: true,
+      header: {
+        left: 'prev',
+        center: 'title',
+        right: 'next'
+      },
+      views: {
+        month: { // name of view
+          // other view-specific options here
+        }
+      },
+      // selectable: true,
+      //
+      // selectHelper: true,
+
+      dayClick: function(date, jsEvent, view) {
+        //初始化
+        $scope.isXueYa = false;
+        $scope.isTizhong = false;
+        $scope.isXinlv = false;
+        console.log(date.format());
+        console.log(jsEvent);
+        console.log(view);
+
+        $selectDateObj.attr('style', 'background-color:white !important');
+        for (var i = 0; i < selectObjs.length; i++) {
+          selectObjs[i].attr('style', 'background-color:white !important');
+        }
+
+        $selectDateObj = $(this);
+        selectDateStr = date.format('YYYY-MM-DD');
+        $(this).attr('style', ';background-color:#2CCD8F !important');
+        selectObjs.push($(this));
+
+        //更新记录model
+        for (var i = 0; i < jiluData.length; i++) {
+          if (selectDateStr == jiluData[i].dayStr) {
+
+            if (jiluData[i].gaoya) {
+              $scope.isXueYa = true;
+              $scope.lu.high = jiluData[i].gaoya;
+              $scope.lu.low = jiluData[i].diya;
+            }
+            if (jiluData[i].tizhong) {
+              $scope.isTizhong = true;
+              $scope.lu.tizhong = jiluData[i].tizhong;
+            }
+            if (jiluData[i].xinlv) {
+              $scope.isXinlv = true;
+              $scope.lu.isXinlv = jiluData[i].isXinlv;
+            }
+            break;
           }
-        },
-        // selectable: true,
-        //
-        // selectHelper: true,
 
-        dayClick: function(date, jsEvent, view) {
-          //初始化
-          $scope.isXueYa=false;
-          $scope.isTizhong=false;
-          $scope.isXinlv=false;
-          console.log(date.format());
-          console.log(jsEvent);
-          console.log(view);
+        }
 
-          $selectDateObj.attr('style', 'background-color:white !important');
-          for(var i=0;i<selectObjs.length;i++){
-            selectObjs[i].attr('style', 'background-color:white !important');
+      },
+      dayRender: function(date, cell) { //查询所有记录
+        if (date.isSame(new Date(), 'day')) {
+          $selectDateObj = cell;
+          $selectDateObj.attr('style', ';background-color:#2CCD8F;color:#fff');
+          selectDateStr = date.format('YYYY-MM-DD');
+        }
+        cellDays[date.format('YYYY-MM-DD')] = cell;
+
+
+        //渲染
+        // for()
+
+      },
+      viewRender: function(view, element) {
+        console.log('view ok');
+        console.log(cellDays);
+
+        startDate = view.start.format('YYYY-MM-DD');
+        endDate = view.end.format('YYYY-MM-DD');
+        var params = {
+          startday: startDate,
+          endday: endDate,
+          accessToken: currentUser.getAuthToken()
+        };
+        jilu.query(params, function(err, data) {
+          jiluData = data.jilus;
+          for (var i = 0; i < jiluData.length; i++) {
+            var cell = cellDays[jiluData[i].dayStr]
+            if (cell) {
+              console.log('找到 ' + jiluData[i].dayStr);
+              cell.html('<div style="border-radius:2px;float:right;margin-top:5px;margin-right:5px;width:5px;height:5px;background-color:#2CCD8F"></div>');
+            }
           }
-
-          $selectDateObj=$(this);
-          selectDateStr=date.format('YYYY-MM-DD');
-          $(this).attr('style', ';background-color:#2CCD8F !important');
-          selectObjs.push($(this));
-
           //更新记录model
-          for(var i=0;i<jiluData.length;i++){
-            if(selectDateStr==jiluData[i].dayStr){
+          for (var i = 0; i < jiluData.length; i++) {
+            if (selectDateStr == jiluData[i].dayStr) {
 
-              if(jiluData[i].gaoya){
-                $scope.isXueYa=true;
-                $scope.lu.high=jiluData[i].gaoya;
-                $scope.lu.low=jiluData[i].diya;
+              if (jiluData[i].gaoya) {
+                $scope.isXueYa = true;
+                $scope.lu.high = jiluData[i].gaoya;
+                $scope.lu.low = jiluData[i].diya;
               }
-              if(jiluData[i].tizhong){
-                $scope.isTizhong=true;
-                $scope.lu.tizhong=jiluData[i].tizhong;
+              if (jiluData[i].tizhong) {
+                $scope.isTizhong = true;
+                $scope.lu.tizhong = jiluData[i].tizhong;
               }
-              if(jiluData[i].xinlv){
-                $scope.isXinlv=true;
-                $scope.lu.isXinlv=jiluData[i].isXinlv;
+              if (jiluData[i].xinlv) {
+                $scope.isXinlv = true;
+                $scope.lu.xinlv = jiluData[i].xinlv;
               }
               break;
             }
 
           }
-
-        },
-        dayRender:function( date, cell ) { //查询所有记录
-          if(date.isSame(new Date(),'day')){
-            $selectDateObj=cell;
-            $selectDateObj.attr('style', ';background-color:#2CCD8F;color:#fff');
-            selectDateStr=date.format('YYYY-MM-DD');
-          }
-          cellDays[date.format('YYYY-MM-DD')]=cell;
-
-
-          //渲染
-          // for()
-
-        },
-        viewRender:function(view, element){
-          console.log('view ok');
-          console.log(cellDays);
-
-          startDate=view.start.format('YYYY-MM-DD');
-          endDate=view.end.format('YYYY-MM-DD');
-          var params={
-            startday:startDate,
-            endday:endDate,
-            accessToken:currentUser.getAuthToken()
-          };
-          jilu.query(params,function(err,data){
-            jiluData=data.jilus;
-            for(var i=0;i<jiluData.length;i++){
-              var cell=cellDays[jiluData[i].dayStr]
-              if(cell){
-                console.log('找到 '+jiluData[i].dayStr);
-                cell.html('<div style="border-radius:2px;float:right;margin-top:5px;margin-right:5px;width:5px;height:5px;background-color:#2CCD8F"></div>');
-              }
-            }
-            //更新记录model
-            for(var i=0;i<jiluData.length;i++){
-              if(selectDateStr==jiluData[i].dayStr){
-
-                if(jiluData[i].gaoya){
-                  $scope.isXueYa=true;
-                  $scope.lu.high=jiluData[i].gaoya;
-                  $scope.lu.low=jiluData[i].diya;
-                }
-                if(jiluData[i].tizhong){
-                  $scope.isTizhong=true;
-                  $scope.lu.tizhong=jiluData[i].tizhong;
-                }
-                if(jiluData[i].xinlv){
-                  $scope.isXinlv=true;
-                  $scope.lu.xinlv=jiluData[i].xinlv;
-                }
-                break;
-              }
-
-            }
-          });
-        }
+        });
       }
-    };
-    //default
-    $scope.lu={
-      high:110,
-      low:80,
-      tizhong:50,
-      xinlv:70
     }
-    $scope.isXueYa=false;
-    $ionicModal.fromTemplateUrl('xueya.html',{
-      scope:$scope,
-      animation:'slide-in-up'
-    }).then(function(modal){
-      $scope.xueYaModal=modal;
+  };
+  //default
+  $scope.lu = {
+    high: 110,
+    low: 80,
+    tizhong: 50,
+    xinlv: 70
+  }
+  $scope.isXueYa = false;
+  $ionicModal.fromTemplateUrl('xueya.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.xueYaModal = modal;
+  });
+  $ionicModal.fromTemplateUrl('tizhong.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.tiZhongModal = modal;
+  });
+  $ionicModal.fromTemplateUrl('xinlv.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.xinLvModal = modal;
+  });
+  $scope.jilu = function(type) {
+    if (type == 'xueya') {
+      $scope.xueYaModal.show();
+    }
+    if (type == "tizhong") {
+      $scope.tiZhongModal.show();
+    }
+    if (type == "xinlv") {
+      $scope.xinLvModal.show();
+    }
+
+
+  }
+  $scope.closeModal = function() {
+    $scope.xueYaModal.hide();
+    $scope.tiZhongModal.hide();
+    $scope.xinLvModal.hide();
+  }
+
+  function sync() {
+    var day = selectDateStr;
+    var formData = new FormData();
+    formData.append('day', day);
+    formData.append('accessToken', currentUser.getAuthToken())
+    if ($scope.isXueYa) {
+      formData.append('gaoya', $scope.lu.high)
+      formData.append('diya', $scope.lu.low)
+    }
+    if ($scope.isTizhong) {
+      formData.append('tizhong', $scope.lu.tizhong)
+    }
+    if ($scope.isXinlv) {
+      formData.append('xinlv', $scope.lu.xinlv)
+    }
+
+    jilu.add(formData, function() {
+
+      // $selectDateObj.html('<div style="border-radius:2px;float:right;margin-top:5px;margin-right:5px;width:5px;height:5px;background-color:#2CCD8F"></div>');
     });
-    $ionicModal.fromTemplateUrl('tizhong.html',{
-      scope:$scope,
-      animation:'slide-in-up'
-    }).then(function(modal){
-      $scope.tiZhongModal=modal;
-    });
-    $ionicModal.fromTemplateUrl('xinlv.html',{
-      scope:$scope,
-      animation:'slide-in-up'
-    }).then(function(modal){
-      $scope.xinLvModal=modal;
-    });
-    $scope.jilu=function(type){
-      if(type=='xueya'){
-        $scope.xueYaModal.show();
-      }
-      if(type=="tizhong"){
-        $scope.tiZhongModal.show();
-      }
-      if(type=="xinlv"){
-        $scope.xinLvModal.show();
-      }
+  }
 
+  $scope.saveXueYa = function() {
+    $scope.isXueYa = true;
+    $scope.xueYaModal.hide();
+    sync();
+  }
 
-    }
-    $scope.closeModal=function(){
-      $scope.xueYaModal.hide();
-      $scope.tiZhongModal.hide();
-      $scope.xinLvModal.hide();
-    }
-    function sync(){
-      var day=selectDateStr;
-      var formData = new FormData();
-      formData.append('day', day);
-      formData.append('accessToken', currentUser.getAuthToken())
-      if($scope.isXueYa){
-        formData.append('gaoya', $scope.lu.high)
-        formData.append('diya', $scope.lu.low)
-      }
-      if($scope.isTizhong){
-          formData.append('tizhong', $scope.lu.tizhong)
-      }
-      if($scope.isXinlv){
-          formData.append('xinlv', $scope.lu.xinlv)
-      }
+  $scope.saveTizhong = function() {
+    $scope.isTizhong = true;
+    $scope.tiZhongModal.hide();
+    sync();
+  }
 
-      jilu.add(formData,function(){
-
-        // $selectDateObj.html('<div style="border-radius:2px;float:right;margin-top:5px;margin-right:5px;width:5px;height:5px;background-color:#2CCD8F"></div>');
-      });
-    }
-
-    $scope.saveXueYa=function(){
-      $scope.isXueYa=true;
-      $scope.xueYaModal.hide();
-      sync();
-    }
-
-    $scope.saveTizhong=function(){
-      $scope.isTizhong=true;
-      $scope.tiZhongModal.hide();
-      sync();
-    }
-
-    $scope.saveXinlv=function(){
-      $scope.isXinlv=true;
-      $scope.xinLvModal.hide();
-      sync();
-    }
+  $scope.saveXinlv = function() {
+    $scope.isXinlv = true;
+    $scope.xinLvModal.hide();
+    sync();
+  }
 
 
 
 
-  }]);
+}]);

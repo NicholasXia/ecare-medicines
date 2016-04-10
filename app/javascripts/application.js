@@ -456,7 +456,16 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
       templateUrl:"templates/mianze.html"
     });
   $urlRouterProvider.otherwise("/tab/home");
-}).run(['$timeout','$window','$ionicPopup','currentUser','$rootScope', function($timeout,$window,$ionicPopup,currentUser,$rootScope) {
+}).run(['huanxin','$timeout','$window','$ionicPopup','currentUser','$rootScope', function(huanxin,$timeout,$window,$ionicPopup,currentUser,$rootScope) {
+
+  console.log('connect '+huanxin.getConnect());
+    if(currentUser.getUser().password){//登录
+      huanxin.connect(currentUser.getUser().username,currentUser.getUser().password,function(){
+        console.log('IM conn连接');
+      });
+
+    }
+
   document.addEventListener('DOMContentLoaded', function() {
         FastClick.attach(document.body);
     }, false);
