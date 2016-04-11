@@ -12,6 +12,22 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
     $ionicConfigProvider.views.maxCache(0);
     $ionicConfigProvider.backButton.text('Go Back').icon('ion-chevron-left');
   })
+  .factory('sessionInjector', ['$window',function($window) {
+    var sessionInjector={
+      response: function(response) {
+            // if(response.data.error_code=='10002'){
+            //   console.log(response);
+            //   $window.location="#/signup"
+            // }
+
+            return response;
+      }
+    }
+    return sessionInjector;
+  }])
+  .config(['$httpProvider', function($httpProvider) {
+    $httpProvider.interceptors.push('sessionInjector');
+  }])
 
 
 /*
