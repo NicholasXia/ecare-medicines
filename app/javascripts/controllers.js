@@ -205,7 +205,16 @@ angular.module('medicine.controllers', [])
         accessToken: currentUser.getAuthToken()
       }, function(data) {
         $scope.data = data
-        console.log(data)
+        if(data.error){
+          var popup = $ionicPopup.alert({
+            'title': '提示',
+            'template': '你还没有登陆'
+          })
+          $timeout(function() {
+            popup.close()
+            $window.location.href = '#/signup'
+          }, 2000)
+        }
       })
     }
 
@@ -458,13 +467,28 @@ angular.module('medicine.controllers', [])
       }
     })
   }])
-  .controller('doctorEndPublishDiscoverCtrl', ['$timeout', '$http', '$scope', 'publishdiscover', 'currentUser', '$window', '$ionicPopup', '$ionicLoading', function($timeout, $http, $scope, publishdiscover, currentUser, $window, $ionicPopup, $ionicLoading) {
+  .controller('doctorEndPublishDiscoverCtrl', ['patientProfile','$timeout', '$http', '$scope', 'publishdiscover', 'currentUser', '$window', '$ionicPopup', '$ionicLoading', function(patientProfile,$timeout, $http, $scope, publishdiscover, currentUser, $window, $ionicPopup, $ionicLoading) {
     $scope.accessToken = currentUser.getAuthToken()
     $scope.publish = {
       imageBase64s: '',
       content: '',
       accessToken: ''
     }
+    patientProfile.query({
+      accessToken: currentUser.getAuthToken()
+    }, function(data) {
+      $scope.data = data
+      if(data.error){
+        var popup = $ionicPopup.alert({
+          'title': '提示',
+          'template': '你还没有登陆'
+        })
+        $timeout(function() {
+          popup.close()
+          $window.location.href = '#/signup'
+        }, 2000)
+      }
+    })
 
     $scope.publish = function(publishphoto) {
       //console.log(publishphoto)
