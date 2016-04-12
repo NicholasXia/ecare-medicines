@@ -264,7 +264,7 @@ angular.module('medicine.controllers', [])
   .controller('doctorEndSignInCtrl', ['huanxin', '$scope', '$ionicPopup', 'getVerificationCode', 'createUser', '$timeout', '$window', 'currentUser', '$interval', function(huanxin, $scope, $ionicPopup, getVerificationCode, createUser, $timeout, $window, currentUser, $interval) {
     //用户注册模块
     console.log('注册controller');
-    huanxin.registerUser();
+    // huanxin.registerUser();
     var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/
     $scope.account = {
       phoneNum: '',
