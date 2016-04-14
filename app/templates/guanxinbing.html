@@ -1,5 +1,8 @@
-<div class="" style="background-color:#2E2E2E;overflow:hidden">
-  <div style="float:left;width:20px;margin-left:30px"><img style="width:40px" src="../images/tongxin.png"/></div>
+<div class="" ng-style="displayNone" style="background-color:#2E2E2E;overflow:hidden">
+  <div ng-click="displayNone={'display':'none'};displayTo={'margin-top':'0'}"  style="float:left;margin-left:10px;margin-top:15px">
+    <img style="width:15px;" src="../images/top-x.png" alt="" />
+  </div>
+  <div style="float:left;width:20px;margin-left:15px"><img style="width:40px" src="../images/tongxin.png"/></div>
   <div class="" style="float:left;margin-left:30px;width:150px;color:#fff">
     同心管理APP</br> 下载享受更专业服务
   </div>
@@ -7,7 +10,7 @@
     <a href="http://dl.ixinzang.com/pasm/d.html" target="_blank" style="border-radius:2px;padding:5px 10px;background-color:#46BCB7;text-decoration:none;color:#fff">立即打开</a>
   </div>
 </div>
-<div class="" style="background-color:#2E2E2E;overflow:hidden">
+<!-- <div class="" style="background-color:#2E2E2E;overflow:hidden">
   <div style="float:left;width:20px;margin-left:30px"><img style="width:40px" src="../images/xinshuai.png"/></div>
   <div class="" style="float:left;margin-left:30px;width:150px;color:#fff">
     心衰管理APP</br> 下载享受更专业服务
@@ -15,8 +18,8 @@
   <div class="" style="margin-top:10px;float:left;">
     <a href="http://dl.ixinzang.com/heartfailure/d.html" target="_blank" style="border-radius:2px;padding:5px 10px;background-color:#46BCB7;text-decoration:none;color:#fff">立即打开</a>
   </div>
-</div>
-<ion-view view-title="冠心病-乐柏健康" cache-view="false" style="margin-top:45px">
+</div> -->
+<ion-view view-title="冠心病-乐柏健康" cache-view="false" ng-style="displayTo" style="margin-top:45px">
     <ion-header-bar class="bar-balanced" >
         <a class="button icon  ion-chevron-left" href="#/tab/knowledge"></a>
         <h1 class="title">冠心病</h1>

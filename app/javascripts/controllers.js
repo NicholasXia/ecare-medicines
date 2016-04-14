@@ -1690,7 +1690,7 @@ angular.module('medicine.controllers', [])
               $window.location.href = '#/personal'
             }, 2000)
           } else {
-            $window.location.href = '#/xinyuan_fabu'
+            $window.location.href = '#/xinyuan'
           }
 
         })
@@ -1771,7 +1771,7 @@ angular.module('medicine.controllers', [])
     });
   }])
 
-.controller('jiluCtrl', ['jilu', '$ionicModal', '$scope', '$window', 'wish', '$ionicPopup', 'currentUser', 'mywish', 'currentUser', function(jilu, $ionicModal, $scope, $window, wish, $ionicPopup, currentUser, mywish, currentUser) {
+.controller('jiluCtrl', ['$timeout','jilu', '$ionicModal', '$scope', '$window', 'wish', '$ionicPopup', 'currentUser', 'mywish', 'currentUser', function($timeout,jilu, $ionicModal, $scope, $window, wish, $ionicPopup, currentUser, mywish, currentUser) {
   //full calendar
   $scope.eventSources = [];
 
@@ -1806,6 +1806,17 @@ angular.module('medicine.controllers', [])
       // selectHelper: true,
 
       dayClick: function(date, jsEvent, view) {
+        if(moment().isBefore(date,'day')){
+          var popup = $ionicPopup.alert({
+            title: '提示',
+            template: '不能记录未来啊'
+          });
+          $timeout(function() {
+            popup.close();
+          }, 1500)
+          return;
+        }
+
         //初始化
         $scope.isXueYa = false;
         $scope.isTizhong = false;
