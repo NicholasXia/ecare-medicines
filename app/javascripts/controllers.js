@@ -1678,6 +1678,7 @@ angular.module('medicine.controllers', [])
         }, 2000)
       } else {
         patientProfile.query({
+
           accessToken: currentUser.getAuthToken()
         }, function(data) {
           console.log(data)
