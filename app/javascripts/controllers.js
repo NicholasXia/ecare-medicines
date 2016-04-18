@@ -1690,7 +1690,7 @@ angular.module('medicine.controllers', [])
               $window.location.href = '#/personal'
             }, 2000)
           } else {
-            $window.location.href = '#/xinyuan'
+            $window.location.href = '#/xinyuan_fabu'
           }
 
         })
