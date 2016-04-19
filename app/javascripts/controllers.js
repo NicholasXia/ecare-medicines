@@ -1581,6 +1581,7 @@ angular.module('medicine.controllers', [])
                  userId: doctorId,
                  text: message.data
         })
+        $ionicScrollDelegate.scrollBottom(true);
       });
     });
     var patientId="";
@@ -1664,8 +1665,10 @@ angular.module('medicine.controllers', [])
     }
 
     $scope.sendMessage = function() {
-
+      var date=new Date();
+      var timeStr=date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日 "+date.getHours()+":"+date.getMinutes();
       $scope.messages.push({
+        time:timeStr,
         userId: $scope.myId,
         text: $scope.data.message
       });
