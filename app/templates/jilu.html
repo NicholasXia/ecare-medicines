@@ -19,12 +19,12 @@
   <ion-item>
     <span>体重</span>
     <span ng-if="!isTizhong" style="float:right" ng-click="jilu('tizhong')">记录</span>
-    <span ng-if="isTizhong" style="float:right" ng-click="jilu('tizhong')">体重:{{lu.tizhong}}kg</span>
+    <span ng-if="isTizhong" style="float:right" ng-click="jilu('tizhong')">{{lu.tizhong}}kg</span>
   </ion-item>
   <ion-item>
     <span>心率</span>
     <span ng-if="!isXinlv" style="float:right" ng-click="jilu('xinlv')">记录</span>
-    <span ng-if="isXinlv" style="float:right" ng-click="jilu('xinlv')">心率:{{lu.xinlv}}次/分钟</span>
+    <span ng-if="isXinlv" style="float:right" ng-click="jilu('xinlv')">{{lu.xinlv}}次/分钟</span>
   </ion-item>
 </ion-content>
 

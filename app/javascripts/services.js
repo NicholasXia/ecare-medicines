@@ -379,7 +379,8 @@ angular.module('medicine.services', ['ngResource'])
     return $resource(SERVER + '/u/chatonline/info', {
       accessToken: "@accessToken",
       fromUserId: "@fromUserId",
-      toUserID: "@toUserID"
+      toUserID: "@toUserID",
+      limit:"@limit"
     }, {
       query: {
         method: 'GET',
