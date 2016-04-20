@@ -1618,7 +1618,9 @@ angular.module('medicine.controllers', [])
                   })
                 }
 
+
               }
+              $ionicScrollDelegate.scrollBottom(true);
 
 
             })
