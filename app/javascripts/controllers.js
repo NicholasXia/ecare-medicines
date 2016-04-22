@@ -1579,6 +1579,7 @@ angular.module('medicine.controllers', [])
       console.log(message);
       $scope.$apply(function () {
         $scope.messages.push({
+                isSameDay:false,
                  userId: doctorId,
                  text: message.data
         })
@@ -1678,40 +1679,42 @@ angular.module('medicine.controllers', [])
     }
 
     $scope.sendMessage = function() {
-      var date=new Date();
-      //var timeStr=date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日 "+date.getHours()+":"+date.getMinutes();
-      var timeStr=date.getHours()+":"+date.getMinutes();
-      $scope.messages.push({
-        time:timeStr,
-        userId: $scope.myId,
-        text: $scope.data.message
-      });
-
-      var msg = {
-        accessToken: currentUser.getAuthToken(),
-        fromChat: $scope.data.message,
-        fromUserId: $scope.myId,
-        toUserID: doctorId
-      }
-      if(msg.fromChat){
-        huanxin.sendText(msg.fromChat,$scope.doctor.mobile);//Huanxin
-        chart.save({}, msg, function(data) {
-          console.log(data)
-        })
-      }else{
-        var popup = $ionicPopup.alert({
-          title: '提示',
-          template: '网络异常，请刷新重试'
+      if($scope.data.message){
+        var date=new Date();
+        //var timeStr=date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日 "+date.getHours()+":"+date.getMinutes();
+        var timeStr=date.getHours()+":"+date.getMinutes();
+        $scope.messages.push({
+          isSameDay:false,
+          time:timeStr,
+          userId: $scope.myId,
+          text: $scope.data.message
         });
-        $timeout(function() {
-          popup.close();
-        }, 2000)
+
+        var msg = {
+          accessToken: currentUser.getAuthToken(),
+          fromChat: $scope.data.message,
+          fromUserId: $scope.myId,
+          toUserID: doctorId
+        }
+        if(msg.fromChat){
+          huanxin.sendText(msg.fromChat,$scope.doctor.mobile);//Huanxin
+          chart.save({}, msg, function(data) {
+            console.log(data)
+          })
+        }else{
+          // var popup = $ionicPopup.alert({
+          //   title: '提示',
+          //   template: '网络异常，请刷新重试'
+          // });
+          // $timeout(function() {
+          //   popup.close();
+          // }, 2000)
+        }
+
+
+        delete $scope.data.message;
+        $ionicScrollDelegate.scrollBottom(true);
       }
-
-
-      delete $scope.data.message;
-      $ionicScrollDelegate.scrollBottom(true);
-
     };
 
     $scope.inputUp = function() {
