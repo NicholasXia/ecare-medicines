@@ -369,7 +369,7 @@ angular.module('medicine.controllers', [])
             });
           },
           error: function(e) {//注册失败
-            console.log('IM注册失败');
+
             huanxin.connect($scope.signInMsg.username,$scope.signInMsg.password,function(){
               console.log('IM连接成功');
             });
@@ -1562,6 +1562,7 @@ angular.module('medicine.controllers', [])
   .controller('Messages', ['huanxin','doctorMsg','$scope', '$timeout', '$interval', '$ionicScrollDelegate', 'chart', 'currentUser', 'patientProfile', 'getChart', '$stateParams', '$window', function(huanxin,doctorMsg,$scope, $timeout, $interval, $ionicScrollDelegate, chart, currentUser, patientProfile, getChart, $stateParams, $window) {
     var limit=5;//默认5条
 
+
     $scope.hideTime = true;
     var isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
     var doctorId = $stateParams.id
@@ -1591,7 +1592,7 @@ angular.module('medicine.controllers', [])
 
       $scope.myId = data.userId
       patientId = data.userId
-      console.log(data)
+      // console.log(data)
       // $interval(
       //   function() {
           getChart.query({
@@ -1601,10 +1602,15 @@ angular.module('medicine.controllers', [])
               limit:limit,
             },
             function(data) {
+              var lastDay=null;//
               for(var i=0 ;i<data.length;i++){
+                var isSameDay=moment(lastDay).isSame(moment(data[i].timePoint),'day');
+                lastDay=moment(data[i].timePoint);
+                console.log('isSameDay '+isSameDay);
                 // $scope.toChar = data[i].toChat
                 if(data[i].toChat!=null){
                   $scope.messages.push({
+                    isSameDay:isSameDay,
                     time:data[i].timePointStr,
                     userId: data.fromUserId,
                     text: data[i].toChat
@@ -1612,6 +1618,7 @@ angular.module('medicine.controllers', [])
                 }else{
 
                   $scope.messages.push({
+                    isSameDay:isSameDay,
                     time:data[i].timePointStr,
                     userId:patientId,
                     text: data[i].fromChat
@@ -1641,10 +1648,13 @@ angular.module('medicine.controllers', [])
         },
         function(data) {
           $scope.$broadcast('scroll.refreshComplete');
+          var lastDay=null;//
           for(var i=0 ;i<data.length;i++){
-            // $scope.toChar = data[i].toChat
+            var isSameDay=moment(lastDay).isSame(moment(data[i].timePoint),'day');
+            lastDay=moment(data[i].timePoint);
             if(data[i].toChat!=null){
               $scope.messages.push({
+                isSameDay:isSameDay,
                 time:data[i].timePointStr,
                 userId: data.fromUserId,
                 text: data[i].toChat
@@ -1652,6 +1662,7 @@ angular.module('medicine.controllers', [])
             }else{
 
               $scope.messages.push({
+                isSameDay:isSameDay,
                 time:data[i].timePointStr,
                 userId:patientId,
                 text: data[i].fromChat
@@ -1668,7 +1679,8 @@ angular.module('medicine.controllers', [])
 
     $scope.sendMessage = function() {
       var date=new Date();
-      var timeStr=date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日 "+date.getHours()+":"+date.getMinutes();
+      //var timeStr=date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日 "+date.getHours()+":"+date.getMinutes();
+      var timeStr=date.getHours()+":"+date.getMinutes();
       $scope.messages.push({
         time:timeStr,
         userId: $scope.myId,
@@ -1681,11 +1693,21 @@ angular.module('medicine.controllers', [])
         fromUserId: $scope.myId,
         toUserID: doctorId
       }
-      console.log(msg)
-      huanxin.sendText(msg.fromChat,$scope.doctor.mobile);//Huanxin
-      chart.save({}, msg, function(data) {
-        console.log(data)
-      })
+      if(msg.fromChat){
+        huanxin.sendText(msg.fromChat,$scope.doctor.mobile);//Huanxin
+        chart.save({}, msg, function(data) {
+          console.log(data)
+        })
+      }else{
+        var popup = $ionicPopup.alert({
+          title: '提示',
+          template: '网络异常，请刷新重试'
+        });
+        $timeout(function() {
+          popup.close();
+        }, 2000)
+      }
+
 
       delete $scope.data.message;
       $ionicScrollDelegate.scrollBottom(true);

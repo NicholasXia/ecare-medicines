@@ -5,6 +5,10 @@
   .message .right{
    clear:both;
   }
+  /*.message .timeDis{
+    font-size:12px;
+    text-align: center;
+  }*/
 </style>
 <ion-view cache-view="false" view-title="聊天室" id="mock">
     <!-- <ion-pane
@@ -23,11 +27,11 @@
        </ion-refresher>
 
         <div ng-repeat="message in messages"
-             ng-class="{other: message.userId != myId}"
+             ng-class="{other: message.userId == myId}"
              class="messages">
 
             <div class="message" style="text-align:center">
-                <div style="font-size:12px;margin-bottom:10px;">{{message.time}}</div>
+                <div style="text-align:center;margin-bottom:10px;" ng-hide="message.isSameDay" ><label style="background-color:#ccc;display:inline-block;padding:2px 5px;font-size:12px;border-radius:2px;color:white">{{message.time}}</label></div>
                 <span>{{ message.text }}</span>
             </div>
             <!-- <div class="time" ng-class="{'slide-right': hideTime, '': !hideTime}">{{message.time}}</div> -->
