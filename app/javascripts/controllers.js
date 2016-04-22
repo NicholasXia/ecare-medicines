@@ -1579,7 +1579,7 @@ angular.module('medicine.controllers', [])
       console.log(message);
       $scope.$apply(function () {
         $scope.messages.push({
-                isSameDay:false,
+                 isSameDay:true,
                  userId: doctorId,
                  text: message.data
         })
