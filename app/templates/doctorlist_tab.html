@@ -7,7 +7,7 @@
             <a class="item item-avatar" ng-href="#/doctordata/{{item.userId}}">
                 <img ng-src={{item.profileImageUrl}}>
 
-                <div>
+                <div style="float:left">
                     <h2>{{item.hospital}}</h2>
 
                     <p>
@@ -15,6 +15,9 @@
                         <span> | </span>
                         <span>{{item.department}}</span>
                     </p>
+                </div>
+                <div ng-if="item.verifyed==1" style="float:right">
+                  <span class="small fk-side" style="margin-top:10px;margin-right:10px">已认证</span>
                 </div>
             </a>
         </div>

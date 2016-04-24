@@ -55,12 +55,21 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         }
       }
     })
+    // .state('tabs.knowledge', {
+    //   url: "/knowledge",
+    //   views: {
+    //     'knowledge-tab': {
+    //       templateUrl: "templates/knowledge.html",
+    //       controller: "doctorEndKnowledgeCtrl"
+    //     }
+    //   }
+    // })
     .state('tabs.knowledge', {
       url: "/knowledge",
       views: {
         'knowledge-tab': {
-          templateUrl: "templates/knowledge.html",
-          controller: "doctorEndKnowledgeCtrl"
+          templateUrl: "templates/sangao.html",
+          controller: "articleCtrl"
         }
       }
     })
@@ -100,6 +109,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
       views: {
         'consult-tab': {
           templateUrl: "templates/consult_tab.html",
+          controller:"doctorChat"
         }
       }
     })
@@ -147,9 +157,14 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
       }
     })
     /*冠心病*/
+    // .state('guanxinbing', {
+    //   url: '/guanxinbing',
+    //   templateUrl: "templates/guanxinbing.html"
+    // })
     .state('guanxinbing', {
       url: '/guanxinbing',
-      templateUrl: "templates/guanxinbing.html"
+      templateUrl: "templates/sangao.html",
+      controller: "articleCtrl"
     })
     .state('guanxinbing.zhishi', {
       url: "/zhishi",
@@ -180,10 +195,15 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
     })
 
   /*心肌梗塞*/
+  // .state('xinjigengse', {
+  //     url: '/xinjigengse',
+  //     templateUrl: "templates/xinjigengse.html"
+  //   })
   .state('xinjigengse', {
-      url: '/xinjigengse',
-      templateUrl: "templates/xinjigengse.html"
-    })
+    url: '/xinjigengse',
+    templateUrl: "templates/sangao.html",
+    controller: "articleCtrl"
+  })
     .state('xinjigengse.zhishi', {
       url: "/zhishi",
       views: {
@@ -212,9 +232,14 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
       }
     })
     /*心力衰竭*/
+    // .state('xinlishuaijie', {
+    //   url: '/xinlishuaijie',
+    //   templateUrl: "templates/xinlishuaijie.html"
+    // })
     .state('xinlishuaijie', {
       url: '/xinlishuaijie',
-      templateUrl: "templates/xinlishuaijie.html"
+      templateUrl: "templates/sangao.html",
+      controller: "articleCtrl"
     })
     .state('xinlishuaijie.zhishi', {
       url: "/zhishi",
@@ -467,6 +492,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
       templateUrl:"templates/jilu_xinlv.html",
       controller:"jiluDeailtsCtrl"
     })
+
     .state('mianze',{
       url:"/mianze",
       templateUrl:"templates/mianze.html"

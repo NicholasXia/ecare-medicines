@@ -2,20 +2,39 @@
     <ion-header-bar class="bar-balanced">
         <h1 class="title">咨询记录</h1>
     </ion-header-bar>
-    <ion-content has-bouncing="true">
-       <!-- <ion-list can-swipe="true" class="fix-tab">
-            <ion-item class="item-avatar-left">
-                <img src="images/1.jpg"/>
+    <ion-content >
+       <ion-list  ng-repeat="item in items">
+            <ion-item class="item-avatar" ng-if="item.fromChat!=null"> <!--患者 -->
+                <img  style="float:left;" ng-src="{{item.purl}}"/>
 
-                <div>
-                    <span>用户姓名</span>
-                    <span class="small fk-side">已绑定</span>
-                    <span class="gray">2015年12月28年</span>
+                <div style="float:left;width:100px">
+                    <span>{{item.pname}}</span>
+                    <!-- <span class="small fk-side">已绑定</span> -->
+
                 </div>
-                <ion-option-button class="button-assertive" ng-click="delete(item)">
-                    删除
-                </ion-option-button>
+                <div class="" style="float:right">
+                  <span style="font-size:14px;" class="gray">{{item.timePointTime}}</span>
+                </div>
+                <div class="" style=";;clear:both">
+                  {{item.fromChat}}
+                </div>
             </ion-item>
-        </ion-list>-->
+
+            <ion-item class="item-avatar" ng-if="item.fromChat==null"> <!--患者 -->
+                <img  style="float:left;" ng-src="{{item.durl}}"/>
+
+                <div style="float:left;width:100px">
+                    <span>{{item.dname}}</span>
+                    <!-- <span class="small fk-side">已绑定</span> -->
+
+                </div>
+                <div class="" style="float:right">
+                  <span style="font-size:14px;" class="gray">{{item.timePointTime}}</span>
+                </div>
+                <div class="" style=";;clear:both">
+                  {{item.toChat}}
+                </div>
+            </ion-item>
+        </ion-list>
     </ion-content>
 </ion-view>

@@ -537,3 +537,12 @@ body {
   /*padding-left: 5px !important;*/
   padding-right: 15px !important;
 }
+
+#tabs-top .tab-item-active .tab-title{
+  color:#00CC8A !important;
+}
+#tabs-top .tab-title{
+  color:#8B9891;
+  font-size: 16px;
+  font-weight: bolder;
+}

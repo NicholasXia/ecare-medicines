@@ -482,6 +482,38 @@ angular.module('medicine.services', ['ngResource'])
     }
     return fa;
   }])
+  .factory('chat',['$http', 'SERVER', function($http, SERVER){
+    var fa={
+    };
+    fa.getChat=function(params,cb){
+      $http({
+        method: 'GET',
+        params: params,
+        url: SERVER + '/u/chatonline/get'
+      }).then(function success(res) {
+        return cb(null, res.data);
+      }, function error() {
+        return cb(res.status, null); //ERROR
+      });
+    }
+    return fa;
+  }])
+  .factory('article',['$http', 'SERVER', function($http, SERVER){
+    var fa={
+    };
+    fa.get=function(params,cb){
+      $http({
+        method: 'GET',
+        params: params,
+        url: SERVER + '/patient/article/jlist'
+      }).then(function success(res) {
+        return cb(null, res.data);
+      }, function error() {
+        return cb(res.status, null); //ERROR
+      });
+    }
+    return fa;
+  }])
   .factory('huanxin', ['$http', 'SERVER', function($http, SERVER) {
     // console.log('huanxin init');
     var fa = {};

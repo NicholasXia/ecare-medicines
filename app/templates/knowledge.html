@@ -1,10 +1,40 @@
 <ion-view view-title="知识-乐柏健康" cache-view='false' hide-nav-bar="isNavBarHide">
-    <ion-header-bar class="bar-balanced">
-        <h1 class="title">知识</h1>
-    </ion-header-bar>
-    <ion-content has-bouncing="true">
-        <!--栏目静态html测试区域 start-->
-        <div>
+  <ion-header-bar class="bar-balanced">
+    <h1 class="title">知识</h1>
+
+  </ion-header-bar>
+  <!-- <div class="tabs-striped tabs-top ">
+    <div class="tabs">
+      <a class="tab-item active" href="#">
+          三高
+      </a>
+      <a class="tab-item" href="#">
+        冠心病
+      </a>
+      <a class="tab-item" href="#">
+        心肌梗赛
+      </a>
+    </div>
+  </div> -->
+  <!-- <ion-tabs id="tabs-top" class="has-tabs-top tabs-top tabs-striped tabs-color-balanced">
+
+      <ion-tab title="心知识" href="#/guanxinbing/zhishi">
+          <ion-nav-view name="zhishi-tab"></ion-nav-view>
+      </ion-tab>
+
+      <ion-tab title="心漫画" href="#/guanxinbing/manhua">
+          <ion-nav-view name="manhua-tab"></ion-nav-view>
+      </ion-tab>
+
+      <ion-tab title="心视频" ui-sref="guanxinbing.shipin">
+          <ion-nav-view name="shipin-tab"></ion-nav-view>
+      </ion-tab>
+
+  </ion-tabs> -->
+  <ion-content>
+
+    <!--栏目静态html测试区域 start-->
+    <div>
             <div class="no-padding mian-wrap clearfix">
                 <div class="no-padding col50">
                     <div class="list">
@@ -49,22 +79,22 @@
                 </div>
             </div>
         </div>
-        <!--栏目静态html测试区域 end-->
+    <!--栏目静态html测试区域 end-->
 
-        <!--展示card区域 start-->
+    <!--展示card区域 start-->
 
-        <div class="divider"></div>
-        <div class="list">
-            <div class="item borderbgray">
-                <h2><span class="color_blue">|</span> <span>养心讲堂</span></h2>
-            </div>
-            <div class="slim"></div>
-            <div class="item item-body noborder" style="padding-top: 0; padding-bottom: 0;" ng-repeat="item in data | limitTo:5" ng-click="goToActivity(item.id, item.linkUrl)">
-                <h2>{{item.title}}</h2>
-                <img class="full-image" ng-src={{item.coverImageUrl}}>
-                <div class="clearfix mtb10">
-                    <span class="fl">{{item.postTime}}</span>
-                    <span class="fr">
+    <div class="divider"></div>
+    <div class="list">
+      <!-- <div class="item borderbgray">
+        <h2><span class="color_blue">|</span> <span>养心讲堂</span></h2>
+      </div> -->
+      <div class="slim"></div>
+      <div class="item item-body noborder" style="padding-top: 0; padding-bottom: 0;" ng-repeat="item in data | limitTo:5" ng-click="goToActivity(item.id, item.linkUrl)">
+        <h2>{{item.title}}</h2>
+        <img class="full-image" ng-src={{item.coverImageUrl}}>
+        <div class="clearfix mtb10">
+          <span class="fl">{{item.postTime}}</span>
+          <span class="fr">
                           <i class="ion-chatbubble-working">
                               <!--
                               <img src="../app/images/pinglun.png" height="20" width="20" class="verticalmd"/>
@@ -72,14 +102,14 @@
                           </i>
                         {{item.remarkCount}}
                     </span>
-                </div>
-                <div class="divider fullborder"></div>
-            </div>
         </div>
-        <!--展示card区域 end-->
+        <div class="divider fullborder"></div>
+      </div>
+    </div>
+    <!--展示card区域 end-->
 
-        <!--图文混排区域 start-->
-        <!--<div class="list" ng-repeat="item in data" ui-sref="textcontent({id:item.id})">
+    <!--图文混排区域 start-->
+    <!--<div class="list" ng-repeat="item in data" ui-sref="textcontent({id:item.id})">
             <a class="item" href="#">
                 <h2>{{item.title}}</h2>
                 <img class="img-responsive" ng-src={{item.coverImageUrl}}>
@@ -90,6 +120,6 @@
                 </p>
             </a>
         </div>-->
-        <!--图文混排区域 end-->
-    </ion-content>
+    <!--图文混排区域 end-->
+  </ion-content>
 </ion-view>

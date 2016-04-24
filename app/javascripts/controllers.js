@@ -335,8 +335,8 @@ angular.module('medicine.controllers', [])
           $timeout(function() {
             popup.close();
           }, 2000)
+          return
         }
-        return
         currentUser.setAuthToken(data.accessToken)
         var popup = $ionicPopup.alert({
           title: '注册成功',
@@ -775,7 +775,7 @@ angular.module('medicine.controllers', [])
       start: 0,
       limit: 5
     }
-    console.log($location);
+    // console.log('三高');
     $scope.more = true; //默认有最多
     threeKiller.get({
       illType: illType,
@@ -1775,7 +1775,7 @@ angular.module('medicine.controllers', [])
 
     }
   }])
-  .controller('xinyuanFabuCtrl', ['$scope', '$window', 'wish', '$ionicPopup', 'currentUser', function($scope, $window, wish, $ionicPopup, currentUser) {
+  .controller('xinyuanFabuCtrl', ['$timeout','$scope', '$window', 'wish', '$ionicPopup', 'currentUser', function($timeout,$scope, $window, wish, $ionicPopup, currentUser) {
     console.log('xinyuanFabuCtrl');
     $scope.xinyuan = {
       content: ""
@@ -1802,10 +1802,11 @@ angular.module('medicine.controllers', [])
               title: '提示',
               template: '心愿成功，请耐心等待'
             });
+            $window.location.href = '#/xinyuan';
             $timeout(function() {
               popup.close();
             }, 2000)
-            $window.location = '#/xinyuan_wode';
+
           } else {
             var popup = $ionicPopup.alert({
               title: '提示',
@@ -1845,6 +1846,75 @@ angular.module('medicine.controllers', [])
       console.log($scope.items);
     });
   }])
+  .controller('doctorChat',['chat','currentUser','$scope',function(chat,currentUser,$scope){
+    var accessToken = currentUser.getAuthToken();
+    chat.getChat({accessToken:accessToken},function(err,data){
+      $scope.items=data;
+      console.log($scope.items);
+    });
+  }])
+  .controller('articleCtrl',['$window','$location','article','currentUser','$scope',function($window,$location,article,currentUser,$scope){
+    var accessToken = currentUser.getAuthToken();
+    if ($location.path().indexOf('knowledge') != -1) {
+      illType = 3;
+      $scope.isSangao=true;
+    } else if ($location.path().indexOf('guanxinbing') != -1) {
+      illType = 4;
+      $scope.isGuanxinbing=true;
+    } else if ($location.path().indexOf('xinjigengse') != -1) {
+      illType = 5;
+      $scope.isXinjigengse=true;
+    } else if ($location.path().indexOf('xinlishuaijie') != -1) {
+      illType = 6;
+      $scope.isXinlishuaijie=true;
+    }
+    var page={
+      start:0,
+      limit:5
+    }
+    $scope.data=[];
+    article.get({start:page.start,limit:page.limit,illType:illType},function(err,data){
+      $scope.data=data;
+    });
+
+
+    $scope.go = function(item) {
+      if (item.linkType == 2) { //外链
+        $window.location.href = item.linkUrl;
+      } else if (item.linkType == 1) {
+        $window.location.href = "#/zhishidetail/" + item.id;
+      }
+      console.log(item);
+    };
+    $scope.more=true;
+    $scope.hasMore = function() {
+      return true;
+    }
+
+    $scope.loadMore = function() {
+      page.start += page.limit;
+      article.get({
+        illType: illType,
+        start: page.start,
+        limit: page.limit
+      }, function(err,data) {
+        console.log(data);
+        if (data.length > 0) {
+          data.forEach(function(d) {
+            $scope.data.push(d);
+          });
+        } else {
+          $scope.more = false;
+        }
+
+
+
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      });
+    }
+  }])
+
+
 
 .controller('jiluCtrl', ['$timeout','jilu', '$ionicModal', '$scope', '$window', 'wish', '$ionicPopup', 'currentUser', 'mywish', 'currentUser', function($timeout,jilu, $ionicModal, $scope, $window, wish, $ionicPopup, currentUser, mywish, currentUser) {
   //full calendar
@@ -1958,6 +2028,7 @@ angular.module('medicine.controllers', [])
           accessToken: currentUser.getAuthToken()
         };
         jilu.query(params, function(err, data) {
+          console.log(data.jilus);
           jiluData = data.jilus;
           for (var i = 0; i < jiluData.length; i++) {
             var cell = cellDays[jiluData[i].dayStr]
@@ -2039,18 +2110,35 @@ angular.module('medicine.controllers', [])
   function sync() {
     var day = selectDateStr;
     var formData = new FormData();
+    var njilu={
+      dayStr:day
+    }
     formData.append('day', day);
+    var cell = cellDays[day]
+    cell.html('<div style="border-radius:2px;float:right;margin-top:5px;margin-right:5px;width:5px;height:5px;background-color:#2CCD8F"></div>');
     formData.append('accessToken', currentUser.getAuthToken())
     if ($scope.isXueYa) {
       formData.append('gaoya', $scope.lu.high)
       formData.append('diya', $scope.lu.low)
+      njilu.gaoya=$scope.lu.high;
+      njilu.diya=$scope.lu.low;
     }
     if ($scope.isTizhong) {
       formData.append('tizhong', $scope.lu.tizhong)
+      njilu.tizhong=$scope.lu.tizhong;
     }
     if ($scope.isXinlv) {
       formData.append('xinlv', $scope.lu.xinlv)
+      njilu.xinlv=$scope.lu.xinlv;
     }
+    console.log(njilu);
+    for (var i = 0; i < jiluData.length; i++) {
+      if (day == jiluData[i].dayStr) {
+        jiluData[i]={};
+        break;
+      }
+    }
+    jiluData.push(njilu);
 
     jilu.add(formData, function() {
 
