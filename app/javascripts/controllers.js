@@ -1,5 +1,5 @@
 angular.module('medicine.controllers', [])
-  .controller('doctorEndIndexCtrl', ['healthLecture', 'helper', '$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', '$ionicLoading', 'ionicLoadingConfig', 'reply', 'mywish', function(healthLecture, helper, $scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout, $ionicLoading, ionicLoadingConfig, reply, mywish) {
+  .controller('doctorEndIndexCtrl', ['article','healthLecture', 'helper', '$scope', '$window', 'getCarouselList', 'currentUser', 'healthLecture', '$ionicPopup', '$timeout', '$ionicLoading', 'ionicLoadingConfig', 'reply', 'mywish', function(article,healthLecture, helper, $scope, $window, getCarouselList, currentUser, healthLecture, $ionicPopup, $timeout, $ionicLoading, ionicLoadingConfig, reply, mywish) {
     getCarouselList.query({
       type: 2,
       illType: 1
@@ -21,10 +21,13 @@ angular.module('medicine.controllers', [])
       console.log('my wishes ', data);
     });
 
-    healthLecture.query(function(data) {
-        console.log(data);
-        $scope.healthLecture = data
-      })
+    // healthLecture.query(function(data) {
+    //     console.log(data);
+    //     $scope.healthLecture = data
+    //   })
+    article.get({start:0,limit:5},function(err,data){
+      $scope.healthLecture = data
+    });
       // healthLecture.query(function (data) {
       //     $scope.healthLecture = data
       // })
