@@ -73,6 +73,16 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
         }
       }
     })
+    // .state('tabs.guanxinbing', {
+    //   url: "/guanxinbing",
+    //   views: {
+    //     'guanxinbing-tab': {
+    //       templateUrl: "templates/sangao.html",
+    //       controller: "articleCtrl"
+    //     }
+    //   }
+    // })
+
     .state('tabs.discover', {
       url: "/discover",
       views: {
@@ -161,8 +171,9 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
     //   url: '/guanxinbing',
     //   templateUrl: "templates/guanxinbing.html"
     // })
+
     .state('guanxinbing', {
-      url: '/guanxinbing',
+      url: "/guanxinbing",
       templateUrl: "templates/sangao.html",
       controller: "articleCtrl"
     })
