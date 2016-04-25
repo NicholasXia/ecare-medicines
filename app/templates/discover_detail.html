@@ -7,8 +7,9 @@
     <ion-content has-bouncing="true" class="padding">
         <div class="list">
             <div style="border:none" class="item item-avatar item-text-wrap">
-              <img ng-if="data.type==2" ng-src={{data.profileImageUrl}} onerror="this.src='./images/tongxiang0.png'" />
+              <img ng-if="data.type==2" ng-src={{data.profileImageUrl}}  onerror="this.src='./images/1.pic.jpg'"/>
               <h2 ng-if="data.type==2">{{data.name}}</h2>
+              <h2 ng-if="data.name==null&&data.type==2">ID{{data.userId}}</h2>
               <img ng-if="data.type==1" ng-src='./images/tongxiang.png'  />
               <h2 ng-if="data.type==1">医康世纪</h2>
                 <p style="margin-top:20px;">{{data.content}}</p>

@@ -77,7 +77,7 @@
           <span class="matches">最新回复</span>
         </ion-item>
         <ion-item class="item item-avatar" href="#" ng-repeat="item in newChat" ui-sref="chart({id:item.toUserID})">
-          <img ng-src={{item.profileImageUrl}} alt="" />
+          <img ng-src={{item.profileImageUrl}} onerror="this.src='./images/1.pic.jpg'" />
           <div>
             <span>{{item.name}}</span>
             <span class="small fk-side">已绑定</span>
@@ -91,7 +91,7 @@
         <!--回复方式二 -->
 
         <ion-item class="item item-avatar" ng-repeat="item in newRemark | limitTo:3" ui-sref="discoverdetailv({id:item.id, remarkId:item.remarkList[$index].remarkId})">
-          <img src={{item.profileImageUrl}} alt="" />
+          <img src={{item.profileImageUrl}} alt="" onerror="this.src='./images/1.pic.jpg'"/>
           <div>
             <span>{{item.name}}</span>
             <span class="gray">{{item.postTime}}</span>
@@ -112,7 +112,7 @@
         </ion-item>
         <!-- 心愿 -->
         <ion-item class="item item-avatar" ng-click="readWish(item)" ng-repeat="item in wishContent">
-          <img src={{item.patientProfileImageUrl}}>
+          <img src={{item.patientProfileImageUrl}} onerror="this.src='./images/1.pic.jpg'">
           <h2>{{item.patientName}}</h2>
           <p>{{item.postTime}}</p>
           <p class="xinyuanTag" ng-if="item.isComeTrue==1">
@@ -153,7 +153,7 @@
         <span class="matches">心愿墙</span>
       </ion-item>
       <ion-item class="item item-avatar" href="#/wishwall" ng-repeat='wish in wishes'>
-        <img src="{{wish.patientProfileImageUrl}}" alt="用户头像" />
+        <img src="{{wish.patientProfileImageUrl}}" alt="用户头像" onerror="this.src='./images/1.pic.jpg'"/>
 
         <div>
           <span>{{wish.patientName}}</span>
@@ -177,8 +177,8 @@
         <h2><span class="matches">养心讲堂</span></h2>
       </div>
       <!--<div class="slim clearfix"></div>-->
-      <div class="item item-body" style="padding-top: 0; padding-bottom: 0;" ng-repeat="item in healthLecture" ng-click="goToActivity(item.id,item.linkUrl)">
-        <h2>{{item.title}}</h2>
+      <div  style="padding-top: 0; padding-bottom: 0;" ng-repeat="item in healthLecture" ng-click="goToActivity(item.id,item.linkUrl)">
+        <!-- <h2>{{item.title}}</h2>
         <img class="full-image" ng-src={{item.coverImageUrl}}>
 
         <div class="clearfix mtb10">
@@ -190,6 +190,17 @@
                             {{item.remarkCount}}
                         </span>
           </span>
+        </div>
+        <div class="divider fullborder"></div> -->
+        <div class="item item-thumbnail-left"  >
+          <img style="margin-top:10px;max-width:90px;max-height:65px" ng-src={{item.coverImageUrl}}>
+          <h2 style="margin-top:10px">{{item.title}}</h2>
+          <p style="margin-top:10px;margin-left:5px"> {{item.postTime}}</p>
+          <a  class="fr gray">
+              <i class="icon ion-chatbubble-working">
+              </i>
+              <span class="verticalbt">{{item.remarkCount}}</span>
+          </a>
         </div>
         <div class="divider fullborder"></div>
       </div>

@@ -509,7 +509,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
       templateUrl:"templates/mianze.html"
     });
   $urlRouterProvider.otherwise("/tab/home");
-}).run(['huanxin','$timeout','$window','$ionicPopup','currentUser','$rootScope', function(huanxin,$timeout,$window,$ionicPopup,currentUser,$rootScope) {
+}).run(['$stateParams','huanxin','$timeout','$window','$ionicPopup','currentUser','$rootScope', function($stateParams,huanxin,$timeout,$window,$ionicPopup,currentUser,$rootScope) {
 
   console.log('connect '+huanxin.getConnect());
     if(currentUser.getUser().password){//登录
@@ -526,6 +526,12 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
 
   $rootScope.$on('$stateChangeSuccess',
     function(event, toState, toParams, fromState, fromParams) {
+
+      //必须完成资料
+
+      // console.log('ddd');
+      // console.log(toParams);
+      // console.log($stateParams);
       var forbit=['jilu'];
             for(i in forbit){
               console.log(forbit[i]);

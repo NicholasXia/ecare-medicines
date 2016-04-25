@@ -1,5 +1,5 @@
-<div ng-if="isGuanxinbing==true" class="" ng-style="displayNone" style="background-color:#2E2E2E;overflow:hidden">
-  <div ng-click="displayNone={'display':'none'};displayTo={'margin-top':'0'}"  style="float:left;margin-left:10px;margin-top:15px">
+<div ng-if="isGuanxinbing==true" class="" ng-style="displayNone" style="background-color:#2E2E2E;opacity:1;overflow:hidden;position:absolute;z-index:10;width:100%">
+  <div ng-click="displayNone={'display':'none'};"  style="float:left;margin-left:10px;margin-top:15px">
     <img style="width:15px;" src="../images/top-x.png" alt="" />
   </div>
   <div style="float:left;width:20px;margin-left:15px"><img style="width:40px" src="../images/tongxin.png"/></div>
@@ -10,8 +10,8 @@
     <a href="http://dl.ixinzang.com/pasm/d.html" target="_blank" style="border-radius:2px;padding:5px 10px;background-color:#46BCB7;text-decoration:none;color:#fff">立即打开</a>
   </div>
 </div>
-<div ng-if="isXinlishuaijie==true" ng-style="displayNone" class="" style="background-color:#2E2E2E;overflow:hidden">
-  <div ng-click="displayNone={'display':'none'};displayTo={'margin-top':'0'}"  style="float:left;;margin-top:15px;margin-left:3%">
+<div ng-if="isXinlishuaijie==true" ng-style="displayNone" class="" style="background-color:#2E2E2E;overflow:hidden;position:absolute;z-index:10;width:100%">
+  <div ng-click="displayNone={'display':'none'}"  style="float:left;;margin-top:15px;margin-left:3%">
     <img style="width:15px;" src="../images/top-x.png" alt="" />
   </div>
   <div style="float:left;width:20px;margin-left:10px"><img style="width:40px" src="../images/xinshuai.png"/></div>
@@ -26,8 +26,11 @@
 .xinli,.guanxin{
   margin-top:45px;
 }
+.topHide{
+  margin-top:0px !important;
+}
 </style>
-<ion-view ng-class="{guanxin:isGuanxinbing,xinli:isXinlishuaijie}" view-title="知识-乐柏健康" cache-view='false' hide-nav-bar="isNavBarHide" >
+<ion-view  view-title="知识-乐柏健康" >
   <ion-header-bar class="bar-balanced">
       <a class="button icon ion-chevron-left" href="#/tab/home"></a>
     <h1 class="title">知识</h1>
@@ -42,7 +45,7 @@
         冠心病
       </a>
       <a class="tab-item" ng-class="{active:isXinjigengse}" href="#/xinjigengse">
-        心肌梗赛
+        心肌梗塞
       </a>
       <a class="tab-item" ng-class="{active:isXinlishuaijie}" href="#/xinlishuaijie">
         心力衰竭
@@ -50,10 +53,9 @@
     </div>
   </div>
 
-  <ion-content style="margin-top:30px" has-bouncing="true"  >
+  <ion-content style="margin-top:45px" has-bouncing="true"  >
       <ion-list class="list" ng-repeat="item in data">
-        <!-- ui-sref="zhishidetail({id:item.id})" -->
-          <div class="item" ng-click="go(item)">
+          <!-- <div class="item" ng-click="go(item)">
               <div class="">
                   <h2 class="mtb10">{{item.title}}</h2>
                   <img class="full-image" ng-src={{item.coverImageUrl}}>
@@ -64,11 +66,20 @@
                   </span>
                   <a class="fr gray">
                       <i class="icon ion-chatbubble-working">
-                          <!--<img src="images/pinglun.png" alt="" width="20" height="20px" class="verticalmd"/>-->
                       </i>
                       <span class="verticalbt">{{item.remarkCount}}</span>
                   </a>
               </div>
+          </div> -->
+          <div class="item item-thumbnail-left"  ng-click="go(item)">
+            <img style="margin-top:10px;max-width:90px;max-height:65px" ng-src={{item.coverImageUrl}}>
+            <h2 style="margin-top:10px">{{item.title}}</h2>
+            <p style="margin-top:10px;margin-left:5px"> {{item.postTime}}</p>
+            <a  class="fr gray">
+                <i class="icon ion-chatbubble-working">
+                </i>
+                <span class="verticalbt">{{item.remarkCount}}</span>
+            </a>
           </div>
       </ion-list>
       <ion-infinite-scroll ng-if="more==true"

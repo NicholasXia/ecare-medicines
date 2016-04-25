@@ -9,7 +9,7 @@
     <!--心愿列表 start-->
     <ion-list class="list">
       <ion-item class="item item-avatar" href="#/wishwall" ng-repeat='wish in wishes'>
-          <img src="{{wish.patientProfileImageUrl}}" alt="用户头像"/>
+          <img src="{{wish.patientProfileImageUrl}}" alt="用户头像" onerror="this.src='./images/1.pic.jpg'"/>
 
           <div>
               <span>{{wish.patientName}}</span>

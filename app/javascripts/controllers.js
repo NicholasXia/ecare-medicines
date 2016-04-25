@@ -26,6 +26,7 @@ angular.module('medicine.controllers', [])
     //     $scope.healthLecture = data
     //   })
     article.get({start:0,limit:5},function(err,data){
+      console.log(data);
       $scope.healthLecture = data
     });
       // healthLecture.query(function (data) {
@@ -1877,6 +1878,7 @@ angular.module('medicine.controllers', [])
     }
     $scope.data=[];
     article.get({start:page.start,limit:page.limit,illType:illType},function(err,data){
+      console.log(data);
       $scope.data=data;
     });
 
@@ -2069,7 +2071,8 @@ angular.module('medicine.controllers', [])
   $scope.lu = {
     high: 110,
     low: 80,
-    tizhong: 50,
+    tizhong: 500,
+    tizhongDis:50,
     xinlv: 70
   }
   $scope.isXueYa = false;
