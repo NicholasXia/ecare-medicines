@@ -208,6 +208,7 @@ angular.module('medicine.controllers', [])
       patientProfile.query({
         accessToken: currentUser.getAuthToken()
       }, function(data) {
+        console.log(data);
         $scope.data = data
         if(data.error){
           var popup = $ionicPopup.alert({
@@ -1149,7 +1150,7 @@ angular.module('medicine.controllers', [])
       }, {
         accessToken: currentUser.getAuthToken()
       }, function(data) {
-
+        console.log(data);
         $scope.data = data;
         $document[0].title = data.title;
         mobShare.config({

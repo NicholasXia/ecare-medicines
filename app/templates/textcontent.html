@@ -35,10 +35,11 @@
 
 
             <div class="item item-avatar" ng-repeat="item in data.remarkList">
-                <img ng-src="{{item.profileImageUrl}}" onerror="this.src='./images/tongxiang.png'">
-
+                <img ng-if="item.profileImageUrl!=null" ng-src="{{item.profileImageUrl}}" onerror="this.src='./images/1.pic.jpg'">
+                <img ng-if="item.profileImageUrl==null" ng-src="./images/1.pic.jpg">
                 <div class='commenter'>
-                    <span>{{item.name}}</span>
+                    <span ng-if="item.name!=null">{{item.name}}</span>
+                    <span ng-if="item.name==null">ID{{item.userId}}</span>
                     <span style="margin-left: 10px ;color:rgba(0,0,0,.3)">{{item.postTime}}</span>
                 </div>
                 <div class="item-body pad-replate">

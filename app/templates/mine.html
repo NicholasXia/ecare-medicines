@@ -17,8 +17,11 @@
             </div>
             <div ng-if="ischeck == true">
                 <div id="logined">
-                    <img ng-src={{data.profileImageUrl}} alt="" width="60" height="60" class="round" onerror="this.src='./images/tongxiang.png'"/>
-                    <span class="gray">{{data.name}}</span>
+                    <img ng-if="data.profileImageUrl!=null" ng-src={{data.profileImageUrl}} alt="" width="60" height="60" class="round" onerror="this.src='./images/1.pic.jpg'"/>
+                    <img width="60" height="60" class="round" ng-if="data.profileImageUrl==null" ng-src="./images/1.pic.jpg">
+                    <!-- <span class="gray">{{data.name}}</span> -->
+                    <span class="gray" ng-if="item.name!=null">{{data.name}}</span>
+                    <span class="gray" ng-if="item.name==null">ID{{data.userId}}</span>
                 </div>
             </div>
             <a ng-if="ischeck == true" class="icon ion-chevron-right rightarrow" ng-href="#/personal" ng-click="fk()"></a>

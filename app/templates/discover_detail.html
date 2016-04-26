@@ -35,9 +35,10 @@
             <p class="mtb10">评论:({{data.remarkCount}})</p>
 
             <div class="item item-avatar" ng-repeat="item in data.remarkList">
-                <img ng-src="{{item.remarkUserProfile}}" onerror="this.src='./images/tongxiang0.png'" />
+                <img ng-src="{{item.remarkUserProfile}}" onerror="this.src='./images/1.pic.jpg'" />
                 <div class='commenter'>
-                    <span>{{item.remarkUserName}}</span>
+                    <span ng-if="item.remarkUserName!=null">{{item.remarkUserName}}</span>
+                    <span ng-if="item.remarkUserName==null">ID{{item.userId}}</span>
                     <span>{{item.postTime}}</span>
                 </div>
                 <div class="item-body pad-replate">

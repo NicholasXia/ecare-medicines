@@ -77,7 +77,8 @@
           <span class="matches">最新回复</span>
         </ion-item>
         <ion-item class="item item-avatar" href="#" ng-repeat="item in newChat" ui-sref="chart({id:item.toUserID})">
-          <img ng-src={{item.profileImageUrl}} onerror="this.src='./images/1.pic.jpg'" />
+          <img ng-if="item.profileImageUrl!=null" ng-src={{item.profileImageUrl}} onerror="this.src='./images/1.pic.jpg'" />
+            <img ng-if="item.profileImageUrl==null" ng-src='./images/1.pic.jpg' />
           <div>
             <span>{{item.name}}</span>
             <span class="small fk-side">已绑定</span>
@@ -91,7 +92,8 @@
         <!--回复方式二 -->
 
         <ion-item class="item item-avatar" ng-repeat="item in newRemark | limitTo:3" ui-sref="discoverdetailv({id:item.id, remarkId:item.remarkList[$index].remarkId})">
-          <img src={{item.profileImageUrl}} alt="" onerror="this.src='./images/1.pic.jpg'"/>
+        <img ng-if="item.remarkList[0].remarkUserProfile!=null" ng-src={{item.remarkList[0].remarkUserProfile}} onerror="this.src='./images/1.pic.jpg'" />
+          <img ng-if="item.remarkList[0].remarkUserProfile==null" ng-src='./images/1.pic.jpg' />
           <div>
             <span>{{item.name}}</span>
             <span class="gray">{{item.postTime}}</span>

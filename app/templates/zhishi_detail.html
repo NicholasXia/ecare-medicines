@@ -32,10 +32,11 @@
 
 
             <div class="item item-avatar" ng-repeat="item in zhishidetail.remarkList">
-                <img ng-src="{{item.profileImageUrl}}">
-
+                <img ng-if="item.profileImageUrl!=null" ng-src="{{item.profileImageUrl}}">
+                  <img ng-if="item.profileImageUrl==null" ng-src="./images/1.pic.jpg">
                 <div class='commenter'>
-                    <span>{{item.name}}</span>
+                  <span ng-if="item.name!=null">{{item.name}}</span>
+                  <span ng-if="item.name==null">ID{{item.userId}}</span>
                     <span>{{item.postTime}}</span>
                 </div>
                 <div class="item-body pad-replate">
