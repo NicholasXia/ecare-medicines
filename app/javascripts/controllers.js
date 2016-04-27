@@ -25,10 +25,37 @@ angular.module('medicine.controllers', [])
     //     console.log(data);
     //     $scope.healthLecture = data
     //   })
+    var page={
+      start:0,
+      limit:5
+    }
     article.get({start:0,limit:5},function(err,data){
       console.log(data);
       $scope.healthLecture = data
     });
+    $scope.more=true;
+    $scope.loadMore = function() {
+      page.start += page.limit;
+      article.get({
+        start: page.start,
+        limit: page.limit
+      }, function(err,data) {
+        console.log(data);
+        if (data.length > 0) {
+          data.forEach(function(d) {
+            $scope.healthLecture.push(d);
+          });
+        } else {
+          $scope.more = false;
+        }
+
+
+
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      });
+    }
+
+
       // healthLecture.query(function (data) {
       //     $scope.healthLecture = data
       // })
