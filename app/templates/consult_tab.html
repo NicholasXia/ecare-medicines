@@ -23,6 +23,25 @@
                   {{item.toChat}}
                 </div>
             </ion-item>
+
+
+            <ion-item class="item-avatar" ng-if="item.toChat==null"> <!--医生 -->
+
+                <img  style="float:left;" ng-src="{{item.durl}}" onerror="this.src='./images/2.pic.jpg'"/>
+                  <!-- <span style="float:left" class="small fk-side">已绑定</span> -->
+                                <!-- <i ng-if="item.isRead==0" style="margin-left:10px;float:right;color:red"  class="ion-record record-point"></i> -->
+                <div style="float:left;width:100px">
+                    <span>{{item.name}}</span>
+
+
+                </div>
+                <div class="" style="float:right">
+                  <span style="font-size:14px;" class="gray">{{item.timePointTime}}</span>
+                </div>
+                <div class="" style=";;clear:both">
+                  {{item.fromChat}}
+                </div>
+            </ion-item>
             </a>
         </ion-list>
     </ion-content>
