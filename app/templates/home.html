@@ -151,7 +151,7 @@
 
     <!--心愿墙 完成-->
     <ion-list class="list" ng-if="wishes.length!=0">
-      <ion-item class="item item-divider">
+      <ion-item class="item item-divider white">
         <span class="matches">心愿墙</span>
       </ion-item>
       <ion-item class="item item-avatar" href="#/wishwall" ng-repeat='wish in wishes'>
@@ -169,11 +169,12 @@
       </ion-item>
 
     </ion-list>
+    <div class="divider" ></div>
     <!--心愿墙 end-->
 
 
     <!--养心讲堂 start-->
-    <div class="divider" ng-if="isLogin"></div>
+    <!-- <div class="divider" ng-if="isLogin"></div> -->
     <div class="list">
       <div class="item item-divider white">
         <h2><span class="matches">养心讲堂</span></h2>
