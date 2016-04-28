@@ -499,7 +499,7 @@ angular.module('medicine.controllers', [])
       }
     })
   }])
-  .controller('doctorEndPublishDiscoverCtrl', ['patientProfile','$timeout', '$http', '$scope', 'publishdiscover', 'currentUser', '$window', '$ionicPopup', '$ionicLoading', function(patientProfile,$timeout, $http, $scope, publishdiscover, currentUser, $window, $ionicPopup, $ionicLoading) {
+  .controller('doctorEndPublishDiscoverCtrl', ['SERVER','patientProfile','$timeout', '$http', '$scope', 'publishdiscover', 'currentUser', '$window', '$ionicPopup', '$ionicLoading', function(SERVER,patientProfile,$timeout, $http, $scope, publishdiscover, currentUser, $window, $ionicPopup, $ionicLoading) {
     $scope.accessToken = currentUser.getAuthToken()
     $scope.publish = {
       imageBase64s: '',
@@ -569,7 +569,7 @@ angular.module('medicine.controllers', [])
       $ionicLoading.show({
         template: '图片正在上传，请稍等'
       });
-      $http.post('http://work.e-care365.com/hospital/patient/discovery/add', formData, {
+      $http.post(SERVER+'/patient/discovery/add', formData, {
         headers: {
           'Content-Type': undefined
         },
@@ -1293,7 +1293,7 @@ angular.module('medicine.controllers', [])
       }
     }
   }])
-  .controller('changeCtrl', ['patientProfile', '$http', '$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function(patientProfile, $http, $scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
+  .controller('changeCtrl', ['SERVER','patientProfile', '$http', '$scope', 'updateMsg', 'currentUser', '$ionicPopup', '$window', '$timeout', 'patientProfile', function(SERVER,patientProfile, $http, $scope, updateMsg, currentUser, $ionicPopup, $window, $timeout, patientProfile) {
     patientProfile.query({
       accessToken: currentUser.getAuthToken()
     }, function(data) {
@@ -1345,7 +1345,7 @@ angular.module('medicine.controllers', [])
       formData.append('imageBase64s', publishphoto[0].dataURL)
       formData.append('accessToken', currentUser.getAuthToken())
 
-      $http.post('http://work.e-care365.com/hospital/patient/profile/update', formData, {
+      $http.post(SERVER+'/patient/profile/update', formData, {
         headers: {
           'Content-Type': undefined
         },
