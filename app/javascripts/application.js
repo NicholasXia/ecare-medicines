@@ -535,7 +535,7 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
       var forbit=['jilu'];
             for(i in forbit){
               console.log(forbit[i]);
-              console.log(toState.name);
+              console.log(toState);
 
               if(forbit[i]==toState.name){
                 if(currentUser.getAuthToken()==null){
@@ -553,13 +553,18 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
               }
             }
 
-
+      var baiduUrl="#"+toState.url;
       if(toParams.id){
-            // console.log(toState.url.replace(":id",toParams.id));
-            _hmt.push(['_trackPageview', toState.url.replace(":id",toParams.id)]);
-      }else{
-        _hmt.push(['_trackPageview', toState.url]);
-      }
+             baiduUrl= "#"+toState.url.replace(":id",toParams.id);
+            _hmt.push(['_trackPageview',baiduUrl]);
+      }if(toState.name.indexOf('tabs')>0){
+             baiduUrl="#/tab"+toState.url;
+            _hmt.push(['_trackPageview',baiduUrl]);
 
+      }else{
+
+        _hmt.push(['_trackPageview', baiduUrl]);
+      }
+      console.log(baiduUrl);
     });
 }]);

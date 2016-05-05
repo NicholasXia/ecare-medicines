@@ -2157,6 +2157,7 @@ angular.module('medicine.controllers', [])
       njilu.gaoya=$scope.lu.high;
       njilu.diya=$scope.lu.low;
     }
+    console.log($scope.isTizhong);
     if ($scope.isTizhong) {
       formData.append('tizhong', $scope.lu.tizhong)
       njilu.tizhong=$scope.lu.tizhong;
