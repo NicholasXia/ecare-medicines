@@ -554,15 +554,15 @@ angular.module('medicine', ['ionic', 'medicine.controllers', 'medicine.services'
             }
 
       var baiduUrl="#"+toState.url;
+      console.log(toState.name.indexOf('tabs'));
       if(toParams.id){
              baiduUrl= "#"+toState.url.replace(":id",toParams.id);
             _hmt.push(['_trackPageview',baiduUrl]);
-      }if(toState.name.indexOf('tabs')>0){
+      }if(toState.name.indexOf('tabs')!=-1){
              baiduUrl="#/tab"+toState.url;
             _hmt.push(['_trackPageview',baiduUrl]);
 
       }else{
-
         _hmt.push(['_trackPageview', baiduUrl]);
       }
       console.log(baiduUrl);
