@@ -9,7 +9,7 @@
   <ion-content>
     <ul class="list">
 
-      <li class="item item-icon-right" ng-repeat="item in items.jilus">
+      <li ng-if="item.gaoya!=null" class="item item-icon-right" ng-repeat="item in items.jilus">
         <div class="">
           高压（收缩压）：{{item.gaoya}}mmHg
         </div>
