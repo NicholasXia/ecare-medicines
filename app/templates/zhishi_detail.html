@@ -21,7 +21,7 @@
                 </p>
             </div>
 
-            <div class="bar bar-header item-input-inset">
+            <div style="margin-bottom:20px;"  class="bar bar-header item-input-inset">
                 <label class="item-input-wrapper">
                     <input type="text" placeholder="我也说两句吧" ng-model="markinfo.remak">
                 </label>
@@ -31,7 +31,7 @@
             </div>
 
 
-            <div class="item item-avatar" ng-repeat="item in zhishidetail.remarkList">
+            <div  class="item item-avatar" ng-repeat="item in zhishidetail.remarkList">
                 <img ng-if="item.profileImageUrl!=null" ng-src="{{item.profileImageUrl}}">
                   <img ng-if="item.profileImageUrl==null" ng-src="./images/1.pic.jpg">
                 <div class='commenter'>
