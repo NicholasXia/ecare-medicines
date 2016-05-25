@@ -8,12 +8,12 @@
   <ion-content has-bouncing="true">
     <!--心愿列表 start-->
     <ion-list class="list">
-      <ion-item class="item item-avatar" href="#/wishwall" ng-repeat='wish in wishes'>
+      <ion-item  class="item item-avatar" href="#/wishwall" ng-repeat='wish in wishes'>
           <img src="{{wish.patientProfileImageUrl}}" alt="用户头像" onerror="this.src='./images/1.pic.jpg'"/>
 
-          <div>
+          <div class="" style="margin-right:-30px;">
               <span>{{wish.patientName}}</span>
-              <span class="small">心愿成真</span>
+              <span style="font-size:12px" class="small">心愿成真</span>
           </div>
           <p class="init">
               {{wish.content}}

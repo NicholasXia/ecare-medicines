@@ -39,7 +39,7 @@
 
     </ion-content>
 
-    <ion-footer-bar style="margin-bottom:20px" keyboard-attach class="bar-stable item-input-inset">
+    <ion-footer-bar style="z-index=9999" keyboard-attach class="bar-stable item-input-inset">
         <label class="item-input-wrapper">
             <input type="text" placeholder="请输入信息" on-return="sendMessage(); closeKeyboard()"
                    ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()"/>

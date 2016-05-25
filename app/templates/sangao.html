@@ -75,11 +75,11 @@
                   </a>
               </div>
           </div> -->
-          <div class="item item-thumbnail-left"  ng-click="go(item)">
+          <div style="" class="item item-thumbnail-left"  ng-click="go(item)">
             <img style="margin-top:10px;max-width:90px;max-height:65px" ng-src={{item.coverImageUrl}}>
-            <h2 style="margin-top:10px">{{item.title}}</h2>
+            <h2 style="white-space:normal;margin-top:10px">{{item.title}}</h2>
             <p style="margin-top:10px;margin-left:5px"> {{item.postTime}}</p>
-            <a  class="fr gray">
+            <a ng-if="item.category!=6" class="fr gray">
                 <i class="icon ion-chatbubble-working">
                 </i>
                 <span class="verticalbt">{{item.remarkCount}}</span>
