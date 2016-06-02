@@ -524,6 +524,16 @@ angular.module('medicine.controllers', [])
 
     $scope.publish = function(publishphoto) {
       //console.log(publishphoto)
+      if (!publishphoto&&!$scope.publish.content) {
+        var popup = $ionicPopup.alert({
+          'title': '提示',
+          'template': '发送的说说和图片不为空'
+        });
+        $timeout(function() {
+          popup.close();
+        }, 2000)
+        return;
+      }
       if (publishphoto) {
         $scope.publish.imageBase64s = publishphoto[0].dataURL
       } else {

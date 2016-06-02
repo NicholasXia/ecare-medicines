@@ -1,6 +1,6 @@
 <style media="screen">
   .homeFont {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .button-bar>.button {
@@ -9,6 +9,7 @@
   .slider-pager{
     padding-top:10px !important;
   }
+
 
 </style>
 <ion-view view-title="乐柏健康-心血管健康服务平台，移动医疗助力慢病管理" cache-view='false' hide-nav-bar="isNavBarHide">
@@ -20,11 +21,11 @@
       </ion-slide>
     </ion-slide-box>
 
-    <div style="padding:10px;" ng-click="static()">
-      <!-- <img class="img-responsive" style="width:100%" ng-src="images/111.png" alt="111.png"/> -->
+    <!-- <div style="padding:10px;" ng-click="static()">
+
       <img class="img-responsive" style="width:100%" ng-src="images/506.pic_hd.jpg" />
 
-    </div>
+    </div> -->
 
     <!--二级大图-->
     <!--核心功能-->
@@ -186,9 +187,9 @@
       <div class="item item-divider white">
         <h2><span class="matches">养心讲堂</span></h2>
       </div>
-      <div style="padding-top: 0; padding-bottom: 0;" ng-repeat="item in healthLecture" ng-click="goToActivity(item.id,item.linkUrl)">
+      <div ng-if="item.illType!=1&&item.illType!=2" style="padding-top: 0; padding-bottom: 0;" ng-repeat="item in healthLecture" ng-click="goToActivity(item.id,item.linkUrl)">
 
-        <div class="item item-thumbnail-left">
+        <!-- <div class="item item-thumbnail-left">
           <img style="margin-top:10px;width:90px;height:65px" ng-src={{item.coverImageUrl}}>
           <h2 style="margin-top:10px;white-space:normal;">{{item.title}}</h2>
           <p style="margin-top:10px;margin-left:5px"> {{item.postTime}}</p>
@@ -196,6 +197,16 @@
             <i class="icon ion-chatbubble-working">
               </i>
             <span class="verticalbt">{{item.remarkCount}}</span>
+          </a>
+        </div> -->
+        <div style="" class="item item-thumbnail-left"  ng-click="go(item)">
+          <img style="margin-top:10px;max-width:90px;max-height:65px" ng-src={{item.coverImageUrl}}>
+          <h2 style="white-space:normal;margin-top:10px">{{item.title}}</h2>
+          <p style="margin-top:10px;margin-left:5px"> {{item.postTime}}</p>
+          <a ng-if="item.category!=6" class="fr gray">
+              <i class="icon ion-chatbubble-working">
+              </i>
+              <span class="verticalbt">{{item.remarkCount}}</span>
           </a>
         </div>
         <div class="divider"></div>
