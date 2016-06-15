@@ -527,7 +527,7 @@ angular.module('medicine.controllers', [])
       if (!publishphoto&&!$scope.publish.content) {
         var popup = $ionicPopup.alert({
           'title': '提示',
-          'template': '发送的说说和图片不为空'
+          'template': '发送的帖子和图片不为空'
         });
         $timeout(function() {
           popup.close();
@@ -543,7 +543,7 @@ angular.module('medicine.controllers', [])
         if ($scope.publish.content.length > 200) {
           var popup = $ionicPopup.alert({
             'title': '提示',
-            'template': '发送的说说不能超过200个字~'
+            'template': '发送的帖子不能超过200个字~'
           });
           $timeout(function() {
             popup.close();
