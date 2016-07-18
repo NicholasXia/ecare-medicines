@@ -1268,7 +1268,8 @@ angular.module('medicine.controllers', [])
         remark: $scope.markinfo.remak
       }
       if (accesstoken) {
-        if ($scope.markinfo.remak.length == 0) {
+        console.log($scope.markinfo.remak);
+        if ($scope.markinfo.remak||$scope.markinfo.remak.length == 0) {
           var popup = $ionicPopup.alert({
             title: '提示',
             template: '对不起，您没填写评论内容'
