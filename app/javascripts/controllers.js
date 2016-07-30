@@ -1269,7 +1269,7 @@ angular.module('medicine.controllers', [])
       }
       if (accesstoken) {
         console.log($scope.markinfo.remak);
-        if ($scope.markinfo.remak.length == 0) {
+        if ($scope.markinfo.remak&&$scope.markinfo.remak.length == 0) {
           var popup = $ionicPopup.alert({
             title: '提示',
             template: '对不起，您没填写评论内容'
